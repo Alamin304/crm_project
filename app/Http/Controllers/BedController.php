@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BedsExport;
 use App\Http\Requests\BedRequest;
 use App\Http\Requests\UpdateBedRequest;
 use App\Models\Bed;
@@ -9,6 +10,7 @@ use App\Queries\BedDataTable;
 use App\Repositories\BedRepository;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -20,7 +22,7 @@ class BedController extends AppBaseController
      * @return \Illuminate\Http\Response
      */
 
-     private $bedRepository;
+    private $bedRepository;
 
     public function __construct(BedRepository $bedRepo)
     {
@@ -119,5 +121,12 @@ class BedController extends AppBaseController
         } catch (QueryException $e) {
             return $this->sendError('Failed To delete!! Already in use.');
         }
+    }
+
+    public function export($format)
+    {
+        $fileName = 'beds_export.' . $format;
+
+        return Excel::download(new BedsExport, $fileName);
     }
 }

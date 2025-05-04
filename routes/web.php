@@ -941,6 +941,7 @@ Route::group([], function () {
     Route::get('beds/{bed}/edit', [BedController::class, 'edit'])->name('beds.edit');
     Route::put('beds/{bed}', [BedController::class, 'update'])->name('beds.update');
     Route::delete('beds/{bed}', [BedController::class, 'destroy'])->name('beds.destroy');
+    Route::get('beds/export/{format}', [BedController::class, 'export'])->name('beds.export');
 });
 
 Route::get('article-search', function () {

@@ -13,11 +13,24 @@
             <div class="section-header-breadcrumb float-right">
                 <div class="card-header-action mr-3 select2-mobile-margin"></div>
             </div>
-            <div class="float-right">
+
+            <div class="float-right d-flex">
+                <a href="{{ route('beds.export', ['format' => 'xlsx']) }}" class="btn btn-success mr-2">
+                    <i class="fas fa-file-excel"></i> {{ __('Export Excel') }}
+                </a>
+                <a href="{{ route('beds.export', ['format' => 'csv']) }}" class="btn btn-info mr-2">
+                    <i class="fas fa-file-csv"></i> {{ __('Export CSV') }}
+                </a>
+                <a href="{{ route('beds.create') }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> {{ __('messages.beds.add') }}
+                </a>
+            </div>
+
+            {{-- <div class="float-right">
                 <a href="{{ route('beds.create') }}" class="btn btn-primary form-btn">
                     {{ __('messages.beds.add') }} <i class="fas fa-plus"></i>
                 </a>
-            </div>
+            </div> --}}
         </div>
         <div class="section-body">
             <div class="card">
