@@ -63,6 +63,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerStatementController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\BedController;
 use App\Http\Controllers\OtpController;
 
 
@@ -919,6 +920,27 @@ Route::middleware(['auth', 'xss', 'checkUserStatus'])->group(function () {
     Route::get('ticket-reply/{ticket}/edit', [TicketReplyController::class, 'edit'])->name('ticket.reply.edit');
     Route::put('ticket-reply/{ticket}', [TicketReplyController::class, 'update'])->name('ticket.reply.update');
     Route::delete('ticket-reply/{ticket}', [TicketReplyController::class, 'destroy'])->name('ticket.reply.destroy');
+});
+
+
+// Route::group(['middleware' => ['permission:view_beds|create_beds|update_beds|delete_beds']], function () {
+//     Route::get('beds', [BedController::class, 'index'])->name('beds.index');
+//     Route::get('beds/create', [BedController::class, 'create'])->middleware('permission:create_beds')->name('beds.create');
+//     Route::post('beds', [BedController::class, 'store'])->middleware('permission:create_beds')->name('beds.store');
+//     Route::get('beds/{bed}/view', [BedController::class, 'view'])->middleware('permission:view_beds')->name('beds.view');
+//     Route::get('beds/{bed}/edit', [BedController::class, 'edit'])->middleware('permission:update_beds')->name('beds.edit');
+//     Route::put('beds/{bed}', [BedController::class, 'update'])->middleware('permission:update_beds')->name('beds.update');
+//     Route::delete('beds/{bed}', [BedController::class, 'destroy'])->middleware('permission:delete_beds')->name('beds.destroy');
+// });
+
+Route::group([], function () {
+    Route::get('beds', [BedController::class, 'index'])->name('beds.index');
+    Route::get('beds/create', [BedController::class, 'create'])->name('beds.create');
+    Route::post('beds', [BedController::class, 'store'])->name('beds.store');
+    Route::get('beds/{bed}/view', [BedController::class, 'view'])->name('beds.view');
+    Route::get('beds/{bed}/edit', [BedController::class, 'edit'])->name('beds.edit');
+    Route::put('beds/{bed}', [BedController::class, 'update'])->name('beds.update');
+    Route::delete('beds/{bed}', [BedController::class, 'destroy'])->name('beds.destroy');
 });
 
 Route::get('article-search', function () {

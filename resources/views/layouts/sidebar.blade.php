@@ -684,7 +684,8 @@
             'delete_accounts', 'view_cash_transfers', 'create_cash_transfers', 'update_cash_transfers',
             'delete_cash_transfers', 'export_cash_transfers', 'view_journal_vouchers', 'create_journal_vouchers',
             'update_journal_vouchers', 'delete_journal_vouchers', 'export_journal_vouchers', 'view_account_statements',
-            'export_account_statements','view_print_checks','create_print_checks','update_print_checks','delete_print_checks'])
+            'export_account_statements', 'view_print_checks', 'create_print_checks', 'update_print_checks',
+            'delete_print_checks'])
             {{-- <li class="menu-header side-menus">{{ __('messages.expenses') }}</li> --}}
 
             <li class="nav-item dropdown side-menus">
@@ -772,7 +773,7 @@
                         </li>
                     @endcanany
 
-                    @canany(['view_print_checks', 'create_print_checks','update_print_checks','delete_print_checks'])
+                    @canany(['view_print_checks', 'create_print_checks', 'update_print_checks', 'delete_print_checks'])
                         <li class="side-menus {{ Request::is('admin/print-checks*') ? 'active   submenu' : '' }}">
                             <a href="{{ route('print-checks.index') }}"><i class="fas fa-lg fa-money-check"></i>
 
@@ -917,6 +918,24 @@
                 </a>
             </li>
         @endcanany
+
+        {{-- Alamin --}}
+        <li class="side-menus {{ Request::is('beds*') ? 'active' : '' }}">
+            <a href="{{ route('beds.index') }}">
+                <i class="fas fa-lg fa-bed"></i>
+                <span class="menu-text-wrap">Beds</span>
+            </a>
+        </li>
+        {{-- @canany(['view_beds', 'create_beds', 'update_beds', 'delete_beds'])
+            <li class="side-menus {{ Request::is('admin/beds*') ? 'active' : '' }}">
+                <a href="{{ route('beds.index') }}">
+                    <i class="fas fa-lg fa-bed"></i>
+                    <span class="menu-text-wrap">{{ __('messages.beds.name') }}</span>
+                </a>
+            </li>
+        @endcanany --}}
+
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>

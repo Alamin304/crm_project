@@ -2678,4 +2678,15 @@ return [
         'certificate_number' => "Certificate Number",
         'type' => "Certificate Type",
     ],
+
+    'beds' => [
+        'beds' => 'Beds',
+        'add' => 'Add Bed',
+        'edit' => 'Edit Bed',
+        'name' => 'Bed Name',
+        'description' => 'Description',
+        'list' => 'Bed List',
+        'delete' => 'Bed deleted successfully',
+        'saved' => 'Bed saved successfully',
+    ],
 ];
