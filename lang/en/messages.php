@@ -2691,4 +2691,19 @@ return [
         'created_at' => 'Created At',
         'view' => "View Beds",
     ],
+
+    'wake_up_calls' => [
+        'wake_up_calls' => 'Wake Up Calls',
+        'add' => 'Add',
+        'edit' => 'Edit Wake Up Calls',
+        'id' => 'SL',
+        'customer_name' => 'Customer Name',
+        'date' => 'Date',
+        'description' => 'Description',
+        'list' => 'List',
+        'delete' => 'Wake Up Calls deleted successfully',
+        'saved' => 'Wake Up Calls saved successfully',
+        'created_at' => 'Created At',
+        'view' => "View Wake Up Calls",
+    ],
 ];

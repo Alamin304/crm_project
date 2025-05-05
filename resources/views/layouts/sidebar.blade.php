@@ -935,6 +935,13 @@
             </li>
         @endcanany --}}
 
+        <li class="side-menus {{ Request::is('wake_up_calls*') ? 'active' : '' }}">
+            <a href="{{ route('wake_up_calls.index') }}">
+                <i class="fas fa-lg fa-bed"></i>
+                <span class="menu-text-wrap">Wake Up Call List</span>
+            </a>
+        </li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

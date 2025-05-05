@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Exports;
+
+use App\Models\WakeUpCall;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+
+class WakeUpCallsExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, ShouldAutoSize
+{
+    public function collection()
+    {
+        return WakeUpCall::query()
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    public function map($call): array
+    {
+        return [
+            $call->id,
+            $call->customer_name,
+            Carbon::parse($call->date),
+            $this->cleanDescription($call->description),
+        ];
+    }
+
+    public function headings(): array
+    {
+        return [
+            __('messages.wake_up_calls.id'),
+            __('messages.wake_up_calls.customer_name'),
+            __('messages.wake_up_calls.date'),
+            __('messages.wake_up_calls.description'),
+        ];
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+            'C' => NumberFormat::FORMAT_DATE_DATETIME, // 'C' is the third column (Date)
+        ];
+    }
+    protected function cleanDescription($description): string
+    {
+        $cleaned = strip_tags($description);
+        $cleaned = preg_replace('/\s+/', ' ', $cleaned);
+        return trim($cleaned);
+    }
+}

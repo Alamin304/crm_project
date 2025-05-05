@@ -65,7 +65,7 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\OtpController;
-
+use App\Http\Controllers\WakeUpCallController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -943,6 +943,17 @@ Route::group([], function () {
     Route::delete('beds/{bed}', [BedController::class, 'destroy'])->name('beds.destroy');
     Route::get('beds/export/{format}', [BedController::class, 'export'])->name('beds.export');
 });
+Route::group([], function () {
+    Route::get('wake-up-calls', [WakeUpCallController::class, 'index'])->name('wake_up_calls.index');
+    Route::get('wake-up-calls/create', [WakeUpCallController::class, 'create'])->name('wake_up_calls.create');
+    Route::post('wake-up-calls', [WakeUpCallController::class, 'store'])->name('wake_up_calls.store');
+    Route::get('wake-up-calls/{wakeUpCall}/view', [WakeUpCallController::class, 'view'])->name('wake_up_calls.view');
+    Route::get('wake-up-calls/{wakeUpCall}/edit', [WakeUpCallController::class, 'edit'])->name('wake_up_calls.edit');
+    Route::put('wake-up-calls/{wakeUpCall}', [WakeUpCallController::class, 'update'])->name('wake_up_calls.update');
+    Route::delete('wake-up-calls/{wakeUpCall}', [WakeUpCallController::class, 'destroy'])->name('wake_up_calls.destroy');
+    Route::get('wake-up-calls/export/{format}', [WakeUpCallController::class, 'export'])->name('wakeUpCalls.export');
+});
+
 
 Route::get('article-search', function () {
     return view('articles.search');
