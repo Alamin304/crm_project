@@ -5,6 +5,15 @@
 @section('page_css')
     <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .export-dropdown {
+            min-width: 120px;
+        }
+
+        .export-dropdown .dropdown-menu {
+            min-width: 160px;
+        }
+    </style>
 @endsection
 @section('content')
     <section class="section">
@@ -15,22 +24,30 @@
             </div>
 
             <div class="float-right d-flex">
-                <a href="{{ route('beds.export', ['format' => 'xlsx']) }}" class="btn btn-success mr-2">
-                    <i class="fas fa-file-excel"></i> {{ __('Export Excel') }}
-                </a>
-                <a href="{{ route('beds.export', ['format' => 'csv']) }}" class="btn btn-info mr-2">
-                    <i class="fas fa-file-csv"></i> {{ __('Export CSV') }}
-                </a>
-                <a href="{{ route('beds.create') }}" class="btn btn-primary">
+                <div class="dropdown export-dropdown mr-2">
+                    <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ __('Export') }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
+                        <h6 class="dropdown-header">{{ __('Export Options') }}</h6>
+                        <a class="dropdown-item" href="{{ route('beds.export', ['format' => 'pdf']) }}">
+                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF Format') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('beds.export', ['format' => 'csv']) }}">
+                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('Excel/CSV') }}
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </div>
+                {{-- <a href="{{ route('beds.create') }}" class="btn btn-primary" title="{{ __('messages.beds.add') }}">
                     <i class="fas fa-plus"></i> {{ __('messages.beds.add') }}
-                </a>
+                </a> --}}
+                <div class="float-right">
+                    <a href="{{ route('beds.create') }}" class="btn btn-primary form-btn">
+                        {{ __('messages.beds.add') }} </a>
+                </div>
             </div>
-
-            {{-- <div class="float-right">
-                <a href="{{ route('beds.create') }}" class="btn btn-primary form-btn">
-                    {{ __('messages.beds.add') }} <i class="fas fa-plus"></i>
-                </a>
-            </div> --}}
         </div>
         <div class="section-body">
             <div class="card">
@@ -91,6 +108,7 @@
             ajax: {
                 url: "{{ route('beds.index') }}",
             },
+            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             columns: [{
                     data: function(row) {
                         let element = document.createElement('textarea');
@@ -104,18 +122,18 @@
                     data: function(row) {
                         let element = document.createElement('textarea');
                         element.innerHTML = row
-                            .description; // Assuming your data source has a 'description' field
+                            .description;
                         return element.value;
                     },
                     name: 'description',
-                    width: '20%'
+                    width: '40%'
                 },
                 {
                     data: function(row) {
                         return renderActionButtons(row.id);
                     },
                     name: 'id',
-                    width: '20%',
+                    width: '200px',
                     orderable: false
                 }
             ],
@@ -130,21 +148,33 @@
 
         // Action buttons rendering
         function renderActionButtons(id) {
-            let editUrl = "{{ route('beds.edit', ':id') }}".replace(':id', id);
             let deleteUrl = "{{ route('beds.destroy', ':id') }}".replace(':id', id);
+            let viewUrl = "{{ route('beds.view', ':id') }}".replace(':id', id);
+            let editUrl = "{{ route('beds.edit', ':id') }}".replace(':id', id);
 
-            let buttons = `
-        <a title="Edit" href="${editUrl}"
-           class="btn btn-warning action-btn has-icon edit-btn" style="float:right;margin:2px;">
-            <i class="fas fa-edit"></i>
-        </a>
-        <a title="Delete" href="#"
-           class="btn btn-danger action-btn has-icon delete-btn" data-id="${id}" style="float:right;margin:2px;">
-            <i class="fas fa-trash"></i>
-        </a>
+
+
+            return `
+        <div style="float: right;">
+
+                <a title="Delete" href="#"
+                   class="btn btn-danger action-btn has-icon delete-btn"
+                   data-id="${id}" style="float:right;margin:2px;">
+                    <i class="fas fa-trash"></i>
+                </a>
+                <a title="View" href="${viewUrl}"
+                   class="btn btn-info action-btn has-icon view-btn"
+                   style="float:right;margin:2px;">
+                    <i class="fas fa-eye"></i>
+                </a>
+                <a title="Edit" href="${editUrl}"
+                   class="btn btn-warning action-btn has-icon edit-btn"
+                   style="float:right;margin:2px;">
+                    <i class="fas fa-edit"></i>
+                </a>
+
+        </div>
     `;
-
-            return buttons;
         }
     </script>
 @endsection

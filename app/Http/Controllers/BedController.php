@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\BedsExport;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\BedRequest;
 use App\Http\Requests\UpdateBedRequest;
 use App\Models\Bed;
@@ -73,9 +74,9 @@ class BedController extends AppBaseController
      * @param  \App\Models\Bed  $bed
      * @return \Illuminate\Http\Response
      */
-    public function show(Bed $bed)
+    public function view(Bed $bed)
     {
-        //
+        return view('beds.view', compact('bed'));
     }
 
     /**
@@ -125,8 +126,20 @@ class BedController extends AppBaseController
 
     public function export($format)
     {
-        $fileName = 'beds_export.' . $format;
+        $fileName = 'beds_export_' . now()->format('Y-m-d') . '.' . $format;
 
-        return Excel::download(new BedsExport, $fileName);
+        if ($format === 'csv') {
+            return Excel::download(new BedsExport, $fileName, \Maatwebsite\Excel\Excel::CSV, [
+                'Content-Type' => 'text/csv',
+            ]);
+        }
+
+        if ($format === 'pdf') {
+            $beds = Bed::all();
+            $pdf = PDF::loadView('beds.exports.beds_pdf', compact('beds'));
+            return $pdf->download($fileName);
+        }
+
+        abort(404);
     }
 }

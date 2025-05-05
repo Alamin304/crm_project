@@ -2681,12 +2681,14 @@ return [
 
     'beds' => [
         'beds' => 'Beds',
-        'add' => 'Add Bed',
+        'add' => 'Add',
         'edit' => 'Edit Bed',
         'name' => 'Bed Name',
         'description' => 'Description',
-        'list' => 'Bed List',
+        'list' => 'List',
         'delete' => 'Bed deleted successfully',
         'saved' => 'Bed saved successfully',
+        'created_at' => 'Created At',
+        'view' => "View Beds",
     ],
 ];
