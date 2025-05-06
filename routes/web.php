@@ -64,6 +64,7 @@ use App\Http\Controllers\CustomerStatementController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BedController;
+use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\WakeUpCallController;
 
@@ -953,6 +954,18 @@ Route::group([], function () {
     Route::delete('wake-up-calls/{wakeUpCall}', [WakeUpCallController::class, 'destroy'])->name('wake_up_calls.destroy');
     Route::get('wake-up-calls/export/{format}', [WakeUpCallController::class, 'export'])->name('wakeUpCalls.export');
 });
+
+Route::group([], function () {
+    Route::get('booking-lists', [BookingListController::class, 'index'])->name('booking_lists.index');
+    Route::get('booking-lists/create', [BookingListController::class, 'create'])->name('booking_lists.create');
+    Route::post('booking-lists', [BookingListController::class, 'store'])->name('booking_lists.store');
+    Route::get('booking-lists/{bookingList}/view', [BookingListController::class, 'view'])->name('booking_lists.view');
+    Route::get('booking-lists/{bookingList}/edit', [BookingListController::class, 'edit'])->name('booking_lists.edit');
+    Route::put('booking-lists/{bookingList}', [BookingListController::class, 'update'])->name('booking_lists.update');
+    Route::delete('booking-lists/{bookingList}', [BookingListController::class, 'destroy'])->name('booking_lists.destroy');
+    Route::get('booking-lists/export/{format}', [BookingListController::class, 'export'])->name('bookingLists.export');
+});
+
 
 
 Route::get('article-search', function () {

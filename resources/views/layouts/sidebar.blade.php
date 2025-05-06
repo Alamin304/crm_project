@@ -942,6 +942,12 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('booking-lists*') ? 'active' : '' }}">
+            <a href="{{ route('booking_lists.index') }}">
+                <i class="fas fa-lg fa-book"></i>
+                <span class="menu-text-wrap">Booking List</span>
+            </a>
+        </li>
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
