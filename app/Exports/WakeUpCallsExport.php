@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class WakeUpCallsExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, ShouldAutoSize
 {
@@ -25,7 +26,7 @@ class WakeUpCallsExport implements FromCollection, WithMapping, WithHeadings, Wi
         return [
             $call->id,
             $call->customer_name,
-            Carbon::parse($call->date),
+            $call->date ? Date::dateTimeToExcel(Carbon::parse($call->date)) : null,
             $this->cleanDescription($call->description),
         ];
     }
@@ -43,9 +44,10 @@ class WakeUpCallsExport implements FromCollection, WithMapping, WithHeadings, Wi
     public function columnFormats(): array
     {
         return [
-            'C' => NumberFormat::FORMAT_DATE_DATETIME, // 'C' is the third column (Date)
+            'C' => NumberFormat::FORMAT_DATE_DATETIME,
         ];
     }
+
     protected function cleanDescription($description): string
     {
         $cleaned = strip_tags($description);

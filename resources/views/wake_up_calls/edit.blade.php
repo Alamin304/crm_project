@@ -12,10 +12,10 @@
 @section('content')
     <section class="section">
         <div class="section-header item-align-right">
-             <h1>{{ __('messages.wake_up_calls.edit') }}</h1>
+            <h1>{{ __('messages.wake_up_calls.edit') }}</h1>
+            <div class="section-header-breadcrumb float-right"></div>
             <div class="float-right">
-                <a href="{{ route('wake_up_calls.index') }}"
-                    class="btn btn-primary form-btn">{{ __('messages.wake_up_calls.list') }}</a>
+                <a href="{{ route('wake_up_calls.index') }}" class="btn btn-primary form-btn">{{ __('messages.wake_up_calls.list') }}</a>
             </div>
         </div>
         <div class="section-body">
