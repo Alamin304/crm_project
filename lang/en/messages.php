@@ -277,6 +277,8 @@ return [
         'no_entry' => 'Showing 0 to 0 of 0 entries',
         'no_matching' => 'No matching records found',
         'filter_by' => '(filtered from _MAX_ total entries)',
+        'pdf' => 'PDF',
+        'csv' => 'CSV',
     ],
 
     //    Customer group
@@ -2728,5 +2730,7 @@ return [
         'export' => 'Export',
         'pending' => 'Pending',
         'success' => 'Success',
+        'reservation_details' => 'Reservation Details',
+        'room_details' => 'Room Details',
     ],
 ];

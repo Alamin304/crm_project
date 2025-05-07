@@ -963,7 +963,7 @@ Route::group([], function () {
     Route::get('booking-lists/{bookingList}/edit', [BookingListController::class, 'edit'])->name('booking_lists.edit');
     Route::put('booking-lists/{bookingList}', [BookingListController::class, 'update'])->name('booking_lists.update');
     Route::delete('booking-lists/{bookingList}', [BookingListController::class, 'destroy'])->name('booking_lists.destroy');
-    Route::get('booking-lists/export/{format}', [BookingListController::class, 'export'])->name('bookingLists.export');
+    Route::get('booking-lists/export/{format}', [BookingListController::class, 'export'])->name('booking_lists.export');
 });
 
 

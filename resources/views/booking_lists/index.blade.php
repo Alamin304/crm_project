@@ -29,15 +29,15 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.booking_lists.export') }}
                     </button>
-                    {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
-                        <a class="dropdown-item" href="{{ route('booking-lists.export', ['format' => 'pdf']) }}">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
+                        <a class="dropdown-item" href="{{ route('booking_lists.export', ['format' => 'pdf']) }}">
                             <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('messages.common.pdf') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('booking-lists.export', ['format' => 'csv']) }}">
+                        <a class="dropdown-item" href="{{ route('booking_lists.export', ['format' => 'csv']) }}">
                             <i class="fas fa-file-csv text-success mr-2"></i> {{ __('messages.common.csv') }}
                         </a>
                         <div class="dropdown-divider"></div>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="float-right">
                     <a href="{{ route('booking_lists.create') }}" class="btn btn-primary form-btn">

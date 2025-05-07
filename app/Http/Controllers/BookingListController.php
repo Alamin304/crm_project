@@ -77,21 +77,21 @@ class BookingListController extends AppBaseController
         return $this->sendSuccess('Booking deleted successfully.');
     }
 
-    // public function export($format)
-    // {
-    //     $fileName = 'booking_lists_export_' . now()->format('Y-m-d') . '.' . $format;
+    public function export($format)
+    {
+        $fileName = 'booking_lists_export_' . now()->format('Y-m-d') . '.' . $format;
 
-    //     if ($format === 'csv') {
-    //         return Excel::download(new BookingListsExport, $fileName, \Maatwebsite\Excel\Excel::CSV);
-    //     }
+        if ($format === 'csv') {
+            return Excel::download(new BookingListsExport, $fileName, \Maatwebsite\Excel\Excel::CSV);
+        }
 
-    //     if ($format === 'pdf') {
-    //         $bookingLists = BookingList::all();
-    //         $pdf = Pdf::loadView('booking_lists.exports.booking_lists_pdf', compact('bookingLists'));
-    //         return $pdf->download($fileName);
-    //     }
+        if ($format === 'pdf') {
+            $bookingLists = BookingList::all();
+            $pdf = Pdf::loadView('booking_lists.exports.booking_lists_pdf', compact('bookingLists'));
+            return $pdf->download($fileName);
+        }
 
-    //     abort(404);
-    // }
+        abort(404);
+    }
 }
 

@@ -24,7 +24,7 @@ class BookingListRequest extends FormRequest
     public function rules()
     {
         return [
-            'booking_number' => 'required|string|max:255',
+            'booking_number' => 'nullable|string|max:255',
             'check_in' => 'required|date',
             'check_out' => 'required|date|after_or_equal:check_in',
             'arrival_from' => 'nullable|string|max:255',
