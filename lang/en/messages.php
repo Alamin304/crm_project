@@ -2759,7 +2759,7 @@ return [
         'delete' => 'Check In deleted successfully',
         'saved' => 'Check In saved successfully',
         'created_at' => 'Created At',
-        'view' => 'View Booking Lists',
+        'view' => 'View Check In Lists',
         'export' => 'Export',
         'pending' => 'Pending',
         'success' => 'Success',
@@ -2773,7 +2773,5 @@ return [
         'booking_reference_no' => 'Booking Reference No',
         'visit_purpose' => 'Visit Purpose',
         'remarks' => 'Remarks',
-
-
     ],
 ];
