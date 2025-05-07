@@ -2732,5 +2732,15 @@ return [
         'success' => 'Success',
         'reservation_details' => 'Reservation Details',
         'room_details' => 'Room Details',
+        'adults' => 'Adults',
+        'children' => 'Children',
+        'booking_type' => 'Booking Type',
+        'arrival_from' => 'Arrival From',
+        'booking_reference' => 'Booking Reference',
+        'booking_reference_no' => 'Booking Reference No',
+        'visit_purpose' => 'Visit Purpose',
+        'remarks' => 'Remarks',
+
+
     ],
 ];
