@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    {{ __('messages.booking_lists.add_booking_lists') }}
+    {{ __('messages.check_in.add_check_in') }}
 @endsection
 
 @section('page_css')
@@ -12,19 +12,19 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>{{ __('messages.booking_lists.add') }}</h1>
+        <h1>{{ __('messages.check_in.add') }}</h1>
         <div class="section-header-breadcrumb">
-            <a href="{{ route('booking_lists.index') }}" class="btn btn-primary form-btn">{{ __('messages.booking_lists.list') }}</a>
+            <a href="{{ route('booking_lists.index') }}" class="btn btn-primary form-btn">{{ __('messages.check_in.list') }}</a>
         </div>
     </div>
 
     <div class="section-body">
-        {{ Form::open(['id' => 'addBookingForm']) }}
+        {{ Form::open(['id' => 'addCheckInForm']) }}
         <div class="row">
             <div class="col-md-12">
                 <!-- Reservation Details -->
                 <div class="card mb-4">
-                    <div class="card-header"><h4>{{ __('messages.booking_lists.reservation_details') }}</h4></div>
+                    <div class="card-header"><h4>{{ __('messages.check_in.reservation_details') }}</h4></div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-3">
@@ -97,7 +97,7 @@
 
                 <!-- Room Details -->
                 <div class="card">
-                    <div class="card-header"><h4>{{ __('messages.booking_lists.room_details') }}</h4></div>
+                    <div class="card-header"><h4>{{ __('messages.check_in.room_details') }}</h4></div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-3">
@@ -162,25 +162,25 @@ $(document).ready(function () {
         $('#roomNo, #adults, #children').prop('disabled', !enabled);
     });
 
-    $('#addBookingForm').on('submit', function (e) {
+    $('#addCheckInForm').on('submit', function (e) {
         e.preventDefault();
-        processingBtn('#addBookingForm', '#btnSave', 'loading');
+        processingBtn('#addCheckInForm', '#btnSave', 'loading');
 
         $.ajax({
-            url: "{{ route('booking_lists.store') }}",
+            url: "{{ route('check_ins.store') }}",
             method: 'POST',
             data: $(this).serialize(),
             success: function (response) {
                 if (response.success) {
                     displaySuccessMessage(response.message);
-                    window.location.href = "{{ route('booking_lists.index') }}";
+                    window.location.href = "{{ route('check_ins.index') }}";
                 }
             },
             error: function (xhr) {
                 displayErrorMessage(xhr.responseJSON.message);
             },
             complete: function () {
-                processingBtn('#addBookingForm', '#btnSave');
+                processingBtn('#addCheckInForm', '#btnSave');
             }
         });
     });

@@ -949,6 +949,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('check-ins*') ? 'active' : '' }}">
+            <a href="{{ route('check_ins.index') }}">
+                <i class="fas fa-lg fa-sign-in-alt"></i>
+                <span class="menu-text-wrap">Check-In</span>
+            </a>
+        </li>
+
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>

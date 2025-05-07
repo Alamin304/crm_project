@@ -65,6 +65,7 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
+use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\WakeUpCallController;
 
@@ -964,6 +965,17 @@ Route::group([], function () {
     Route::put('booking-lists/{bookingList}', [BookingListController::class, 'update'])->name('booking_lists.update');
     Route::delete('booking-lists/{bookingList}', [BookingListController::class, 'destroy'])->name('booking_lists.destroy');
     Route::get('booking-lists/export/{format}', [BookingListController::class, 'export'])->name('booking_lists.export');
+});
+
+Route::group([], function () {
+    Route::get('check-ins', [CheckInController::class, 'index'])->name('check_ins.index');
+    Route::get('check-ins/create', [CheckInController::class, 'create'])->name('check_ins.create');
+    Route::post('check-ins', [CheckInController::class, 'store'])->name('check_ins.store');
+    Route::get('check-ins/{checkIn}/view', [CheckInController::class, 'view'])->name('check_ins.view');
+    Route::get('check-ins/{checkIn}/edit', [CheckInController::class, 'edit'])->name('check_ins.edit');
+    Route::put('check-ins/{checkIn}', [CheckInController::class, 'update'])->name('check_ins.update');
+    Route::delete('check-ins/{checkIn}', [CheckInController::class, 'destroy'])->name('check_ins.destroy');
+    Route::get('check-ins/export/{format}', [CheckInController::class, 'export'])->name('check_ins.export');
 });
 
 
