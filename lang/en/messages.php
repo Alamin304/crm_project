@@ -2773,7 +2773,23 @@ return [
         'booking_reference_no' => 'Booking Reference No',
         'visit_purpose' => 'Visit Purpose',
         'remarks' => 'Remarks',
+    ],
 
-
+    'complementaries' => [
+        'complementaries' => 'Complementaries',
+        'add_complementaries' => 'Add Complementary',
+        'id' => 'SL',
+        'add' => 'Add',
+        'edit' => 'Edit Bed',
+        'room_type' => 'Room Type',
+        'complementary' => 'Complementary',
+        'rate' => 'Rate',
+        'list' => 'List',
+        'delete' => 'Complementary deleted successfully',
+        'saved' => 'Complementary saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Complementary',
+        'export' => 'Export',
+        'select_room_type' => 'Select Room Type',
     ],
 ];

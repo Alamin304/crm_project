@@ -67,6 +67,7 @@ use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
+use App\Http\Controllers\ComplementaryController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\WakeUpCallController;
 
@@ -984,6 +985,20 @@ Route::group([], function () {
     Route::get('check-outs', [CheckOutController::class, 'index'])->name('check_outs.index');
 
 });
+
+
+Route::group([], function () {
+    Route::get('complementaries', [ComplementaryController::class, 'index'])->name('complementaries.index');
+    Route::get('complementaries/create', [ComplementaryController::class, 'create'])->name('complementaries.create');
+    Route::post('complementaries', [ComplementaryController::class, 'store'])->name('complementaries.store');
+    Route::get('complementaries/{complementary}/view', [ComplementaryController::class, 'view'])->name('complementaries.view');
+    Route::get('complementaries/{complementary}/edit', [ComplementaryController::class, 'edit'])->name('complementaries.edit');
+    Route::put('complementaries/{complementary}', [ComplementaryController::class, 'update'])->name('complementaries.update');
+    Route::delete('complementaries/{complementary}', [ComplementaryController::class, 'destroy'])->name('complementaries.destroy');
+    Route::get('complementaries/export/{format}', [ComplementaryController::class, 'export'])->name('complementaries.export');
+});
+
+
 
 Route::get('article-search', function () {
     return view('articles.search');

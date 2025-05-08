@@ -963,6 +963,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('complementaries*') ? 'active' : '' }}">
+            <a href="{{ route('complementaries.index') }}">
+                <i class="fas fa-gift fa-lg"></i>
+                <span class="menu-text-wrap">Complementaries</span>
+            </a>
+        </li>
+        
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
