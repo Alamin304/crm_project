@@ -956,6 +956,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('check-outs*') ? 'active' : '' }}">
+            <a href="{{ route('check_outs.index') }}">
+                <i class="fas fa-lg fa-sign-out-alt"></i>
+                <span class="menu-text-wrap">Check-Out</span>
+            </a>
+        </li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

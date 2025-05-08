@@ -66,6 +66,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\CheckInController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\WakeUpCallController;
 
@@ -979,6 +980,10 @@ Route::group([], function () {
 });
 
 
+Route::group([], function () {
+    Route::get('check-outs', [CheckOutController::class, 'index'])->name('check_outs.index');
+
+});
 
 Route::get('article-search', function () {
     return view('articles.search');
