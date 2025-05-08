@@ -30,7 +30,7 @@ class ComplementariesExport implements FromCollection, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
-            __('ID'),
+            __('SL'),
             __('Room Type'),
             __('Complementary'),
             __('Rate'),

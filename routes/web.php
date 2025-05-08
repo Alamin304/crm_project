@@ -65,6 +65,7 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
+use App\Http\Controllers\BookingSourceController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ComplementaryController;
@@ -998,6 +999,16 @@ Route::group([], function () {
     Route::get('complementaries/export/{format}', [ComplementaryController::class, 'export'])->name('complementaries.export');
 });
 
+Route::group([], function () {
+    Route::get('booking-sources', [BookingSourceController::class, 'index'])->name('booking-sources.index');
+    Route::get('booking-sources/create', [BookingSourceController::class, 'create'])->name('booking-sources.create');
+    Route::post('booking-sources', [BookingSourceController::class, 'store'])->name('booking-sources.store');
+    Route::get('booking-sources/{bookingSource}/view', [BookingSourceController::class, 'view'])->name('booking-sources.view');
+    Route::get('booking-sources/{bookingSource}/edit', [BookingSourceController::class, 'edit'])->name('booking-sources.edit');
+    Route::put('booking-sources/{bookingSource}', [BookingSourceController::class, 'update'])->name('booking-sources.update');
+    Route::delete('booking-sources/{bookingSource}', [BookingSourceController::class, 'destroy'])->name('booking-sources.destroy');
+    Route::get('booking-sources/export/{format}', [BookingSourceController::class, 'export'])->name('booking-sources.export');
+});
 
 
 Route::get('article-search', function () {
