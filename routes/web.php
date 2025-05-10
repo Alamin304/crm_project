@@ -63,6 +63,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerStatementController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AwardListController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\BookingSourceController;
@@ -1010,7 +1011,16 @@ Route::group([], function () {
     Route::get('booking-sources/export/{format}', [BookingSourceController::class, 'export'])->name('booking-sources.export');
 });
 
-
+Route::group([], function () {
+    Route::get('award-lists', [AwardListController::class, 'index'])->name('award-lists.index');
+    Route::get('award-lists/create', [AwardListController::class, 'create'])->name('award-lists.create');
+    Route::post('award-lists', [AwardListController::class, 'store'])->name('award-lists.store');
+    Route::get('award-lists/{awardList}/view', [AwardListController::class, 'view'])->name('award-lists.view');
+    Route::get('award-lists/{awardList}/edit', [AwardListController::class, 'edit'])->name('award-lists.edit');
+    Route::put('award-lists/{awardList}', [AwardListController::class, 'update'])->name('award-lists.update');
+    Route::delete('award-lists/{awardList}', [AwardListController::class, 'destroy'])->name('award-lists.destroy');
+    Route::get('award-lists/export/{format}', [AwardListController::class, 'export'])->name('award-lists.export');
+});
 Route::get('article-search', function () {
     return view('articles.search');
 });
