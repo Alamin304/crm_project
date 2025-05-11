@@ -2,13 +2,14 @@
 
 namespace App\Queries;
 
+use App\Models\JobCategory;
 use App\Models\Position;
 use Illuminate\Database\Eloquent\Builder;
 
-class PositionDataTable
+class JobCategoryDataTable
 {
     public function get(): Builder
     {
-        return Position::query()->select('positions.*');
+        return JobCategory::query()->select('job_categories.*');
     }
 }

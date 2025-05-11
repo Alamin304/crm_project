@@ -70,6 +70,7 @@ use App\Http\Controllers\BookingSourceController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ComplementaryController;
+use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PositionController;
@@ -1044,6 +1045,17 @@ Route::group([], function () {
     Route::put('positions/{position}', [PositionController::class, 'update'])->name('positions.update');
     Route::delete('positions/{position}', [PositionController::class, 'destroy'])->name('positions.destroy');
     Route::get('positions/export/{format}', [PositionController::class, 'export'])->name('positions.export');
+});
+Route::group([], function () {
+    Route::get('job-categories', [JobCategoryController::class, 'index'])->name('job-categories.index');
+    Route::get('job-categories/create', [JobCategoryController::class, 'create'])->name('job-categories.create');
+    Route::post('job-categories', [JobCategoryController::class, 'store'])->name('job-categories.store');
+    Route::get('job-categories/{jobCategory}/view', [JobCategoryController::class, 'view'])->name('job-categories.view');
+    Route::get('job-categories/{jobCategory}/edit', [JobCategoryController::class, 'edit'])->name('job-categories.edit');
+    Route::put('job-categories/{jobCategory}', [JobCategoryController::class, 'update'])->name('job-categories.update');
+    Route::delete('job-categories/{jobCategory}', [JobCategoryController::class, 'destroy'])->name('job-categories.destroy');
+    Route::get('job-categories/export/{format}', [JobCategoryController::class, 'export'])->name('job-categories.export');
+    Route::put('job-categories/{job_category}/status', [JobCategoryController::class, 'status'])->name('job-categories.status');
 });
 Route::get('article-search', function () {
     return view('articles.search');
