@@ -70,6 +70,7 @@ use App\Http\Controllers\BookingSourceController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ComplementaryController;
+use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\WakeUpCallController;
 
@@ -1020,6 +1021,17 @@ Route::group([], function () {
     Route::put('award-lists/{awardList}', [AwardListController::class, 'update'])->name('award-lists.update');
     Route::delete('award-lists/{awardList}', [AwardListController::class, 'destroy'])->name('award-lists.destroy');
     Route::get('award-lists/export/{format}', [AwardListController::class, 'export'])->name('award-lists.export');
+});
+
+Route::group([], function () {
+    Route::get('notice-boards', [NoticeBoardController::class, 'index'])->name('notice-boards.index');
+    Route::get('notice-boards/create', [NoticeBoardController::class, 'create'])->name('notice-boards.create');
+    Route::post('notice-boards', [NoticeBoardController::class, 'store'])->name('notice-boards.store');
+    Route::get('notice-boards/{noticeBoard}/view', [NoticeBoardController::class, 'view'])->name('notice-boards.view');
+    Route::get('notice-boards/{noticeBoard}/edit', [NoticeBoardController::class, 'edit'])->name('notice-boards.edit');
+    Route::put('notice-boards/{noticeBoard}', [NoticeBoardController::class, 'update'])->name('notice-boards.update');
+    Route::delete('notice-boards/{noticeBoard}', [NoticeBoardController::class, 'destroy'])->name('notice-boards.destroy');
+    Route::get('notice-boards/export/{format}', [NoticeBoardController::class, 'export'])->name('notice-boards.export');
 });
 Route::get('article-search', function () {
     return view('articles.search');

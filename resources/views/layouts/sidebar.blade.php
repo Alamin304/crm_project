@@ -984,6 +984,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('notice-boards*') ? 'active' : '' }}">
+            <a href="{{ route('notice-boards.index') }}">
+                <i class="fas fa-clipboard fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.notice_boards.notice_boards') }}</span>
+            </a>
+        </li>
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>

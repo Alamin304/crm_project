@@ -2831,4 +2831,23 @@ return [
         'export' => 'Export',
         'select_employee_name' => 'Select Employee Name',
     ],
+
+    'notice_boards' => [
+        'notice_boards' => 'Notice Boards',
+        'add_notice_boards' => 'Add Notice Board',
+        'id' => 'SL',
+        'add' => 'Add',
+        'edit' => 'Edit Notice Board',
+        'notice_type' => 'Notice Type',
+        'description' => 'Description',
+        'notice_date' => 'Notice Date',
+        'notice_by' => 'Notice By',
+        'notice_attachment' => 'Notice Attachment',
+        'list' => 'List',
+        'delete' => 'Notice Board deleted successfully',
+        'saved' => 'Notice Board saved successfully',
+        'view' => 'View Notice Board',
+        'export' => 'Export',
+        'allowed_file_types' => 'Allowed file types',
+    ],
 ];
