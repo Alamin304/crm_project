@@ -5,8 +5,8 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
 @endsection
 
@@ -30,65 +30,74 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('award_name', __('messages.award_lists.award_name').':') }}<span class="required">*</span>
+                                    {{ Form::label('award_name', __('messages.award_lists.award_name') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('award_name', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'id' => 'awardName',
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('employee_name', __('messages.award_lists.employee_name').':') }}<span class="required">*</span>
-                                    {{ Form::select('employee_name', [
-                                        'John Doe' => 'John Doe',
-                                        'Jane Smith' => 'Jane Smith',
-                                        'Robert Johnson' => 'Robert Johnson',
-                                        'Emily Davis' => 'Emily Davis',
-                                        'Michael Wilson' => 'Michael Wilson'
-                                    ], null, [
-                                        'class' => 'form-control select2',
-                                        'required',
-                                        'id' => 'employeeName',
-                                        'placeholder' => __('messages.award_lists.select_employee_name')
-                                    ]) }}
+                                    {{ Form::label('employee_name', __('messages.award_lists.employee_name') . ':') }}<span
+                                        class="required">*</span>
+                                    {{ Form::select(
+                                        'employee_name',
+                                        [
+                                            'John Doe' => 'John Doe',
+                                            'Jane Smith' => 'Jane Smith',
+                                            'Robert Johnson' => 'Robert Johnson',
+                                            'Emily Davis' => 'Emily Davis',
+                                            'Michael Wilson' => 'Michael Wilson',
+                                        ],
+                                        null,
+                                        [
+                                            'class' => 'form-control select2',
+                                            'required',
+                                            'id' => 'employeeName',
+                                            'placeholder' => __('messages.award_lists.select_employee_name'),
+                                        ],
+                                    ) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('award_by', __('messages.award_lists.award_by').':') }}<span class="required">*</span>
+                                    {{ Form::label('award_by', __('messages.award_lists.award_by') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('award_by', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'id' => 'awardBy',
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('date', __('messages.award_lists.date').':') }}<span class="required">*</span>
+                                    {{ Form::label('date', __('messages.award_lists.date') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::date('date', null, [
                                         'class' => 'form-control',
                                         'required',
-                                        'id' => 'awardDate'
+                                        'id' => 'awardDate',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('gift_item', __('messages.award_lists.gift_item').':') }}
+                                    {{ Form::label('gift_item', __('messages.award_lists.gift_item') . ':') }}
                                     {{ Form::text('gift_item', null, [
                                         'class' => 'form-control',
                                         'id' => 'giftItem',
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12 mb-0">
-                                    {{ Form::label('award_description', __('messages.award_lists.award_description').':') }}
+                                    {{ Form::label('award_description', __('messages.award_lists.award_description') . ':') }}
                                     {{ Form::textarea('award_description', null, [
                                         'class' => 'form-control summernote-simple',
                                         'id' => 'awardDescription',
-                                        'rows' => 4
+                                        'rows' => 4,
                                     ]) }}
                                 </div>
                             </div>
@@ -97,7 +106,7 @@
                                     'type' => 'submit',
                                     'class' => 'btn btn-primary',
                                     'id' => 'btnSave',
-                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}
                             </div>
                         </div>
@@ -141,10 +150,23 @@
             event.preventDefault();
             processingBtn('#addNewFormAward', '#btnSave', 'loading');
 
+            // Get Summernote HTML and convert to plain text
+            let descriptionHtml = $('#awardDescription').summernote('code');
+            let descriptionText = $('<div>').html(descriptionHtml).text().trim();
+
+            if (!descriptionText) {
+                displayErrorMessage('Award description must not be empty or whitespace.');
+                processingBtn('#addNewFormAward', '#btnSave', 'reset');
+                return false;
+            }
+
+            // Inject plain text back into the textarea before serializing form
+            $('#awardDescription').val(descriptionText);
+
             $.ajax({
                 url: awardCreateUrl,
                 type: 'POST',
-                data: $(this).serialize(),
+                data: $(this).serialize(), // now includes plain text description
                 success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);

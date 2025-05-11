@@ -30,7 +30,8 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('name', __('messages.positions.name') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('name', __('messages.positions.name') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('name', null, ['class' => 'form-control', 'required', 'id' => 'position_name', 'autocomplete' => 'off']) }}
                                 </div>
                                 <div class="form-group col-sm-12 mb-0">
@@ -73,41 +74,47 @@
     <script>
         let positionCreateUrl = "{{ route('positions.store') }}";
 
-        $(document).on('submit', '#addNewFormPosition', function (event) {
+        $(document).on('submit', '#addNewFormPosition', function(event) {
             event.preventDefault();
             processingBtn('#addNewFormPosition', '#btnSave', 'loading');
 
             let description = $('<div />').html($('#positionDetails').summernote('code'));
-            let empty = description.text().trim().replace(/ \r\n\t/g, '') === '';
+            let plainText = description.text().trim();
 
-            if ($('#positionDetails').summernote('isEmpty')) {
-                $('#positionDetails').val('');
-            } else if (empty) {
-                displayErrorMessage('Details field must not contain only white space.');
+            if (!plainText) {
+                displayErrorMessage('Details field must not be empty or whitespace.');
                 processingBtn('#addNewFormPosition', '#btnSave', 'reset');
                 return false;
             }
 
+            let formData = {
+                name: $('#position_name').val(),
+                status: $('input[name="status"]:checked').val(),
+                details: plainText, // ← store plain text only
+                _token: $('input[name="_token"]').val(),
+            };
+
             $.ajax({
                 url: positionCreateUrl,
                 type: 'POST',
-                data: $(this).serialize(),
-                success: function (result) {
+                data: formData,
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         window.location.href = "{{ route('positions.index') }}";
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message);
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#addNewFormPosition', '#btnSave');
                 },
             });
         });
 
-        $(document).ready(function () {
+
+        $(document).ready(function() {
             $('#positionDetails').summernote({
                 height: 150,
                 toolbar: [
