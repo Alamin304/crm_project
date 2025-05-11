@@ -2850,4 +2850,20 @@ return [
         'export' => 'Export',
         'allowed_file_types' => 'Allowed file types',
     ],
+
+    'positions' => [
+        'positions' => 'Positions',
+        'add_positions' => 'Add Positions',
+        'id' => 'SL',
+        'add' => 'Add',
+        'edit' => 'Edit Positions',
+        'name' => 'Position Name',
+        'details' => 'Position Details',
+        'status' => 'Position Status',
+        'list' => 'List',
+        'delete' => 'Position deleted successfully',
+        'saved' => 'Position saved successfully',
+        'view' => 'View Position',
+        'export' => 'Export',
+    ],
 ];

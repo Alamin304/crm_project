@@ -991,6 +991,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('positions*') ? 'active' : '' }}">
+            <a href="{{ route('positions.index') }}">
+                <i class="fas fa-briefcase fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.positions.positions') }}</span>
+            </a>
+        </li>
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>

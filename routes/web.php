@@ -72,6 +72,7 @@ use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ComplementaryController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OtpController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\WakeUpCallController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
@@ -1032,6 +1033,17 @@ Route::group([], function () {
     Route::put('notice-boards/{noticeBoard}', [NoticeBoardController::class, 'update'])->name('notice-boards.update');
     Route::delete('notice-boards/{noticeBoard}', [NoticeBoardController::class, 'destroy'])->name('notice-boards.destroy');
     Route::get('notice-boards/export/{format}', [NoticeBoardController::class, 'export'])->name('notice-boards.export');
+});
+
+Route::group([], function () {
+    Route::get('positions', [PositionController::class, 'index'])->name('positions.index');
+    Route::get('positions/create', [PositionController::class, 'create'])->name('positions.create');
+    Route::post('positions', [PositionController::class, 'store'])->name('positions.store');
+    Route::get('positions/{position}/view', [PositionController::class, 'view'])->name('positions.view');
+    Route::get('positions/{position}/edit', [PositionController::class, 'edit'])->name('positions.edit');
+    Route::put('positions/{position}', [PositionController::class, 'update'])->name('positions.update');
+    Route::delete('positions/{position}', [PositionController::class, 'destroy'])->name('positions.destroy');
+    Route::get('positions/export/{format}', [PositionController::class, 'export'])->name('positions.export');
 });
 Route::get('article-search', function () {
     return view('articles.search');
