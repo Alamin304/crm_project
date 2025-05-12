@@ -20,33 +20,6 @@
 
 @section('content')
     <section class="section">
-        {{-- <div class="section-header item-align-right">
-            <h1>{{ __('messages.positions.positions') }}</h1>
-            <div class="float-right d-flex">
-                <div class="dropdown export-dropdown mr-2">
-                    <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ __('messages.positions.export') }}
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
-                        <a class="dropdown-item" href="{{ route('positions.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('positions.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
-                        </a>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                </div>
-
-                <div class="float-right">
-                    <a href="{{ route('positions.create') }}" class="btn btn-primary form-btn">
-                        {{ __('messages.positions.add_positions') }}
-                    </a>
-                </div>
-            </div>
-        </div> --}}
-
         <div class="section-header item-align-right">
              <h1>{{ __('messages.positions.positions') }}</h1>
             <div class="section-header-breadcrumb float-right">

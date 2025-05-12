@@ -12,15 +12,36 @@
         <div class="section-header item-align-right">
             <h1>{{ __('messages.shifts.name') }} {{ __('messages.shifts.list') }}</h1>
             <div class="section-header-breadcrumb float-right">
-                <div class="card-header-action mr-3 select2-mobile-margin">
+                <div class="card-header-action mr-3 select2-mobile-margin"></div>
+            </div>
+            <div class="float-right d-flex">
+                <div class="dropdown export-dropdown mr-2">
+                    <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ __('messages.shifts.export') }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
+                            <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'pdf']) }}">
+                                <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'csv']) }}">
+                                <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            </a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <a href="{{ route('shifts.create') }}" class="btn btn-primary form-btn">
+                        {{ __('messages.shifts.add') }}
+                    </a>
                 </div>
             </div>
-            @can('create_shifts')
+            {{-- @can('create_shifts')
                 <div class="float-right">
                     <a href="{{ route('shifts.create') }}" class="btn btn-primary form-btn">
                         {{ __('messages.shifts.add') }} </a>
                 </div>
-            @endcan
+            @endcan --}}
         </div>
         <div class="section-body">
             <div class="card">
@@ -63,20 +84,28 @@
             ajax: {
                 url: route('shifts.index'),
             },
-            columns: [{
+            columns: [
+                {
+                    data: function(row) {
+                        let element = document.createElement('textarea');
+                        return row.id;
+                    },
+                    name: 'id',
+                    // width: '10%'
+                },{
                     data: function(row) {
                         let element = document.createElement('textarea');
                         return row.name;
                     },
                     name: 'name',
-                    width: '10%'
+                    // width: '10%'
                 }, {
                     data: function(row) {
                         // Convert the shift_start_time to 12-hour format
                         return formatTimeTo12Hour(row.shift_start_time);
                     },
                     name: 'shift_start_time',
-                    width: '10%'
+                    // width: '10%'
                 },
                 {
                     data: function(row) {
@@ -84,45 +113,63 @@
                         return formatTimeTo12Hour(row.shift_end_time);
                     },
                     name: 'shift_end_time',
-                    width: '10%'
+                    // width: '10%'
                 },
-                {
+                { // Add this new column for duration
                     data: function(row) {
-                        // Convert the lunch_start_time to 12-hour format
-                        return row.lunch_start_time ? formatTimeTo12Hour(row.lunch_start_time) : '';
+                        return calculateShiftDuration(row.shift_start_time, row.shift_end_time);
                     },
-                    name: 'lunch_start_time',
-                    width: '12%'
-                },
-                {
-                    data: function(row) {
-                        // Convert the lunch_end_time to 12-hour format
-                        return row.lunch_end_time ? formatTimeTo12Hour(row.lunch_end_time) : '';
-                    },
-                    name: 'lunch_end_time',
-                    width: '10%'
-                }, {
-                    data: function(row) {
-                        return row.color; // Return color data
-                    },
-                    name: 'color',
-                    width: '10%',
+                    name: 'duration',
+                    orderable: false,
+                    searchable: false,
+                    // Optional: Add a title attribute that shows the full calculation on hover
                     render: function(data, type, row) {
-                        // Return a styled div with the background color set to the value of `data`
-                        return '<div style="width: 30px; height: 30px; border-radius: 10%; background-color: ' +
-                            data + ';"></div>';
+                        if (type === 'display') {
+                            return data;
+                        }
+                        return data;
                     }
-                }, {
+                },
+                // {
+                //     data: function(row) {
+                //         // Convert the lunch_start_time to 12-hour format
+                //         return row.lunch_start_time ? formatTimeTo12Hour(row.lunch_start_time) : '';
+                //     },
+                //     name: 'lunch_start_time',
+                //     width: '12%'
+                // },
+                // {
+                //     data: function(row) {
+                //         // Convert the lunch_end_time to 12-hour format
+                //         return row.lunch_end_time ? formatTimeTo12Hour(row.lunch_end_time) : '';
+                //     },
+                //     name: 'lunch_end_time',
+                //     width: '10%'
+                // },
+                // {
+                //     data: function(row) {
+                //         return row.color; // Return color data
+                //     },
+                //     name: 'color',
+                //     width: '10%',
+                //     render: function(data, type, row) {
+                //         // Return a styled div with the background color set to the value of `data`
+                //         return '<div style="width: 30px; height: 30px; border-radius: 10%; background-color: ' +
+                //             data + ';"></div>';
+                //     }
+                // },
+                // {
 
-                    data: function(row) {
-                        let element = document.createElement('textarea');
-                        element.innerHTML = row
-                            .description; // Assuming your data source has a 'description' field
-                        return element.value;
-                    },
-                    name: 'description',
-                    width: '20%'
-                }, {
+                //     data: function(row) {
+                //         let element = document.createElement('textarea');
+                //         element.innerHTML = row
+                //             .description; // Assuming your data source has a 'description' field
+                //         return element.value;
+                //     },
+                //     name: 'description',
+                //     width: '20%'
+                // },
+                {
                     data: function(row) {
                         return renderActionButtons(row.id);
                     },
@@ -154,6 +201,25 @@
 
             return `${hours}:${minutes} ${ampm}`;
         }
+
+        function calculateShiftDuration(startTime, endTime) {
+            if (!startTime || !endTime) return '';
+
+            // Parse the times
+            const start = new Date(`2000-01-01T${startTime}`);
+            const end = new Date(`2000-01-01T${endTime}`);
+
+            // Handle overnight shifts (end time is next day)
+            if (end < start) {
+                end.setDate(end.getDate() + 1);
+            }
+
+            // Calculate difference in hours
+            const diffMs = end - start;
+            const diffHours = Math.round((diffMs / (1000 * 60 * 60)) * 10) / 10; // Round to 1 decimal
+
+            return `${diffHours} ${diffHours === 1 ? 'hour' : 'hours'}`;
+        }
     </script>
 
     <script>
@@ -165,11 +231,11 @@
         };
 
         // Define permissions
-        var permissions = {
-            updateItem: "{{ auth()->user()->can('update_shifts') ? 'true' : 'false' }}",
-            deleteItem: "{{ auth()->user()->can('delete_shifts') ? 'true' : 'false' }}",
-            viewItem: "{{ auth()->user()->can('view_shifts') ? 'true' : 'false' }}"
-        };
+        // var permissions = {
+        //     updateItem: "{{ auth()->user()->can('update_shifts') ? 'true' : 'false' }}",
+        //     deleteItem: "{{ auth()->user()->can('delete_shifts') ? 'true' : 'false' }}",
+        //     viewItem: "{{ auth()->user()->can('view_shifts') ? 'true' : 'false' }}"
+        // };
 
         // Function to render action buttons based on permissions
         function renderActionButtons(id) {
@@ -177,7 +243,7 @@
 
 
 
-            if (permissions.updateItem === 'true') {
+            // if (permissions.updateItem === 'true') {
                 let editUrl = `{{ route('shifts.edit', ':id') }}`;
                 editUrl = editUrl.replace(':id', id);
                 buttons += `
@@ -185,8 +251,8 @@
                     <i class="fa fa-edit"></i>
                 </a>
             `;
-            }
-            if (permissions.viewItem === 'true') {
+            // }
+            // if (permissions.viewItem === 'true') {
                 let viewUrl = `{{ route('shifts.view', ':id') }}`;
                 viewUrl = viewUrl.replace(':id', id);
                 buttons += `
@@ -194,15 +260,15 @@
                     <i class="fa fa-eye"></i>
                 </a>
             `;
-            }
+            // }
 
-            if (permissions.deleteItem === 'true') {
+            // if (permissions.deleteItem === 'true') {
                 buttons += `
                 <a title="${messages.delete}" href="#" class="btn btn-danger action-btn has-icon delete-btn" data-id="${id}" style="float:right;margin:2px;">
                     <i class="fa fa-trash"></i>
                 </a>
             `;
-            }
+            // }
 
             return buttons;
         }

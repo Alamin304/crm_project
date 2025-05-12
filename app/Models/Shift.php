@@ -17,10 +17,10 @@ class Shift extends Model
         'name',
         'shift_start_time',
         'shift_end_time',
-        'lunch_start_time',
-        'lunch_end_time',
-        'color',
-        'description',
+        // 'lunch_start_time',
+        // 'lunch_end_time',
+        // 'color',
+        // 'description',
     ];
 
     // If you are using timestamps, this will enable the 'created_at' and 'updated_at' columns
@@ -33,18 +33,18 @@ class Shift extends Model
     protected $casts = [
         'shift_start_time' => 'datetime:H:i:s',
         'shift_end_time' => 'datetime:H:i:s',
-        'lunch_start_time' => 'datetime:H:i:s',
-        'lunch_end_time' => 'datetime:H:i:s',
+        // 'lunch_start_time' => 'datetime:H:i:s',
+        // 'lunch_end_time' => 'datetime:H:i:s',
     ];
 
     public static $rules = [
         'name' => 'required|string|max:255|unique:shifts,name',
         'shift_start_time' => 'required|date_format:H:i',
         'shift_end_time' => 'required|date_format:H:i|after:shift_start_time',
-        'lunch_start_time' => 'nullable|date_format:H:i|after:shift_start_time',
-        'lunch_end_time' => 'nullable|date_format:H:i|after:lunch_start_time',
-        'color' => 'required|string|max:7', // Assuming a hex color code
-        'description' => 'nullable|string',
+        // 'lunch_start_time' => 'nullable|date_format:H:i|after:shift_start_time',
+        // 'lunch_end_time' => 'nullable|date_format:H:i|after:lunch_start_time',
+        // 'color' => 'required|string|max:7', // Assuming a hex color code
+        // 'description' => 'nullable|string',
     ];
 
 

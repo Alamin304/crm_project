@@ -36,13 +36,13 @@
                                         {{ Form::text('name', null, ['class' => 'form-control', 'required', 'id' => 'holiday_name', 'autocomplete' => 'off']) }}
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group ">
                                         {{ Form::label('name', __('messages.shifts.color') . ':') }}<span
                                             class="required">*</span>
                                         {{ Form::text('color', null, ['class' => 'form-control jscolor', 'required', 'id' => 'color', 'autocomplete' => 'off']) }}
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-12">
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group ">
                                         {{ Form::label('lunch_start_time', __('messages.shifts.lunch_start_time') . ':') }}
@@ -79,7 +79,7 @@
                                     {{ Form::label('title', __('messages.shifts.description') . ':') }}
                                     {{ Form::textarea('description', null, ['class' => 'form-control summernote-simple', 'id' => 'createDescription', 'placeholder' => __('messages.assets.asset_note')]) }}
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="text-right mr-1">
                                 {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
@@ -108,18 +108,18 @@
             event.preventDefault();
             processingBtn('#addNewFormDepartmentNew', '#btnSave', 'loading');
 
-            let description = $('<div />').
-            html($('#createDescription').summernote('code'));
-            let empty = description.text().trim().replace(/ \r\n\t/g, '') === '';
+            // let description = $('<div />').
+            // html($('#createDescription').summernote('code'));
+            // let empty = description.text().trim().replace(/ \r\n\t/g, '') === '';
 
-            if ($('#createDescription').summernote('isEmpty')) {
-                $('#createDescription').val('');
-            } else if (empty) {
-                displayErrorMessage(
-                    'Description field is not contain only white space');
-                processingBtn('#addNewFormDepartmentNew', '#btnSave', 'reset');
-                return false;
-            }
+            // if ($('#createDescription').summernote('isEmpty')) {
+            //     $('#createDescription').val('');
+            // } else if (empty) {
+            //     displayErrorMessage(
+            //         'Description field is not contain only white space');
+            //     processingBtn('#addNewFormDepartmentNew', '#btnSave', 'reset');
+            //     return false;
+            // }
             $.ajax({
                 url: departmentNewCreateUrl,
                 type: 'POST',

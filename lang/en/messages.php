@@ -686,9 +686,10 @@ return [
         'view' => "View Bank Details"
     ],
     'shifts' => [
+        'id' => 'SL',
         'name' => 'Shift',
         'shifts' => "Shifts",
-        "add" => "Add Shift",
+        "add" => "Add",
         "saved" => "Shift Saved Successfully",
         "delete" => "Shift deleted Successfully",
         "edit" => "Edit Shift",
@@ -699,7 +700,9 @@ return [
         'lunch_start_time' => "Lunch Start Time",
         'lunch_end_time' => "Lunch End Time",
         'color' => "Color",
-        'view' => "View"
+        'view' => "View",
+        'duration' => "Duration",
+        'export' => "Export",
 
     ],
     'leave-applications' => [

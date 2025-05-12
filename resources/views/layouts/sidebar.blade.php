@@ -616,13 +616,7 @@
             </li>
         @endcanany
         {{-- {{ route('shift.index') }} --}}
-        @canany(['view_shifts', 'create_shifts', 'update_shifts', 'delete_shifts'])
-            <li class="side-menus {{ Request::is('admin/shifts*') ? 'active' : '' }}">
-                <a href=" {{ route('shifts.index') }} "><i class="fas fa-lg fa-clock"></i>
-                    <span class="menu-text-wrap">{{ __('messages.shifts.shifts') }}</span>
-                </a>
-            </li>
-        @endcanany
+
         {{-- payroll starts here --}}
         {{-- @canany(['create_generate_salaries', 'approve_generate_salaries', 'view_generate_salaries', 'export_generate_salaries', 'view_employee_salaries', 'export_employee_salaries', 'create_manage_attendances', 'import_manage_attendances', 'export_manage_attendances', 'view_employees', 'create_employees', 'delete_employees', 'view_designations', 'create_designations', 'delete_designations', 'view_leave_groups', 'create_leave_groups', 'update_leave_groups', 'delete_leave_groups', 'view_leave_applications', 'create_leave_applications', 'update_leave_applications', 'delete_leave_applications']) --}}
 
@@ -1005,6 +999,13 @@
             </a>
         </li>
 
+         {{-- @canany(['view_shifts', 'create_shifts', 'update_shifts', 'delete_shifts']) --}}
+            <li class="side-menus {{ Request::is('admin/shifts*') ? 'active' : '' }}">
+                <a href=" {{ route('shifts.index') }} "><i class="fas fa-lg fa-clock"></i>
+                    <span class="menu-text-wrap">{{ __('messages.shifts.shifts') }}</span>
+                </a>
+            </li>
+        {{-- @endcanany --}}
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

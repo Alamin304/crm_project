@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ShiftsExport;
 use App\Queries\ShiftDataTable;
 use Illuminate\Http\Request;
 use App\Repositories\ShiftRepository;
@@ -13,8 +14,10 @@ use Exception;
 use App\Http\Requests\ShiftRequest;
 use App\Models\Shift;
 use App\Http\Requests\UpdateShiftRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
 use Laracasts\Flash\Flash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ShiftController extends AppBaseController
 {
@@ -90,5 +93,28 @@ class ShiftController extends AppBaseController
             ->useLog('Shift Updated')->log($updateShift->name . ' Shift updated.');
         Flash::success(__('messages.shifts.saved'));
         return $this->sendSuccess(__('messages.shifts.saved'));
+    }
+
+    public function export($format)
+    {
+        $fileName = 'shifts_export_' . now()->format('Y-m-d') . '.' . $format;
+
+        if ($format === 'csv') {
+            return Excel::download(new ShiftsExport, $fileName, \Maatwebsite\Excel\Excel::CSV, [
+                'Content-Type' => 'text/csv',
+            ]);
+        }
+
+        if ($format === 'pdf') {
+            $shifts = Shift::all();
+            $pdf = Pdf::loadView('shifts.exports.shifts_pdf', compact('shifts'));
+            return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new ShiftsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        abort(404);
     }
 }

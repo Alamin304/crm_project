@@ -74,6 +74,7 @@ use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\WakeUpCallController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
@@ -1056,6 +1057,18 @@ Route::group([], function () {
     Route::delete('job-categories/{jobCategory}', [JobCategoryController::class, 'destroy'])->name('job-categories.destroy');
     Route::get('job-categories/export/{format}', [JobCategoryController::class, 'export'])->name('job-categories.export');
     Route::put('job-categories/{job_category}/status', [JobCategoryController::class, 'status'])->name('job-categories.status');
+});
+
+Route::group([], function () {
+    // Shift Routes
+    Route::get('shifts', [ShiftController::class, 'index'])->name('shifts.index');
+    Route::get('shifts/create', [ShiftController::class, 'create'])->name('shifts.create');
+    Route::post('shifts', [ShiftController::class, 'store'])->name('shifts.store');
+    Route::get('shifts/{shift}', [ShiftController::class, 'view'])->name('shifts.view');
+    Route::get('shifts/{shift}/edit', [ShiftController::class, 'edit'])->name('shifts.edit');
+    Route::put('shifts/{shift}', [ShiftController::class, 'update'])->name('shifts.update');
+    Route::delete('shifts/{shift}', [ShiftController::class, 'destroy'])->name('shifts.destroy');
+    Route::get('shifts/export/{format}', [ShiftController::class, 'export'])->name('shifts.export');
 });
 Route::get('article-search', function () {
     return view('articles.search');

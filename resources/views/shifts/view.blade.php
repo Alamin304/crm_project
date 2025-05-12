@@ -34,14 +34,14 @@
                                         <p style="color: #555;">{{ $shift->name }}</p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <strong>{{ Form::label('color', __('messages.shifts.color')) }}</strong>
                                         <div
                                             style="width: 30px; height: 30px; border-radius: 10%; background-color: {{ $shift->color }};">
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-sm-12">
+                                {{-- <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <strong>{{ Form::label('lunch_start_time', __('messages.shifts.lunch_start_time')) }}</strong>
 
@@ -85,7 +85,7 @@
                                 <div class="form-group col-md-12">
                                     <strong>{{ Form::label('description', __('messages.shifts.description')) }}</strong>
                                     {!! $shift->description !!}
-                                </div>
+                                </div> --}}
                             </div>
 
                         </div>
