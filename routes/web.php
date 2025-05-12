@@ -71,6 +71,7 @@ use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ComplementaryController;
 use App\Http\Controllers\JobCategoryController;
+use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PositionController;
@@ -1069,6 +1070,19 @@ Route::group([], function () {
     Route::put('shifts/{shift}', [ShiftController::class, 'update'])->name('shifts.update');
     Route::delete('shifts/{shift}', [ShiftController::class, 'destroy'])->name('shifts.destroy');
     Route::get('shifts/export/{format}', [ShiftController::class, 'export'])->name('shifts.export');
+});
+
+Route::group([], function () {
+    // Job Post Routes
+    Route::get('job-posts', [JobPostController::class, 'index'])->name('job-posts.index');
+    Route::get('job-posts/create', [JobPostController::class, 'create'])->name('job-posts.create');
+    Route::post('job-posts', [JobPostController::class, 'store'])->name('job-posts.store');
+    Route::get('job-posts/{jobPost}', [JobPostController::class, 'view'])->name('job-posts.view');
+    Route::get('job-posts/{jobPost}/edit', [JobPostController::class, 'edit'])->name('job-posts.edit');
+    Route::put('job-posts/{jobPost}', [JobPostController::class, 'update'])->name('job-posts.update');
+    Route::delete('job-posts/{jobPost}', [JobPostController::class, 'destroy'])->name('job-posts.destroy');
+    Route::get('job-posts/export/{format}', [JobPostController::class, 'export'])->name('job-posts.export');
+    // Route::post('job-posts/{jobPost}/toggle-status', [JobPostController::class, 'toggleStatus'])->name('job-posts.toggle-status');
 });
 Route::get('article-search', function () {
     return view('articles.search');

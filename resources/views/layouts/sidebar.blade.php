@@ -1007,6 +1007,13 @@
             </li>
         {{-- @endcanany --}}
 
+        <li class="side-menus {{ Request::is('job-posts*') ? 'active' : '' }}">
+            <a href="{{ route('job-posts.index') }}">
+                <i class="fas fa-clipboard-list fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.job_posts.job_posts') }}</span>
+            </a>
+        </li>
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>
