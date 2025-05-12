@@ -2947,4 +2947,19 @@ return [
         'unpublished' => 'Unpublished',
         'vacancies' => 'Vacancy',
     ],
+
+        'groups' => [
+        'groups' => 'Groups',
+        'add' => 'Add',
+        'edit' => 'Edit Bed',
+        'group_name' => 'Group Name',
+        'description' => 'Description',
+        'list' => 'List',
+        'delete' => 'Group deleted successfully',
+        'saved' => 'Group saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Group',
+        'export' => 'Export',
+        'id' => 'SL',
+    ],
 ];

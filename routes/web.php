@@ -70,6 +70,7 @@ use App\Http\Controllers\BookingSourceController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ComplementaryController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\NoticeBoardController;
@@ -1084,6 +1085,18 @@ Route::group([], function () {
     Route::get('job-posts/export/{format}', [JobPostController::class, 'export'])->name('job-posts.export');
     // Route::post('job-posts/{jobPost}/toggle-status', [JobPostController::class, 'toggleStatus'])->name('job-posts.toggle-status');
 });
+
+Route::group([], function () {
+    Route::get('groups', [GroupController::class, 'index'])->name('groups.index');
+    Route::get('groups/create', [GroupController::class, 'create'])->name('groups.create');
+    Route::post('groups', [GroupController::class, 'store'])->name('groups.store');
+    Route::get('groups/{group}/view', [GroupController::class, 'view'])->name('groups.view');
+    Route::get('groups/{group}/edit', [GroupController::class, 'edit'])->name('groups.edit');
+    Route::put('groups/{group}', [GroupController::class, 'update'])->name('groups.update');
+    Route::delete('groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
+    Route::get('groups/export/{format}', [GroupController::class, 'export'])->name('groups.export');
+});
+
 Route::get('article-search', function () {
     return view('articles.search');
 });
