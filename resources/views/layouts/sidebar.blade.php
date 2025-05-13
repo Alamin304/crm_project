@@ -1028,6 +1028,12 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('companies*') ? 'active' : '' }}">
+            <a href="{{ route('companies.index') }}">
+                <i class="fas fa-building fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.companies.companies') }}</span>
+            </a>
+        </li>
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

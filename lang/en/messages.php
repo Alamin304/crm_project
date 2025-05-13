@@ -2977,5 +2977,18 @@ return [
         'export' => 'Export',
         'id' => 'SL',
     ],
-
+    'companies' => [
+        'companies' => 'Companies',
+        'add' => 'Add',
+        'edit' => 'Edit Company',
+        'name' => 'Company Name',
+        'description' => 'Description',
+        'list' => 'List',
+        'delete' => 'Company deleted successfully',
+        'saved' => 'Company saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Company',
+        'export' => 'Export',
+        'id' => 'SL',
+    ],
 ];
