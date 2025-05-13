@@ -20,11 +20,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($companies as $companie)
+            @foreach($companies as $Company)
             <tr>
-                <td>{{ $companie->id }}</td>
-                <td>{{ $companie->name }}</td>
-                <td>{!! strip_tags($companie->description) !!}</td>
+                <td>{{ $Company->id }}</td>
+                <td>{{ $Company->name }}</td>
+                <td>{!! strip_tags($Company->description) !!}</td>
             </tr>
             @endforeach
         </tbody>

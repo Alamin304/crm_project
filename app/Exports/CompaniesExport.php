@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Companie;
+use App\Models\Company;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -12,15 +12,15 @@ class CompaniesExport implements FromCollection, WithMapping, WithHeadings, Shou
 {
     public function collection()
     {
-        return Companie::orderBy('name', 'asc')->get();
+        return Company::orderBy('name', 'asc')->get();
     }
 
-    public function map($companie): array
+    public function map($Company): array
     {
         return [
-            $companie->id,
-            $companie->name,
-            $this->cleanDescription($companie->description),
+            $Company->id,
+            $Company->name,
+            $this->cleanDescription($Company->description),
         ];
     }
 

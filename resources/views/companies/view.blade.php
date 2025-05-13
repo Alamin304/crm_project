@@ -23,11 +23,11 @@
                     <div class="row">
                         <div class="form-group col-sm-12 col-md-6">
                             {{ Form::label('name', __('messages.companies.name')) }}
-                            <p>{{ $companie->name }}</p>
+                            <p>{{ $Company->name }}</p>
                         </div>
                         <div class="form-group col-sm-12 col-md-6">
                             {{ Form::label('description', __('messages.companies.description')) }}
-                            <p>{{ $companie->description }}</p>
+                            <p>{{ $Company->description }}</p>
                         </div>
                     </div>
                 </div>

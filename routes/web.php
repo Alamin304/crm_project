@@ -1114,10 +1114,10 @@ Route::group([], function () {
     Route::get('companies', [CompaniesController::class, 'index'])->name('companies.index');
     Route::get('companies/create', [CompaniesController::class, 'create'])->name('companies.create');
     Route::post('companies', [CompaniesController::class, 'store'])->name('companies.store');
-    Route::get('companies/{companie}/view', [CompaniesController::class, 'view'])->name('companies.view');
-    Route::get('companies/{companie}/edit', [CompaniesController::class, 'edit'])->name('companies.edit');
-    Route::put('companies/{companie}', [CompaniesController::class, 'update'])->name('companies.update');
-    Route::delete('companies/{companie}', [CompaniesController::class, 'destroy'])->name('companies.destroy');
+    Route::get('companies/{Company}/view', [CompaniesController::class, 'view'])->name('companies.view');
+    Route::get('companies/{Company}/edit', [CompaniesController::class, 'edit'])->name('companies.edit');
+    Route::put('companies/{Company}', [CompaniesController::class, 'update'])->name('companies.update');
+    Route::delete('companies/{Company}', [CompaniesController::class, 'destroy'])->name('companies.destroy');
     Route::get('companies/export/{format}', [CompaniesController::class, 'export'])->name('companies.export');
 });
 

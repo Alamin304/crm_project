@@ -2,13 +2,13 @@
 
 namespace App\Queries;
 
-use App\Models\Companie;
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Builder;
 
 class CompaniesDataTable
 {
     public function get(): Builder
     {
-        return Companie::query()->select('companies.*');
+        return Company::query()->select('companies.*');
     }
 }

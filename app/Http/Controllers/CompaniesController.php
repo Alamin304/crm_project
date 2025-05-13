@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\CompaniesExport;
 use App\Http\Requests\CompaniesRequest;
 use App\Http\Requests\UpdateCompaniesRequest;
-use App\Models\Companie;
+use App\Models\Company;
 use App\Queries\CompaniesDataTable;
 use App\Repositories\CompanieRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -41,42 +41,42 @@ class CompaniesController extends AppBaseController
     {
         $input = $request->all();
         try {
-            $companie = $this->companieRepository->create($input);
+            $Company = $this->companieRepository->create($input);
             activity()->causedBy(getLoggedInUser())
-                ->performedOn($companie)
-                ->useLog('Companie created.')
-                ->log($companie->name . ' Division Created');
-            return $this->sendResponse($companie, __('messages.companies.saved'));
+                ->performedOn($Company)
+                ->useLog('Company created.')
+                ->log($Company->name . ' Division Created');
+            return $this->sendResponse($Company, __('messages.companies.saved'));
         } catch (Throwable $e) {
             throw $e;
         }
     }
 
-    public function view(Companie $companie)
+    public function view(Company $Company)
     {
-        return view('companies.view', compact('companie'));
+        return view('companies.view', compact('Company'));
     }
 
-    public function edit(Companie $companie)
+    public function edit(Company $Company)
     {
-        return view('companies.edit', compact('companie'));
+        return view('companies.edit', compact('Company'));
     }
 
-    public function update(Companie $companie, UpdateCompaniesRequest $request)
+    public function update(Company $Company, UpdateCompaniesRequest $request)
     {
         $input = $request->all();
-        $this->companieRepository->update($input, $companie->id);
-        activity()->performedOn($companie)->causedBy(getLoggedInUser())
-            ->useLog('Companie Updated')->log($companie->name . ' Companie updated.');
+        $this->companieRepository->update($input, $Company->id);
+        activity()->performedOn($Company)->causedBy(getLoggedInUser())
+            ->useLog('Company Updated')->log($Company->name . ' Company updated.');
         return $this->sendSuccess(__('messages.companies.saved'));
     }
 
-    public function destroy(Companie $companie)
+    public function destroy(Company $Company)
     {
         try {
-            $companie->delete();
-            activity()->performedOn($companie)->causedBy(getLoggedInUser())
-                ->useLog('Companie deleted.')->log($companie->name . ' Companie deleted.');
+            $Company->delete();
+            activity()->performedOn($Company)->causedBy(getLoggedInUser())
+                ->useLog('Company deleted.')->log($Company->name . ' Company deleted.');
             return $this->sendSuccess(__('messages.companies.delete'));
         } catch (QueryException $e) {
             return $this->sendError('Failed To delete!! Already in use.');
@@ -94,7 +94,7 @@ class CompaniesController extends AppBaseController
         }
 
         if ($format === 'pdf') {
-            $companies = Companie::all();
+            $companies = Company::all();
             $pdf = Pdf::loadView('companies.exports.companies_pdf', compact('companies'));
             return $pdf->download($fileName);
         }

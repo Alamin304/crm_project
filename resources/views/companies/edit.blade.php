@@ -23,18 +23,18 @@
                 <div class="card-body">
                     <div class="modal-content">
                         {{ Form::open(['id' => 'editForm']) }}
-                        {{ Form::hidden('id', $companie->id, ['id' => 'companies_id']) }}
+                        {{ Form::hidden('id', $Company->id, ['id' => 'companies_id']) }}
                         <div class="modal-body">
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     {{ Form::label('name', __('messages.companies.name') . ':') }}
                                     <span class="required">*</span>
-                                    {{ Form::text('name', $companie->name, ['class' => 'form-control', 'required', 'id' => 'name', 'autocomplete' => 'off']) }}
+                                    {{ Form::text('name', $Company->name, ['class' => 'form-control', 'required', 'id' => 'name', 'autocomplete' => 'off']) }}
                                 </div>
                                 <div class="form-group col-sm-12 mb-0">
                                     {{ Form::label('description', __('messages.companies.description') . ':') }}
-                                    {{ Form::textarea('description', $companie->description, ['class' => 'form-control summernote-simple', 'id' => 'editCompanieDescription']) }}
+                                    {{ Form::textarea('description', $Company->description, ['class' => 'form-control summernote-simple', 'id' => 'editCompanieDescription']) }}
                                 </div>
                             </div>
                             <div class="text-right mt-3 mr-1">
