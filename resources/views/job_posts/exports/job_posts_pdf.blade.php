@@ -5,7 +5,7 @@
     <style>
         body { font-family: DejaVu Sans, sans-serif; }
         table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ccc; padding: 8px; font-size: 12px; }
+        th, td { border: 1px solid #ccc; padding: 8px; font-size: 12px; vertical-align: top; }
         th { background-color: #f5f5f5; }
     </style>
 </head>
@@ -24,7 +24,11 @@
         <tbody>
             @foreach($jobPosts as $jobPost)
                 <tr>
-                    <td>{{ $jobPost->job_title }}</td>
+                    <td>
+                        <strong>{{ $jobPost->job_title }}</strong><br>
+                        <small>{{ optional($jobPost->category)->name }}</small><br>
+                        <small>{{ $jobPost->no_of_vacancy }} {{ __('messages.job_posts.vacancies') }}</small>
+                    </td>
                     <td>{{ $jobPost->company_name }}</td>
                     <td>{{ optional($jobPost->created_at)->format('Y-m-d') }}</td>
                     <td>{{ $jobPost->status ? __('messages.job_posts.active') : __('messages.job_posts.inactive') }}</td>

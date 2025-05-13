@@ -12,13 +12,17 @@ class JobPostsExport implements FromCollection, WithMapping, WithHeadings, Shoul
 {
     public function collection()
     {
-        return JobPost::orderBy('id')->get();
+        return JobPost::with('category')->orderBy('id')->get(); // include category relation
     }
 
     public function map($jobPost): array
     {
+        $positionData = $jobPost->job_title . "\n" .
+                        optional($jobPost->category)->name . "\n" .
+                        $jobPost->no_of_vacancy . ' ' . __('messages.job_posts.vacancies');
+
         return [
-            $jobPost->job_title,
+            $positionData,
             $jobPost->company_name,
             optional($jobPost->created_at)->format('Y-m-d'),
             $jobPost->status ? __('messages.job_posts.active') : __('messages.job_posts.inactive'),
@@ -37,4 +41,3 @@ class JobPostsExport implements FromCollection, WithMapping, WithHeadings, Shoul
         ];
     }
 }
-
