@@ -3000,3 +3000,273 @@
 [stacktrace]
 #0 {main}
 "} 
+[2025-05-13 14:05:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:06:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:07:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:08:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:09:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:10:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:11:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:12:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:13:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:14:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:15:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:16:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:17:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:18:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:19:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:20:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:21:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:22:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:23:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:24:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:25:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:26:54] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:27:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:28:55] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:29:47] local.ERROR: Attempt to read property "default_language" on null {"view":{"view":"C:\\xampp\\htdocs\\project\\resources\\views\\layouts\\app.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1480023786 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#1344</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1480023786\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Attempt to read property \"default_language\" on null at C:\\xampp\\htdocs\\project\\app\\helpers.php:639)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 639)
+#1 C:\\xampp\\htdocs\\project\\app\\helpers.php(639): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 639)
+#2 C:\\xampp\\htdocs\\project\\resources\\views\\layouts\\app.blade.php(3): lang()
+#3 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp\\\\htdocs...')
+#4 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#6 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#7 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#8 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#9 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#10 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#11 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#12 C:\\xampp\\htdocs\\project\\resources\\views\\companies\\index.blade.php(141): Illuminate\\View\\View->render()
+#13 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp\\\\htdocs...')
+#14 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#16 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#17 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#18 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#19 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#20 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#21 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#22 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#23 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#27 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp\\htdocs\\project\\app\\Http\\Middleware\\SuperAdminSessionTimeout.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SuperAdminSessionTimeout->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#38 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#45 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#47 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 C:\\xampp\\htdocs\\project\\vendor\\beyondcode\\laravel-query-detector\\src\\QueryDetectorMiddleware.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): BeyondCode\\QueryDetector\\QueryDetectorMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 C:\\xampp\\htdocs\\project\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(59): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#70 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#71 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#72 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#73 C:\\xampp\\htdocs\\project\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#74 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
+#75 {main}
+
+[previous exception] [object] (ErrorException(code: 0): Attempt to read property \"default_language\" on null at C:\\xampp\\htdocs\\project\\app\\helpers.php:639)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 639)
+#1 C:\\xampp\\htdocs\\project\\app\\helpers.php(639): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'Attempt to read...', 'C:\\\\xampp\\\\htdocs...', 639)
+#2 C:\\xampp\\htdocs\\project\\storage\\framework\\views\\4c6d42e7e091464a824740343ecf81ed4c014c42.php(3): lang()
+#3 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp\\\\htdocs...')
+#4 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#5 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#6 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#7 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#8 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#9 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#10 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#11 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#12 C:\\xampp\\htdocs\\project\\storage\\framework\\views\\9e3398974485d95b2aad40c3293bf86beec6bef3.php(147): Illuminate\\View\\View->render()
+#13 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('C:\\\\xampp\\\\htdocs...')
+#14 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#15 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('C:\\\\xampp\\\\htdocs...', Array)
+#16 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(69): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#17 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Livewire\\LivewireViewCompilerEngine->evaluatePath('C:\\\\xampp\\\\htdocs...', Array)
+#18 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\ComponentConcerns\\RendersLivewireComponents.php(35): Illuminate\\View\\Engines\\CompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#19 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Livewire\\LivewireViewCompilerEngine->get('C:\\\\xampp\\\\htdocs...', Array)
+#20 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#21 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#22 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#23 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#24 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(906): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 200, Array)
+#25 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(875): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#26 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\View))
+#27 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(50): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(78): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\xampp\\htdocs\\project\\app\\Http\\Middleware\\SuperAdminSessionTimeout.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): App\\Http\\Middleware\\SuperAdminSessionTimeout->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#38 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#39 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#40 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#41 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(67): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#42 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(797): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#45 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(776): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#46 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(740): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#47 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(729): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#48 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(190): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#49 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(141): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\xampp\\htdocs\\project\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php(19): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#51 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Livewire\\DisableBrowserCache->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#52 C:\\xampp\\htdocs\\project\\vendor\\beyondcode\\laravel-query-detector\\src\\QueryDetectorMiddleware.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#53 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): BeyondCode\\QueryDetector\\QueryDetectorMiddleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#54 C:\\xampp\\htdocs\\project\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php(59): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Barryvdh\\Debugbar\\Middleware\\InjectDebugbar->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#57 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#58 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(40): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#61 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(39): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#70 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(116): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#71 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(165): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#72 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#73 C:\\xampp\\htdocs\\project\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#74 C:\\xampp\\htdocs\\project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
+#75 {main}
+"} 
+[2025-05-13 14:29:56] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:30:56] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 
+[2025-05-13 14:31:56] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 

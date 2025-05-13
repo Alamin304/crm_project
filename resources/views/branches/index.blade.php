@@ -15,12 +15,12 @@
                 <div class="card-header-action mr-3 select2-mobile-margin">
                 </div>
             </div>
-            @can('create_branches')
+            {{-- @can('create_branches') --}}
                 <div class="float-right">
                     <a href="{{ route('branches.create') }}" id="btnAdd" class="btn btn-primary form-btn">
                         {{ __('messages.branches.add') }} </a>
                 </div>
-            @endcan
+            {{-- @endcan --}}
         </div>
         <div class="section-body">
             <div class="card">

@@ -894,7 +894,7 @@
                 </a>
             </li>
         @endcan
-        @canany(['view_branches', 'create_branches'])
+        {{-- @canany(['view_branches', 'create_branches']) --}}
             <li class="side-menus {{ Request::is('admin/branches*') ? 'active' : '' }}">
                 <a href="{{ route('branches.index') }}"><i class="fas fa-lg fa-building"></i>
                     <!-- Changed icon to fa-building -->
@@ -902,7 +902,7 @@
                     <!-- Updated translation key -->
                 </a>
             </li>
-        @endcanany
+        {{-- @endcanany --}}
         @canany(['view_banks', 'create_banks', 'update_banks', 'delete_banks'])
             <li class="side-menus {{ Request::is('admin/banks*') ? 'active' : '' }}">
                 <a href="{{ route('banks.index') }}"><i class="fas fa-lg fa-university"></i>
