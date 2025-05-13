@@ -70,6 +70,7 @@ use App\Http\Controllers\BookingSourceController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\ComplementaryController;
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
@@ -1095,6 +1096,17 @@ Route::group([], function () {
     Route::put('groups/{group}', [GroupController::class, 'update'])->name('groups.update');
     Route::delete('groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
     Route::get('groups/export/{format}', [GroupController::class, 'export'])->name('groups.export');
+});
+
+Route::group([], function () {
+    Route::get('divisions', [DivisionController::class, 'index'])->name('divisions.index');
+    Route::get('divisions/create', [DivisionController::class, 'create'])->name('divisions.create');
+    Route::post('divisions', [DivisionController::class, 'store'])->name('divisions.store');
+    Route::get('divisions/{division}/view', [DivisionController::class, 'view'])->name('divisions.view');
+    Route::get('divisions/{division}/edit', [DivisionController::class, 'edit'])->name('divisions.edit');
+    Route::put('divisions/{division}', [DivisionController::class, 'update'])->name('divisions.update');
+    Route::delete('divisions/{division}', [DivisionController::class, 'destroy'])->name('divisions.destroy');
+    Route::get('divisions/export/{format}', [DivisionController::class, 'export'])->name('divisions.export');
 });
 
 Route::get('article-search', function () {

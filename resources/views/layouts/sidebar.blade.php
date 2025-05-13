@@ -1021,6 +1021,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('divisions*') ? 'active' : '' }}">
+            <a href="{{ route('divisions.index') }}">
+                <i class="fas fa-layer-group fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.divisions.divisions') }}</span>
+            </a>
+        </li>
+
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>

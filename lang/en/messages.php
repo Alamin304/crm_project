@@ -2962,4 +2962,20 @@ return [
         'export' => 'Export',
         'id' => 'SL',
     ],
+
+        'divisions' => [
+        'divisions' => 'Divisions',
+        'add' => 'Add',
+        'edit' => 'Edit Division',
+        'name' => 'Division Name',
+        'description' => 'Description',
+        'list' => 'List',
+        'delete' => 'Division deleted successfully',
+        'saved' => 'Division saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Division',
+        'export' => 'Export',
+        'id' => 'SL',
+    ],
+
 ];
