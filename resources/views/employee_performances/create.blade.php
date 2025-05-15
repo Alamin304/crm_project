@@ -45,7 +45,83 @@
                         </small>
                     </div>
 
-                    
+                    {{-- Section A --}}
+                    <h5 class="mt-4">{{ __('messages.employee_performances.section_a_title') }}</h5>
+                    <div class="row font-weight-bold text-center">
+                        <div class="col-md-4"></div>
+                        @foreach (['P', 'NI', 'G', 'VG', 'E'] as $label)
+                            <div class="col">{{ $label }}</div>
+                        @endforeach
+                        <div class="col-md-1">Score</div>
+                        <div class="col-md-3">Comments</div>
+                    </div>
+                    @php
+                        $sectionA = [
+                            __('messages.employee_performances.knowledge_quality'),
+                            __('messages.employee_performances.timeliness'),
+                            __('messages.employee_performances.impact'),
+                            __('messages.employee_performances.overall_goal'),
+                            __('messages.employee_performances.beyond_duty'),
+                        ];
+                    @endphp
+                    @foreach ($sectionA as $index => $criteria)
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-md-4">{{ $criteria }}</div>
+                            @foreach ([0, 3, 6, 9, 12] as $score)
+                                <div class="col text-center">
+                                    <input type="radio" name="section_a[{{ $index }}][score]"
+                                        value="{{ $score }}" class="score-radio">
+                                </div>
+                            @endforeach
+                            <div class="col-md-1">
+                                <input type="number" name="section_a[{{ $index }}][final_score]"
+                                    class="form-control score-output" readonly value="0">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="section_a[{{ $index }}][comments]" class="form-control"
+                                    placeholder="{{ __('messages.employee_performances.comments_placeholder') }}">
+                            </div>
+                        </div>
+                    @endforeach
+
+                    {{-- Section B --}}
+                    <h5 class="mt-5">{{ __('messages.employee_performances.section_b_title') }}</h5>
+                    <div class="row font-weight-bold text-center">
+                        <div class="col-md-4"></div>
+                        @foreach (['P', 'NI', 'G', 'VG', 'E'] as $label)
+                            <div class="col">{{ $label }}</div>
+                        @endforeach
+                        <div class="col-md-1">Score</div>
+                        <div class="col-md-3">Comments</div>
+                    </div>
+                    @php
+                        $sectionB = [
+                            __('messages.employee_performances.teamwork'),
+                            __('messages.employee_performances.attendance'),
+                            __('messages.employee_performances.communication'),
+                            __('messages.employee_performances.contribution'),
+                        ];
+                    @endphp
+                    @foreach ($sectionB as $index => $criteria)
+                        <div class="row mb-2 align-items-center">
+                            <div class="col-md-4">{{ $criteria }}</div>
+                            @foreach ([2, 4, 6, 9, 10] as $score)
+                                <div class="col text-center">
+                                    <input type="radio" name="section_b[{{ $index }}][score]"
+                                        value="{{ $score }}" class="score-radio">
+                                </div>
+                            @endforeach
+                            <div class="col-md-1">
+                                <input type="number" name="section_b[{{ $index }}][final_score]"
+                                    class="form-control score-output" readonly value="0">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="section_b[{{ $index }}][comments]" class="form-control"
+                                    placeholder="{{ __('messages.employee_performances.comments_placeholder') }}">
+                            </div>
+                        </div>
+                    @endforeach
+
                     {{-- Section C --}}
                     <h5 class="mt-5">{{ __('messages.employee_performances.section_c_title') }}</h5>
                     <div class="row">
