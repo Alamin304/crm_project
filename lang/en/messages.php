@@ -279,6 +279,7 @@ return [
         'filter_by' => '(filtered from _MAX_ total entries)',
         'pdf' => 'PDF',
         'csv' => 'CSV',
+        'no_data_available' => 'No Data Available',
     ],
 
     //    Customer group
@@ -588,7 +589,7 @@ return [
         'view' => "View Approval Leave Group"
     ],
     'print-checks' => [
-        'menu'=>"Check Printing",
+        'menu' => "Check Printing",
         'name' => 'Print Checks',
         'checks' => "Checks",
         "add" => "Add Check",
@@ -598,12 +599,12 @@ return [
         "description" => "Description",
         "list" => "List",
         'view' => "View Check Details",
-        'date'=>"Date",
-        'check_number'=>"Check Number",
-        'issue_name'=>"Issue Name",
-        'amount'=>"Amount",
-        'print'=>"Print PDF",
-        'bank'=>"Bank"
+        'date' => "Date",
+        'check_number' => "Check Number",
+        'issue_name' => "Issue Name",
+        'amount' => "Amount",
+        'print' => "Print PDF",
+        'bank' => "Bank"
 
     ],
 
@@ -724,10 +725,10 @@ return [
         'file' => "Hard Copy",
         'reason' => "Reason",
         'view' => "View Leave Application",
-        'paid_leave_days'=> "Paid Leave Days",
-        'paid_leave_amount'=>"Paid Leave Amount",
-        'ticket_amount'=>"Ticket Amount",
-        'claim_amount'=>"Claim Amount",
+        'paid_leave_days' => "Paid Leave Days",
+        'paid_leave_amount' => "Paid Leave Amount",
+        'ticket_amount' => "Ticket Amount",
+        'claim_amount' => "Claim Amount",
     ],
     'increments' => [
         'name' => 'Increment',
@@ -1265,7 +1266,7 @@ return [
         'list' => "List",
         'edit' => "Update Salary Advance",
         'designation' => "Designation",
-        'payment_mode'=>"Payment Mode"
+        'payment_mode' => "Payment Mode"
 
     ],
     'employee_salaries' => [
@@ -2891,7 +2892,7 @@ return [
         'active' => 'Active',
         'inactive' => 'Inactive',
     ],
-       'job_posts' => [
+    'job_posts' => [
         'job_posts' => 'Job Posts',
         'add_job_post' => 'Add Job Post',
         'edit_job_post' => 'Edit Job Post',
@@ -2948,7 +2949,7 @@ return [
         'vacancies' => 'Vacancy',
     ],
 
-        'groups' => [
+    'groups' => [
         'groups' => 'Groups',
         'add' => 'Add',
         'edit' => 'Edit Bed',
@@ -2963,7 +2964,7 @@ return [
         'id' => 'SL',
     ],
 
-        'divisions' => [
+    'divisions' => [
         'divisions' => 'Divisions',
         'add' => 'Add',
         'edit' => 'Edit Division',
@@ -2990,5 +2991,66 @@ return [
         'view' => 'View Company',
         'export' => 'Export',
         'id' => 'SL',
+    ],
+    'employee_performances' => [
+        'employee_performances' => 'Employee Performances',
+        'add' => 'Add',
+        'edit' => 'Edit Employee Performances',
+        'name' => 'Employee Name',
+        'total_score' => 'Total Score',
+        'description' => 'Description',
+        'list' => 'List',
+        'delete' => 'Employee Performances deleted successfully',
+        'saved' => 'Employee Performances saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Employee Performances',
+        'export' => 'Export',
+        'id' => 'SL',
+        'new_performance' => '2025 Performance Appraisal Interview Form',
+        'performance_list' => 'Employee Performance List',
+        'review_period' => 'Review Period (in months)',
+        'supervisor_info' => 'Name and Position of Supervisor / Head of Department',
+        'rating_scale' => 'Rating Scale:',
+        'rating_legend' => 'P (Poor), NI (Needs Improvement), G (Good), VG (Very Good), E (Excellent)',
+        'section_a_title' => 'A. Assessment of Goals Objectives Set During the Review Period',
+        'knowledge_quality' => 'Demonstrated Knowledge of duties & Quality of Work',
+        'timeliness' => 'Timeliness of Delivery',
+        'impact' => 'Impact of Achievement',
+        'overall_goal' => 'Overall Achievement of Goals/Objectives',
+        'beyond_duty' => 'Going beyond the call of Duty',
+        'comments_placeholder' => 'Comments and examples',
+        'section_b_title' => 'B. Assessment of Other Performance Standards and Indicators',
+        'teamwork' => 'Interpersonal skills & ability to work in a team environment',
+        'attendance' => 'Attendance and Punctuality',
+        'communication' => 'Communication Skills',
+        'contribution' => 'Contributing to company mission',
+        'section_c_title' => 'C. Total Score',
+        'score_classification' => 'Classification: EE (80-100), AE (75-85), UE (70-80)',
+        'reviewer_comments' => 'Overall Comments / Recommendations by Reviewer',
+        'reviewer_name' => 'Name',
+        'reviewer_signature' => 'Signature',
+        'next_review_period' => 'Next Review Period',
+        'section_d_title' => 'D. Comments by Employee',
+        'section_e_title' => 'E. Development Plan',
+        'area_improvement' => 'Area for improvement',
+        'expected_outcomes' => 'Expected outcomes',
+        'responsible_person' => 'Responsible person',
+        'section_f_title' => 'F. Key Goals for Next Review Period',
+        'goals' => 'Goals',
+        'completion_period' => 'Proposed Completion Period',
+        'save' => 'Save',
+        'all_required_except_comments' => 'All fields are required except comments.',
+        'select_employee' => 'Select Employee',
+        'edit_performance' => 'Edit Performance',
+        'add_plan' => 'Add Plan',
+        'update' => 'Update',
+        'reviewer_information' => 'Reviewer Information',
+        'review_date' => 'Review Date',
+        'employee_comments' => 'Employee Comments',
+        'development_plan' => 'Development Plan',
+        'section_b'=> 'B. Assessment of Other Performance Standards and Indicators',
+        'section_a'=> 'A. Assessment of Goals Objectives Set During the Review Period',
+
+
     ],
 ];

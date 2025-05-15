@@ -1035,6 +1035,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('employee_performances*') ? 'active' : '' }}">
+            <a href="{{ route('employee_performances.index') }}">
+                <i class="fas fa-chart-line fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.employee_performances.employee_performances') }}</span>
+            </a>
+        </li>
+
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>

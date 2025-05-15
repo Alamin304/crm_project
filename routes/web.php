@@ -72,6 +72,7 @@ use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ComplementaryController;
 use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\EmployeePerformanceController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
@@ -1121,6 +1122,16 @@ Route::group([], function () {
     Route::get('companies/export/{format}', [CompaniesController::class, 'export'])->name('companies.export');
 });
 
+Route::group([], function () {
+    Route::get('employee_performances', [EmployeePerformanceController::class, 'index'])->name('employee_performances.index');
+    Route::get('employee_performances/create', [EmployeePerformanceController::class, 'create'])->name('employee_performances.create');
+    Route::post('employee_performances', [EmployeePerformanceController::class, 'store'])->name('employee_performances.store');
+    Route::get('employee_performances/{employeePerformance}/view', [EmployeePerformanceController::class, 'view'])->name('employee_performances.view');
+    Route::get('employee_performances/{employeePerformance}/edit', [EmployeePerformanceController::class, 'edit'])->name('employee_performances.edit');
+    Route::put('employee_performances/{employeePerformance}', [EmployeePerformanceController::class, 'update'])->name('employee_performances.update');
+    Route::delete('employee_performances/{employeePerformance}', [EmployeePerformanceController::class, 'destroy'])->name('employee_performances.destroy');
+    Route::get('employee_performances/export/{format}', [EmployeePerformanceController::class, 'export'])->name('employee_performances.export');
+});
 
 Route::get('article-search', function () {
     return view('articles.search');
