@@ -3053,4 +3053,33 @@ return [
 
 
     ],
+
+    'warranties' => [
+        'warranties' => 'Warranties',
+        'add' => 'Add',
+        'edit' => 'Edit Warranty',
+        'claim_code' => 'Claim Code',
+        'customer' => 'Customer',
+        'description' => 'Description',
+        'date_created' => 'Date Created',
+        'list' => 'List',
+        'delete' => 'Warranty deleted successfully',
+        'saved' => 'Warranty saved successfully',
+        'created_at' => 'Created At',
+        'status' => 'Status',
+        'view' => 'View Warranty',
+        'export' => 'Export',
+        'id' => 'SL',
+        'invoice' => 'Invoice Number',
+        'product_service_name' => 'Product/Service Name',
+        'warranty_receipt_process' => 'Warranty Receipt Processed',
+        'client_note' => 'Client Note',
+        'admin_note' => 'Admin Note',
+        'warranty_information' => 'Warranty Information',
+        'serial_number' => 'Serial Number',
+        'rate' => 'Rate',
+        'quantity' => 'Quantity',
+        'order_number' => 'Order Number',
+
+    ],
 ];

@@ -1042,6 +1042,20 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('warranties*') ? 'active' : '' }}">
+            <a href="{{ route('warranties.index') }}">
+                <i class="fas fa-file-contract fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.warranties.warranties') }}</span>
+            </a>
+        </li>
+
+
+         <li class="side-menus {{ Request::is('warranty_information*') ? 'active' : '' }}">
+            <a href="{{ route('warranties.information') }}">
+                <i class="fas fa-file-contract fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.warranties.warranty_information') }}</span>
+            </a>
+        </li>
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

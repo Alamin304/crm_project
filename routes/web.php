@@ -81,6 +81,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\WakeUpCallController;
+use App\Http\Controllers\WarrantyController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -1133,6 +1134,21 @@ Route::group([], function () {
     Route::get('employee_performances/export/{format}', [EmployeePerformanceController::class, 'export'])->name('employee_performances.export');
 });
 
+Route::group([], function () {
+    Route::get('warranties', [WarrantyController::class, 'index'])->name('warranties.index');
+    Route::get('warranties/create', [WarrantyController::class, 'create'])->name('warranties.create');
+    Route::post('warranties', [WarrantyController::class, 'store'])->name('warranties.store');
+    Route::get('warranties/{warranty}/view', [WarrantyController::class, 'show'])->name('warranties.view');
+    Route::get('warranties/{warranty}/edit', [WarrantyController::class, 'edit'])->name('warranties.edit');
+    Route::put('warranties/{warranty}', [WarrantyController::class, 'update'])->name('warranties.update');
+    Route::delete('warranties/{warranty}', [WarrantyController::class, 'destroy'])->name('warranties.destroy');
+    Route::get('warranties/export/{format}', [WarrantyController::class, 'export'])->name('warranties.export');
+    Route::put('warranties/{id}/status', [WarrantyController::class, 'updateStatus'])->name('warranties.update-status');
+    Route::get('warranty-information', [WarrantyController::class, 'warrantyInformation'])->name('warranties.information');
+    Route::get('warranties/info/export/{format}', [WarrantyController::class, 'WarrantiesInfoexport'])->name('warranties.info.export');
+
+
+});
 Route::get('article-search', function () {
     return view('articles.search');
 });
