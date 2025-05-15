@@ -9,6 +9,7 @@
         .export-dropdown {
             min-width: 120px;
         }
+
         .export-dropdown .dropdown-menu {
             min-width: 160px;
         }
@@ -105,21 +106,55 @@
             ajax: {
                 url: "{{ route('check_ins.index') }}",
             },
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columns: [
-                { data: 'id', name: 'id', title: "{{ __('messages.check_in.id') }}", width: '5%' },
-                { data: 'booking_number', name: 'booking_number', title: "{{ __('messages.check_in.booking_number') }}", width: '15%' },
-                { data: 'room_type', name: 'room_type', title: "{{ __('messages.check_in.room_type') }}", width: '15%' },
-                { data: 'room_no', name: 'room_no', title: "{{ __('messages.check_in.room_no') }}", width: '10%' },
-                { data: 'check_in', name: 'check_in', title: "{{ __('messages.check_in.check_in') }}", width: '15%' },
-                { data: 'check_out', name: 'check_out', title: "{{ __('messages.check_in.check_out') }}", width: '15%' },
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '5%',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'booking_number',
+                    name: 'booking_number',
+                    title: "{{ __('messages.check_in.booking_number') }}",
+                    width: '15%'
+                },
+                {
+                    data: 'room_type',
+                    name: 'room_type',
+                    title: "{{ __('messages.check_in.room_type') }}",
+                    width: '15%'
+                },
+                {
+                    data: 'room_no',
+                    name: 'room_no',
+                    title: "{{ __('messages.check_in.room_no') }}",
+                    width: '10%'
+                },
+                {
+                    data: 'check_in',
+                    name: 'check_in',
+                    title: "{{ __('messages.check_in.check_in') }}",
+                    width: '15%'
+                },
+                {
+                    data: 'check_out',
+                    name: 'check_out',
+                    title: "{{ __('messages.check_in.check_out') }}",
+                    width: '15%'
+                },
                 {
                     data: 'booking_status',
                     name: 'booking_status',
                     title: "{{ __('messages.check_in.booking_status') }}",
                     width: '10%',
-                    render: function (data) {
-                        return data ? "{{ __('messages.check_in.success') }}" : "{{ __('messages.check_in.pending') }}";
+                    render: function(data) {
+                        return data ? "{{ __('messages.check_in.success') }}" :
+                            "{{ __('messages.check_in.pending') }}";
                     }
                 },
                 {

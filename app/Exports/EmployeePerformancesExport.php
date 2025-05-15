@@ -19,7 +19,10 @@ class EmployeePerformancesExport implements FromCollection, WithMapping, WithHea
 
     public function map($performance): array
     {
+        static $index = 0;
+        $index++;
         return [
+            $index,
             $performance->employee->name ?? 'N/A',
             $performance->total_score,
             $performance->created_at->format('Y-m-d H:i:s'),
@@ -29,7 +32,8 @@ class EmployeePerformancesExport implements FromCollection, WithMapping, WithHea
     public function headings(): array
     {
         return [
-            __('messages.employee_performances.employee_name'),
+            __('messages.employee_performances.id'),
+            __('messages.employee_performances.name'),
             __('messages.employee_performances.total_score'),
             __('messages.employee_performances.created_at'),
         ];

@@ -26,7 +26,9 @@ class BookingListController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new BookingListDataTable())->get())->make(true);
+            return DataTables::of((new BookingListDataTable())->get())
+             ->addIndexColumn()
+            ->make(true);
         }
         return view('booking_lists.index');
     }

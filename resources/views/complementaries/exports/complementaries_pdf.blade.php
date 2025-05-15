@@ -23,7 +23,7 @@
         <tbody>
             @foreach($complementaries as $complementary)
             <tr>
-                <td>{{ $complementary->id }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $complementary->room_type }}</td>
                 <td>{{ number_format($complementary->rate, 2) }}</td>
                 <td>{!! strip_tags($complementary->complementary) !!}</td>

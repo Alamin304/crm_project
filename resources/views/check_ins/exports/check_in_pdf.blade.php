@@ -31,7 +31,7 @@
         <tbody>
             @foreach($checkIns as $checkIn)
             <tr>
-                <td>{{ $checkIn->id }}</td>
+                <td>{{ $loop->iteration }}
                 <td>{{ $checkIn->booking_number }}</td>
                 <td>{{ $checkIn->room_type }}</td>
                 <td>{{ $checkIn->room_no }}</td>

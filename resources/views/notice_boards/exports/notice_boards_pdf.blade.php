@@ -27,7 +27,7 @@
         <tbody>
             @foreach($noticeBoards as $notice)
             <tr>
-                <td>{{ $notice->id }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $notice->notice_type }}</td>
                 <td>{{ strip_tags($notice->description) }}</td>
                 <td>{{ \Carbon\Carbon::parse($notice->notice_date)->format('m/d/Y') }}</td>

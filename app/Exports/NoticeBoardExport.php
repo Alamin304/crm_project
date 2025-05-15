@@ -19,8 +19,10 @@ class NoticeBoardExport implements FromCollection, WithMapping, WithHeadings, Sh
 
     public function map($notice): array
     {
+         static $index = 0;
+        $index++;
         return [
-            $notice->id,
+            $index,
             $notice->notice_type,
             strip_tags($notice->description), // Remove HTML tags
             $notice->notice_date,

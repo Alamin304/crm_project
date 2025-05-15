@@ -27,7 +27,9 @@ class PositionController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new PositionDataTable())->get())->make(true);
+            return DataTables::of((new PositionDataTable())->get())
+            ->addIndexColumn()
+            ->make(true);
         }
 
         return view('positions.index');

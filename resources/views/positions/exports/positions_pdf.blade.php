@@ -22,7 +22,7 @@
         <tbody>
             @foreach($positions as $position)
             <tr>
-                <td>{{ $position->id }}</td>
+                <td>{{ $loop->iteration }}</td> <!-- This shows sequential numbers -->
                 <td>{{ $position->name }}</td>
                 <td>{{ $position->status ? 'Active' : 'Inactive' }}</td>
             </tr>

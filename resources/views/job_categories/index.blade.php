@@ -34,7 +34,7 @@
                         {{ __('messages.job_categories.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
-                         <a class="dropdown-item" href="{{ route('job-categories.export', ['format' => 'pdf']) }}">
+                        <a class="dropdown-item" href="{{ route('job-categories.export', ['format' => 'pdf']) }}">
                             <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('job-categories.export', ['format' => 'csv']) }}">
@@ -78,12 +78,33 @@
             ajax: {
                 url: "{{ route('job-categories.index') }}",
             },
-            columns: [
-                { data: 'id', name: 'id', width: '10%' },
-                { data: 'name', name: 'name', width: '20%' },
-                { data: 'description', name: 'description', width: '20%' },
-                { data: 'start_date', name: 'start_date', width: '15%' },
-                { data: 'end_date', name: 'end_date', width: '15%' },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '10%',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'name',
+                    name: 'name',
+                    width: '20%'
+                },
+                {
+                    data: 'description',
+                    name: 'description',
+                    width: '20%'
+                },
+                {
+                    data: 'start_date',
+                    name: 'start_date',
+                    width: '15%'
+                },
+                {
+                    data: 'end_date',
+                    name: 'end_date',
+                    width: '15%'
+                },
                 {
                     data: function(row) {
                         return renderActionButtons(row.id, row.status);
@@ -106,7 +127,7 @@
         });
 
         // Initialize switches when table is drawn
-        table.on('draw', function () {
+        table.on('draw', function() {
             $('.status-toggle').bootstrapToggle({
                 on: 'ON',
                 off: 'OFF',
@@ -174,4 +195,3 @@
         }
     </script>
 @endsection
-

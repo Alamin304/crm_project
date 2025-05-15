@@ -23,8 +23,11 @@ class WakeUpCallsExport implements FromCollection, WithMapping, WithHeadings, Wi
 
     public function map($call): array
     {
+        static $index = 0;
+        $index++;
+
         return [
-            $call->id,
+            $index, // Serial number instead of $call->id
             $call->customer_name,
             $call->date ? Date::dateTimeToExcel(Carbon::parse($call->date)) : null,
             $this->cleanDescription($call->description),
@@ -34,7 +37,7 @@ class WakeUpCallsExport implements FromCollection, WithMapping, WithHeadings, Wi
     public function headings(): array
     {
         return [
-            __('messages.wake_up_calls.id'),
+            __('messages.wake_up_calls.id'), // Update this translation key
             __('messages.wake_up_calls.customer_name'),
             __('messages.wake_up_calls.date'),
             __('messages.wake_up_calls.description'),

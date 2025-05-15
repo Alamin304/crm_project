@@ -5,12 +5,13 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
         .export-dropdown {
             min-width: 120px;
         }
+
         .export-dropdown .dropdown-menu {
             min-width: 160px;
         }
@@ -28,7 +29,7 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.award_lists.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
@@ -107,15 +108,47 @@
             ajax: {
                 url: "{{ route('award-lists.index') }}",
             },
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columns: [
-                { data: 'id', name: 'id', width: '5%' },
-                { data: 'award_name', name: 'award_name', width: '15%' },
-                { data: 'award_description', name: 'award_description', width: '20%' },
-                { data: 'gift_item', name: 'gift_item', width: '10%' },
-                { data: 'date', name: 'date', width: '10%' },
-                { data: 'employee_name', name: 'employee_name', width: '10%' },
-                { data: 'award_by', name: 'award_by', width: '15%' },
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '5%',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'award_name',
+                    name: 'award_name',
+                    width: '15%'
+                },
+                {
+                    data: 'award_description',
+                    name: 'award_description',
+                    width: '20%'
+                },
+                {
+                    data: 'gift_item',
+                    name: 'gift_item',
+                    width: '10%'
+                },
+                {
+                    data: 'date',
+                    name: 'date',
+                    width: '10%'
+                },
+                {
+                    data: 'employee_name',
+                    name: 'employee_name',
+                    width: '10%'
+                },
+                {
+                    data: 'award_by',
+                    name: 'award_by',
+                    width: '15%'
+                },
                 {
                     data: function(row) {
                         return renderActionButtons(row.id);
@@ -126,7 +159,9 @@
                 }
             ],
             responsive: true,
-            order: [[0, 'desc']]
+            order: [
+                [0, 'desc']
+            ]
         });
 
         $(document).on('click', '.delete-btn', function(event) {

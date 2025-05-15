@@ -23,7 +23,7 @@
         <tbody>
             @foreach($employeePerformances as $index => $performance)
             <tr>
-                <td>{{ $index + 1 }}</td>
+                <td>{{ $loop->iteration }}</td> <!-- This shows sequential numbers -->
                 <td>{{ $performance->employee->name ?? 'N/A' }}</td>
                 <td>{{ $performance->total_score }}</td>
                 <td>{{ $performance->created_at->format('Y-m-d H:i:s') }}</td>

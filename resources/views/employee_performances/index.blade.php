@@ -85,8 +85,10 @@
                 [10, 25, 50, 100, "All"]
             ],
             columns: [{
-                    data: 'id',
-                    name: 'id',
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
                     width: '10%'
                 },
                 {
@@ -165,4 +167,3 @@
         });
     </script>
 @endsection
-

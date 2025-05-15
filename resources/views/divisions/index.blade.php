@@ -85,8 +85,8 @@
             ],
             columns: [
                 {
-                    data: 'id',
-                    name: 'id',
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
                     width: '10%',
                     orderable: false,
                     searchable: false

@@ -17,8 +17,10 @@ class PositionsExport implements FromCollection, WithMapping, WithHeadings, Shou
 
     public function map($position): array
     {
+         static $index = 0;
+        $index++;
         return [
-            $position->id,
+            $index,
             $position->name,
             $position->status ? 'Active' : 'Inactive',
         ];

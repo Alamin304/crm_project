@@ -27,7 +27,9 @@ class CheckInController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new CheckInDataTable())->get())->make(true);
+            return DataTables::of((new CheckInDataTable())->get())
+              ->addIndexColumn()
+            ->make(true);
         }
         return view('check_ins.index');
     }

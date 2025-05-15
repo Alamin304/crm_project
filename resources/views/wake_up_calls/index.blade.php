@@ -104,12 +104,16 @@
             ajax: {
                 url: "{{ route('wake_up_calls.index') }}",
             },
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columns: [
-                {
-                    data: 'id',
-                    name: 'id',
-                    width: '10%'
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '10%',
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     data: function(row) {

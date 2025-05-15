@@ -30,6 +30,7 @@ class NoticeBoardController extends AppBaseController
                 ->editColumn('description', function ($row) {
                     return strip_tags($row->description);
                 })
+                ->addIndexColumn()
                 ->make(true);
         }
 

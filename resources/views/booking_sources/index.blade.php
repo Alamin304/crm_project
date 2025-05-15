@@ -112,9 +112,11 @@
                 [10, 25, 50, 100, "All"]
             ],
             columns: [{
-                    data: 'id',
-                    name: 'id',
-                    width: '10%'
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '10%',
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     data: 'booking_type',

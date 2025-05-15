@@ -17,8 +17,10 @@ class ShiftsExport implements FromCollection, WithMapping, WithHeadings, ShouldA
 
     public function map($shift): array
     {
+        static $index = 0;
+        $index++;
         return [
-            $shift->id,
+            $index,
             $shift->name,
             $this->formatTime($shift->shift_start_time),
             $this->formatTime($shift->shift_end_time),

@@ -19,8 +19,10 @@ class AwardListExport implements FromCollection, WithMapping, WithHeadings, Shou
 
     public function map($award): array
     {
+         static $index = 0;
+        $index++;
         return [
-            $award->id,
+            $index,
             $award->award_name,
             $award->award_description,
             $award->gift_item,

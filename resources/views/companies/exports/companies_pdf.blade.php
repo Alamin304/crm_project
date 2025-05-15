@@ -22,7 +22,7 @@
         <tbody>
             @foreach($companies as $Company)
             <tr>
-                <td>{{ $Company->id }}</td>
+                <td>{{ $loop->iteration }}</td> <!-- This shows sequential numbers -->
                 <td>{{ $Company->name }}</td>
                 <td>{!! strip_tags($Company->description) !!}</td>
             </tr>

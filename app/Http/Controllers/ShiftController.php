@@ -18,6 +18,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
 use Laracasts\Flash\Flash;
 use Maatwebsite\Excel\Facades\Excel;
+use Throwable;
 
 class ShiftController extends AppBaseController
 {
@@ -38,7 +39,9 @@ class ShiftController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new ShiftDataTable())->get($request->only(['group'])))->make(true);
+            return DataTables::of((new ShiftDataTable())->get($request->only(['group'])))
+            ->addIndexColumn()
+            ->make(true);
         }
         return view('shifts.index');
     }

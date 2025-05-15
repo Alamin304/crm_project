@@ -17,8 +17,10 @@ class BookingSourceExport implements FromCollection, WithMapping, WithHeadings, 
 
     public function map($source): array
     {
+         static $index = 0;
+        $index++;
         return [
-            $source->id,
+            $index,
             $source->booking_type,
             $source->booking_source,
             $source->commission_rate . '%',

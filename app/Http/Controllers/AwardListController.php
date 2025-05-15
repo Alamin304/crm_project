@@ -37,8 +37,9 @@ class AwardListController extends AppBaseController
         if ($request->ajax()) {
             return DataTables::of((new AwardListDataTable())->get())
                 ->editColumn('award_description', function ($row) {
-                    return strip_tags($row->award_description); 
+                    return strip_tags($row->award_description);
                 })
+                 ->addIndexColumn()
                 ->make(true);
         }
 

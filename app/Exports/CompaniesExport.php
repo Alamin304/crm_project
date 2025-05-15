@@ -17,8 +17,10 @@ class CompaniesExport implements FromCollection, WithMapping, WithHeadings, Shou
 
     public function map($Company): array
     {
+        static $index = 0;
+        $index++;
         return [
-            $Company->id,
+            $index,
             $Company->name,
             $this->cleanDescription($Company->description),
         ];

@@ -5,12 +5,13 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
         .export-dropdown {
             min-width: 120px;
         }
+
         .export-dropdown .dropdown-menu {
             min-width: 160px;
         }
@@ -28,7 +29,7 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.notice_boards.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
@@ -107,13 +108,37 @@
             ajax: {
                 url: "{{ route('notice-boards.index') }}",
             },
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columns: [
-                { data: 'id', name: 'id', width: '5%' },
-                { data: 'notice_type', name: 'notice_type', width: '15%' },
-                { data: 'description', name: 'description', width: '30%' },
-                { data: 'notice_date', name: 'notice_date', width: '15%' },
-                { data: 'notice_by', name: 'notice_by', width: '15%' },
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '5%',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'notice_type',
+                    name: 'notice_type',
+                    width: '15%'
+                },
+                {
+                    data: 'description',
+                    name: 'description',
+                    width: '30%'
+                },
+                {
+                    data: 'notice_date',
+                    name: 'notice_date',
+                    width: '15%'
+                },
+                {
+                    data: 'notice_by',
+                    name: 'notice_by',
+                    width: '15%'
+                },
                 {
                     data: function(row) {
                         return renderActionButtons(row.id);
@@ -124,12 +149,15 @@
                 }
             ],
             responsive: true,
-            order: [[0, 'desc']]
+            order: [
+                [0, 'desc']
+            ]
         });
 
         $(document).on('click', '.delete-btn', function(event) {
             let noticeBoardId = $(event.currentTarget).data('id');
-            deleteItem("{{ route('notice-boards.destroy', ['noticeBoard' => ':id']) }}".replace(':id', noticeBoardId),
+            deleteItem("{{ route('notice-boards.destroy', ['noticeBoard' => ':id']) }}".replace(':id',
+                    noticeBoardId),
                 '#noticeBoardTable', "{{ __('messages.notice_boards.notice_boards') }}");
         });
 

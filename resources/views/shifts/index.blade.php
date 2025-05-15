@@ -17,16 +17,16 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.shifts.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
-                            <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'pdf']) }}">
-                                <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'csv']) }}">
-                                <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
-                            </a>
+                        <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'pdf']) }}">
+                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'csv']) }}">
+                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                        </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
@@ -84,15 +84,13 @@
             ajax: {
                 url: route('shifts.index'),
             },
-            columns: [
-                {
-                    data: function(row) {
-                        let element = document.createElement('textarea');
-                        return row.id;
-                    },
-                    name: 'id',
-                    // width: '10%'
-                },{
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '10%',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: function(row) {
                         let element = document.createElement('textarea');
                         return row.name;
@@ -244,18 +242,18 @@
 
 
             // if (permissions.updateItem === 'true') {
-                let editUrl = `{{ route('shifts.edit', ':id') }}`;
-                editUrl = editUrl.replace(':id', id);
-                buttons += `
+            let editUrl = `{{ route('shifts.edit', ':id') }}`;
+            editUrl = editUrl.replace(':id', id);
+            buttons += `
                 <a title="${messages.edit}" href="${editUrl}" class="btn btn-warning action-btn has-icon edit-btn" style="float:right;margin:2px;">
                     <i class="fa fa-edit"></i>
                 </a>
             `;
             // }
             // if (permissions.viewItem === 'true') {
-                let viewUrl = `{{ route('shifts.view', ':id') }}`;
-                viewUrl = viewUrl.replace(':id', id);
-                buttons += `
+            let viewUrl = `{{ route('shifts.view', ':id') }}`;
+            viewUrl = viewUrl.replace(':id', id);
+            buttons += `
                 <a title="${messages.view}" href="${viewUrl}" class="btn btn-info action-btn has-icon view-btn" style="float:right;margin:2px;">
                     <i class="fa fa-eye"></i>
                 </a>
@@ -263,7 +261,7 @@
             // }
 
             // if (permissions.deleteItem === 'true') {
-                buttons += `
+            buttons += `
                 <a title="${messages.delete}" href="#" class="btn btn-danger action-btn has-icon delete-btn" data-id="${id}" style="float:right;margin:2px;">
                     <i class="fa fa-trash"></i>
                 </a>

@@ -19,8 +19,10 @@ class ComplementariesExport implements FromCollection, WithMapping, WithHeadings
 
     public function map($complementary): array
     {
+        static $index = 0;
+        $index++;
         return [
-            $complementary->id,
+            $index,
             $complementary->room_type,
             $complementary->complementary,
             $complementary->rate,

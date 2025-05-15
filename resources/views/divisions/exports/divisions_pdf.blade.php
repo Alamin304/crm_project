@@ -22,7 +22,7 @@
         <tbody>
             @foreach($divisions as $division)
             <tr>
-                <td>{{ $division->id }}</td>
+                <td>{{ $loop->iteration }}</td> <!-- This shows sequential numbers -->
                 <td>{{ $division->name }}</td>
                 <td>{!! strip_tags($division->description) !!}</td>
             </tr>

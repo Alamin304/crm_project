@@ -28,7 +28,9 @@ class JobCategoryController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new JobCategoryDataTable())->get())->make(true);
+            return DataTables::of((new JobCategoryDataTable())->get())
+            ->addIndexColumn()
+            ->make(true);
         }
         return view('job_categories.index');
     }

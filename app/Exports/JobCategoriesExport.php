@@ -20,11 +20,13 @@ class JobCategoriesExport implements FromCollection, WithMapping, WithHeadings, 
 
     public function map($jobCategory): array
     {
+        static $index = 0;
+        $index++;
         return [
-            $jobCategory->id,
+            $index,
             $jobCategory->name,
             strip_tags($jobCategory->description), // Remove HTML tags
-            Carbon::parse($jobCategory->start_date)->format('Y-m-d'), 
+            Carbon::parse($jobCategory->start_date)->format('Y-m-d'),
             Carbon::parse($jobCategory->end_date)->format('Y-m-d'),
         ];
     }

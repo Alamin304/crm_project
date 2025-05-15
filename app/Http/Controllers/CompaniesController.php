@@ -27,7 +27,9 @@ class CompaniesController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new CompaniesDataTable())->get())->make(true);
+            return DataTables::of((new CompaniesDataTable())->get())
+             ->addIndexColumn()
+            ->make(true);
         }
         return view('companies.index');
     }

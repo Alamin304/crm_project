@@ -21,7 +21,7 @@
 @section('content')
     <section class="section">
         <div class="section-header item-align-right">
-             <h1>{{ __('messages.positions.positions') }}</h1>
+            <h1>{{ __('messages.positions.positions') }}</h1>
             <div class="section-header-breadcrumb float-right">
                 <div class="card-header-action mr-3 select2-mobile-margin"></div>
             </div>
@@ -29,16 +29,16 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.positions.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
-                            <a class="dropdown-item" href="{{ route('positions.export', ['format' => 'pdf']) }}">
-                                <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ route('positions.export', ['format' => 'csv']) }}">
-                                <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
-                            </a>
+                        <a class="dropdown-item" href="{{ route('positions.export', ['format' => 'pdf']) }}">
+                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('positions.export', ['format' => 'csv']) }}">
+                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                        </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
@@ -75,13 +75,22 @@
             ajax: {
                 url: "{{ route('positions.index') }}",
             },
-            columns: [
-                { data: 'id', name: 'id', width: '10%' },
-                { data: 'name', name: 'name', width: '25%' },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '10%',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'name',
+                    name: 'name',
+                    width: '25%'
+                },
                 {
                     data: function(row) {
                         return row.status ? `<span class="badge badge-success">Active</span>` :
-                                            `<span class="badge badge-danger">Inactive</span>`;
+                            `<span class="badge badge-danger">Inactive</span>`;
                     },
                     name: 'status',
                     width: '15%'
@@ -138,6 +147,5 @@
                 </div>
             `;
         }
-
     </script>
 @endsection

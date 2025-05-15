@@ -83,10 +83,9 @@
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "All"]
             ],
-            columns: [
-                {
-                    data: 'id',
-                    name: 'id',
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
                     width: '10%',
                     orderable: false,
                     searchable: false

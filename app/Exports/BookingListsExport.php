@@ -21,8 +21,10 @@ class BookingListsExport implements FromCollection, WithMapping, WithHeadings, W
 
     public function map($booking): array
     {
+        static $index = 0;
+        $index++;
         return [
-            $booking->id,
+             $index, 
             $booking->booking_number,
             $booking->room_type,
             $booking->room_no,

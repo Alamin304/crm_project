@@ -5,8 +5,8 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
         .export-dropdown {
             min-width: 120px;
@@ -29,7 +29,7 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('Export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
@@ -107,12 +107,32 @@
             ajax: {
                 url: "{{ route('complementaries.index') }}",
             },
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columns: [
-                { data: 'id', name: 'id', width: '10%' },
-                { data: 'room_type', name: 'room_type', width: '20%' },
-                { data: 'complementary', name: 'complementary', width: '40%' },
-                { data: 'rate', name: 'rate', width: '10%' },
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    width: '10%',
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    data: 'room_type',
+                    name: 'room_type',
+                    width: '20%'
+                },
+                {
+                    data: 'complementary',
+                    name: 'complementary',
+                    width: '40%'
+                },
+                {
+                    data: 'rate',
+                    name: 'rate',
+                    width: '10%'
+                },
                 {
                     data: function(row) {
                         return renderActionButtons(row.id);
@@ -127,7 +147,8 @@
 
         $(document).on('click', '.delete-btn', function(event) {
             let complementaryId = $(event.currentTarget).data('id');
-            deleteItem("{{ route('complementaries.destroy', ['complementary' => ':id']) }}".replace(':id', complementaryId),
+            deleteItem("{{ route('complementaries.destroy', ['complementary' => ':id']) }}".replace(':id',
+                    complementaryId),
                 '#complementaryTable', "{{ __('messages.complementaries.complementaries') }}");
         });
 

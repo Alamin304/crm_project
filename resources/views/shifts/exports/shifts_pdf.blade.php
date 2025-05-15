@@ -24,7 +24,7 @@
         <tbody>
             @foreach($shifts as $shift)
             <tr>
-                <td>{{ $shift->id }}</td>
+                <td>{{ $loop->iteration }}</td> <!-- This shows sequential numbers -->
                 <td>{{ $shift->name }}</td>
                 <td>{{ $shift->shift_start_time ? $shift->shift_start_time->format('h:i A') : '' }}</td>
                 <td>{{ $shift->shift_end_time ? $shift->shift_end_time->format('h:i A') : '' }}</td>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Exports;
+
 use App\Models\CheckIn;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -14,8 +15,8 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 class CheckInExport implements FromCollection, WithMapping, WithHeadings, WithColumnFormatting, ShouldAutoSize
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return CheckIn::orderBy('created_at', 'desc')->get();
@@ -23,8 +24,10 @@ class CheckInExport implements FromCollection, WithMapping, WithHeadings, WithCo
 
     public function map($booking): array
     {
+        static $index = 0;
+        $index++;
         return [
-            $booking->id,
+            $index,
             $booking->booking_number,
             $booking->room_type,
             $booking->room_no,
@@ -55,5 +58,3 @@ class CheckInExport implements FromCollection, WithMapping, WithHeadings, WithCo
         ];
     }
 }
-
-

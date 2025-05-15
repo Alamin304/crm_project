@@ -24,7 +24,7 @@
         <tbody>
             @foreach($jobCategories as $jobCategory)
                 <tr>
-                    <td>{{ $jobCategory->id }}</td>
+                    <td>{{ $loop->iteration }}</td> <!-- This shows sequential numbers -->
                     <td>{{ $jobCategory->name }}</td>
                     <td>{{ strip_tags($jobCategory->description) }}</td>
                     <td>{{ \Carbon\Carbon::parse($jobCategory->start_date)->format('Y-m-d') }}</td>

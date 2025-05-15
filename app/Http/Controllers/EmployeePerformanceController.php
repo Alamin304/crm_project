@@ -31,6 +31,7 @@ class EmployeePerformanceController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new EmployeePerformanceDataTable())->get())
+                ->addIndexColumn() // This adds the DT_RowIndex column
                 ->editColumn('created_at', function ($row) {
                     return \Carbon\Carbon::parse($row->created_at)->format('d M Y, h:i A');
                 })
@@ -86,7 +87,6 @@ class EmployeePerformanceController extends AppBaseController
             return redirect()
                 ->route('employee_performances.index')
                 ->with('success', __('messages.employee_performances.saved'));
-
         } catch (Throwable $e) {
             if ($request->ajax()) {
                 return response()->json([

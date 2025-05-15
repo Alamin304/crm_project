@@ -17,8 +17,10 @@ class DivisionsExport implements FromCollection, WithMapping, WithHeadings, Shou
 
     public function map($division): array
     {
+        static $index = 0;
+        $index++;
         return [
-            $division->id,
+            $index,
             $division->name,
             $this->cleanDescription($division->description),
         ];

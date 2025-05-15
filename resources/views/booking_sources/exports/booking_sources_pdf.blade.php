@@ -23,7 +23,7 @@
         <tbody>
             @foreach($bookingSources as $source)
             <tr>
-                <td>{{ $source->id }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $source->booking_type }}</td>
                 <td>{{ $source->booking_source }}</td>
                 <td>{{ number_format($source->commission_rate, 2) }}%</td>

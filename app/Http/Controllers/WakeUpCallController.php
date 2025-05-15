@@ -27,7 +27,9 @@ class WakeUpCallController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new WakeUpCallDataTable())->get())->make(true);
+            return DataTables::of((new WakeUpCallDataTable())->get())
+            ->addIndexColumn()
+            ->make(true);
         }
         return view('wake_up_calls.index');
     }

@@ -27,7 +27,9 @@ class DivisionController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of((new DivisionDataTable())->get())->make(true);
+            return DataTables::of((new DivisionDataTable())->get())
+             ->addIndexColumn()
+             ->make(true);
         }
         return view('divisions.index');
     }
