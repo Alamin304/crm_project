@@ -17,7 +17,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CompaniesController extends AppBaseController
 {
-   private $companieRepository;
+    private $companieRepository;
 
     public function __construct(CompanieRepository $divisionRepo)
     {
@@ -28,8 +28,8 @@ class CompaniesController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new CompaniesDataTable())->get())
-             ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         return view('companies.index');
     }
@@ -39,7 +39,7 @@ class CompaniesController extends AppBaseController
         return view('companies.create');
     }
 
-   public function store(CompaniesRequest $request)
+    public function store(CompaniesRequest $request)
     {
         $input = $request->all();
         try {
@@ -101,8 +101,15 @@ class CompaniesController extends AppBaseController
             return $pdf->download($fileName);
         }
 
+        if ($format === 'xlsx') {
+            return Excel::download(new CompaniesExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $companies = Company::orderBy('name', 'asc')->get();
+            return view('companies.exports.companies_print', compact('companies'));
+        }
+
         abort(404);
     }
-
 }
-

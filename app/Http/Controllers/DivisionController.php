@@ -17,7 +17,7 @@ use Illuminate\Database\QueryException;
 
 class DivisionController extends AppBaseController
 {
-   private $divisionRepository;
+    private $divisionRepository;
 
     public function __construct(DivisionRepository $divisionRepo)
     {
@@ -28,8 +28,8 @@ class DivisionController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new DivisionDataTable())->get())
-             ->addIndexColumn()
-             ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         return view('divisions.index');
     }
@@ -39,7 +39,7 @@ class DivisionController extends AppBaseController
         return view('divisions.create');
     }
 
-   public function store(DivisionRequest $request)
+    public function store(DivisionRequest $request)
     {
         $input = $request->all();
         try {
@@ -99,6 +99,15 @@ class DivisionController extends AppBaseController
             $divisions = Division::all();
             $pdf = PDF::loadView('divisions.exports.divisions_pdf', compact('divisions'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new DivisionsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $divisions = Division::orderBy('name', 'asc')->get();
+            return view('divisions.exports.divisions_print', compact('divisions'));
         }
 
         abort(404);

@@ -151,6 +151,17 @@ class EmployeePerformanceController extends AppBaseController
             return $pdf->download($fileName);
         }
 
+        if ($format === 'xlsx') {
+            return Excel::download(new EmployeePerformancesExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $employeePerformances = EmployeePerformance::with('employee')
+                ->orderBy('created_at', 'desc')
+                ->get();
+            return view('employee_performances.exports.employee_performances_print', compact('employeePerformances'));
+        }
+
         abort(404);
     }
 }

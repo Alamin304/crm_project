@@ -19,7 +19,7 @@
     <section class="section">
         <div class="section-header item-align-right">
             <h1>{{ __('messages.groups.groups') }}</h1>
-              {{-- <h1>{{ __('messages.beds.beds') }}</h1> --}}
+            {{-- <h1>{{ __('messages.beds.beds') }}</h1> --}}
             <div class="section-header-breadcrumb float-right">
                 <div class="card-header-action mr-3 select2-mobile-margin"></div>
             </div>
@@ -35,6 +35,13 @@
                         </a>
                         <a class="dropdown-item" href="{{ route('groups.export', ['format' => 'csv']) }}">
                             <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('groups.export', ['format' => 'xlsx']) }}">
+                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('groups.export', ['format' => 'print']) }}"
+                            target="_blank">
+                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>
@@ -78,10 +85,20 @@
             ajax: {
                 url: "{{ route('groups.index') }}",
             },
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            columns: [
-                { data: 'group_name', name: 'group_name', width: '30%' },
-                { data: 'description', name: 'description', width: '40%' },
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            columns: [{
+                    data: 'group_name',
+                    name: 'group_name',
+                    width: '30%'
+                },
+                {
+                    data: 'description',
+                    name: 'description',
+                    width: '40%'
+                },
                 {
                     data: function(row) {
                         return renderActionButtons(row.id);
@@ -96,7 +113,8 @@
 
         $(document).on('click', '.delete-btn', function(event) {
             let groupId = $(event.currentTarget).data('id');
-            deleteItem("{{ route('groups.destroy', ':id') }}".replace(':id', groupId), '#groupTable', "{{ __('messages.groups.groups') }}");
+            deleteItem("{{ route('groups.destroy', ':id') }}".replace(':id', groupId), '#groupTable',
+                "{{ __('messages.groups.groups') }}");
         });
 
         function renderActionButtons(id) {

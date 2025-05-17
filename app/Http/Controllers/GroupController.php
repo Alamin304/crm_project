@@ -105,6 +105,15 @@ class GroupController extends AppBaseController
             return $pdf->download($fileName);
         }
 
+        if ($format === 'xlsx') {
+            return Excel::download(new GroupsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $groups = Group::orderBy('group_name', 'asc')->get();
+            return view('groups.exports.groups_print', compact('groups'));
+        }
+
         abort(404);
     }
 }
