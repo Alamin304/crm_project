@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BanksExport;
 use App\Queries\BankDataTable;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -17,6 +18,8 @@ use App\Repositories\OverTimeRepository;
 use Illuminate\Database\QueryException;
 use Laracasts\Flash\Flash;
 use App\Models\Bank;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BankController extends AppBaseController
 {
@@ -95,5 +98,33 @@ class BankController extends AppBaseController
     {
 
         return view('banks.view', compact(['bank']));
+    }
+
+    public function export($format)
+    {
+        $fileName = 'banks_export_' . now()->format('Y-m-d') . '.' . $format;
+
+        if ($format === 'csv') {
+            return Excel::download(new BanksExport, $fileName, \Maatwebsite\Excel\Excel::CSV, [
+                'Content-Type' => 'text/csv',
+            ]);
+        }
+
+        if ($format === 'pdf') {
+            $banks = Bank::orderBy('name')->get();
+            $pdf = Pdf::loadView('banks.exports.banks_pdf', compact('banks'));
+            return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new BanksExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $banks = Bank::orderBy('name')->get();
+            return view('banks.exports.banks_print', compact('banks'));
+        }
+
+        abort(404);
     }
 }

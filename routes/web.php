@@ -171,6 +171,7 @@ Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleUrl', 'super_admi
         Route::get('branches/{branch}/edit', [BranchController::class, 'edit'])->middleware('permission:update_branches')->name('branches.edit');
         Route::put('branches/{branch}', [BranchController::class, 'update'])->middleware('permission:update_branches')->name('branches.update');
         Route::delete('branches/{branch}', [BranchController::class, 'destroy'])->middleware('permission:delete_branches')->name('branches.destroy');
+        Route::get('branches/export/{format}', [BranchController::class, 'export'])->name('branches.export');
     });
 
 
@@ -264,6 +265,7 @@ Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleUrl', 'super_admi
         Route::get('banks/{bank}/edit', [BankController::class, 'edit'])->middleware('permission:update_leave_groups')->name('banks.edit');
         Route::put('banks/{bank}', [BankController::class, 'update'])->middleware('permission:update_leave_groups')->name('banks.update');
         Route::delete('banks/{bank}', [BankController::class, 'destroy'])->middleware('permission:delete_leave_groups')->name('banks.destroy');
+        Route::get('banks/export/{format}', [BankController::class, 'export'])->name('banks.export');
     });
 
 

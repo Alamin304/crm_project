@@ -402,7 +402,8 @@ return [
         'select_company' => "Select Company",
         'company' => "Company",
         'vat' => "VAT Number",
-        'phone' => "Phone"
+        'phone' => "Phone",
+        'id' => 'SL',
     ],
     'backup' => [
         'name' => "Database",
@@ -687,7 +688,8 @@ return [
         "edit" => "Edit Bank",
         "description" => "Bank Details",
         "list" => "List",
-        'view' => "View Bank Details"
+        'view' => "View Bank Details",
+        'id' => 'SL',
     ],
     'shifts' => [
         'id' => 'SL',

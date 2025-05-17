@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BranchesExport;
 use App\Queries\BranchDataTable;
 use Illuminate\Http\Request;
 use App\Repositories\BranchRepository;
@@ -15,8 +16,10 @@ use App\Http\Requests\UpdateBranchRequest;
 use Illuminate\Database\QueryException;
 use App\Models\Supplier;
 use App\Models\Branch;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Laracasts\Flash\Flash;
+use Maatwebsite\Excel\Facades\Excel;
 use Throwable;
 
 class BranchController extends AppBaseController
@@ -49,7 +52,7 @@ class BranchController extends AppBaseController
         $countries = $this->branchRepository->getCountries();
         $currencies = $this->branchRepository->getCurrencies();
         $company = $this->branchRepository->getCompanyName();
-        $banks=$this->branchRepository->getBanks();
+        $banks = $this->branchRepository->getBanks();
 
 
         return view('branches.create', compact(['countries', 'currencies', 'company', 'banks']));
@@ -124,5 +127,33 @@ class BranchController extends AppBaseController
             ->useLog('Branch Updated')->log('Branch updated.');
         Flash::success(__('messages.branches.saved'));
         return $this->sendSuccess(__('messages.branches.saved'));
+    }
+
+    public function export($format)
+    {
+        $fileName = 'branches_export_' . now()->format('Y-m-d') . '.' . $format;
+
+        if ($format === 'csv') {
+            return Excel::download(new BranchesExport, $fileName, \Maatwebsite\Excel\Excel::CSV, [
+                'Content-Type' => 'text/csv',
+            ]);
+        }
+
+        if ($format === 'pdf') {
+            $branches = Branch::with(['country', 'bank'])->orderBy('name')->get();
+            $pdf = Pdf::loadView('branches.exports.branches_pdf', compact('branches'));
+            return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new BranchesExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $branches = Branch::with(['country', 'bank'])->orderBy('name')->get();
+            return view('branches.exports.branches_print', compact('branches'));
+        }
+
+        abort(404);
     }
 }
