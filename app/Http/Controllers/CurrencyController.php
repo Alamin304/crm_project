@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CurrenciesExport;
 use App\Queries\CurrencyDataTable;
 use Illuminate\Http\Request;
 use App\Repositories\CurrencyRepository;
@@ -13,8 +14,10 @@ use Exception;
 use App\Http\Requests\CurrencyReqeust;
 use App\Models\Currency;
 use App\Http\Requests\UpdateCurrencyRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
 use Laracasts\Flash\Flash;
+use Maatwebsite\Excel\Facades\Excel;
 use Throwable;
 
 class CurrencyController extends AppBaseController
@@ -90,5 +93,33 @@ class CurrencyController extends AppBaseController
             ->useLog('Currency Updated')->log($updateCurrency->name . ' Currency updated.');
         Flash::success(__('messages.currencies.saved'));
         return $this->sendSuccess(__('messages.currencies.saved'));
+    }
+
+    public function export($format)
+    {
+        $fileName = 'currencies_export_' . now()->format('Y-m-d') . '.' . $format;
+
+        if ($format === 'csv') {
+            return Excel::download(new CurrenciesExport, $fileName, \Maatwebsite\Excel\Excel::CSV, [
+                'Content-Type' => 'text/csv',
+            ]);
+        }
+
+        if ($format === 'pdf') {
+            $currencies = Currency::orderBy('name')->get();
+            $pdf = Pdf::loadView('currencies.exports.currencies_pdf', compact('currencies'));
+            return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new CurrenciesExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $currencies = Currency::orderBy('name')->get();
+            return view('currencies.exports.currencies_print', compact('currencies'));
+        }
+
+        abort(404);
     }
 }

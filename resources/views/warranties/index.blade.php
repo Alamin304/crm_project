@@ -71,12 +71,19 @@
                         <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'csv']) }}">
                             <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
                         </a>
+                        <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'xlsx']) }}">
+                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'print']) }}" target="_blank">
+                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
                 <div class="float-right">
                     <a href="{{ route('warranties.create') }}" class="btn btn-primary form-btn">
-                        {{ __('messages.warranties.add') }} </a>
+                        {{ __('messages.warranties.add') }}
+                    </a>
                 </div>
             </div>
         </div>

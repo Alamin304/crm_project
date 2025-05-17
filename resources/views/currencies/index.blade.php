@@ -15,12 +15,38 @@
                 <div class="card-header-action mr-3 select2-mobile-margin">
                 </div>
             </div>
-            @can('create_currencies')
+            {{-- @can('create_currencies')
                 <div class="float-right">
                     <a href="{{ route('currencies.create') }}" class="btn btn-primary form-btn">
                         {{ __('messages.currencies.add') }} </a>
                 </div>
-            @endcan
+            @endcan --}}
+            <div class="float-right d-flex">
+                <div class="dropdown export-dropdown mr-2">
+                    <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ __('Export') }}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
+                        <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'pdf']) }}">
+                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'csv']) }}">
+                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'xlsx']) }}">
+                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'print']) }}" target="_blank">
+                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        </a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </div>
+                <a href="{{ route('currencies.create') }}" class="btn btn-primary form-btn">
+                    {{ __('messages.currencies.add') }}
+                </a>
+            </div>
 
         </div>
         <div class="section-body">

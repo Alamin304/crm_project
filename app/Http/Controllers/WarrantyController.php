@@ -87,6 +87,15 @@ class WarrantyController extends AppBaseController
             return $pdf->download($fileName);
         }
 
+        if ($format === 'xlsx') {
+            return Excel::download(new WarrantyExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $warranties = Warranty::orderBy('created_at', 'desc')->get();
+            return view('warranties.exports.warranties_print', compact('warranties'));
+        }
+
         abort(404);
     }
     public function updateStatus($id, Request $request)

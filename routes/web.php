@@ -751,6 +751,7 @@ Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleUrl', 'super_admi
         Route::get('currencies/{currency}/edit', [CurrencyController::class, 'edit'])->middleware('permission:update_currencies')->name('currencies.edit');
         Route::put('currencies/{currency}', [CurrencyController::class, 'update'])->middleware('permission:update_currencies')->name('currencies.update');
         Route::delete('currencies/{currency}', [CurrencyController::class, 'destroy'])->middleware('permission:delete_currencies')->name('currencies.destroy');
+        Route::get('currencies/export/{format}', [CurrencyController::class, 'export'])->name('currencies.export');
     });
 
 
@@ -799,10 +800,6 @@ Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleUrl', 'super_admi
         Route::put('areas/{area}', [AreaController::class, 'update'])->middleware('permission:update_areas')->name('areas.update');
         Route::delete('areas/{area}', [AreaController::class, 'destroy'])->middleware('permission:delete_areas')->name('areas.destroy');
     });
-
-
-
-
 });
 
 Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleAdmin', 'role:client'])->prefix('client')->group(function () {
@@ -995,7 +992,6 @@ Route::group([], function () {
 
 Route::group([], function () {
     Route::get('check-outs', [CheckOutController::class, 'index'])->name('check_outs.index');
-
 });
 
 
@@ -1146,8 +1142,6 @@ Route::group([], function () {
     Route::put('warranties/{id}/status', [WarrantyController::class, 'updateStatus'])->name('warranties.update-status');
     Route::get('warranty-information', [WarrantyController::class, 'warrantyInformation'])->name('warranties.information');
     Route::get('warranties/info/export/{format}', [WarrantyController::class, 'WarrantiesInfoexport'])->name('warranties.info.export');
-
-
 });
 Route::get('article-search', function () {
     return view('articles.search');

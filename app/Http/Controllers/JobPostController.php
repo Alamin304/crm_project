@@ -41,7 +41,7 @@ class JobPostController extends AppBaseController
      *
      * @throws Exception
      */
-   public function index(Request $request)
+    public function index(Request $request)
     {
         if ($request->ajax()) {
             return DataTables::of((new JobPostDataTable())->get())->make(true);
@@ -53,8 +53,8 @@ class JobPostController extends AppBaseController
     public function create()
     {
         $categories = JobCategory::where('status', true)
-                    ->pluck('name', 'id')
-                    ->toArray();
+            ->pluck('name', 'id')
+            ->toArray();
         return view('job_posts.create', compact('categories'));
     }
 
@@ -96,9 +96,9 @@ class JobPostController extends AppBaseController
 
     public function edit(JobPost $jobPost)
     {
-       $categories = JobCategory::where('status', true)
-                    ->pluck('name', 'id')
-                    ->toArray();
+        $categories = JobCategory::where('status', true)
+            ->pluck('name', 'id')
+            ->toArray();
         return view('job_posts.edit', compact(['jobPost', 'categories']));
     }
 
@@ -132,6 +132,11 @@ class JobPostController extends AppBaseController
 
         if ($format === 'xlsx') {
             return Excel::download(new JobPostsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $jobPosts = JobPost::with('category')->orderBy('id')->get();
+            return view('job_posts.exports.job_posts_print', compact('jobPosts'));
         }
 
         abort(404);
