@@ -27,6 +27,13 @@
                         <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'csv']) }}">
                             <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
                         </a>
+                        <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'xlsx']) }}">
+                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('shifts.export', ['format' => 'print']) }}"
+                            target="_blank">
+                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>

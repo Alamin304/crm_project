@@ -28,8 +28,8 @@ class PositionController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new PositionDataTable())->get())
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
 
         return view('positions.index');
@@ -100,6 +100,15 @@ class PositionController extends AppBaseController
             $positions = Position::all();
             $pdf = Pdf::loadView('positions.exports.positions_pdf', compact('positions'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new PositionsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $positions = Position::orderBy('id')->get();
+            return view('positions.exports.positions_print', compact('positions'));
         }
 
         abort(404);

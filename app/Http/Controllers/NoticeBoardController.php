@@ -49,7 +49,7 @@ class NoticeBoardController extends AppBaseController
         // Handle file upload
         if ($request->hasFile('notice_attachment')) {
             $file = $request->file('notice_attachment');
-            $fileName = time().'_'.$file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $filePath = $file->storeAs('notice_attachments', $fileName, 'public');
             $input['notice_attachment'] = $filePath;
         }
@@ -84,7 +84,7 @@ class NoticeBoardController extends AppBaseController
             }
 
             $file = $request->file('notice_attachment');
-            $fileName = time().'_'.$file->getClientOriginalName();
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $filePath = $file->storeAs('notice_attachments', $fileName, 'public');
             $input['notice_attachment'] = $filePath;
         }
@@ -119,6 +119,15 @@ class NoticeBoardController extends AppBaseController
             $noticeBoards = NoticeBoard::all();
             $pdf = Pdf::loadView('notice_boards.exports.notice_boards_pdf', compact('noticeBoards'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new NoticeBoardExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $noticeBoards = NoticeBoard::orderBy('id')->get();
+            return view('notice_boards.exports.notice_boards_print', compact('noticeBoards'));
         }
 
         abort(404);

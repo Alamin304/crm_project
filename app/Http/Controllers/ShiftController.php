@@ -40,8 +40,8 @@ class ShiftController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new ShiftDataTable())->get($request->only(['group'])))
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         return view('shifts.index');
     }
@@ -116,6 +116,11 @@ class ShiftController extends AppBaseController
 
         if ($format === 'xlsx') {
             return Excel::download(new ShiftsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $shifts = Shift::orderBy('id')->get();
+            return view('shifts.exports.shifts_print', compact('shifts'));
         }
 
         abort(404);

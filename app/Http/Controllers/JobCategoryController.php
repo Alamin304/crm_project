@@ -29,8 +29,8 @@ class JobCategoryController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new JobCategoryDataTable())->get())
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         return view('job_categories.index');
     }
@@ -95,33 +95,32 @@ class JobCategoryController extends AppBaseController
     //     }
     // }
 
-public function status(JobCategory $jobCategory, Request $request)
-{
-    try {
-        // Check if end_date is in the past and status is active (1)
-        if (Carbon::parse($jobCategory->end_date)->isPast() && $jobCategory->status == 1) {
-            $jobCategory->update(['status' => 0]);
+    public function status(JobCategory $jobCategory, Request $request)
+    {
+        try {
+            // Check if end_date is in the past and status is active (1)
+            if (Carbon::parse($jobCategory->end_date)->isPast() && $jobCategory->status == 1) {
+                $jobCategory->update(['status' => 0]);
+
+                activity()->performedOn($jobCategory)->causedBy(getLoggedInUser())
+                    ->useLog('Job Category auto-inactivated.')
+                    ->log($jobCategory->name . ' category status auto-inactivated due to end date expiry.');
+
+                return $this->sendSuccess(__('messages.job_categories.updated'));
+            }
+
+            // Else update with requested status
+            $jobCategory->update(['status' => $request->status]);
 
             activity()->performedOn($jobCategory)->causedBy(getLoggedInUser())
-                ->useLog('Job Category auto-inactivated.')
-                ->log($jobCategory->name . ' category status auto-inactivated due to end date expiry.');
+                ->useLog('Job Category status updated.')
+                ->log($jobCategory->name . ' category status updated to ' . ($request->status ? 'Active' : 'Inactive'));
 
             return $this->sendSuccess(__('messages.job_categories.updated'));
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage());
         }
-
-        // Else update with requested status
-        $jobCategory->update(['status' => $request->status]);
-
-        activity()->performedOn($jobCategory)->causedBy(getLoggedInUser())
-            ->useLog('Job Category status updated.')
-            ->log($jobCategory->name . ' category status updated to ' . ($request->status ? 'Active' : 'Inactive'));
-
-        return $this->sendSuccess(__('messages.job_categories.updated'));
-
-    } catch (\Exception $e) {
-        return $this->sendError($e->getMessage());
     }
-}
 
 
     public function destroy(JobCategory $jobCategory)
@@ -151,6 +150,15 @@ public function status(JobCategory $jobCategory, Request $request)
             $jobCategories = JobCategory::all();
             $pdf = PDF::loadView('job_categories.exports.job_categories_pdf', compact('jobCategories'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new JobCategoriesExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $jobCategories = JobCategory::orderBy('id')->get();
+            return view('job_categories.exports.job_categories_print', compact('jobCategories'));
         }
 
         abort(404);

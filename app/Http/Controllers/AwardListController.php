@@ -39,7 +39,7 @@ class AwardListController extends AppBaseController
                 ->editColumn('award_description', function ($row) {
                     return strip_tags($row->award_description);
                 })
-                 ->addIndexColumn()
+                ->addIndexColumn()
                 ->make(true);
         }
 
@@ -97,6 +97,15 @@ class AwardListController extends AppBaseController
             $awardLists = AwardList::all();
             $pdf = Pdf::loadView('award_lists.exports.award_lists_pdf', compact('awardLists'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new AwardListExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $awardLists = AwardList::orderBy('id')->get();
+            return view('award_lists.exports.award_lists_print', compact('awardLists'));
         }
 
         abort(404);
