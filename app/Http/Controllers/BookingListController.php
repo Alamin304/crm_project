@@ -27,8 +27,8 @@ class BookingListController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new BookingListDataTable())->get())
-             ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         return view('booking_lists.index');
     }
@@ -93,7 +93,15 @@ class BookingListController extends AppBaseController
             return $pdf->download($fileName);
         }
 
+        if ($format === 'xlsx') {
+            return Excel::download(new BookingListsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $bookingLists = BookingList::orderBy('created_at', 'desc')->get();
+            return view('booking_lists.exports.booking_lists_print', compact('bookingLists'));
+        }
+
         abort(404);
     }
 }
-

@@ -36,15 +36,19 @@
                         <a class="dropdown-item" href="{{ route('beds.export', ['format' => 'csv']) }}">
                             <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
                         </a>
+                        <a class="dropdown-item" href="{{ route('beds.export', ['format' => 'xlsx']) }}">
+                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('beds.export', ['format' => 'print']) }}" target="_blank">
+                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
-                {{-- <a href="{{ route('beds.create') }}" class="btn btn-primary" title="{{ __('messages.beds.add') }}">
-                    <i class="fas fa-plus"></i> {{ __('messages.beds.add') }}
-                </a> --}}
                 <div class="float-right">
                     <a href="{{ route('beds.create') }}" class="btn btn-primary form-btn">
-                        {{ __('messages.beds.add') }} </a>
+                        {{ __('messages.beds.add') }}
+                    </a>
                 </div>
             </div>
         </div>
@@ -107,7 +111,10 @@
             ajax: {
                 url: "{{ route('beds.index') }}",
             },
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
             columns: [{
                     data: function(row) {
                         let element = document.createElement('textarea');

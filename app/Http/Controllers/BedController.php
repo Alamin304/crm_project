@@ -140,6 +140,15 @@ class BedController extends AppBaseController
             return $pdf->download($fileName);
         }
 
+        if ($format === 'xlsx') {
+            return Excel::download(new BedsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $beds = Bed::orderBy('created_at', 'desc')->get();
+            return view('beds.exports.beds_print', compact('beds'));
+        }
+
         abort(404);
     }
 }

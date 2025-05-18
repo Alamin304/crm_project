@@ -26,8 +26,8 @@ class ComplementaryController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new ComplementaryDataTable())->get())
-             ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
 
         return view('complementaries.index');
@@ -84,6 +84,15 @@ class ComplementaryController extends AppBaseController
             $complementaries = Complementary::all();
             $pdf = PDF::loadView('complementaries.exports.complementaries_pdf', compact('complementaries'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new ComplementariesExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $complementaries = Complementary::orderBy('id')->get();
+            return view('complementaries.exports.complementaries_print', compact('complementaries'));
         }
 
         abort(404);

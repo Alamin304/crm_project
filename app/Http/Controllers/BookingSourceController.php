@@ -26,8 +26,8 @@ class BookingSourceController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new BookingSourceDataTable())->get())
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
 
         return view('booking_sources.index');
@@ -84,6 +84,15 @@ class BookingSourceController extends AppBaseController
             $bookingSources = BookingSource::all();
             $pdf = Pdf::loadView('booking_sources.exports.booking_sources_pdf', compact('bookingSources'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new BookingSourceExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $bookingSources = BookingSource::orderBy('id')->get();
+            return view('booking_sources.exports.booking_sources_print', compact('bookingSources'));
         }
 
         abort(404);

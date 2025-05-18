@@ -28,8 +28,8 @@ class WakeUpCallController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new WakeUpCallDataTable())->get())
-            ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         return view('wake_up_calls.index');
     }
@@ -99,9 +99,18 @@ class WakeUpCallController extends AppBaseController
         }
 
         if ($format === 'pdf') {
-            $wakeUpCalls = \App\Models\WakeUpCall::all();
+            $wakeUpCalls = WakeUpCall::all();
             $pdf = Pdf::loadView('wake_up_calls.exports.wake_up_calls_pdf', compact('wakeUpCalls'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new WakeUpCallsExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $wakeUpCalls = WakeUpCall::orderBy('created_at', 'desc')->get();
+            return view('wake_up_calls.exports.wake_up_calls_print', compact('wakeUpCalls'));
         }
 
         abort(404);

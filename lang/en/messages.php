@@ -280,6 +280,8 @@ return [
         'pdf' => 'PDF',
         'csv' => 'CSV',
         'no_data_available' => 'No Data Available',
+        'excel' => 'Excel',
+        'print' => 'Print',
     ],
 
     //    Customer group

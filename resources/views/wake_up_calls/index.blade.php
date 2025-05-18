@@ -36,12 +36,20 @@
                         <a class="dropdown-item" href="{{ route('wakeUpCalls.export', ['format' => 'csv']) }}">
                             <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
                         </a>
+                        <a class="dropdown-item" href="{{ route('wakeUpCalls.export', ['format' => 'xlsx']) }}">
+                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('wakeUpCalls.export', ['format' => 'print']) }}"
+                            target="_blank">
+                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
                 <div class="float-right">
                     <a href="{{ route('wake_up_calls.create') }}" class="btn btn-primary form-btn">
-                        {{ __('messages.wake_up_calls.add') }} </a>
+                        {{ __('messages.wake_up_calls.add') }}
+                    </a>
                 </div>
             </div>
         </div>

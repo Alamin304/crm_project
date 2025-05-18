@@ -28,8 +28,8 @@ class CheckInController extends AppBaseController
     {
         if ($request->ajax()) {
             return DataTables::of((new CheckInDataTable())->get())
-              ->addIndexColumn()
-            ->make(true);
+                ->addIndexColumn()
+                ->make(true);
         }
         return view('check_ins.index');
     }
@@ -92,6 +92,15 @@ class CheckInController extends AppBaseController
             $checkIns = CheckIn::all();
             $pdf = Pdf::loadView('check_ins.exports.check_in_pdf', compact('checkIns'));
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new CheckInExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $checkIns = CheckIn::orderBy('created_at', 'desc')->get();
+            return view('check_ins.exports.check_in_print', compact('checkIns'));
         }
 
         abort(404);
