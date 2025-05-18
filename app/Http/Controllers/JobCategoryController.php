@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\JobCategoriesExport;
 use App\Http\Requests\JobCategoryRequest;
 use App\Http\Requests\UpdateJobCategoryRequest;
+use App\Imports\JobCategoryImport;
 use App\Models\JobCategory;
 use App\Queries\JobCategoryDataTable;
 use App\Repositories\JobCategoryRepository;
@@ -13,8 +14,10 @@ use Carbon\Carbon;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
+
 
 class JobCategoryController extends AppBaseController
 {
@@ -162,5 +165,90 @@ class JobCategoryController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=job_categories_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['name', 'description', 'startdate', 'enddate'];
+        $rows = [
+            ['Developer', 'Writes and maintains code', '2025-06-01', '2025-12-31'],
+            ['Designer', 'Designs UI/UX interfaces', '2025-07-01', '2025-10-15'],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    // public function import(Request $request)
+    // {
+    //     $request->validate([
+    //         'file' => 'required|mimes:csv,txt|max:2048',
+    //     ]);
+
+    //     try {
+    //         Excel::import(new JobCategoryImport, $request->file('file'));
+
+    //         return redirect()->route('job-categories.index')->with('success', 'Job Categories imported successfully.');
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+    //     }
+    // }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        if (JobCategory::exists()) {
+            return redirect()->back()->with('error', 'Import failed: Job categories already exist in the database.');
+        }
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = ['name', 'description', 'startdate', 'enddate'];
+
+            if (array_map('strtolower', $headers) !== $expectedHeaders) {
+                return redirect()->back()->with('error', 'Invalid file format. Required headers: name, description, startdate, enddate.');
+            }
+
+            fclose($file);
+
+            // Attempt import
+            Excel::import($import = new JobCategoryImport, $request->file('file'));
+
+            // Check for row validation failures
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+
+            return redirect()->route('job-categories.index')->with('success', 'Job categories imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }

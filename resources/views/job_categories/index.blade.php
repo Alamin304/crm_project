@@ -16,20 +16,86 @@
         .export-dropdown .dropdown-menu {
             min-width: 160px;
         }
+
+        /* Modal styling - fixing z-index and interaction issues */
+        .modal-backdrop {
+            display: none !important;
+        }
+
+        body.modal-open {
+            overflow: auto !important;
+            padding-right: 0 !important;
+        }
+
+        .modal {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-dialog {
+            margin-top: 10vh;
+            z-index: 2050 !important;
+        }
+
+        .modal-content {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ensure input fields are clickable */
+        .modal input,
+        .modal button,
+        .modal a {
+            position: relative;
+            z-index: 2060 !important;
+        }
     </style>
 @endsection
 
 @section('content')
     <section class="section">
-        <div class="section-header item-align-right">
-            <h1>{{ __('messages.job_categories.job_categories') }}</h1>
-            <div class="section-header-breadcrumb float-right">
-                <div class="card-header-action mr-3 select2-mobile-margin"></div>
+        {{-- Success Message --}}
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+        @endif
 
-            <div class="float-right d-flex">
+        {{-- Error Message --}}
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        {{-- Validation Errors (for row-level import validation failures) --}}
+        @if (session()->has('failures'))
+            <div class="alert alert-danger">
+                <strong>Import failed due to the following row errors:</strong>
+                <ul>
+                    @foreach (session()->get('failures') as $failure)
+                        <li>
+                            Row {{ $failure->row() }}:
+                            @foreach ($failure->errors() as $error)
+                                {{ $error }}@if (!$loop->last)
+                                    ,
+                                @endif
+                            @endforeach
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <div class="section-header d-flex justify-content-between align-items-center flex-wrap">
+            <h1>{{ __('messages.job_categories.job_categories') }}</h1>
+
+            <div class="d-flex flex-wrap align-items-center">
+
+                {{-- Export Dropdown --}}
                 <div class="dropdown export-dropdown mr-2">
-                    <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
+                    <button class="btn btn-primary dropdown-toggle form-btn btn-sm" type="button" id="exportDropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.job_categories.export') }}
                     </button>
@@ -47,14 +113,61 @@
                             target="_blank">
                             <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
                         </a>
-                        <div class="dropdown-divider"></div>
                     </div>
                 </div>
-                <div class="float-right">
-                    <a href="{{ route('job-categories.create') }}" class="btn btn-primary form-btn">
-                        {{ __('messages.job_categories.add') }}
-                    </a>
-                </div>
+
+                {{-- Import Modal Trigger - Changed to use ID instead of data attributes --}}
+                <button type="button" class="btn btn-success btn-sm mr-2" id="importButton">
+                    <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                </button>
+
+                {{-- Add Job Category --}}
+                <a href="{{ route('job-categories.create') }}" class="btn btn-primary form-btn btn-sm">
+                    <i class="fas fa-plus mr-1"></i> {{ __('messages.job_categories.add') }}
+                </a>
+            </div>
+        </div>
+
+        <!-- Import Modal - Removed data-show attribute if present -->
+        <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{{ route('job-categories.import') }}" method="POST" enctype="multipart/form-data"
+                    id="importForm">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="importModalLabel">{{ __('Import Job Categories via CSV') }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            {{-- Sample Download --}}
+                            <div class="mb-3">
+                                <a href="{{ route('job-categories.sample-csv') }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-download mr-1"></i> {{ __('Download Sample CSV') }}
+                                </a>
+                            </div>
+
+                            {{-- File Input --}}
+                            <div class="form-group">
+                                <label for="csvFile">{{ __('Upload CSV File') }}</label>
+                                <input type="file" name="file" class="form-control-file" id="csvFile" required>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                {{ __('Cancel') }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -200,5 +313,65 @@
                 </div>
             `;
         }
+
+        // Modal handling - FIXED VERSION
+        $(document).ready(function() {
+            // 1. Make sure modal is hidden on page load
+            $('#importModal').modal('hide');
+
+            // 2. Remove any modal-related classes that might cause auto-opening
+            $('.modal').removeClass('show');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+            // 3. Reset modal CSS properties
+            $('#importModal').css({
+                'display': 'none',
+                'padding-right': '0px'
+            });
+
+            // 4. Set up proper event handling for the Import button
+            $('#importButton').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Show modal manually
+                $('#importModal').modal('show');
+
+                // Flag to indicate modal was manually opened
+                window.manuallyOpened = true;
+            });
+
+            // 5. Ensure modal interactions work properly
+            $('#importModal').on('shown.bs.modal', function() {
+                // Focus on file input when modal is shown
+                $('#csvFile').focus();
+            });
+
+            // 6. Handle modal closing properly
+            $('#importModal').on('hidden.bs.modal', function() {
+                // Reset form when modal is closed
+                $('#importForm')[0].reset();
+
+                // Reset manual opening flag
+                window.manuallyOpened = false;
+            });
+
+            // 7. Force close any auto-opened modal after a short delay
+            setTimeout(function() {
+                if ($('#importModal').hasClass('show') && !window.manuallyOpened) {
+                    $('#importModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                }
+            }, 100);
+
+            // 8. Handle outside modal clicks
+            $(document).on('click', function(e) {
+                if ($(e.target).hasClass('modal') && !$(e.target).hasClass('modal-dialog')) {
+                    $('#importModal').modal('hide');
+                }
+            });
+        });
     </script>
 @endsection

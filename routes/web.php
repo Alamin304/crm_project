@@ -1061,6 +1061,10 @@ Route::group([], function () {
     Route::delete('job-categories/{jobCategory}', [JobCategoryController::class, 'destroy'])->name('job-categories.destroy');
     Route::get('job-categories/export/{format}', [JobCategoryController::class, 'export'])->name('job-categories.export');
     Route::put('job-categories/{job_category}/status', [JobCategoryController::class, 'status'])->name('job-categories.status');
+    Route::get('job-categories/sample-csv', [JobCategoryController::class, 'downloadSampleCsv'])->name('job-categories.sample-csv');
+    Route::post('job-categories/import', [JobCategoryController::class, 'import'])->name('job-categories.import');
+
+
 });
 
 Route::group([], function () {
