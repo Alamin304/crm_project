@@ -134,8 +134,6 @@ class WarrantyController extends AppBaseController
 
         if ($format === 'pdf') {
             $warranties = Warranty::orderBy('created_at', 'desc')->get();
-
-            // Format to match what WarrantiesInfoExport exports
             $formatted = $warranties->map(function ($item, $index) {
                 return [
                     'id' => $index + 1,
@@ -148,9 +146,29 @@ class WarrantyController extends AppBaseController
                     'serial_number' => '-',
                 ];
             });
-
             $pdf = Pdf::loadView('warranties.exports.warranty_info_pdf', ['warranties' => $formatted]);
             return $pdf->download($fileName);
+        }
+
+        if ($format === 'xlsx') {
+            return Excel::download(new WarrantiesInfoExport, $fileName, \Maatwebsite\Excel\Excel::XLSX);
+        }
+
+        if ($format === 'print') {
+            $warranties = Warranty::orderBy('created_at', 'desc')->get();
+            $formatted = $warranties->map(function ($item, $index) {
+                return [
+                    'id' => $index + 1,
+                    'customer' => $item->customer ?? '-',
+                    'order_number' => '-',
+                    'invoice' => $item->invoice ?? '-',
+                    'product_service_name' => $item->product_service_name ?? '-',
+                    'rate' => '-',
+                    'quantity' => '-',
+                    'serial_number' => '-',
+                ];
+            });
+            return view('warranties.exports.warranty_info_print', ['warranties' => $formatted]);
         }
 
         abort(404);
