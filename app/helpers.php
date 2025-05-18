@@ -626,13 +626,27 @@ function setLanguage($language): mixed
     return $setLanguage;
 }
 
+// function version()
+// {
+//     $composerFile = file_get_contents('../composer.json');
+//     $composerData = json_decode($composerFile, true);
+//     $currentVersion = $composerData['version'];
+
+//     return $currentVersion;
+// }
+
 function version()
 {
-    $composerFile = file_get_contents('../composer.json');
-    $composerData = json_decode($composerFile, true);
-    $currentVersion = $composerData['version'];
+    $composerPath = base_path('composer.json');
 
-    return $currentVersion;
+    if (!file_exists($composerPath)) {
+        return 'unknown';
+    }
+
+    $composerFile = file_get_contents($composerPath);
+    $composerData = json_decode($composerFile, true);
+
+    return $composerData['version'] ?? 'unknown';
 }
 function lang(){
     $default = 'en';
