@@ -10,10 +10,13 @@ use Yajra\DataTables\Facades\DataTables;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DivisionsExport;
+use App\Imports\DivisionImport;
 use App\Queries\DivisionDataTable;
 use App\Repositories\DivisionRepository;
 use Throwable;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DivisionController extends AppBaseController
 {
@@ -111,5 +114,73 @@ class DivisionController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=divisions_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['name', 'description'];
+        $rows = [
+            ['Division A', 'This is a sample division.'],
+            ['Division B', 'This is another sample.'],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function importCsv(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:csv,txt,xlsx|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+ // Prevent duplicate import if groups already exist
+        if (\App\Models\Division::exists()) {
+            return redirect()->back()->with('error', 'Import failed: Groups already exist in the database.');
+        }
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = ['name', 'description'];
+
+            if (array_map('strtolower', $headers) !== $expectedHeaders) {
+                return redirect()->back()->with('error', 'Invalid file format. Required headers: name, description.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new DivisionImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('divisions.index')->with('success', 'Divisions imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }

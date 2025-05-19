@@ -7,17 +7,73 @@
     <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
-        .export-dropdown {
-            min-width: 120px;
+        .modal-backdrop {
+            display: none !important;
         }
 
-        .export-dropdown .dropdown-menu {
-            min-width: 160px;
+        body.modal-open {
+            overflow: auto !important;
+            padding-right: 0 !important;
+        }
+
+        .modal {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-dialog {
+            margin-top: 10vh;
+            z-index: 2050 !important;
+        }
+
+        .modal-content {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .modal input,
+        .modal button,
+        .modal a {
+            position: relative;
+            z-index: 2060 !important;
         }
     </style>
 @endsection
 
 @section('content')
+    {{-- Success Message --}}
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- Error Message --}}
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- Validation Errors (for row-level import validation failures) --}}
+    @if (session()->has('failures'))
+        <div class="alert alert-danger">
+            <strong>Import failed due to the following row errors:</strong>
+            <ul>
+                @foreach (session()->get('failures') as $failure)
+                    <li>
+                        Row {{ $failure->row() }}:
+                        @foreach ($failure->errors() as $error)
+                            {{ $error }}@if (!$loop->last)
+                                ,
+                            @endif
+                        @endforeach
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <section class="section">
         <div class="section-header item-align-right">
             <h1>{{ __('messages.companies.companies') }}</h1>
@@ -47,11 +103,53 @@
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
+                <button type="button" class="btn btn-success btn-sm form-btn mr-2" id="companyImportButton">
+                    <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                </button>
                 <a href="{{ route('companies.create') }}" class="btn btn-primary form-btn">
                     {{ __('messages.companies.add') }}
                 </a>
             </div>
         </div>
+        <!-- Company Impor tModal Import Modal -->
+        <div class="modal fade" id="companyImportModal" tabindex="-1" role="dialog"
+            aria-labelledby="companyImportModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{{ route('companies.import') }}" method="POST" enctype="multipart/form-data"
+                    id="companyImportForm">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="companyImportModalLabel">{{ __('Import Companies via CSV') }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <a href="{{ route('companies.sample-csv') }}" class="btn btn-info btn-sm mb-3">
+                                <i class="fas fa-download mr-1"></i> {{ __('Download Sample CSV') }}
+                            </a>
+
+                            <div class="form-group">
+                                <label for="companyCsvFile">{{ __('Upload CSV File') }}</label>
+                                <input type="file" name="file" class="form-control-file" id="companyCsvFile" required>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                            </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                {{ __('Cancel') }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
@@ -143,5 +241,55 @@
                     </a>
                 </div>`;
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Hide modal initially
+            $('#companyImportModal').modal('hide');
+            $('.modal').removeClass('show');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+
+            $('#companyImportModal').css({
+                'display': 'none',
+                'padding-right': '0px'
+            });
+
+            // Show modal on button click
+            $('#companyImportButton').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#companyImportModal').modal('show');
+                window.manuallyOpenedCompany = true;
+            });
+
+            // Focus file input when modal opens
+            $('#companyImportModal').on('shown.bs.modal', function() {
+                $('#companyCsvFile').focus();
+            });
+
+            // Reset form when modal hides
+            $('#companyImportModal').on('hidden.bs.modal', function() {
+                $('#companyImportForm')[0].reset();
+                window.manuallyOpenedCompany = false;
+            });
+
+            // Auto-hide if opened unintentionally
+            setTimeout(function() {
+                if ($('#companyImportModal').hasClass('show') && !window.manuallyOpenedCompany) {
+                    $('#companyImportModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                }
+            }, 100);
+
+            // Hide modal if clicked outside
+            $(document).on('click', function(e) {
+                if ($(e.target).hasClass('modal') && !$(e.target).hasClass('modal-dialog')) {
+                    $('#companyImportModal').modal('hide');
+                }
+            });
+        });
     </script>
 @endsection

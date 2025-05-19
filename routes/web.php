@@ -957,6 +957,8 @@ Route::group([], function () {
     Route::put('beds/{bed}', [BedController::class, 'update'])->name('beds.update');
     Route::delete('beds/{bed}', [BedController::class, 'destroy'])->name('beds.destroy');
     Route::get('beds/export/{format}', [BedController::class, 'export'])->name('beds.export');
+    Route::get('beds/download-sample', [BedController::class, 'downloadSampleCsv'])->name('beds.sample-csv');
+    Route::post('beds/import', [BedController::class, 'import'])->name('beds.import');
 });
 Route::group([], function () {
     Route::get('wake-up-calls', [WakeUpCallController::class, 'index'])->name('wake_up_calls.index');
@@ -1063,8 +1065,6 @@ Route::group([], function () {
     Route::put('job-categories/{job_category}/status', [JobCategoryController::class, 'status'])->name('job-categories.status');
     Route::get('job-categories/sample-csv', [JobCategoryController::class, 'downloadSampleCsv'])->name('job-categories.sample-csv');
     Route::post('job-categories/import', [JobCategoryController::class, 'import'])->name('job-categories.import');
-
-
 });
 
 Route::group([], function () {
@@ -1101,6 +1101,8 @@ Route::group([], function () {
     Route::put('groups/{group}', [GroupController::class, 'update'])->name('groups.update');
     Route::delete('groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
     Route::get('groups/export/{format}', [GroupController::class, 'export'])->name('groups.export');
+    Route::get('groups/sample-csv', [GroupController::class, 'downloadSampleCsv'])->name('groups.sample-csv');
+    Route::post('groups/import', [GroupController::class, 'importCsv'])->name('groups.import');
 });
 
 Route::group([], function () {
@@ -1112,6 +1114,8 @@ Route::group([], function () {
     Route::put('divisions/{division}', [DivisionController::class, 'update'])->name('divisions.update');
     Route::delete('divisions/{division}', [DivisionController::class, 'destroy'])->name('divisions.destroy');
     Route::get('divisions/export/{format}', [DivisionController::class, 'export'])->name('divisions.export');
+    Route::get('divisions/sample-csv', [DivisionController::class, 'downloadSampleCsv'])->name('divisions.sample-csv');
+    Route::post('divisions/import-csv', [DivisionController::class, 'importCsv'])->name('divisions.import');
 });
 
 Route::group([], function () {
@@ -1123,6 +1127,8 @@ Route::group([], function () {
     Route::put('companies/{Company}', [CompaniesController::class, 'update'])->name('companies.update');
     Route::delete('companies/{Company}', [CompaniesController::class, 'destroy'])->name('companies.destroy');
     Route::get('companies/export/{format}', [CompaniesController::class, 'export'])->name('companies.export');
+    Route::get('companies/sample-csv', [CompaniesController::class, 'downloadSampleCsv'])->name('companies.sample-csv');
+    Route::post('companies/import-csv', [CompaniesController::class, 'importCsv'])->name('companies.import');
 });
 
 Route::group([], function () {

@@ -6,12 +6,14 @@ use App\Exports\BedsExport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\BedRequest;
 use App\Http\Requests\UpdateBedRequest;
+use App\Imports\BedImport;
 use App\Models\Bed;
 use App\Queries\BedDataTable;
 use App\Repositories\BedRepository;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -150,5 +152,72 @@ class BedController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=beds_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['name', 'description'];
+        $rows = [
+            ['Bed A', 'Near window'],
+            ['Bed B', 'Next to entrance'],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        if (\App\Models\Bed::exists()) {
+            return redirect()->back()->with('error', 'Import failed: Beds already exist in the database.');
+        }
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = ['name', 'description'];
+
+            if (array_map('strtolower', $headers) !== $expectedHeaders) {
+                return redirect()->back()->with('error', 'Invalid file format. Required headers: bed_name, description.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new BedImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('beds.index')->with('success', 'Beds imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }
