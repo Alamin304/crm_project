@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Exports\BookingSourceExport;
 use App\Http\Requests\BookingSourceRequest;
 use App\Http\Requests\UpdateBookingSourceRequest;
+use App\Imports\BookingSourceImport;
 use App\Models\BookingSource;
 use App\Queries\BookingSourceDataTable;
 use App\Repositories\BookingSourceRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Yajra\DataTables\Facades\DataTables;
 
 class BookingSourceController extends AppBaseController
@@ -96,5 +98,75 @@ class BookingSourceController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=booking_sources_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['booking_type', 'booking_source', 'commission_rate'];
+        $rows = [
+            ['Online', 'Booking.com', '15.00'],
+            ['Corporate', 'Company XYZ', '10.00'],
+            ['Travel Agent', 'ABC Travel', '12.50'],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        // Prevent duplicate import if groups already exist
+        if (\App\Models\BookingSource::exists()) {
+            return redirect()->back()->with('error', 'Import failed: booking source already exist in the database.');
+        }
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = ['booking_type', 'booking_source', 'commission_rate'];
+
+            if (array_map('strtolower', $headers) !== array_map('strtolower', $expectedHeaders)) {
+                fclose($file);
+                return redirect()->back()->with('error', 'Invalid file format. Required headers: booking_type, booking_source, commission_rate.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new BookingSourceImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('booking-sources.index')->with('success', 'Booking sources imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }

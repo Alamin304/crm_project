@@ -2820,6 +2820,7 @@ return [
         'view' => 'View Booking Sources',
         'export' => 'Export',
         'select_booking_type' => 'Select Booking Type',
+        'add_booking_source' => 'Add Booking Source'
     ],
 
     'award_lists' => [

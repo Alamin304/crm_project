@@ -1010,6 +1010,8 @@ Route::group([], function () {
     Route::put('complementaries/{complementary}', [ComplementaryController::class, 'update'])->name('complementaries.update');
     Route::delete('complementaries/{complementary}', [ComplementaryController::class, 'destroy'])->name('complementaries.destroy');
     Route::get('complementaries/export/{format}', [ComplementaryController::class, 'export'])->name('complementaries.export');
+    Route::get('complementaries/sample-csv', [ComplementaryController::class, 'downloadSampleCsv'])->name('complementaries.sample-csv');
+    Route::post('complementaries/import', [ComplementaryController::class, 'import'])->name('complementaries.import');
 });
 
 Route::group([], function () {
@@ -1021,6 +1023,8 @@ Route::group([], function () {
     Route::put('booking-sources/{bookingSource}', [BookingSourceController::class, 'update'])->name('booking-sources.update');
     Route::delete('booking-sources/{bookingSource}', [BookingSourceController::class, 'destroy'])->name('booking-sources.destroy');
     Route::get('booking-sources/export/{format}', [BookingSourceController::class, 'export'])->name('booking-sources.export');
+    Route::get('booking-sources/sample-csv', [BookingSourceController::class, 'downloadSampleCsv'])->name('booking-sources.sample-csv');
+    Route::post('booking-sources/import', [BookingSourceController::class, 'import'])->name('booking-sources.import');
 });
 
 Route::group([], function () {
