@@ -9,9 +9,11 @@ use App\Queries\WakeUpCallDataTable;
 use App\Repositories\WakeUpCallRepository;
 use App\Http\Requests\WakeUpCallRequest;
 use App\Http\Requests\UpdateWakeUpCallRequest;
+use App\Imports\WakeUpCallImport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Yajra\DataTables\Facades\DataTables;
 use Throwable;
 
@@ -114,5 +116,76 @@ class WakeUpCallController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=wake_up_calls_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['customer_name', 'date', 'description'];
+        $rows = [
+            ['John Doe', '2025-06-01 08:00', 'Morning wake-up call'],
+            ['Jane Smith', '2025-06-02 09:30', 'Conference call reminder'],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+         if (WakeUpCall::exists()) {
+            return redirect()->back()->with('error', 'Import failed: Wake up call already exist in the database.');
+        }
+
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = ['customer_name', 'date', 'description'];
+
+            if (array_map('strtolower', $headers) !== array_map('strtolower', $expectedHeaders)) {
+                fclose($file);
+                return redirect()->back()->with('error', 'Invalid file format. Required headers: customer_name, date, description.');
+            }
+
+            fclose($file);
+
+            // Attempt import
+            Excel::import($import = new WakeUpCallImport, $request->file('file'));
+
+            // Check for row validation failures
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('wake-up-calls.index')->with('success', 'Wake-up calls imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }

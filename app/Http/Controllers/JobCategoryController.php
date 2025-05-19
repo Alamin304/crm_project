@@ -196,22 +196,6 @@ class JobCategoryController extends AppBaseController
 
         return response()->stream($callback, 200, $headers);
     }
-
-    // public function import(Request $request)
-    // {
-    //     $request->validate([
-    //         'file' => 'required|mimes:csv,txt|max:2048',
-    //     ]);
-
-    //     try {
-    //         Excel::import(new JobCategoryImport, $request->file('file'));
-
-    //         return redirect()->route('job-categories.index')->with('success', 'Job Categories imported successfully.');
-    //     } catch (\Exception $e) {
-    //         return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
-    //     }
-    // }
-
     public function import(Request $request)
     {
         $request->validate([

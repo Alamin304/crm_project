@@ -969,6 +969,8 @@ Route::group([], function () {
     Route::put('wake-up-calls/{wakeUpCall}', [WakeUpCallController::class, 'update'])->name('wake_up_calls.update');
     Route::delete('wake-up-calls/{wakeUpCall}', [WakeUpCallController::class, 'destroy'])->name('wake_up_calls.destroy');
     Route::get('wake-up-calls/export/{format}', [WakeUpCallController::class, 'export'])->name('wakeUpCalls.export');
+    Route::get('wake-up-calls/download-sample-csv', [WakeUpCallController::class, 'downloadSampleCsv'])->name('wake-up-calls.sample-csv');
+    Route::post('wake-up-calls/import', [WakeUpCallController::class, 'import'])->name('wake-up-calls.import');
 });
 
 Route::group([], function () {
