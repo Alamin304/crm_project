@@ -13,6 +13,7 @@ use Exception;
 use App\Http\Requests\LeaveRequest;
 use App\Models\Leave;
 use App\Http\Requests\UpdateBankRequest;
+use App\Imports\BankImport;
 use App\Repositories\BankRepository;
 use App\Repositories\OverTimeRepository;
 use Illuminate\Database\QueryException;
@@ -20,6 +21,8 @@ use Laracasts\Flash\Flash;
 use App\Models\Bank;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use Throwable;
 
 class BankController extends AppBaseController
 {
@@ -126,5 +129,106 @@ class BankController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=banks_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = [
+            'name',
+            'account_number',
+            'branch_name',
+            'swift_code',
+            'description',
+            'opening_balance',
+            'iban_number',
+            'address'
+        ];
+
+        $rows = [
+            [
+                'National Bank',
+                '987654321',
+                'Main Branch',
+                'NBANKUS33',
+                'Primary business account',
+                '50000.00',
+                'US33NBANK987654321',
+                '123 Main St, New York'
+            ],
+            [
+                'International Bank',
+                '123456789',
+                'Downtown Branch',
+                'INTLBKUS44',
+                'Secondary account for international transactions',
+                '25000.00',
+                'US44INTLBK123456789',
+                '456 Broadway, New York'
+            ],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = [
+                'name',
+                'account_number',
+                'branch_name',
+                'swift_code',
+                'description',
+                'opening_balance',
+                'iban_number',
+                'address'
+            ];
+
+            if (array_diff($expectedHeaders, array_map('strtolower', $headers))) {
+                fclose($file);
+                return redirect()->back()->with('error', 'Invalid file format. Please download the sample CSV for the correct format.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new BankImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('banks.index')->with('success', 'Banks imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }
