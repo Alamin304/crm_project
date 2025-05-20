@@ -982,6 +982,8 @@ Route::group([], function () {
     Route::put('booking-lists/{bookingList}', [BookingListController::class, 'update'])->name('booking_lists.update');
     Route::delete('booking-lists/{bookingList}', [BookingListController::class, 'destroy'])->name('booking_lists.destroy');
     Route::get('booking-lists/export/{format}', [BookingListController::class, 'export'])->name('booking_lists.export');
+    Route::get('booking_lists/sample-csv', [BookingListController::class, 'downloadSampleCsv'])->name('booking_lists.sample-csv');
+    Route::post('booking_lists/import', [BookingListController::class, 'import'])->name('booking_lists.import');
 });
 
 Route::group([], function () {
@@ -993,6 +995,8 @@ Route::group([], function () {
     Route::put('check-ins/{checkIn}', [CheckInController::class, 'update'])->name('check_ins.update');
     Route::delete('check-ins/{checkIn}', [CheckInController::class, 'destroy'])->name('check_ins.destroy');
     Route::get('check-ins/export/{format}', [CheckInController::class, 'export'])->name('check_ins.export');
+    Route::get('check_ins/sample-csv', [CheckInController::class, 'downloadSampleCsv'])->name('check_ins.sample-csv');
+    Route::post('check_ins/import', [CheckInController::class, 'import'])->name('check_ins.import');
 });
 
 
@@ -1083,6 +1087,8 @@ Route::group([], function () {
     Route::put('shifts/{shift}', [ShiftController::class, 'update'])->name('shifts.update');
     Route::delete('shifts/{shift}', [ShiftController::class, 'destroy'])->name('shifts.destroy');
     Route::get('shifts/export/{format}', [ShiftController::class, 'export'])->name('shifts.export');
+    Route::get('shifts/sample-csv', [ShiftController::class, 'downloadSampleCsv'])->name('shifts.sample-csv');
+    Route::post('shifts/import', [ShiftController::class, 'import'])->name('shifts.import');
 });
 
 Route::group([], function () {
@@ -1160,6 +1166,8 @@ Route::group([], function () {
     Route::put('warranties/{id}/status', [WarrantyController::class, 'updateStatus'])->name('warranties.update-status');
     Route::get('warranty-information', [WarrantyController::class, 'warrantyInformation'])->name('warranties.information');
     Route::get('warranties/info/export/{format}', [WarrantyController::class, 'WarrantiesInfoexport'])->name('warranties.info.export');
+    Route::get('warranties/sample-csv', [WarrantyController::class, 'downloadSampleCsv'])->name('warranties.sample-csv');  
+    Route::post('warranties/import', [WarrantyController::class, 'import'])->name('warranties.import');
 });
 Route::get('article-search', function () {
     return view('articles.search');

@@ -6,12 +6,14 @@ use App\Exports\WarrantiesInfoExport;
 use App\Exports\WarrantyExport;
 use App\Http\Requests\WarrantyRequest;
 use App\Http\Requests\UpdateWarrantyRequest;
+use App\Imports\WarrantyImport;
 use App\Models\Warranty;
 use App\Queries\WarrantyDataTable;
 use App\Repositories\WarrantyRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Yajra\DataTables\Facades\DataTables;
 
 class WarrantyController extends AppBaseController
@@ -172,5 +174,109 @@ class WarrantyController extends AppBaseController
         }
 
         abort(404);
+    }
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=warranties_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = [
+            'claim_code',
+            'customer',
+            'invoice',
+            'product_service_name',
+            'warranty_receipt_process',
+            'description',
+            'client_note',
+            'admin_note',
+            'status'
+        ];
+
+        $rows = [
+            [
+                'WC-001',
+                'John Doe',
+                'INV-2023-001',
+                'Premium Laptop',
+                'Email',
+                'Screen replacement under warranty',
+                'Need it fixed ASAP',
+                'Waiting for parts',
+                'processing'
+            ],
+            [
+                'WC-002',
+                'Jane Smith',
+                'INV-2023-002',
+                'Smartphone',
+                'In-store',
+                'Battery replacement',
+                'Phone keeps shutting down',
+                'Parts ordered',
+                'approved'
+            ],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = [
+                'claim_code',
+                'customer',
+                'invoice',
+                'product_service_name',
+                'warranty_receipt_process',
+                'description',
+                'client_note',
+                'admin_note',
+                'status'
+            ];
+
+            if (array_diff($expectedHeaders, array_map('strtolower', $headers))) {
+                fclose($file);
+                return redirect()->back()->with('error', 'Invalid file format. Please download the sample CSV for the correct format.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new WarrantyImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('warranties.index')->with('success', 'Warranties imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }
