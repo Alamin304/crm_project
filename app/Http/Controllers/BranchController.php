@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\View;
 use Exception;
 use App\Http\Requests\BranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
+use App\Imports\BranchImport;
 use Illuminate\Database\QueryException;
 use App\Models\Supplier;
 use App\Models\Branch;
@@ -20,6 +21,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Laracasts\Flash\Flash;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Throwable;
 
 class BranchController extends AppBaseController
@@ -155,5 +157,118 @@ class BranchController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=branches_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = [
+            'company_name',
+            'name',
+            'website',
+            'vat_number',
+            'currency_id',
+            'city',
+            'state',
+            'country_id',
+            'zip_code',
+            'phone',
+            'address'
+        ];
+
+        $rows = [
+            [
+                '2',
+                'Main Branch',
+                'www.abc.com',
+                'VAT123456',
+                '12', // USD
+                'New York',
+                'NY',
+                '17', // US country ID
+                'b10001',
+                '+1 212-555-1234',
+                '123 Main Street, New York'
+            ],
+            [
+                '4',
+                'West Coast Branch',
+                'www.xyz.com',
+                'VAT789012',
+                '13', // USD
+                'Los Angeles',
+                'CA',
+                '18', // US country ID
+                'a90001',
+                '+1 213-555-5678',
+                '456 Sunset Blvd, Los Angeles'
+            ],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = [
+                'company_name',
+                'name',
+                'website',
+                'vat_number',
+                'currency_id',
+                'city',
+                'state',
+                'country_id',
+                'zip_code',
+                'phone',
+                'address'
+            ];
+
+            if (array_diff($expectedHeaders, array_map('strtolower', $headers))) {
+                fclose($file);
+                return redirect()->back()->with('error', 'Invalid file format. Please download the sample CSV for the correct format.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new BranchImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('branches.index')->with('success', 'Branches imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }

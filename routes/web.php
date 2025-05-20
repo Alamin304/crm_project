@@ -172,6 +172,8 @@ Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleUrl', 'super_admi
         Route::put('branches/{branch}', [BranchController::class, 'update'])->middleware('permission:update_branches')->name('branches.update');
         Route::delete('branches/{branch}', [BranchController::class, 'destroy'])->middleware('permission:delete_branches')->name('branches.destroy');
         Route::get('branches/export/{format}', [BranchController::class, 'export'])->name('branches.export');
+        Route::get('branches/sample-csv', [BranchController::class, 'downloadSampleCsv'])->name('branches.sample-csv');
+        Route::post('branches/import', [BranchController::class, 'import'])->name('branches.import');
     });
 
 
@@ -756,6 +758,8 @@ Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleUrl', 'super_admi
         Route::put('currencies/{currency}', [CurrencyController::class, 'update'])->middleware('permission:update_currencies')->name('currencies.update');
         Route::delete('currencies/{currency}', [CurrencyController::class, 'destroy'])->middleware('permission:delete_currencies')->name('currencies.destroy');
         Route::get('currencies/export/{format}', [CurrencyController::class, 'export'])->name('currencies.export');
+        Route::get('currencies/download-sample', [CurrencyController::class, 'downloadSampleCsv'])->name('currencies.download-sample');
+        Route::post('currencies/import', [CurrencyController::class, 'importCsv'])->name('currencies.import');
     });
 
 

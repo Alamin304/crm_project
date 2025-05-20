@@ -14,10 +14,13 @@ use Exception;
 use App\Http\Requests\CurrencyReqeust;
 use App\Models\Currency;
 use App\Http\Requests\UpdateCurrencyRequest;
+use App\Imports\CurrencyImport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 use Laracasts\Flash\Flash;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Throwable;
 
 class CurrencyController extends AppBaseController
@@ -122,4 +125,75 @@ class CurrencyController extends AppBaseController
 
         abort(404);
     }
+
+    public function downloadSampleCsv(): StreamedResponse
+{
+    $headers = [
+        "Content-type"        => "text/csv",
+        "Content-Disposition" => "attachment; filename=currencies_sample.csv",
+        "Pragma"              => "no-cache",
+        "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+        "Expires"             => "0"
+    ];
+
+    $columns = ['name', 'description'];
+    $rows = [
+        ['USD', 'United States Dollar'],
+        ['EUR', 'Euro'],
+        ['JPY', 'Japanese Yen'],
+    ];
+
+    $callback = function () use ($columns, $rows) {
+        $file = fopen('php://output', 'w');
+        fputcsv($file, $columns);
+        foreach ($rows as $row) {
+            fputcsv($file, $row);
+        }
+        fclose($file);
+    };
+
+    return response()->stream($callback, 200, $headers);
+}
+
+public function importCsv(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'file' => 'required|mimes:csv,txt,xlsx|max:2048',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    // Prevent duplicate import if currencies already exist
+    if (\App\Models\Currency::exists()) {
+        return redirect()->back()->with('error', 'Import failed: Currencies already exist in the database.');
+    }
+
+    try {
+        $path = $request->file('file')->getRealPath();
+        $file = fopen($path, 'r');
+        $headers = fgetcsv($file);
+
+        $expectedHeaders = ['name', 'description'];
+
+        if (array_map('strtolower', $headers) !== array_map('strtolower', $expectedHeaders)) {
+            return redirect()->back()->with('error', 'Invalid file format. Required headers: name, description.');
+        }
+
+        fclose($file);
+
+        Excel::import($import = new CurrencyImport, $request->file('file'));
+
+        if (!empty($import->failures())) {
+            return redirect()->back()->with([
+                'failures' => $import->failures(),
+            ]);
+        }
+
+        return redirect()->route('currencies.index')->with('success', 'Currencies imported successfully.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+    }
+}
 }

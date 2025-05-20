@@ -22,6 +22,7 @@ use App\Models\Bank;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Throwable;
 
 class BankController extends AppBaseController
 {
