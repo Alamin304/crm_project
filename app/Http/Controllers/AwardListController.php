@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Exports\AwardListExport;
 use App\Http\Requests\AwardListRequest;
 use App\Http\Requests\UpdateAwardListRequest;
+use App\Imports\AwardListImport;
 use App\Models\AwardList;
 use App\Queries\AwardListDataTable;
 use App\Repositories\AwardListRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Yajra\DataTables\Facades\DataTables;
 
 class AwardListController extends AppBaseController
@@ -109,5 +111,69 @@ class AwardListController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=award_lists_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['award_name', 'award_description', 'gift_item', 'date', 'employee_name', 'award_by'];
+        $rows = [
+            ['Employee of the Month', 'For outstanding performance in Q1', 'Gift Card', '2023-06-15', 'John Doe', 'CEO'],
+            ['Best Team Player', 'Excellent collaboration skills', 'Trophy', '2023-06-20', 'Jane Smith', 'HR Manager'],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,txt|max:2048',
+        ]);
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = ['award_name', 'award_description', 'gift_item', 'date', 'employee_name', 'award_by'];
+
+            if (array_map('strtolower', $headers) !== array_map('strtolower', $expectedHeaders)) {
+                fclose($file);
+                return redirect()->back()->with('error', 'Invalid file format. Required headers: award_name, award_description, gift_item, date, employee_name, award_by.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new AwardListImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('award-lists.index')->with('success', 'Award lists imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }

@@ -1036,6 +1036,8 @@ Route::group([], function () {
     Route::put('award-lists/{awardList}', [AwardListController::class, 'update'])->name('award-lists.update');
     Route::delete('award-lists/{awardList}', [AwardListController::class, 'destroy'])->name('award-lists.destroy');
     Route::get('award-lists/export/{format}', [AwardListController::class, 'export'])->name('award-lists.export');
+    Route::get('award-lists/sample-csv', [AwardListController::class, 'downloadSampleCsv'])->name('award-lists.sample-csv');
+    Route::post('award-lists/import', [AwardListController::class, 'import'])->name('award-lists.import');
 });
 
 Route::group([], function () {
@@ -1058,6 +1060,8 @@ Route::group([], function () {
     Route::put('positions/{position}', [PositionController::class, 'update'])->name('positions.update');
     Route::delete('positions/{position}', [PositionController::class, 'destroy'])->name('positions.destroy');
     Route::get('positions/export/{format}', [PositionController::class, 'export'])->name('positions.export');
+    Route::get('positions/sample-csv', [PositionController::class, 'downloadSampleCsv'])->name('positions.sample-csv');
+    Route::post('positions/import', [PositionController::class, 'import'])->name('positions.import');
 });
 Route::group([], function () {
     Route::get('job-categories', [JobCategoryController::class, 'index'])->name('job-categories.index');
