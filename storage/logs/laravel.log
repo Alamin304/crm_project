@@ -3274,3 +3274,7 @@
 [stacktrace]
 #0 {main}
 "} 
+[2025-05-20 13:27:45] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 

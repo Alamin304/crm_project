@@ -37,6 +37,47 @@
             position: relative;
             z-index: 2060 !important;
         }
+        /* Action button styles */
+.action-btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    line-height: 32px !important;
+    text-align: center !important;
+    border-radius: 4px !important;
+    margin: 2px !important;
+    float: right !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.action-btn i {
+    font-size: 14px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+/* Specific button colors */
+.btn-warning.action-btn {
+    background-color: #f0ad4e !important;
+    border-color: #eea236 !important;
+}
+
+.btn-info.action-btn {
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+
+.btn-danger.action-btn {
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+}
+
+/* Button hover effects */
+.action-btn:hover {
+    opacity: 0.85 !important;
+}
     </style>
 @section('content')
     {{-- Success Message --}}

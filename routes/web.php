@@ -266,6 +266,8 @@ Route::middleware(['auth', 'xss', 'checkUserStatus', 'checkRoleUrl', 'super_admi
         Route::put('banks/{bank}', [BankController::class, 'update'])->middleware('permission:update_leave_groups')->name('banks.update');
         Route::delete('banks/{bank}', [BankController::class, 'destroy'])->middleware('permission:delete_leave_groups')->name('banks.destroy');
         Route::get('banks/export/{format}', [BankController::class, 'export'])->name('banks.export');
+        Route::get('banks/sample-csv', [BankController::class, 'downloadSampleCsv'])->name('banks.sample-csv');
+        Route::post('banks/import', [BankController::class, 'import'])->name('banks.import');
     });
 
 
