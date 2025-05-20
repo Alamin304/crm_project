@@ -1059,6 +1059,8 @@ Route::group([], function () {
     Route::put('notice-boards/{noticeBoard}', [NoticeBoardController::class, 'update'])->name('notice-boards.update');
     Route::delete('notice-boards/{noticeBoard}', [NoticeBoardController::class, 'destroy'])->name('notice-boards.destroy');
     Route::get('notice-boards/export/{format}', [NoticeBoardController::class, 'export'])->name('notice-boards.export');
+    Route::get('notice-boards/download-sample', [NoticeBoardController::class, 'downloadSampleCsv'])->name('notice-boards.download-sample');
+    Route::post('notice-boards/import', [NoticeBoardController::class, 'importCsv'])->name('notice-boards.import');
 });
 
 Route::group([], function () {
@@ -1176,7 +1178,7 @@ Route::group([], function () {
     Route::put('warranties/{id}/status', [WarrantyController::class, 'updateStatus'])->name('warranties.update-status');
     Route::get('warranty-information', [WarrantyController::class, 'warrantyInformation'])->name('warranties.information');
     Route::get('warranties/info/export/{format}', [WarrantyController::class, 'WarrantiesInfoexport'])->name('warranties.info.export');
-    Route::get('warranties/sample-csv', [WarrantyController::class, 'downloadSampleCsv'])->name('warranties.sample-csv');  
+    Route::get('warranties/sample-csv', [WarrantyController::class, 'downloadSampleCsv'])->name('warranties.sample-csv');
     Route::post('warranties/import', [WarrantyController::class, 'import'])->name('warranties.import');
 });
 Route::get('article-search', function () {

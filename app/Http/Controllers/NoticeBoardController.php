@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Exports\NoticeBoardExport;
 use App\Http\Requests\NoticeBoardRequest;
 use App\Http\Requests\UpdateNoticeBoardRequest;
+use App\Imports\NoticeBoardImport;
 use App\Models\NoticeBoard;
 use App\Queries\NoticeBoardDataTable;
 use App\Repositories\NoticeBoardRepository;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Yajra\DataTables\Facades\DataTables;
 
 class NoticeBoardController extends AppBaseController
@@ -131,5 +134,72 @@ class NoticeBoardController extends AppBaseController
         }
 
         abort(404);
+    }
+
+    // Add these methods to your NoticeBoardController
+
+    public function downloadSampleCsv(): StreamedResponse
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=notice_boards_sample.csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $columns = ['notice_type', 'description', 'notice_date', 'notice_by'];
+        $rows = [
+            ['General', 'This is a sample notice description.', date('Y-m-d'), 'Admin'],
+            ['Urgent', 'Another sample notice with important information.', date('Y-m-d', strtotime('+1 day')), 'Manager'],
+        ];
+
+        $callback = function () use ($columns, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function importCsv(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:csv,txt,xlsx|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        try {
+            $path = $request->file('file')->getRealPath();
+            $file = fopen($path, 'r');
+            $headers = fgetcsv($file);
+
+            $expectedHeaders = ['notice_type', 'description', 'notice_date', 'notice_by'];
+
+            if (array_map('strtolower', $headers) !== array_map('strtolower', $expectedHeaders)) {
+                return redirect()->back()->with('error', 'Invalid file format. Required headers: notice_type, description, notice_date, notice_by.');
+            }
+
+            fclose($file);
+
+            Excel::import($import = new NoticeBoardImport, $request->file('file'));
+
+            if (!empty($import->failures())) {
+                return redirect()->back()->with([
+                    'failures' => $import->failures(),
+                ]);
+            }
+
+            return redirect()->route('notice-boards.index')->with('success', 'Notice boards imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'There was a problem importing the file. ' . $e->getMessage());
+        }
     }
 }
