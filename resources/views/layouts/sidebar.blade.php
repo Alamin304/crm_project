@@ -895,13 +895,13 @@
             </li>
         @endcan
         {{-- @canany(['view_branches', 'create_branches']) --}}
-            <li class="side-menus {{ Request::is('admin/branches*') ? 'active' : '' }}">
-                <a href="{{ route('branches.index') }}"><i class="fas fa-lg fa-building"></i>
-                    <!-- Changed icon to fa-building -->
-                    <span class="menu-text-wrap">{{ __('messages.branches.branches') }}</span>
-                    <!-- Updated translation key -->
-                </a>
-            </li>
+        <li class="side-menus {{ Request::is('admin/branches*') ? 'active' : '' }}">
+            <a href="{{ route('branches.index') }}"><i class="fas fa-lg fa-building"></i>
+                <!-- Changed icon to fa-building -->
+                <span class="menu-text-wrap">{{ __('messages.branches.branches') }}</span>
+                <!-- Updated translation key -->
+            </a>
+        </li>
         {{-- @endcanany --}}
         @canany(['view_banks', 'create_banks', 'update_banks', 'delete_banks'])
             <li class="side-menus {{ Request::is('admin/banks*') ? 'active' : '' }}">
@@ -999,12 +999,12 @@
             </a>
         </li>
 
-         {{-- @canany(['view_shifts', 'create_shifts', 'update_shifts', 'delete_shifts']) --}}
-            <li class="side-menus {{ Request::is('admin/shifts*') ? 'active' : '' }}">
-                <a href=" {{ route('shifts.index') }} "><i class="fas fa-lg fa-clock"></i>
-                    <span class="menu-text-wrap">{{ __('messages.shifts.shifts') }}</span>
-                </a>
-            </li>
+        {{-- @canany(['view_shifts', 'create_shifts', 'update_shifts', 'delete_shifts']) --}}
+        <li class="side-menus {{ Request::is('admin/shifts*') ? 'active' : '' }}">
+            <a href=" {{ route('shifts.index') }} "><i class="fas fa-lg fa-clock"></i>
+                <span class="menu-text-wrap">{{ __('messages.shifts.shifts') }}</span>
+            </a>
+        </li>
         {{-- @endcanany --}}
 
         <li class="side-menus {{ Request::is('job-posts*') ? 'active' : '' }}">
@@ -1050,12 +1050,20 @@
         </li>
 
 
-         <li class="side-menus {{ Request::is('warranty_information*') ? 'active' : '' }}">
+        <li class="side-menus {{ Request::is('warranty_information*') ? 'active' : '' }}">
             <a href="{{ route('warranties.information') }}">
                 <i class="fas fa-file-contract fa-lg"></i>
                 <span class="menu-text-wrap">{{ __('messages.warranties.warranty_information') }}</span>
             </a>
         </li>
+
+        <li class="side-menus {{ Request::is('training-programs*') ? 'active' : '' }}">
+            <a href="{{ route('training-programs.index') }}">
+                <i class="fas fa-chalkboard-teacher fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.training_programs.training_programs') }}</span>
+            </a>
+        </li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

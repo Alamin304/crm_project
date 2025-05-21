@@ -282,6 +282,7 @@ return [
         'no_data_available' => 'No Data Available',
         'excel' => 'Excel',
         'print' => 'Print',
+        'processing' => 'Processing',
     ],
 
     //    Customer group
@@ -3089,5 +3090,34 @@ return [
         'quantity' => 'Quantity',
         'order_number' => 'Order Number',
 
+    ],
+
+    'training_programs' => [
+        'training_programs' => 'Training Programs',
+        'add' => 'Add',
+        'edit' => 'Edit Training Program',
+        'training_name' => 'Training Program Name',
+        'name' => 'Name',
+        'training_type' => 'Training Type',
+        'description' => 'Description',
+        'start_date' => 'Start Date',
+        'end_date' => 'End Date',
+        'status' => 'Status',
+        'point' => 'Point',
+        'date' => 'Date',
+        'list' => 'List',
+        'delete' => 'Training Program deleted successfully',
+        'saved' => 'Training Program saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Training Program',
+        'export' => 'Export',
+        'id' => 'SL',
+        'additional_staff_training' => 'Additional Training Program for Staff',
+        'program_items' => 'Program Items',
+        'departments' => 'Departments',
+        'apply_position' => 'Apply Position',
+        'training_mode' => 'Training Mode',
+        'allowed_file_types' => 'Allowed file types: pdf, doc, docx, jpg, png',
+        'select_training_mode' => 'Select Training Mode'
     ],
 ];

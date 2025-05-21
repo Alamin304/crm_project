@@ -80,6 +80,7 @@ use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 
@@ -1180,6 +1181,19 @@ Route::group([], function () {
     Route::get('warranties/info/export/{format}', [WarrantyController::class, 'WarrantiesInfoexport'])->name('warranties.info.export');
     Route::get('warranties/sample-csv', [WarrantyController::class, 'downloadSampleCsv'])->name('warranties.sample-csv');
     Route::post('warranties/import', [WarrantyController::class, 'import'])->name('warranties.import');
+});
+
+Route::group([], function () {
+    Route::get('training-programs', [TrainingProgramController::class, 'index'])->name('training-programs.index');
+    Route::get('training-programs/create', [TrainingProgramController::class, 'create'])->name('training-programs.create');
+    Route::post('training-programs', [TrainingProgramController::class, 'store'])->name('training-programs.store');
+    Route::get('training-programs/{trainingProgram}', [TrainingProgramController::class, 'show'])->name('training-programs.show');
+    Route::get('training-programs/{trainingProgram}/edit', [TrainingProgramController::class, 'edit'])->name('training-programs.edit');
+    Route::put('training-programs/{trainingProgram}', [TrainingProgramController::class, 'update'])->name('training-programs.update');
+    Route::delete('training-programs/{trainingProgram}', [TrainingProgramController::class, 'destroy'])->name('training-programs.destroy');
+    Route::get('training-programs/export/{format}', [TrainingProgramController::class, 'export'])->name('training-programs.export');
+    Route::post('training-programs/import', [TrainingProgramController::class, 'import'])->name('training-programs.import');
+    Route::get('training-programs/download-sample', [TrainingProgramController::class, 'downloadSample'])->name('training-programs.download-sample');
 });
 Route::get('article-search', function () {
     return view('articles.search');
