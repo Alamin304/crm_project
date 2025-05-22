@@ -79,6 +79,7 @@ use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OrgChartController;
 use App\Http\Controllers\OtpController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TrainingProgramController;
@@ -1206,6 +1207,17 @@ Route::group([], function () {
     Route::put('org-charts/{orgChart}', [OrgChartController::class, 'update'])->name('org-charts.update');
     Route::delete('org-charts/{orgChart}', [OrgChartController::class, 'destroy'])->name('org-charts.destroy');
     Route::get('org-charts/export/{format}', [OrgChartController::class, 'export'])->name('org-charts.export');
+});
+
+Route::group([], function () {
+    Route::get('plans', [PlanController::class, 'index'])->name('plans.index');
+    Route::get('plans/create', [PlanController::class, 'create'])->name('plans.create');
+    Route::post('plans', [PlanController::class, 'store'])->name('plans.store');
+    Route::get('plans/{plan}/view', [PlanController::class, 'show'])->name('plans.view');
+    Route::get('plans/{plan}/edit', [PlanController::class, 'edit'])->name('plans.edit');
+    Route::put('plans/{plan}', [PlanController::class, 'update'])->name('plans.update');
+    Route::delete('plans/{plan}', [PlanController::class, 'destroy'])->name('plans.destroy');
+    Route::get('plans/export/{format}', [PlanController::class, 'export'])->name('plans.export');
 });
 Route::get('article-search', function () {
     return view('articles.search');
