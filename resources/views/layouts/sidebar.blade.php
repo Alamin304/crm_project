@@ -1063,7 +1063,12 @@
                 <span class="menu-text-wrap">{{ __('messages.training_programs.training_programs') }}</span>
             </a>
         </li>
-
+        <li class="side-menus {{ Request::is('org-charts*') ? 'active' : '' }}">
+            <a href="{{ route('org-charts.index') }}">
+                <i class="fas fa-sitemap fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.org_charts.org_charts') }}</span>
+            </a>
+        </li>
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

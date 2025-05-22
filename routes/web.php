@@ -77,6 +77,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\NoticeBoardController;
+use App\Http\Controllers\OrgChartController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ShiftController;
@@ -1194,6 +1195,17 @@ Route::group([], function () {
     Route::get('training-programs/export/{format}', [TrainingProgramController::class, 'export'])->name('training-programs.export');
     Route::post('training-programs/import', [TrainingProgramController::class, 'import'])->name('training-programs.import');
     Route::get('training-programs/download-sample', [TrainingProgramController::class, 'downloadSample'])->name('training-programs.download-sample');
+});
+
+Route::group([], function () {
+    Route::get('org-charts', [OrgChartController::class, 'index'])->name('org-charts.index');
+    Route::get('org-charts/create', [OrgChartController::class, 'create'])->name('org-charts.create');
+    Route::post('org-charts', [OrgChartController::class, 'store'])->name('org-charts.store');
+    Route::get('org-charts/{orgChart}/view', [OrgChartController::class, 'view'])->name('org-charts.view');
+    Route::get('org-charts/{orgChart}/edit', [OrgChartController::class, 'edit'])->name('org-charts.edit');
+    Route::put('org-charts/{orgChart}', [OrgChartController::class, 'update'])->name('org-charts.update');
+    Route::delete('org-charts/{orgChart}', [OrgChartController::class, 'destroy'])->name('org-charts.destroy');
+    Route::get('org-charts/export/{format}', [OrgChartController::class, 'export'])->name('org-charts.export');
 });
 Route::get('article-search', function () {
     return view('articles.search');
