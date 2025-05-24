@@ -67,6 +67,7 @@ use App\Http\Controllers\AwardListController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\BookingSourceController;
+use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\CompaniesController;
@@ -1218,6 +1219,17 @@ Route::group([], function () {
     Route::put('plans/{plan}', [PlanController::class, 'update'])->name('plans.update');
     Route::delete('plans/{plan}', [PlanController::class, 'destroy'])->name('plans.destroy');
     Route::get('plans/export/{format}', [PlanController::class, 'export'])->name('plans.export');
+});
+
+Route::group([], function () {
+    Route::get('campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
+    Route::get('campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
+    Route::post('campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
+    Route::get('campaigns/{campaign}/view', [CampaignController::class, 'show'])->name('campaigns.view');
+    Route::get('campaigns/{campaign}/edit', [CampaignController::class, 'edit'])->name('campaigns.edit');
+    Route::put('campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
+    Route::delete('campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
+    Route::get('campaigns/export/{format}', [CampaignController::class, 'export'])->name('campaigns.export');
 });
 Route::get('article-search', function () {
     return view('articles.search');

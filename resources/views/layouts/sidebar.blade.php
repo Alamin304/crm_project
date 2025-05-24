@@ -1077,6 +1077,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('campaigns*') ? 'active' : '' }}">
+            <a href="{{ route('campaigns.index') }}">
+                <i class="fas fa-bullhorn fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.campaigns.campaigns') }}</span>
+            </a>
+        </li>
+
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>

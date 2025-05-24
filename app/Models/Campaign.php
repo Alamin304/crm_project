@@ -5,16 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Plan extends Model
+class Campaign extends Model
 {
     use HasFactory;
 
-      protected $fillable = [
-        'plan_name',
+    protected $fillable = [
+        'campaign_code',
+        'campaign_name',
+        'recruitment_plan',
+        'recruitment_channel_from',
         'position',
-        'department',
+        'company',
         'recruited_quantity',
         'working_form',
+        'department',
         'workplace',
         'starting_salary_from',
         'starting_salary_to',
@@ -22,7 +26,10 @@ class Plan extends Model
         'to_date',
         'reason',
         'job_description',
-        'approver',
+        'managers',
+        'followers',
+        'meta_title',
+        'meta_description',
         'age_from',
         'age_to',
         'gender',
@@ -37,7 +44,19 @@ class Plan extends Model
     protected $casts = [
         'from_date' => 'date',
         'to_date' => 'date',
+        'managers' => 'array',
+        'followers' => 'array',
     ];
+
+    // Accessor for attachment URL
+    public function getAttachmentUrlAttribute()
+    {
+        if ($this->attachment) {
+            return asset('storage/'.$this->attachment);
+        }
+        return null;
+    }
+
 }
 
 
