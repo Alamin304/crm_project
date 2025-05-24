@@ -82,6 +82,7 @@ use App\Http\Controllers\OrgChartController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
@@ -1230,6 +1231,21 @@ Route::group([], function () {
     Route::put('campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
     Route::delete('campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
     Route::get('campaigns/export/{format}', [CampaignController::class, 'export'])->name('campaigns.export');
+});
+
+// routes/web.php
+
+Route::group([], function () {
+    Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+    Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+    Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::get('reservations/{reservation}/view', [ReservationController::class, 'view'])->name('reservations.view');
+    Route::get('reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::delete('reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+    Route::get('reservations/export/{format}', [ReservationController::class, 'export'])->name('reservations.export');
+    Route::get('reservations/download-sample-csv', [ReservationController::class, 'downloadSampleCsv'])->name('reservations.sample-csv');
+    Route::post('reservations/import', [ReservationController::class, 'import'])->name('reservations.import');
 });
 Route::get('article-search', function () {
     return view('articles.search');

@@ -1084,6 +1084,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('reservations*') ? 'active' : '' }}">
+            <a href="{{ route('reservations.index') }}">
+                <i class="fas fa-calendar-check fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.reservations.reservations') }}</span>
+            </a>
+        </li>
+
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

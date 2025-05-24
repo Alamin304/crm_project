@@ -3264,4 +3264,43 @@ return [
         'inactive' => 'Inactive',
     ],
 
+    'reservations' => [
+        'reservations' => 'Reservations',
+        'add' => 'Add',
+        'edit' => 'Edit Reservation',
+        'view' => 'View Reservation',
+        'delete' => 'Delete Reservation',
+        'export' => 'Export Reservations',
+        'import' => 'Import Reservations',
+        'customer_name' => 'Customer Name',
+        'table_no' => 'Table Number',
+        'number_of_people' => 'Number of People',
+        'start_time' => 'Start Time',
+        'end_time' => 'End Time',
+        'date' => 'Date',
+        'status' => 'Status',
+        'pending' => 'Pending',
+        'confirmed' => 'Confirmed',
+        'canceled' => 'Canceled',
+        'completed' => 'Completed',
+        'reservation_saved' => 'Reservation saved successfully.',
+        'reservation_updated' => 'Reservation updated successfully.',
+        'reservation_deleted' => 'Reservation deleted successfully.',
+        'reservation_imported' => 'Reservations imported successfully.',
+        'created_at' => 'Created At',
+        'export' => 'Export',
+        'list' => 'List',
+        'statuses' => [
+            'pending' => 'Pending',
+            'confirmed' => 'Confirmed',
+            'canceled' => 'Canceled',
+            'completed' => 'Completed',],
+        'status' => 'Status',
+
+
+    ],
+
+
+
+
 ];
