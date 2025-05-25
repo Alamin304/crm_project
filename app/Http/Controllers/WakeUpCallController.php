@@ -38,7 +38,14 @@ class WakeUpCallController extends AppBaseController
 
     public function create()
     {
-        return view('wake_up_calls.create');
+        $customers = [
+        1 => 'John Doe',
+        2 => 'Jane Smith',
+        3 => 'Alice Johnson',
+        4 => 'Bob Williams',
+    ];
+
+    return view('wake_up_calls.create', compact('customers'));
     }
 
     public function store(WakeUpCallRequest $request)

@@ -32,7 +32,9 @@
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     {{ Form::label('customer_name', 'Customer Name:') }}<span class="required">*</span>
-                                    {{ Form::select('customer_name', [], null, ['class' => 'form-control select2', 'required', 'id' => 'customerName', 'placeholder' => 'Select Customer']) }}
+                                    {{-- {{ Form::select('customer_name', [], null, ['class' => 'form-control select2', 'required', 'id' => 'customerName', 'placeholder' => 'Select Customer']) }} --}}
+                                    {{ Form::select('customer_name', $customers, null, ['class' => 'form-control select2', 'required', 'id' => 'customerName', 'placeholder' => 'Select Customer']) }}
+
                                 </div>
 
                                 <div class="form-group col-sm-12">

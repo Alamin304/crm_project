@@ -5,8 +5,8 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.campaigns.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
@@ -33,7 +33,8 @@
                         <a class="dropdown-item" href="{{ route('campaigns.export', ['format' => 'xlsx']) }}">
                             <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('campaigns.export', ['format' => 'print']) }}" target="_blank">
+                        <a class="dropdown-item" href="{{ route('campaigns.export', ['format' => 'print']) }}"
+                            target="_blank">
                             <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
                         </a>
                     </div>
@@ -64,7 +65,7 @@
 @section('scripts')
     <script>
         let campaignCreateUrl = "{{ route('campaigns.store') }}";
-        $(document).on('submit', '#addNewForm', function (event) {
+        $(document).on('submit', '#addNewForm', function(event) {
             event.preventDefault();
             processingBtn('#addNewForm', '#btnSave', 'loading');
 
@@ -72,17 +73,17 @@
                 url: campaignCreateUrl,
                 type: 'POST',
                 data: $(this).serialize(),
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         $('#addModal').modal('hide');
                         $('#campaignTable').DataTable().ajax.reload(null, false);
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message);
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#addNewForm', '#btnSave');
                 },
             });
@@ -106,31 +107,77 @@
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "All"]
             ],
-            columns: [
-                {data: 'campaign_name', name: 'campaign_name', width: '12%'},
-                {data: 'company', name: 'company', width: '10%'},
-                {data: 'position', name: 'position', width: '10%'},
-                {data: 'working_form', name: 'working_form', width: '8%'},
-                {data: 'department', name: 'department', width: '10%'},
-                {data: 'recruitment_plan', name: 'recruitment_plan', width: '12%', orderable: false},
-                {data: 'recruited_quantity', name: 'recruited_quantity', width: '8%'},
-                {data: 'recruitment_channel_from', name: 'recruitment_channel_from', width: '10%'},
-                {data: 'managers', name: 'managers', width: '10%', orderable: false},
-                {data: 'is_active', name: 'is_active', width: '8%'},
+            columns: [{
+                    data: 'campaign_name',
+                    name: 'campaign_name',
+                    width: '12%'
+                },
                 {
-                    data: function (row) {
+                    data: 'company',
+                    name: 'company',
+                    width: '10%'
+                },
+                {
+                    data: 'position',
+                    name: 'position',
+                    width: '10%'
+                },
+                {
+                    data: 'working_form',
+                    name: 'working_form',
+                    width: '8%'
+                },
+                {
+                    data: 'department',
+                    name: 'department',
+                    width: '10%'
+                },
+                {
+                    data: 'recruitment_plan',
+                    name: 'recruitment_plan',
+                    width: '12%',
+                    orderable: false
+                },
+                {
+                    data: 'recruited_quantity',
+                    name: 'recruited_quantity',
+                    width: '8%'
+                },
+                {
+                    data: 'recruitment_channel_from',
+                    name: 'recruitment_channel_from',
+                    width: '10%'
+                },
+                {
+                    data: 'managers',
+                    name: 'managers',
+                    width: '10%',
+                    orderable: false
+                },
+                {
+                    data: 'is_active',
+                    name: 'is_active',
+                    width: '8%'
+                },
+                {
+                    data: function(row) {
                         return renderActionButtons(row.id);
                     },
                     name: 'id',
-                    width: '12%',
-                    orderable: false
+                    width: '150px',
+                    orderable: false,
+                    className: 'action-column' // Prevent action buttons from wrapping
                 }
             ],
             responsive: true,
-            order: [[0, 'desc']]
+            scrollX: true, // Enable horizontal scrolling
+            autoWidth: false, // Disable automatic width calculation
+            order: [
+                [0, 'desc']
+            ]
         });
 
-        $(document).on('click', '.delete-btn', function (event) {
+        $(document).on('click', '.delete-btn', function(event) {
             let campaignId = $(event.currentTarget).data('id');
             deleteItem("{{ route('campaigns.destroy', ':id') }}".replace(':id', campaignId),
                 '#campaignTable', "{{ __('messages.campaigns.campaigns') }}");
