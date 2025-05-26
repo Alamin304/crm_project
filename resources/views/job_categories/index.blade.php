@@ -101,29 +101,33 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('job-categories.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('job-categories.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('job-categories.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('job-categories.export', ['format' => 'print']) }}"
                             target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                            {{ __('messages.common.print') }}
                         </a>
                     </div>
                 </div>
 
                 {{-- Import Modal Trigger - Changed to use ID instead of data attributes --}}
-                <button type="button" class="btn btn-success btn-sm mr-2" id="importButton">
-                    <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                {{-- <button type="button" class="btn btn-success btn-sm mr-2" id="importButton">
+                    {{ __('messages.common.import') }}
+                </button> --}}
+
+                <button type="button" class="btn btn-primary btn-sm form-btn mr-2" id="importButton">
+                    {{ __('messages.common.import') }}
                 </button>
 
                 {{-- Add Job Category --}}
                 <a href="{{ route('job-categories.create') }}" class="btn btn-primary form-btn btn-sm">
-                    <i class="fas fa-plus mr-1"></i> {{ __('messages.job_categories.add') }}
+                    <i class=""></i> {{ __('messages.job_categories.add') }}
                 </a>
             </div>
         </div>
@@ -160,7 +164,7 @@
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">
-                                <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                                {{ __('messages.common.import') }}
                             </button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                 {{ __('Cancel') }}
@@ -296,8 +300,13 @@
 
             return `
                 <div class="d-flex justify-content-end align-items-center">
+
                     <input type="checkbox" class="status-toggle" data-id="${id}"
                         ${status ? 'checked' : ''} data-toggle="toggle">
+                        <a title="{{ __('messages.common.delete') }}" href="#"
+                        class="btn btn-danger btn-sm action-btn has-icon delete-btn ml-1" data-id="${id}">
+                        <i class="fas fa-trash"></i>
+                    </a>
                     <a title="{{ __('messages.common.edit') }}" href="${editUrl}"
                         class="btn btn-warning btn-sm action-btn has-icon edit-btn ml-2">
                         <i class="fas fa-edit"></i>
@@ -306,10 +315,7 @@
                         class="btn btn-info btn-sm action-btn has-icon view-btn ml-1">
                         <i class="fas fa-eye"></i>
                     </a>
-                    <a title="{{ __('messages.common.delete') }}" href="#"
-                        class="btn btn-danger btn-sm action-btn has-icon delete-btn ml-1" data-id="${id}">
-                        <i class="fas fa-trash"></i>
-                    </a>
+
                 </div>
             `;
         }

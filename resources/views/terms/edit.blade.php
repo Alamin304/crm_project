@@ -41,23 +41,28 @@
             <div class="card">
                 <div class="card-body">
 
-                        {{ Form::open(['id' => 'editForm']) }}
-                        {{ Form::hidden('id', $term->id, ['id' => 'term_id']) }}
+                    {{ Form::open(['id' => 'editForm']) }}
+                    {{ Form::hidden('id', $term->id, ['id' => 'term_id']) }}
 
-                            <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
-                            <div class="row">
-                                <div class="form-group col-sm-12 mb-0">
-                                    {{ Form::label('description', __('messages.assets.category_description') . ':') }}
-                                    {{ Form::textarea('terms', $term->terms, ['class' => 'form-control summernote-simple', 'id' => 'createDescription']) }}
-                                </div>
-                            </div>
+                    <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 mb-0">
+                            {{ Form::label('description', __('messages.assets.category_description') . ':') }}
+                            {{ Form::textarea('terms', $term->terms, ['class' => 'form-control summernote-simple', 'id' => 'createDescription']) }}
+                        </div>
+                    </div>
 
-                            <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                    <div class="text-right mr-1">
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
-                            </div>
+                    </div>
 
-                        {{ Form::close() }}
+                    {{ Form::close() }}
 
                 </div>
             </div>
@@ -110,7 +115,5 @@
                 },
             });
         });
-
-
     </script>
 @endsection

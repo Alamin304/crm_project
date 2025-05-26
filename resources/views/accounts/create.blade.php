@@ -61,7 +61,12 @@
 
 
                     <div class="text-right mr-1 mt-2">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 
@@ -123,7 +128,7 @@
                         const lastNumber = parseInt(lastAccount.split('-')[1]); // Get the numeric part
                         const incrementedNumber = lastNumber + 1; // Increment the number
                         $('#account_number').val(branchId + '-' +
-                        incrementedNumber); // Set the new account number
+                            incrementedNumber); // Set the new account number
                     } else {
                         // If the branch ID is not found in accountNumbers, start from 1000
                         $('#account_number').val(branchId + '-1000');

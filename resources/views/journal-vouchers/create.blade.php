@@ -35,14 +35,12 @@
 
 
                         <div class="form-group col-sm-12">
-                            {{ Form::label('from_account', "From Account") }}<span
-                                class="required">*</span>
+                            {{ Form::label('from_account', 'From Account') }}<span class="required">*</span>
                             {{ Form::select('from_account', $accounts->pluck('account_name', 'id') ?? [], null, ['class' => 'form-control', 'required', 'id' => 'from_account']) }}
                         </div>
                         <!-- From Account Field -->
                         <div class="form-group col-sm-12">
-                            {{ Form::label('from_account',"To Account") }}<span
-                                class="required">*</span>
+                            {{ Form::label('from_account', 'To Account') }}<span class="required">*</span>
                             {{ Form::select('account_id', $accounts->pluck('account_name', 'id') ?? [], null, ['class' => 'form-control', 'required', 'id' => 'to_account']) }}
                         </div>
 
@@ -61,7 +59,12 @@
 
 
                     <div class="text-right mr-1 mt-2">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 

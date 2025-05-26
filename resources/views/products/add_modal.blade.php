@@ -18,7 +18,7 @@
                     <div class="form-group col-sm-12">
                         {{ Form::label('title', __('messages.service_categories.select') . ':') }}<span
                             class="required">*</span>
-                        {{ Form::select('item_group_id', $categories, null, ['class' => 'form-control', 'required','id'=>"serviceGroup"]) }}
+                        {{ Form::select('item_group_id', $categories, null, ['class' => 'form-control', 'required', 'id' => 'serviceGroup']) }}
                     </div>
 
                     {{-- <div class="form-group col-sm-12 mb-0">
@@ -65,7 +65,12 @@
                 <button type="button" id="btnCancel" class="btn btn-secondary  ml-1"
                     style="height: 40px;font-weigth:bold;"
                     data-dismiss="modal">{{ __('messages.common.cancel') }}</button>
-                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                {{ Form::button(__('messages.common.submit'), [
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary btn-sm form-btn',
+                    'id' => 'btnSave',
+                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                ]) }}
 
             </div>
         </div>

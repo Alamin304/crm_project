@@ -76,5 +76,10 @@
     </div>
 </div>
 <div class="text-right">
-    {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+    {{ Form::button(__('messages.common.submit'), [
+        'type' => 'submit',
+        'class' => 'btn btn-primary btn-sm form-btn',
+        'id' => 'btnSave',
+        'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+    ]) }}
 </div>

@@ -82,7 +82,12 @@
                             </div>
 
                             <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
 
                             </div>
                         </div>
@@ -151,7 +156,7 @@
                 placeholder: '{{ __('messages.awards.select_employee') }}', // Placeholder text
                 allowClear: true // Allow clearing the selection
             });
-             $('#award_by_select').select2({
+            $('#award_by_select').select2({
                 width: '100%', // Set the width of the select element
                 placeholder: '{{ __('messages.awards.by') }}', // Placeholder text
                 allowClear: true // Allow clearing the selection

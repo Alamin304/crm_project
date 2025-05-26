@@ -29,8 +29,7 @@
                     <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            {{ Form::label('title', __('messages.currencies.name') . ':') }}<span
-                                class="required">*</span>
+                            {{ Form::label('title', __('messages.currencies.name') . ':') }}<span class="required">*</span>
                             {{ Form::text('name', null, ['class' => 'form-control', 'required', 'id' => 'designation_name', 'autocomplete' => 'off']) }}
                         </div>
                         <div class="form-group col-sm-12 mb-0">
@@ -39,7 +38,12 @@
                         </div>
                     </div>
                     <div class="text-right mr-1">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 

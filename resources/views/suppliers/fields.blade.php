@@ -2,8 +2,7 @@
     <div class="tab-pane fade show active" id="cForm" role="tabpanel" aria-labelledby="customerForm">
         <div class="row">
             <div class="form-group col-md-6 col-sm-12">
-                {{ Form::label('company_name', __('messages.suppliers.name') . ':') }}<span
-                    class="required">*</span>
+                {{ Form::label('company_name', __('messages.suppliers.name') . ':') }}<span class="required">*</span>
                 {{ Form::text('company_name', null, ['class' => 'form-control', 'required', 'autocomplete' => 'off', 'autofocus' => true, 'placeholder' => __('messages.suppliers.name')]) }}
             </div>
             <div class="form-group col-md-6 col-sm-12">
@@ -67,7 +66,12 @@
             </div> --}}
         </div>
         <div class="form-group " style="float:right;">
-            {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+            {{ Form::button(__('messages.common.submit'), [
+                'type' => 'submit',
+                'class' => 'btn btn-primary btn-sm form-btn',
+                'id' => 'btnSave',
+                'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+            ]) }}
         </div>
     </div>
 

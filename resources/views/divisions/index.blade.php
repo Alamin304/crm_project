@@ -41,40 +41,40 @@
 
 @section('content')
 
- {{-- Success Message --}}
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+    {{-- Success Message --}}
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-        {{-- Error Message --}}
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+    {{-- Error Message --}}
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-        {{-- Validation Errors (for row-level import validation failures) --}}
-        @if (session()->has('failures'))
-            <div class="alert alert-danger">
-                <strong>Import failed due to the following row errors:</strong>
-                <ul>
-                    @foreach (session()->get('failures') as $failure)
-                        <li>
-                            Row {{ $failure->row() }}:
-                            @foreach ($failure->errors() as $error)
-                                {{ $error }}@if (!$loop->last)
-                                    ,
-                                @endif
-                            @endforeach
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    {{-- Validation Errors (for row-level import validation failures) --}}
+    @if (session()->has('failures'))
+        <div class="alert alert-danger">
+            <strong>Import failed due to the following row errors:</strong>
+            <ul>
+                @foreach (session()->get('failures') as $failure)
+                    <li>
+                        Row {{ $failure->row() }}:
+                        @foreach ($failure->errors() as $error)
+                            {{ $error }}@if (!$loop->last)
+                                ,
+                            @endif
+                        @endforeach
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <section class="section">
         <div class="section-header item-align-right">
             <h1>{{ __('messages.divisions.divisions') }}</h1>
@@ -89,23 +89,23 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('divisions.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('divisions.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('divisions.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('divisions.export', ['format' => 'print']) }}"
                             target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                            {{ __('messages.common.print') }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-success btn-sm form-btn mr-2" id="divisionImportButton">
-                    <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                <button type="button" class="btn btn-primary btn-sm form-btn mr-2" id="divisionImportButton">
+                    {{ __('messages.common.import') }}
                 </button>
 
                 <a href="{{ route('divisions.create') }}" class="btn btn-primary form-btn">
@@ -142,7 +142,7 @@
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">
-                                <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                                {{ __('messages.common.import') }}
                             </button>
                             <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">{{ __('Cancel') }}</button>

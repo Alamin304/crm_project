@@ -83,7 +83,7 @@
 
                             </div>
                         </div>
-                          <div class="form-group col-md-6">
+                        <div class="form-group col-md-6">
                             {{ Form::label('bonus_type_id', __('messages.branches.name') . ':') }}<span
                                 class="required"></span>
                             {{ Form::select('from', $usersBranches, $retirement->employee?->branch_id ?? null, [
@@ -110,7 +110,12 @@
                         </div>
                     </div>
                     <div class="text-right mr-1">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 

@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             {{ Form::label('issue_name', 'Place Of Issue') }}<span class="required">*</span>
-                            {{ Form::text('issue_place',  $check->issue_place, ['class' => 'form-control', 'required']) }}
+                            {{ Form::text('issue_place', $check->issue_place, ['class' => 'form-control', 'required']) }}
                         </div>
 
                         <!-- Amount Field -->
@@ -67,7 +67,12 @@
                     </div>
 
                     <div class="text-right mr-1">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 

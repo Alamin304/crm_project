@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet">
     <style>
@@ -13,6 +13,7 @@
             display: none;
             transition: all 0.3s ease;
         }
+
         .show-additional-fields .additional-fields {
             display: block;
         }
@@ -39,139 +40,155 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('program_name', __('messages.training_programs.training_name').':') }}<span class="required">*</span>
+                                    {{ Form::label('program_name', __('messages.training_programs.training_name') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('program_name', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'id' => 'programName',
                                         'placeholder' => __('messages.training_programs.training_name'),
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('training_type', __('messages.training_programs.training_type').':') }}<span class="required">*</span>
+                                    {{ Form::label('training_type', __('messages.training_programs.training_type') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('training_type', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'id' => 'trainingType',
                                         'placeholder' => __('messages.training_programs.training_type'),
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('program_items', __('Program Items').':') }}<span class="required">*</span>
-                                    <select name="program_items[]" id="programItems" class="form-control select2" multiple required>
-                                        @foreach(['Workshop', 'Seminar', 'On-the-job', 'E-learning', 'Conference'] as $item)
+                                    {{ Form::label('program_items', __('Program Items') . ':') }}<span
+                                        class="required">*</span>
+                                    <select name="program_items[]" id="programItems" class="form-control select2" multiple
+                                        required>
+                                        @foreach (['Workshop', 'Seminar', 'On-the-job', 'E-learning', 'Conference'] as $item)
                                             <option value="{{ $item }}">{{ $item }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    {{ Form::label('point', __('messages.training_programs.point').':') }}<span class="required">*</span>
+                                    {{ Form::label('point', __('messages.training_programs.point') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::number('point', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'min' => 0,
                                         'id' => 'point',
-                                        'placeholder' => __('messages.training_programs.point')
+                                        'placeholder' => __('messages.training_programs.point'),
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    {{ Form::label('training_mode', __('Training Mode').':') }}
-                                    {{ Form::select('training_mode', [
-                                        'online' => 'Online',
-                                        'offline' => 'Offline',
-                                        'hybrid' => 'Hybrid'
-                                    ], null, [
-                                        'class' => 'form-control select2',
-                                        'id' => 'trainingMode',
-                                        'placeholder' => __('Select Training Mode')
-                                    ]) }}
+                                    {{ Form::label('training_mode', __('Training Mode') . ':') }}
+                                    {{ Form::select(
+                                        'training_mode',
+                                        [
+                                            'online' => 'Online',
+                                            'offline' => 'Offline',
+                                            'hybrid' => 'Hybrid',
+                                        ],
+                                        null,
+                                        [
+                                            'class' => 'form-control select2',
+                                            'id' => 'trainingMode',
+                                            'placeholder' => __('Select Training Mode'),
+                                        ],
+                                    ) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
                                     <div class="custom-control custom-switch">
-                                        <input type="checkbox" class="custom-control-input" id="additionalStaffTraining" name="additional_staff_training">
-                                        <label class="custom-control-label" for="additionalStaffTraining">{{ __('Additional Training Program for Staff') }}</label>
+                                        <input type="checkbox" class="custom-control-input" id="additionalStaffTraining"
+                                            name="additional_staff_training">
+                                        <label class="custom-control-label"
+                                            for="additionalStaffTraining">{{ __('Additional Training Program for Staff') }}</label>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-12 additional-fields">
-                                    {{ Form::label('staff_name', __('messages.training_programs.name').':') }}
+                                    {{ Form::label('staff_name', __('messages.training_programs.name') . ':') }}
                                     {{ Form::text('staff_name', null, [
                                         'class' => 'form-control',
                                         'id' => 'staffName',
                                         'placeholder' => __('messages.training_programs.name'),
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-6 additional-fields">
-                                    {{ Form::label('start_date', __('messages.training_programs.start_date').':') }}
+                                    {{ Form::label('start_date', __('messages.training_programs.start_date') . ':') }}
                                     {{ Form::date('start_date', null, [
                                         'class' => 'form-control',
-                                        'id' => 'startDate'
+                                        'id' => 'startDate',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-6 additional-fields">
-                                    {{ Form::label('finish_date', __('messages.training_programs.end_date').':') }}
+                                    {{ Form::label('finish_date', __('messages.training_programs.end_date') . ':') }}
                                     {{ Form::date('finish_date', null, [
                                         'class' => 'form-control',
-                                        'id' => 'finishDate'
+                                        'id' => 'finishDate',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12" id="departmentField">
-                                    {{ Form::label('departments', __('Departments').':') }}<span class="required">*</span>
-                                    <select name="departments[]" id="departments" class="form-control select2" multiple required>
-                                        @foreach(['HR', 'IT', 'Finance', 'Marketing', 'Operations'] as $dept)
+                                    {{ Form::label('departments', __('Departments') . ':') }}<span class="required">*</span>
+                                    <select name="departments[]" id="departments" class="form-control select2" multiple
+                                        required>
+                                        @foreach (['HR', 'IT', 'Finance', 'Marketing', 'Operations'] as $dept)
                                             <option value="{{ $dept }}">{{ $dept }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group col-sm-12" id="positionField">
-                                    {{ Form::label('apply_position', __('Apply Position').':') }}<span class="required">*</span>
+                                    {{ Form::label('apply_position', __('Apply Position') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('apply_position', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'id' => 'applyPosition',
                                         'placeholder' => __('Apply Position'),
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12 mb-0">
-                                    {{ Form::label('description', __('messages.training_programs.description').':') }}<span class="required">*</span>
+                                    {{ Form::label('description', __('messages.training_programs.description') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::textarea('description', null, [
                                         'class' => 'form-control summernote-simple',
                                         'required',
                                         'id' => 'description',
-                                        'rows' => 4
+                                        'rows' => 4,
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('attachment', __('Attachment').':') }}
+                                    {{ Form::label('attachment', __('Attachment') . ':') }}
                                     {{ Form::file('attachment', [
                                         'class' => 'form-control',
                                         'id' => 'attachment',
-                                        'accept' => '.pdf,.doc,.docx,.jpg,.png'
+                                        'accept' => '.pdf,.doc,.docx,.jpg,.png',
                                     ]) }}
-                                    <small class="text-muted">{{ __('Allowed file types: pdf, doc, docx, jpg, png') }}</small>
+                                    <small
+                                        class="text-muted">{{ __('Allowed file types: pdf, doc, docx, jpg, png') }}</small>
                                 </div>
                             </div>
-                            <div class="text-right mt-3 mr-1">
+                            <div class="text-right mr-1">
                                 {{ Form::button(__('messages.common.submit'), [
                                     'type' => 'submit',
-                                    'class' => 'btn btn-primary',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
                                     'id' => 'btnSave',
-                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}
                             </div>
                         </div>
@@ -210,7 +227,7 @@
 
             // Toggle additional fields
             $('#additionalStaffTraining').change(function() {
-                if($(this).is(':checked')) {
+                if ($(this).is(':checked')) {
                     $('form').addClass('show-additional-fields');
                     $('#departmentField, #positionField').hide();
                     $('#departments, #applyPosition').removeAttr('required');

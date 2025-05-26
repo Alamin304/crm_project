@@ -30,7 +30,8 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('booking_type', __('messages.booking_sources.booking_type') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('booking_type', __('messages.booking_sources.booking_type') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::select(
                                         'booking_type',
                                         [
@@ -41,34 +42,36 @@
                                             'Corporate' => 'Corporate',
                                         ],
                                         $bookingSource->booking_type,
-                                        ['class' => 'form-control select2', 'required', 'id' => 'editBookingType']
+                                        ['class' => 'form-control select2', 'required', 'id' => 'editBookingType'],
                                     ) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('booking_source', __('messages.booking_sources.booking_source') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('booking_source', __('messages.booking_sources.booking_source') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('booking_source', $bookingSource->booking_source, ['class' => 'form-control', 'required', 'autocomplete' => 'off']) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('commission_rate', __('messages.booking_sources.commission_rate') . ' (%)' . ':') }}<span class="required">*</span>
+                                    {{ Form::label('commission_rate', __('messages.booking_sources.commission_rate') . ' (%)' . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::number('commission_rate', $bookingSource->commission_rate, [
                                         'class' => 'form-control',
                                         'required',
                                         'autocomplete' => 'off',
                                         'step' => '0.01',
                                         'min' => '0',
-                                        'max' => '100'
+                                        'max' => '100',
                                     ]) }}
                                 </div>
                             </div>
 
-                            <div class="text-right mt-3 mr-1">
+                            <div class="text-right mr-1">
                                 {{ Form::button(__('messages.common.submit'), [
                                     'type' => 'submit',
-                                    'class' => 'btn btn-primary',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
                                     'id' => 'btnSave',
-                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}
                             </div>
                         </div>
@@ -90,14 +93,14 @@
     <script>
         'use strict';
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.select2').select2({
                 width: '100%',
                 placeholder: "{{ __('messages.booking_sources.select_booking_type') }}"
             });
         });
 
-        $(document).on('submit', '#editBookingSourceForm', function (event) {
+        $(document).on('submit', '#editBookingSourceForm', function(event) {
             event.preventDefault();
             processingBtn('#editBookingSourceForm', '#btnSave', 'loading');
             let id = $('#booking_source_id').val();
@@ -106,25 +109,25 @@
                 url: route('booking-sources.update', id),
                 type: 'PUT',
                 data: $(this).serialize(),
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         window.location.href = "{{ route('booking-sources.index') }}";
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message);
                     if (result.status === 422) {
                         let errors = result.responseJSON.errors;
                         let errorHtml = '<ul>';
-                        $.each(errors, function (key, value) {
+                        $.each(errors, function(key, value) {
                             errorHtml += '<li>' + value[0] + '</li>';
                         });
                         errorHtml += '</ul>';
                         $('#validationErrorsBox').html(errorHtml).removeClass('d-none');
                     }
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#editBookingSourceForm', '#btnSave');
                 }
             });

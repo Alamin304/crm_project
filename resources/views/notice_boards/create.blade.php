@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
 @endsection
 
@@ -29,52 +29,56 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('notice_type', __('messages.notice_boards.notice_type').':') }}<span class="required">*</span>
+                                    {{ Form::label('notice_type', __('messages.notice_boards.notice_type') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('notice_type', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'id' => 'noticeType',
                                         'placeholder' => __('messages.notice_boards.notice_type'),
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('notice_by', __('messages.notice_boards.notice_by').':') }}<span class="required">*</span>
+                                    {{ Form::label('notice_by', __('messages.notice_boards.notice_by') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('notice_by', null, [
                                         'class' => 'form-control',
                                         'required',
                                         'id' => 'noticeBy',
                                         'placeholder' => __('messages.notice_boards.notice_by'),
-                                        'autocomplete' => 'off'
+                                        'autocomplete' => 'off',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('notice_date', __('messages.notice_boards.notice_date').':') }}<span class="required">*</span>
+                                    {{ Form::label('notice_date', __('messages.notice_boards.notice_date') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::date('notice_date', null, [
                                         'class' => 'form-control',
                                         'required',
-                                        'id' => 'noticeDate'
+                                        'id' => 'noticeDate',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12 mb-0">
-                                    {{ Form::label('description', __('messages.notice_boards.description').':') }}<span class="required">*</span>
+                                    {{ Form::label('description', __('messages.notice_boards.description') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::textarea('description', null, [
                                         'class' => 'form-control summernote-simple',
                                         'required',
                                         'id' => 'noticeDescription',
-                                        'rows' => 4
+                                        'rows' => 4,
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('notice_attachment', __('messages.notice_boards.notice_attachment').':') }}
+                                    {{ Form::label('notice_attachment', __('messages.notice_boards.notice_attachment') . ':') }}
                                     {{ Form::file('notice_attachment', [
                                         'class' => 'form-control',
                                         'id' => 'noticeAttachment',
-                                        'accept' => '.pdf,.doc,.docx,.jpg,.png'
+                                        'accept' => '.pdf,.doc,.docx,.jpg,.png',
                                     ]) }}
                                     <small class="text-muted">{{ __('messages.notice_boards.allowed_file_types') }}</small>
                                 </div>
@@ -82,9 +86,9 @@
                             <div class="text-right mt-3 mr-1">
                                 {{ Form::button(__('messages.common.submit'), [
                                     'type' => 'submit',
-                                    'class' => 'btn btn-primary',
+                                    'class' => 'btn btn-primary btn-sm form-btn rounded-pill',
                                     'id' => 'btnSave',
-                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}
                             </div>
                         </div>

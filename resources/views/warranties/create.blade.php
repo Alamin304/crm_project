@@ -148,7 +148,12 @@
                             </div>
 
                             <div class="text-right mt-3 mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}
@@ -237,7 +242,7 @@
                     if (!plainText) {
                         displayErrorMessage(
                             `${fieldId.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())} must not be empty.`
-                            );
+                        );
                         isValid = false;
                         return false;
                     }

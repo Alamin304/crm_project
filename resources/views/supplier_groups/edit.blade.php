@@ -16,7 +16,8 @@
                 </div>
             </div>
             <div class="float-right">
-                <a href="{{ route('supplier-groups.index') }}" class="btn btn-primary form-btn">{{ __('messages.supplier_groups.list') }}</a>
+                <a href="{{ route('supplier-groups.index') }}"
+                    class="btn btn-primary form-btn">{{ __('messages.supplier_groups.list') }}</a>
 
             </div>
         </div>
@@ -40,7 +41,12 @@
                                 </div>
                             </div>
                             <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
 
                             </div>
                         </div>

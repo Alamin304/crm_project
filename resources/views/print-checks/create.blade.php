@@ -73,7 +73,12 @@
                         <div class="text-right mr-3">
                             {{ Form::button('Submit & Print', ['type' => 'submit', 'class' => 'btn btnWarning text-white submit-print', 'id' => 'btnSavePrint', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...", 'style' => 'line-height:32px;']) }}
 
-                            {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                            {{ Form::button(__('messages.common.submit'), [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary btn-sm form-btn',
+                                'id' => 'btnSave',
+                                'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                            ]) }}
                         </div>
                     </div>
                     {{ Form::close() }}

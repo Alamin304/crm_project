@@ -35,28 +35,30 @@
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('complementary', __('messages.complementaries.complementary') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('complementary', __('messages.complementaries.complementary') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('complementary', $complementary->complementary, ['class' => 'form-control', 'required', 'autocomplete' => 'off']) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('rate', __('messages.complementaries.rate') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('rate', __('messages.complementaries.rate') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::number('rate', $complementary->rate, [
                                         'class' => 'form-control',
                                         'required',
                                         'autocomplete' => 'off',
                                         'step' => '0.01',
-                                        'min' => '0'
+                                        'min' => '0',
                                     ]) }}
                                 </div>
                             </div>
 
-                            <div class="text-right mt-3 mr-1">
+                            <div class="text-right mr-1">
                                 {{ Form::button(__('messages.common.submit'), [
                                     'type' => 'submit',
-                                    'class' => 'btn btn-primary',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
                                     'id' => 'btnSave',
-                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}
                             </div>
                         </div>
@@ -78,7 +80,7 @@
     <script>
         'use strict';
 
-        $(document).on('submit', '#editComplementaryForm', function (event) {
+        $(document).on('submit', '#editComplementaryForm', function(event) {
             event.preventDefault();
             processingBtn('#editComplementaryForm', '#btnSave', 'loading');
             let id = $('#complementary_id').val();
@@ -87,16 +89,16 @@
                 url: route('complementaries.update', id),
                 type: 'PUT',
                 data: $(this).serialize(),
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         window.location.href = "{{ route('complementaries.index') }}";
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message);
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#editComplementaryForm', '#btnSave');
                 }
             });

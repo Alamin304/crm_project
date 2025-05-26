@@ -16,7 +16,8 @@
                 </div>
             </div>
             <div class="float-right">
-                <a href="{{ route('products.unit.index') }}" class="btn btn-primary form-btn">{{ __('messages.products.list') }}</a>
+                <a href="{{ route('products.unit.index') }}"
+                    class="btn btn-primary form-btn">{{ __('messages.products.list') }}</a>
             </div>
         </div>
         <div class="section-body">
@@ -40,7 +41,12 @@
                                 </div>
                             </div>
                             <div class="text-right mr-3">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
 
                             </div>
                         </div>
@@ -85,7 +91,7 @@
                 success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
-                         const url = route('products.unit.index', );
+                        const url = route('products.unit.index', );
                         window.location.href = url;
                     }
                 },

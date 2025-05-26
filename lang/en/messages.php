@@ -283,6 +283,7 @@ return [
         'excel' => 'Excel',
         'print' => 'Print',
         'processing' => 'Processing',
+        'import' => 'Import'
     ],
 
     //    Customer group
@@ -3151,7 +3152,7 @@ return [
 
     'plans' => [
         'plans' => 'Plans',
-        'add' => 'Add Plan',
+        'add' => 'Add',
         'edit' => 'Edit Plan',
         'view' => 'View Plan',
         'plan_name' => 'Plan Name',
@@ -3267,6 +3268,7 @@ return [
     'reservations' => [
         'reservations' => 'Reservations',
         'add' => 'Add',
+        'add_reservations' => 'Add Reservations',
         'edit' => 'Edit Reservation',
         'view' => 'View Reservation',
         'delete' => 'Delete Reservation',
@@ -3294,7 +3296,8 @@ return [
             'pending' => 'Pending',
             'confirmed' => 'Confirmed',
             'canceled' => 'Canceled',
-            'completed' => 'Completed',],
+            'completed' => 'Completed',
+        ],
         'status' => 'Status',
 
 

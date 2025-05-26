@@ -82,9 +82,9 @@
         {{ Form::label('reference', __('messages.expense.reference')) }}
         {{ Form::text('reference', null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => __('messages.expense.reference')]) }}
     </div>
-     <div class="form-group col-md-3">
-        {{ Form::label('customer_id',"Supplier") }}
-        {{ Form::select('supplier_id', $suppliers?->pluck('company_name','id')??[], null, ['id' => 'selectSupplier', 'class' => 'form-control', 'placeholder' =>"Select Supplier"]) }}
+    <div class="form-group col-md-3">
+        {{ Form::label('customer_id', 'Supplier') }}
+        {{ Form::select('supplier_id', $suppliers?->pluck('company_name', 'id') ?? [], null, ['id' => 'selectSupplier', 'class' => 'form-control', 'placeholder' => 'Select Supplier']) }}
     </div>
     <div class="form-group col-md-3">
         {{ Form::label('customer_id', __('messages.expense.customer')) }}
@@ -97,16 +97,16 @@
     </div>
     <div class="form-group col-sm-12  col-md-3">
         {{ Form::label('employee_id', __('messages.expense.supp_vat_number')) }}
-        {{ Form::text('supp_vat_number', null, ['class' => 'form-control','id'=>"supp_vat_number", 'autocomplete' => 'off']) }}
+        {{ Form::text('supp_vat_number', null, ['class' => 'form-control', 'id' => 'supp_vat_number', 'autocomplete' => 'off']) }}
     </div>
     <div class="form-group col-md-3 col-sm-12">
         <label for="customer">{{ __('messages.expense.expense_by') }}</label>
         <div class="input-group">
             <!-- Customer Name Input (70% width) -->
-            <input type="text" id="employeeInmput" name="employee_name" class="form-control" >
+            <input type="text" id="employeeInmput" name="employee_name" class="form-control">
             <!-- Customer ID Dropdown (30% width) -->
             <div class="input-group-append">
-                {{ Form::select('employee_id',$employees->pluck('name','id')??[], null, ['class' => 'form-control select2', 'id' => 'employeeSelect','style'=>"width:150px;", 'placeholder' => 'Select Employee']) }}
+                {{ Form::select('employee_id', $employees->pluck('name', 'id') ?? [], null, ['class' => 'form-control select2', 'id' => 'employeeSelect', 'style' => 'width:150px;', 'placeholder' => 'Select Employee']) }}
             </div>
         </div>
     </div>
@@ -166,7 +166,12 @@
         </div>
     </div>
 
-    {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+    {{ Form::button(__('messages.common.submit'), [
+        'type' => 'submit',
+        'class' => 'btn btn-primary btn-sm form-btn',
+        'id' => 'btnSave',
+        'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+    ]) }}
     {{-- <a href="{{ route('expenses.index') }}"
             class="btn btn-secondary text-dark">{{ __('messages.common.cancel') }}</a> --}}
 

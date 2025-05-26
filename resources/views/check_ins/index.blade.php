@@ -96,23 +96,23 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('check_ins.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('messages.common.pdf') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('check_ins.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('messages.common.csv') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('check_ins.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('messages.common.excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('check_ins.export', ['format' => 'print']) }}"
                             target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('messages.common.print') }}
+                            {{ __('messages.common.print') }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-success btn-sm form-btn mr-2" id="checkInImportButton">
-                    <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                <button type="button" class="btn btn-primary btn-sm form-btn mr-2" id="checkInImportButton">
+                    {{ __('messages.common.import') }}
                 </button>
                 <div class="float-right">
                     <a href="{{ route('check_ins.create') }}" class="btn btn-primary form-btn">
@@ -149,7 +149,7 @@
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">
-                                <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                                {{ __('messages.common.import') }}
                             </button>
                             <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">{{ __('Cancel') }}</button>
@@ -294,11 +294,6 @@
 
             return `
                 <div style="float: right;">
-                    <a title="{{ __('messages.common.delete') }}" href="#"
-                       class="btn btn-danger action-btn has-icon delete-btn"
-                       data-id="${id}" style="float:right;margin:2px;">
-                        <i class="fas fa-trash"></i>
-                    </a>
                     <a title="{{ __('messages.check_in.view') }}" href="${viewUrl}"
                        class="btn btn-info action-btn has-icon view-btn"
                        style="float:right;margin:2px;">
@@ -308,6 +303,11 @@
                        class="btn btn-warning action-btn has-icon edit-btn"
                        style="float:right;margin:2px;">
                         <i class="fas fa-edit"></i>
+                    </a>
+                    <a title="{{ __('messages.common.delete') }}" href="#"
+                       class="btn btn-danger action-btn has-icon delete-btn"
+                       data-id="${id}" style="float:right;margin:2px;">
+                        <i class="fas fa-trash"></i>
                     </a>
                 </div>
             `;

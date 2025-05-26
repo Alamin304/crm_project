@@ -47,7 +47,8 @@
             background-color: #e2e3e5;
             color: #383d41;
         }
-                .modal-backdrop {
+
+        .modal-backdrop {
             display: none !important;
         }
 
@@ -129,23 +130,24 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'print']) }}" target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        <a class="dropdown-item" href="{{ route('warranties.export', ['format' => 'print']) }}"
+                            target="_blank">
+                            {{ __('messages.common.print') }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-success btn-sm form-btn mr-2" id="warrantyImportButton">
-    <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
-</button>
+                <button type="button" class="btn btn-primary btn-sm form-btn mr-2" id="warrantyImportButton">
+                    {{ __('messages.common.import') }}
+                </button>
                 <div class="float-right">
                     <a href="{{ route('warranties.create') }}" class="btn btn-primary form-btn">
                         {{ __('messages.warranties.add') }}
@@ -154,43 +156,44 @@
             </div>
         </div>
         <!-- Warranty Import Modal -->
-<div class="modal fade" id="warrantyImportModal" tabindex="-1" role="dialog"
-    aria-labelledby="warrantyImportModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form action="{{ route('warranties.import') }}" method="POST" enctype="multipart/form-data"
-            id="warrantyImportForm">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="warrantyImportModalLabel">{{ __('Import Warranties via CSV') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        <div class="modal fade" id="warrantyImportModal" tabindex="-1" role="dialog"
+            aria-labelledby="warrantyImportModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="{{ route('warranties.import') }}" method="POST" enctype="multipart/form-data"
+                    id="warrantyImportForm">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="warrantyImportModalLabel">{{ __('Import Warranties via CSV') }}
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                <div class="modal-body">
-                    <a href="{{ route('warranties.sample-csv') }}" class="btn btn-info btn-sm mb-3">
-                        <i class="fas fa-download mr-1"></i> {{ __('Download Sample CSV') }}
-                    </a>
+                        <div class="modal-body">
+                            <a href="{{ route('warranties.sample-csv') }}" class="btn btn-info btn-sm mb-3">
+                                <i class="fas fa-download mr-1"></i> {{ __('Download Sample CSV') }}
+                            </a>
 
-                    <div class="form-group">
-                        <label for="warrantyCsvFile">{{ __('Upload CSV File') }}</label>
-                        <input type="file" name="file" class="form-control-file" id="warrantyCsvFile"
-                            required>
+                            <div class="form-group">
+                                <label for="warrantyCsvFile">{{ __('Upload CSV File') }}</label>
+                                <input type="file" name="file" class="form-control-file" id="warrantyCsvFile"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">
+                                {{ __('messages.common.import') }}
+                            </button>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">{{ __('Cancel') }}</button>
+                        </div>
                     </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
-                    </button>
-                    <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">{{ __('Cancel') }}</button>
-                </div>
+                </form>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
@@ -354,11 +357,6 @@
 
             return `
                 <div style="float: right;">
-                    <a title="Delete" href="#"
-                       class="btn btn-danger action-btn has-icon delete-btn"
-                       data-id="${id}" style="float:right;margin:2px;">
-                        <i class="fas fa-trash"></i>
-                    </a>
                     <a title="View" href="${viewUrl}"
                        class="btn btn-info action-btn has-icon view-btn"
                        style="float:right;margin:2px;">
@@ -369,51 +367,56 @@
                        style="float:right;margin:2px;">
                         <i class="fas fa-edit"></i>
                     </a>
+                    <a title="Delete" href="#"
+                       class="btn btn-danger action-btn has-icon delete-btn"
+                       data-id="${id}" style="float:right;margin:2px;">
+                        <i class="fas fa-trash"></i>
+                    </a>
                 </div>
             `;
         }
     </script>
     <script>
-    $(document).ready(function() {
-        $('#warrantyImportModal').modal('hide');
-        $('.modal').removeClass('show');
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+        $(document).ready(function() {
+            $('#warrantyImportModal').modal('hide');
+            $('.modal').removeClass('show');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
 
-        $('#warrantyImportModal').css({
-            'display': 'none',
-            'padding-right': '0px'
+            $('#warrantyImportModal').css({
+                'display': 'none',
+                'padding-right': '0px'
+            });
+
+            $('#warrantyImportButton').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('#warrantyImportModal').modal('show');
+                window.manuallyOpenedWarranty = true;
+            });
+
+            $('#warrantyImportModal').on('shown.bs.modal', function() {
+                $('#warrantyCsvFile').focus();
+            });
+
+            $('#warrantyImportModal').on('hidden.bs.modal', function() {
+                $('#warrantyImportForm')[0].reset();
+                window.manuallyOpenedWarranty = false;
+            });
+
+            setTimeout(function() {
+                if ($('#warrantyImportModal').hasClass('show') && !window.manuallyOpenedWarranty) {
+                    $('#warrantyImportModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                }
+            }, 100);
+
+            $(document).on('click', function(e) {
+                if ($(e.target).hasClass('modal') && !$(e.target).hasClass('modal-dialog')) {
+                    $('#warrantyImportModal').modal('hide');
+                }
+            });
         });
-
-        $('#warrantyImportButton').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            $('#warrantyImportModal').modal('show');
-            window.manuallyOpenedWarranty = true;
-        });
-
-        $('#warrantyImportModal').on('shown.bs.modal', function() {
-            $('#warrantyCsvFile').focus();
-        });
-
-        $('#warrantyImportModal').on('hidden.bs.modal', function() {
-            $('#warrantyImportForm')[0].reset();
-            window.manuallyOpenedWarranty = false;
-        });
-
-        setTimeout(function() {
-            if ($('#warrantyImportModal').hasClass('show') && !window.manuallyOpenedWarranty) {
-                $('#warrantyImportModal').modal('hide');
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
-            }
-        }, 100);
-
-        $(document).on('click', function(e) {
-            if ($(e.target).hasClass('modal') && !$(e.target).hasClass('modal-dialog')) {
-                $('#warrantyImportModal').modal('hide');
-            }
-        });
-    });
-</script>
+    </script>
 @endsection

@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
     <style>
@@ -36,7 +36,8 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('name', __('messages.job_categories.name') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('name', __('messages.job_categories.name') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('name', $jobCategory->name, ['class' => 'form-control', 'required', 'id' => 'editJobCategoryName', 'autocomplete' => 'off']) }}
                                 </div>
 
@@ -46,17 +47,20 @@
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    {{ Form::label('start_date', __('messages.job_categories.start_date') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('start_date', __('messages.job_categories.start_date') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::date('start_date', $jobCategory->start_date, ['class' => 'form-control', 'required', 'id' => 'editStartDate']) }}
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    {{ Form::label('end_date', __('messages.job_categories.end_date') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('end_date', __('messages.job_categories.end_date') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::date('end_date', $jobCategory->end_date, ['class' => 'form-control', 'required', 'id' => 'editEndDate']) }}
                                 </div>
 
                                 <div class="form-group col-sm-12 mt-3">
-                                    {{ Form::label('status', __('messages.job_categories.status') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('status', __('messages.job_categories.status') . ':') }}<span
+                                        class="required">*</span>
                                     <div class="form-check">
                                         {{ Form::radio('status', 1, $jobCategory->status == 1, ['class' => 'form-check-input', 'id' => 'active']) }}
                                         {{ Form::label('active', 'Active', ['class' => 'form-check-label']) }}
@@ -69,7 +73,12 @@
                             </div>
 
                             <div class="text-right mt-3 mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}
@@ -90,7 +99,7 @@
     <script>
         let updateUrl = "{{ route('job-categories.update', $jobCategory->id) }}";
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#editJobCategoryDescription').summernote({
                 height: 150,
                 toolbar: [
@@ -106,7 +115,7 @@
                 autoclose: true,
                 todayHighlight: true,
                 orientation: 'bottom auto'
-            }).on('changeDate', function (selected) {
+            }).on('changeDate', function(selected) {
                 let minDate = new Date(selected.date.valueOf());
                 $('#editEndDate').datepicker('setStartDate', minDate);
             });
@@ -119,7 +128,7 @@
             });
         });
 
-        $(document).on('submit', '#editJobCategoryForm', function (event) {
+        $(document).on('submit', '#editJobCategoryForm', function(event) {
             event.preventDefault();
             processingBtn('#editJobCategoryForm', '#btnSave', 'loading');
 
@@ -156,16 +165,16 @@
                 url: updateUrl,
                 type: 'POST',
                 data: formData,
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         window.location.href = "{{ route('job-categories.index') }}";
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message || 'An error occurred.');
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#editJobCategoryForm', '#btnSave');
                 }
             });

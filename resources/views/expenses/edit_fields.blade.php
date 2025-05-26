@@ -150,7 +150,12 @@
             <label class="ml-3"style="line-height: 10px;">{{ __('messages.expense.apply_vat') }}</label>
         </div>
     </div>
-    {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+    {{ Form::button(__('messages.common.submit'), [
+        'type' => 'submit',
+        'class' => 'btn btn-primary btn-sm form-btn',
+        'id' => 'btnSave',
+        'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+    ]) }}
     {{-- <a href="{{ route('expenses.index') }}" class="btn btn-secondary text-dark">{{ __('messages.common.cancel') }}</a> --}}
 </div>
 <script>

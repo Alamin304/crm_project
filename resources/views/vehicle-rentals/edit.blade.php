@@ -57,11 +57,16 @@
                         </div>
                         <div class="form-group col-md-6">
                             {{ Form::label('agreement_date', 'Agreement Type') }}<span class="required">*</span>
-                            {{ Form::select('agreement_type', ['One-time' => 'One-time', 'Installment' => 'Installment'],  $rental->agreement_type, [
-                                'class' => 'form-control',
-                                'id' => 'agreement_type',
-                                'placeholder' => __('Select Agreement Type'),
-                            ]) }}
+                            {{ Form::select(
+                                'agreement_type',
+                                ['One-time' => 'One-time', 'Installment' => 'Installment'],
+                                $rental->agreement_type,
+                                [
+                                    'class' => 'form-control',
+                                    'id' => 'agreement_type',
+                                    'placeholder' => __('Select Agreement Type'),
+                                ],
+                            ) }}
                         </div>
                         <div class="form-group col-md-6">
                             {{ Form::label('agreement_date', 'Agreement Date') }}<span class="required">*</span>
@@ -89,7 +94,12 @@
 
 
                     <div class="text-right mr-1">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 

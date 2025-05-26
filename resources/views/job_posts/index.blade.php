@@ -16,21 +16,22 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.job_posts.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('job-posts.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('job-posts.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('job-posts.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('job-posts.export', ['format' => 'print']) }}" target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        <a class="dropdown-item" href="{{ route('job-posts.export', ['format' => 'print']) }}"
+                            target="_blank">
+                            {{ __('messages.common.print') }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>
@@ -83,8 +84,7 @@
             ajax: {
                 url: route('job-posts.index'),
             },
-            columns: [
-                {
+            columns: [{
                     data: function(row) {
                         return `
                             <div class="d-flex flex-column">
@@ -134,7 +134,9 @@
                 }
             ],
             responsive: true,
-            order: [[2, 'desc']] // Default sort by posting date (created_at)
+            order: [
+                [2, 'desc']
+            ] // Default sort by posting date (created_at)
         });
 
         $(document).on('click', '.edit-btn', function(event) {

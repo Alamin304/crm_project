@@ -51,7 +51,7 @@
             </div>
             <div class="form-group col-md-4 col-sm-12">
                 {{ Form::label('currency', __('messages.banks.name') . ':') }}
-                {{ Form::select('bank_id', $banks??[], $branch->bank_id, ['class' => 'form-control select2', 'autocomplete' => 'off']) }}
+                {{ Form::select('bank_id', $banks ?? [], $branch->bank_id, ['class' => 'form-control select2', 'autocomplete' => 'off']) }}
             </div>
             <div class="col-lg-12 col-12">
                 <!-- col-lg-6 for large screens, col-12 for extra small screens -->
@@ -62,7 +62,12 @@
             </div>
         </div>
         <div class="form-group " style="float:right;">
-            {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+            {{ Form::button(__('messages.common.submit'), [
+                'type' => 'submit',
+                'class' => 'btn btn-primary btn-sm form-btn',
+                'id' => 'btnSave',
+                'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+            ]) }}
         </div>
     </div>
 

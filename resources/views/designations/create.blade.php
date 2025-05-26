@@ -16,7 +16,8 @@
                 </div>
             </div>
             <div class="float-right">
-                <a href="{{ route('designations.index') }}" class="btn btn-primary form-btn"> {{ __('messages.designations.list') }}</a>
+                <a href="{{ route('designations.index') }}" class="btn btn-primary form-btn">
+                    {{ __('messages.designations.list') }}</a>
 
             </div>
         </div>
@@ -24,36 +25,41 @@
             <div class="card">
                 <div class="card-body">
 
-                        {{ Form::open(['id' => 'addNewForm']) }}
-                        <div class="modal-body">
-                            <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
-                            <div class="row">
-                                <div class="form-group col-sm-12">
-                                    {{ Form::label('title', __('messages.designations.name') . ':') }}<span
-                                        class="required">*</span>
-                                    {{ Form::text('name', null, ['class' => 'form-control', 'required', 'id' => 'designation_name', 'autocomplete' => 'off']) }}
-                                </div>
-                                <div class="form-group col-sm-12">
-                                    {{ Form::label('department_id', __('messages.department.select_department') . ':') }}<span
-                                        class="required">*</span>
-                                    {{ Form::select('department_id', $departments, null, ['class' => 'form-control', 'required','id' => 'departmentSelect', 'placeholder' => __('messages.department.select_department')]) }}
-                                </div>
-                                {{-- <div class="form-group col-sm-12">
+                    {{ Form::open(['id' => 'addNewForm']) }}
+                    <div class="modal-body">
+                        <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                {{ Form::label('title', __('messages.designations.name') . ':') }}<span
+                                    class="required">*</span>
+                                {{ Form::text('name', null, ['class' => 'form-control', 'required', 'id' => 'designation_name', 'autocomplete' => 'off']) }}
+                            </div>
+                            <div class="form-group col-sm-12">
+                                {{ Form::label('department_id', __('messages.department.select_department') . ':') }}<span
+                                    class="required">*</span>
+                                {{ Form::select('department_id', $departments, null, ['class' => 'form-control', 'required', 'id' => 'departmentSelect', 'placeholder' => __('messages.department.select_department')]) }}
+                            </div>
+                            {{-- <div class="form-group col-sm-12">
                                     {{ Form::label('sub_department_id', __('messages.department.select_sub_department') . ':') }}<span
                                         class="required">*</span>
                                     {{ Form::select('sub_department_id', [], null, ['class' => 'form-control', 'required','id' => 'subDepartmentSelect', 'placeholder' => __('messages.department.select_sub_department')]) }}
                                 </div> --}}
-                                <div class="form-group col-sm-12 mb-0">
-                                    {{ Form::label('description', __('messages.assets.category_description') . ':') }}
-                                    {{ Form::textarea('description', null, ['class' => 'form-control summernote-simple', 'id' => 'createDescription']) }}
-                                </div>
-                            </div>
-                            <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
-
+                            <div class="form-group col-sm-12 mb-0">
+                                {{ Form::label('description', __('messages.assets.category_description') . ':') }}
+                                {{ Form::textarea('description', null, ['class' => 'form-control summernote-simple', 'id' => 'createDescription']) }}
                             </div>
                         </div>
-                        {{ Form::close() }}
+                        <div class="text-right mr-1">
+                            {{ Form::button(__('messages.common.submit'), [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary btn-sm form-btn',
+                                'id' => 'btnSave',
+                                'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                            ]) }}
+
+                        </div>
+                    </div>
+                    {{ Form::close() }}
 
                 </div>
             </div>

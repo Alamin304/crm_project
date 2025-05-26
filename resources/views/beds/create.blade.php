@@ -35,8 +35,21 @@
                                     {{ Form::textarea('description', null, ['class' => 'form-control summernote-simple', 'id' => 'bedDescription']) }}
                                 </div>
                             </div>
+                            {{-- <div class="text-right mt-3 mr-1">
+                               {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
+                            </div> --}}
                             <div class="text-right mt-3 mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}
@@ -57,7 +70,7 @@
     <script>
         let bedCreateUrl = "{{ route('beds.store') }}";
 
-        $(document).on('submit', '#addNewFormBed', function (event) {
+        $(document).on('submit', '#addNewFormBed', function(event) {
             event.preventDefault();
             processingBtn('#addNewFormBed', '#btnSave', 'loading');
 
@@ -76,27 +89,30 @@
                 url: bedCreateUrl,
                 type: 'POST',
                 data: $(this).serialize(),
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         window.location.href = "{{ route('beds.index') }}";
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message);
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#addNewFormBed', '#btnSave');
                 },
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#bedDescription').summernote({
                 height: 150,
-                toolbar: [['style', ['bold', 'italic', 'underline', 'clear']],
-                          ['para', ['ul', 'ol', 'paragraph']],
-                          ['insert', ['link']], ['view', ['codeview']]]
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link']],
+                    ['view', ['codeview']]
+                ]
             });
         });
     </script>

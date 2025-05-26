@@ -68,15 +68,15 @@
                                         'required',
                                         'id' => 'commissionRate',
                                         'autocomplete' => 'off',
-                                        'step' => '0.01', 
+                                        'step' => '0.01',
                                         'min' => '0',
                                     ]) }}
                                 </div>
                             </div>
-                            <div class="text-right mt-3 mr-1">
+                            <div class="text-right mr-1">
                                 {{ Form::button(__('messages.common.submit'), [
                                     'type' => 'submit',
-                                    'class' => 'btn btn-primary',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
                                     'id' => 'btnSave',
                                     'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}

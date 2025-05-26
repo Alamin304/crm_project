@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         {{ Form::label('shift_start_time', __('messages.shifts.shift_start_time') . ':') }}<span
                                             class="required">*</span>
-                                        {{ Form::time('shift_start_time', $shift->shift_start_time ?? null , ['class' => 'form-control', 'required']) }}
+                                        {{ Form::time('shift_start_time', $shift->shift_start_time ?? null, ['class' => 'form-control', 'required']) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -82,7 +82,12 @@
                                 </div>
                             </div> --}}
                             <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
 
                             </div>
                         </div>
@@ -153,7 +158,7 @@
             insetColor: '#ffffff',
             backgroundColor: '#ffffff',
             hideOnPaletteClick: false,
-            previewPosition:'right',
+            previewPosition: 'right',
         };
     </script>
 @endsection

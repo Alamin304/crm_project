@@ -62,7 +62,12 @@
 
 
                     <div class="text-right mr-1 mt-2">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 
@@ -85,7 +90,7 @@
         let departmentNewCreateUrl = route('cash-transfers.store');
         $(document).on('submit', '#addNewFormDepartmentNew', function(event) {
             event.preventDefault();
-             processingBtn('#addNewFormDepartmentNew', '#btnSave', 'loading');
+            processingBtn('#addNewFormDepartmentNew', '#btnSave', 'loading');
 
             $.ajax({
                 url: departmentNewCreateUrl,

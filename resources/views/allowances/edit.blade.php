@@ -87,7 +87,7 @@
                                 'placeholder' => __('messages.allowances.type'),
                             ]) }}
                         </div>
-                          {{-- <div class="form-group col-sm-12">
+                        {{-- <div class="form-group col-sm-12">
                             {{ Form::label('allowance_type_id', __('messages.allowances.payment_type') . ':') }}
                             {{ Form::select('payment_type', $payment_types ?? [], $allowance->payment_type, [
                                 'class' => 'form-control',
@@ -106,7 +106,12 @@
                         </div>
                     </div>
                     <div class="text-right mr-1">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 
@@ -203,7 +208,7 @@
 
                     if (employee.branch?.id) {
                         $("#from_branch").val(employee.branch.id);
-                    }else{
+                    } else {
                         $("#from_branch").val('');
                     }
 

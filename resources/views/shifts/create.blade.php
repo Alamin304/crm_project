@@ -7,7 +7,6 @@
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.4.5/jscolor.min.css">
-
 @endsection
 @section('content')
     <section class="section">
@@ -82,7 +81,12 @@
                             </div> --}}
 
                             <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
 
                             </div>
                         </div>
@@ -149,7 +153,7 @@
             borderColor: '#000000',
             insetColor: '#ffffff',
             backgroundColor: '#ffffff',
-            previewPosition:'right',
+            previewPosition: 'right',
         };
     </script>
 @endsection

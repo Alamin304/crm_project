@@ -137,7 +137,12 @@
     <div class="form-group col-md-2 mr-2 ">
         <a href="{{ route('members.index') }}"
             class="btn btnCancel btn-secondary text-dark {{ app()->getLocale() === 'tr' ? 'mobile-btn-mt' : '' }}">{{ __('messages.common.cancel') }}</a>
-        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+        {{ Form::button(__('messages.common.submit'), [
+            'type' => 'submit',
+            'class' => 'btn btn-primary btn-sm form-btn',
+            'id' => 'btnSave',
+            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+        ]) }}
 
     </div>
 </div>

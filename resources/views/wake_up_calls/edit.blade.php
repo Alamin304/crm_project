@@ -15,7 +15,8 @@
             <h1>{{ __('messages.wake_up_calls.edit') }}</h1>
             <div class="section-header-breadcrumb float-right"></div>
             <div class="float-right">
-                <a href="{{ route('wake_up_calls.index') }}" class="btn btn-primary form-btn">{{ __('messages.wake_up_calls.list') }}</a>
+                <a href="{{ route('wake_up_calls.index') }}"
+                    class="btn btn-primary form-btn">{{ __('messages.wake_up_calls.list') }}</a>
             </div>
         </div>
         <div class="section-body">
@@ -49,7 +50,12 @@
                                 </div>
                             </div>
                             <div class="text-right mt-3 mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}

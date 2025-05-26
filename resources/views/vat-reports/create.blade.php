@@ -30,7 +30,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 {{ Form::label('period', 'Period') }}
-                                {{ Form::select('period', ['q1' => 'Q1', 'q2' => 'Q2', 'q3' => 'Q3', 'q4' => 'Q4'], old('period'), ['class' => 'form-control select2','id'=>"period_select", 'placeholder' => 'Select a period']) }}
+                                {{ Form::select('period', ['q1' => 'Q1', 'q2' => 'Q2', 'q3' => 'Q3', 'q4' => 'Q4'], old('period'), ['class' => 'form-control select2', 'id' => 'period_select', 'placeholder' => 'Select a period']) }}
                             </div>
                         </div>
 
@@ -75,7 +75,12 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
                     </div>
                     {{ Form::close() }}
 

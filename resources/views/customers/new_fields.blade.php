@@ -16,7 +16,7 @@
             <div class="form-group col-md-3 mb-0 ">
                 {{ Form::label('status', __('messages.customer.inactive')) }} <br>
                 <div class="form-check form-switch" style="padding:0px;">
-                    {{ Form::checkbox('inactive', 1, $customer->inactive??false, ['class' => 'form-check-input ml-4', 'id' => 'statusSwitch']) }}
+                    {{ Form::checkbox('inactive', 1, $customer->inactive ?? false, ['class' => 'form-check-input ml-4', 'id' => 'statusSwitch']) }}
                 </div>
             </div>
             <div class="form-group col-md-3 col-sm-12">
@@ -183,7 +183,12 @@
 
     <div class="row" style="float:right;">
         <div class="form-group col-sm-12">
-            {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+            {{ Form::button(__('messages.common.submit'), [
+                'type' => 'submit',
+                'class' => 'btn btn-primary btn-sm form-btn',
+                'id' => 'btnSave',
+                'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+            ]) }}
         </div>
     </div>
 </div>

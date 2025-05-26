@@ -69,7 +69,7 @@
                 {{ __('messages.member.send_welcome_email') }}</label>
         </div>
 
-        <input type="checkbox"  name="otp_enabled" {{ $member->otp_enabled == 1 ? 'checked' : '' }}>
+        <input type="checkbox" name="otp_enabled" {{ $member->otp_enabled == 1 ? 'checked' : '' }}>
         <label>
             OTP Enabled</label>
     </div>
@@ -116,7 +116,12 @@
 </div>
 <div class="row justify-content-end">
     <div class="form-group col-md-1 mr-5 ">
-        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+        {{ Form::button(__('messages.common.submit'), [
+            'type' => 'submit',
+            'class' => 'btn btn-primary btn-sm form-btn',
+            'id' => 'btnSave',
+            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+        ]) }}
         {{-- <a href="{{ route('members.index') }}"
            class="btn btn-secondary text-dark {{ app()->getLocale() === 'tr' ? 'mobile-btn-mt' : '' }}">{{ __('messages.common.cancel') }}</a> --}}
     </div>

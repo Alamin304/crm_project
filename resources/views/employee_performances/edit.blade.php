@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_css')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
@@ -262,22 +262,22 @@
                                 <i class="fa fa-plus"></i> {{ __('messages.employee_performances.add_plan') }}
                             </button>
                         </div> --}}
-                        <div class="modal-footer">
-                            <button type="submit"
-                                class="btn btn-primary">{{ __('messages.employee_performances.update') }}</button>
+                            <div class="modal-footer">
+                                <button type="submit"
+                                    class="btn btn-primary">{{ __('messages.employee_performances.update') }}</button>
+                            </div>
+                            {{ Form::close() }}
                         </div>
-                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection
 
 
 
 @section('page_scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ mix('assets/js/custom/custom-datatable.js') }}"></script>

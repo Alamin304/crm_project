@@ -56,7 +56,7 @@
 
                                 <div class="form-group col-sm-12 ">
                                     {{ Form::label('commission', __('messages.commissions.name') . ':') }}
-                                    {{ Form::number('commission', null, ['class' => 'form-control','required','id' => 'commision']) }}
+                                    {{ Form::number('commission', null, ['class' => 'form-control', 'required', 'id' => 'commision']) }}
                                 </div>
 
                                 <div class="form-group col-sm-12 mb-0">
@@ -65,7 +65,12 @@
                                 </div>
                             </div>
                             <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}

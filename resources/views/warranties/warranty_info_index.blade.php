@@ -25,17 +25,17 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('warranties.info.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('warranties.info.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('warranties.info.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('warranties.info.export', ['format' => 'print']) }}"
                             target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                            {{ __('messages.common.print') }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>

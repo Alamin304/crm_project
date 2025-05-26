@@ -25,27 +25,32 @@
             <div class="card">
                 <div class="card-body">
 
-                        {{ Form::open(['id' => 'editForm']) }}
-                        {{ Form::hidden('id', $category->id, ['id' => 'category_id']) }}
+                    {{ Form::open(['id' => 'editForm']) }}
+                    {{ Form::hidden('id', $category->id, ['id' => 'category_id']) }}
 
-                            <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
-                            <div class="row">
-                                <div class="form-group col-sm-12">
-                                    {{ Form::label('title', __('messages.assets.category_title') . ':') }}<span
-                                        class="required">*</span>
-                                    {{ Form::text('name', $category->name, ['class' => 'form-control', 'required', 'id' => 'categoryTitle_edit', 'autocomplete' => 'off']) }}
-                                </div>
-                                <div class="form-group col-sm-12 mb-0">
-                                    {{ Form::label('description', __('messages.common.description') . ':') }}
-                                    {{ Form::textarea('description', $category->description, ['class' => 'form-control summernote-simple', 'id' => 'editCategoryDescription']) }}
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                    <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            {{ Form::label('title', __('messages.assets.category_title') . ':') }}<span
+                                class="required">*</span>
+                            {{ Form::text('name', $category->name, ['class' => 'form-control', 'required', 'id' => 'categoryTitle_edit', 'autocomplete' => 'off']) }}
+                        </div>
+                        <div class="form-group col-sm-12 mb-0">
+                            {{ Form::label('description', __('messages.common.description') . ':') }}
+                            {{ Form::textarea('description', $category->description, ['class' => 'form-control summernote-simple', 'id' => 'editCategoryDescription']) }}
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
-                            </div>
+                    </div>
 
-                        {{ Form::close() }}
+                    {{ Form::close() }}
 
                 </div>
             </div>

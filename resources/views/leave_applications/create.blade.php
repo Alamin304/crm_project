@@ -141,7 +141,12 @@
                             </div>
                         </div>
                         <div class="text-right mr-3">
-                            {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                            {{ Form::button(__('messages.common.submit'), [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary btn-sm form-btn',
+                                'id' => 'btnSave',
+                                'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                            ]) }}
                         </div>
                     </div>
                     {{ Form::close() }}
@@ -307,7 +312,7 @@
                 if (employee) {
                     var paidLeaveAmount = totalLeaves * (employee.basic_salary / 30);
 
-                    console.log(totalLeaves , (employee.basic_salary / 30));
+                    console.log(totalLeaves, (employee.basic_salary / 30));
 
 
                     $('#paid_leave_amount').val(paidLeaveAmount.toFixed(2));

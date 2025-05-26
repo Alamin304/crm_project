@@ -35,7 +35,12 @@
                                 </div>
                             </div>
                             <div class="text-right mt-3 mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}
@@ -94,9 +99,12 @@
         $(document).ready(function() {
             $('#editBedDescription').summernote({
                 height: 150,
-                toolbar: [['style', ['bold', 'italic', 'underline', 'clear']],
-                          ['para', ['ul', 'ol', 'paragraph']],
-                          ['insert', ['link']], ['view', ['codeview']]]
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link']],
+                    ['view', ['codeview']]
+                ]
             });
         });
     </script>

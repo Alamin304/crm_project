@@ -5,8 +5,7 @@
 @endsection
 
 @section('page_css')
-
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
 
     <style>
@@ -36,7 +35,8 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('name', __('messages.job_categories.name') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('name', __('messages.job_categories.name') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('name', null, ['class' => 'form-control', 'required', 'id' => 'jobCategoryName', 'autocomplete' => 'off']) }}
                                 </div>
 
@@ -46,24 +46,27 @@
                                 </div>
 
                                 <div class="form-group col-sm-6">
-                                    {{ Form::label('start_date', __('messages.job_categories.start_date').':') }}<span class="required">*</span>
+                                    {{ Form::label('start_date', __('messages.job_categories.start_date') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::date('start_date', null, [
                                         'class' => 'form-control',
                                         'required',
-                                        'id' => 'startDate'
+                                        'id' => 'startDate',
                                     ]) }}
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    {{ Form::label('end_date', __('messages.job_categories.end_date').':') }}<span class="required">*</span>
+                                    {{ Form::label('end_date', __('messages.job_categories.end_date') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::date('end_date', null, [
                                         'class' => 'form-control',
                                         'required',
-                                        'id' => 'endDate'
+                                        'id' => 'endDate',
                                     ]) }}
                                 </div>
 
                                 <div class="form-group col-sm-12 mt-3">
-                                    {{ Form::label('status', __('messages.job_categories.status') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('status', __('messages.job_categories.status') . ':') }}<span
+                                        class="required">*</span>
                                     <div class="form-check">
                                         {{ Form::radio('status', 1, true, ['class' => 'form-check-input', 'id' => 'active']) }}
                                         {{ Form::label('active', 'Active', ['class' => 'form-check-label']) }}
@@ -74,12 +77,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-right mt-3 mr-1">
+                            <div class="text-right mr-1">
                                 {{ Form::button(__('messages.common.submit'), [
                                     'type' => 'submit',
-                                    'class' => 'btn btn-primary',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
                                     'id' => 'btnSave',
-                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}
                             </div>
                         </div>
@@ -101,7 +104,7 @@
     <script>
         let jobCategoryCreateUrl = "{{ route('job-categories.store') }}";
 
-        $(function () {
+        $(function() {
             // Datepicker init
             $('#startDate').datepicker({
                 format: 'yyyy-mm-dd',
@@ -109,7 +112,7 @@
                 todayHighlight: true,
                 orientation: 'bottom auto',
                 zIndexOffset: 9999
-            }).on('changeDate', function (selected) {
+            }).on('changeDate', function(selected) {
                 let minDate = new Date(selected.date.valueOf());
                 $('#endDate').datepicker('setStartDate', minDate);
             });
@@ -134,11 +137,12 @@
             });
         });
 
-        $(document).on('submit', '#addNewJobCategoryForm', function (event) {
+        $(document).on('submit', '#addNewJobCategoryForm', function(event) {
             event.preventDefault();
             processingBtn('#addNewJobCategoryForm', '#btnSave', 'loading');
 
-            let plainTextDescription = $('<div />').html($('#jobCategoryDescription').summernote('code')).text().trim();
+            let plainTextDescription = $('<div />').html($('#jobCategoryDescription').summernote('code')).text()
+                .trim();
 
             let formData = {
                 name: $('#jobCategoryName').val(),
@@ -159,16 +163,17 @@
                 url: jobCategoryCreateUrl,
                 type: 'POST',
                 data: formData,
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         window.location.href = "{{ route('job-categories.index') }}";
                     }
                 },
-                error: function (result) {
-                    displayErrorMessage(result.responseJSON.message || 'An error occurred while saving the job category.');
+                error: function(result) {
+                    displayErrorMessage(result.responseJSON.message ||
+                        'An error occurred while saving the job category.');
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#addNewJobCategoryForm', '#btnSave');
                 }
             });

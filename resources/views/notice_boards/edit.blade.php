@@ -90,13 +90,21 @@
                                 </div>
                             </div>
 
-                            <div class="text-right mt-3">
+                            {{-- <div class="text-right mt-3">
                                 {{ Form::button(__('messages.common.submit'), [
                                     'type' => 'submit',
                                     'class' => 'btn btn-primary',
                                     'id' => 'btnSave',
                                     'data-loading-text' =>
                                         "<span class='spinner-border spinner-border-sm'></span> " . __('messages.common.processing') . '...',
+                                ]) }}
+                            </div> --}}
+                            <div class="text-right mt-3 mr-1">
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn rounded-pill',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                                 ]) }}
                             </div>
                         </div>

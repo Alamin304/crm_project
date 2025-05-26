@@ -9,78 +9,78 @@
 @endsection
 <style>
     /* Modal styles */
-.modal-backdrop {
-    display: none !important;
-}
+    .modal-backdrop {
+        display: none !important;
+    }
 
-body.modal-open {
-    overflow: auto !important;
-    padding-right: 0 !important;
-}
+    body.modal-open {
+        overflow: auto !important;
+        padding-right: 0 !important;
+    }
 
-.modal {
-    background-color: rgba(0, 0, 0, 0.5);
-}
+    .modal {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 
-.modal-dialog {
-    margin-top: 10vh;
-    z-index: 2050 !important;
-}
+    .modal-dialog {
+        margin-top: 10vh;
+        z-index: 2050 !important;
+    }
 
-.modal-content {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(0, 0, 0, 0.2);
-}
+    .modal-content {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+    }
 
-.modal input,
-.modal button,
-.modal a {
-    position: relative;
-    z-index: 2060 !important;
-}
+    .modal input,
+    .modal button,
+    .modal a {
+        position: relative;
+        z-index: 2060 !important;
+    }
 
-/* Action button styles */
-.action-btn {
-    width: 32px !important;
-    height: 32px !important;
-    padding: 0 !important;
-    line-height: 32px !important;
-    text-align: center !important;
-    border-radius: 4px !important;
-    margin: 2px !important;
-    float: right !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
+    /* Action button styles */
+    .action-btn {
+        width: 32px !important;
+        height: 32px !important;
+        padding: 0 !important;
+        line-height: 32px !important;
+        text-align: center !important;
+        border-radius: 4px !important;
+        margin: 2px !important;
+        float: right !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
 
-.action-btn i {
-    font-size: 14px !important;
-    line-height: 1 !important;
-    margin: 0 !important;
-}
+    .action-btn i {
+        font-size: 14px !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+    }
 
-/* Specific button colors */
-.btn-warning.action-btn {
-    background-color: #f0ad4e !important;
-    border-color: #eea236 !important;
-}
+    /* Specific button colors */
+    .btn-warning.action-btn {
+        background-color: #f0ad4e !important;
+        border-color: #eea236 !important;
+    }
 
-.btn-info.action-btn {
-    background-color: #5bc0de !important;
-    border-color: #46b8da !important;
-}
+    .btn-info.action-btn {
+        background-color: #5bc0de !important;
+        border-color: #46b8da !important;
+    }
 
-.btn-danger.action-btn {
-    background-color: #d9534f !important;
-    border-color: #d43f3a !important;
-}
+    .btn-danger.action-btn {
+        background-color: #d9534f !important;
+        border-color: #d43f3a !important;
+    }
 
-/* Button hover effects */
-.action-btn:hover {
-    opacity: 0.85 !important;
-}
-    </style>
+    /* Button hover effects */
+    .action-btn:hover {
+        opacity: 0.85 !important;
+    }
+</style>
 @section('content')
     {{-- Success Message --}}
     @if (session('success'))
@@ -137,22 +137,23 @@ body.modal-open {
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'print']) }}" target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                        <a class="dropdown-item" href="{{ route('currencies.export', ['format' => 'print']) }}"
+                            target="_blank">
+                            {{ __('messages.common.print') }}
                         </a>
                         <div class="dropdown-divider"></div>
                     </div>
                 </div>
-                                <button type="button" class="btn btn-success btn-sm form-btn mr-2" id="currencyImportButton">
-                    <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                <button type="button" class="btn btn-primary btn-sm form-btn mr-2" id="currencyImportButton">
+                    {{ __('messages.common.import') }}
                 </button>
                 <a href="{{ route('currencies.create') }}" class="btn btn-primary form-btn">
                     {{ __('messages.currencies.add') }}
@@ -169,7 +170,8 @@ body.modal-open {
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="currencyImportModalLabel">{{ __('Import Currencies via CSV') }}</h5>
+                            <h5 class="modal-title" id="currencyImportModalLabel">{{ __('Import Currencies via CSV') }}
+                            </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -189,7 +191,7 @@ body.modal-open {
 
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">
-                                <i class="fas fa-file-import mr-1"></i> {{ __('Import') }}
+                                {{ __('messages.common.import') }}
                             </button>
                             <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">{{ __('Cancel') }}</button>
@@ -302,7 +304,7 @@ body.modal-open {
                         return renderActionButtons(row.id);
                     },
                     name: 'id',
-                    width:'200px'
+                    width: '200px'
                 }
             ],
             responsive: true // Enable responsive features

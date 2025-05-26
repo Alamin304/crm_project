@@ -31,7 +31,8 @@
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    {{ Form::label('name', __('messages.positions.name') . ':') }}<span class="required">*</span>
+                                    {{ Form::label('name', __('messages.positions.name') . ':') }}<span
+                                        class="required">*</span>
                                     {{ Form::text('name', $position->name, ['class' => 'form-control', 'required', 'id' => 'position_name', 'autocomplete' => 'off']) }}
                                 </div>
                                 <div class="form-group col-sm-12 mb-0">
@@ -51,7 +52,12 @@
                                 </div>
                             </div>
                             <div class="text-right mt-3 mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}
@@ -74,7 +80,7 @@
     <script>
         let updateUrl = "{{ route('positions.update', $position->id) }}";
 
-        $(document).on('submit', '#editForm', function (event) {
+        $(document).on('submit', '#editForm', function(event) {
             event.preventDefault();
             processingBtn('#editForm', '#btnSave', 'loading');
 
@@ -93,22 +99,22 @@
                 url: updateUrl,
                 type: 'PUT',
                 data: $(this).serialize(),
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         window.location.href = "{{ route('positions.index') }}";
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message);
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#editForm', '#btnSave');
                 },
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#editPositionDetails').summernote({
                 height: 150,
                 toolbar: [

@@ -5,8 +5,8 @@
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -20,21 +20,21 @@
             <div class="float-right d-flex">
                 <div class="dropdown export-dropdown mr-2">
                     <button class="btn btn-primary dropdown-toggle form-btn" type="button" id="exportDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ __('messages.plans.export') }}
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportDropdown">
                         <a class="dropdown-item" href="{{ route('plans.export', ['format' => 'pdf']) }}">
-                            <i class="fas fa-file-pdf text-danger mr-2"></i> {{ __('PDF') }}
+                            {{ __('messages.common.pdf') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('plans.export', ['format' => 'csv']) }}">
-                            <i class="fas fa-file-csv text-success mr-2"></i> {{ __('CSV') }}
+                            {{ __('messages.common.csv') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('plans.export', ['format' => 'xlsx']) }}">
-                            <i class="fas fa-file-excel text-primary mr-2"></i> {{ __('Excel') }}
+                            {{ __('messages.common.excel') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('plans.export', ['format' => 'print']) }}" target="_blank">
-                            <i class="fas fa-print text-info mr-2"></i> {{ __('Print') }}
+                            {{ __('messages.common.print') }}
                         </a>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
 @section('scripts')
     <script>
         let planCreateUrl = "{{ route('plans.store') }}";
-        $(document).on('submit', '#addNewForm', function (event) {
+        $(document).on('submit', '#addNewForm', function(event) {
             event.preventDefault();
             processingBtn('#addNewForm', '#btnSave', 'loading');
 
@@ -72,17 +72,17 @@
                 url: planCreateUrl,
                 type: 'POST',
                 data: $(this).serialize(),
-                success: function (result) {
+                success: function(result) {
                     if (result.success) {
                         displaySuccessMessage(result.message);
                         $('#addModal').modal('hide');
                         $('#planTable').DataTable().ajax.reload(null, false);
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     displayErrorMessage(result.responseJSON.message);
                 },
-                complete: function () {
+                complete: function() {
                     processingBtn('#addNewForm', '#btnSave');
                 },
             });
@@ -106,16 +106,39 @@
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "All"]
             ],
-            columns: [
-                {data: 'plan_name', name: 'plan_name', width: '10%'},
-                {data: 'position', name: 'position', width: '10%'},
-                {data: 'working_form', name: 'working_form', width: '10%'},
-                {data: 'department', name: 'department', width: '10%'},
-                {data: 'recruited_quantity', name: 'recruited_quantity', width: '5%'},
-                {data: 'is_active', name: 'is_active', width: '10%'},
+            columns: [{
+                    data: 'plan_name',
+                    name: 'plan_name',
+                    width: '10%'
+                },
+                {
+                    data: 'position',
+                    name: 'position',
+                    width: '10%'
+                },
+                {
+                    data: 'working_form',
+                    name: 'working_form',
+                    width: '10%'
+                },
+                {
+                    data: 'department',
+                    name: 'department',
+                    width: '10%'
+                },
+                {
+                    data: 'recruited_quantity',
+                    name: 'recruited_quantity',
+                    width: '5%'
+                },
+                {
+                    data: 'is_active',
+                    name: 'is_active',
+                    width: '10%'
+                },
 
                 {
-                    data: function (row) {
+                    data: function(row) {
                         return renderActionButtons(row.id);
                     },
                     name: 'id',
@@ -124,10 +147,12 @@
                 }
             ],
             responsive: true,
-            order: [[0, 'desc']]
+            order: [
+                [0, 'desc']
+            ]
         });
 
-        $(document).on('click', '.delete-btn', function (event) {
+        $(document).on('click', '.delete-btn', function(event) {
             let planId = $(event.currentTarget).data('id');
             deleteItem("{{ route('plans.destroy', ':id') }}".replace(':id', planId),
                 '#planTable', "{{ __('messages.plans.plans') }}");

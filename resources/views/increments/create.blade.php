@@ -29,12 +29,11 @@
                     <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            {{ Form::label('approved_date', __('messages.common.date') ) }}<span
-                                class="required">*</span>
+                            {{ Form::label('approved_date', __('messages.common.date')) }}<span class="required">*</span>
                             {{ Form::date('date', null, ['class' => 'form-control', 'required']) }}
                         </div>
                         <div class="form-group col-sm-12">
-                            {{ Form::label('employee_id', __('messages.attendances.select_iqama') ) }}<span
+                            {{ Form::label('employee_id', __('messages.attendances.select_iqama')) }}<span
                                 class="required">*</span>
                             {{ Form::select(
                                 'employee_id',
@@ -68,26 +67,31 @@
                             </div>
                         </div>
                         <div class="form-group col-sm-12 col-md-6">
-                            {{ Form::label('title', __('messages.increments.increment_name') ) }}<span class="required">*</span>
+                            {{ Form::label('title', __('messages.increments.increment_name')) }}<span
+                                class="required">*</span>
                             {{ Form::text('name', null, ['class' => 'form-control', 'required', 'id' => 'bonus_name', 'autocomplete' => 'off']) }}
                         </div>
                         <div class="form-group col-sm-12 col-md-6">
                             {{ Form::label('hourly_rate', __('messages.branches.name')) }}
-                            {{ Form::select('branch_id', $usersBranches ?? [], null, ['class' => 'form-control ','id' => 'from_branch','readonly']) }}
+                            {{ Form::select('branch_id', $usersBranches ?? [], null, ['class' => 'form-control ', 'id' => 'from_branch', 'readonly']) }}
                         </div>
-                         <div class="form-group col-sm-12">
-                            {{ Form::label('title', "Amount" ) }}<span
-                                class="required">*</span>
+                        <div class="form-group col-sm-12">
+                            {{ Form::label('title', 'Amount') }}<span class="required">*</span>
                             {{ Form::number('amount', null, ['class' => 'form-control', 'required', 'autocomplete' => 'off']) }}
                         </div>
 
                         <div class="form-group col-sm-12 mb-0">
-                            {{ Form::label('description', __('messages.bonuses.description') ) }}
+                            {{ Form::label('description', __('messages.bonuses.description')) }}
                             {{ Form::textarea('description', null, ['class' => 'form-control summernote-simple', 'id' => 'createDescription']) }}
                         </div>
                     </div>
                     <div class="text-right mr-1">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
 

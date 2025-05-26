@@ -188,12 +188,20 @@
                         Add Goal</button>
 
 
-                    <div class="text-right mt-3">
+                    {{-- <div class="text-right mt-3">
                         <button type="submit" class="btn btn-primary" id="btnSave">
                             {{ __('messages.common.submit') }}
                         </button>
-                    </div>
+                    </div> --}}
+                    <div class="text-right mr-1">
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
+                    </div>
                 </div>
             </div>
         </form>
@@ -202,7 +210,7 @@
 
 @section('scripts')
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             let devIndex = 1;
             let goalIndex = 1;
 
@@ -223,7 +231,7 @@
 
             // Add/Remove Development Plan
             const developmentContainer = document.getElementById('development-plan-container');
-            document.getElementById('add-development').addEventListener('click', function () {
+            document.getElementById('add-development').addEventListener('click', function() {
                 const newDev = document.createElement('div');
                 newDev.classList.add('row', 'mb-3', 'development-item');
                 newDev.innerHTML = `
@@ -240,7 +248,7 @@
                 devIndex++;
             });
 
-            developmentContainer.addEventListener('click', function (e) {
+            developmentContainer.addEventListener('click', function(e) {
                 if (e.target.closest('.remove-development')) {
                     e.target.closest('.development-item').remove();
                 }
@@ -248,7 +256,7 @@
 
             // Add/Remove Goals
             const goalsContainer = document.getElementById('goals-container');
-            document.getElementById('add-goal').addEventListener('click', function () {
+            document.getElementById('add-goal').addEventListener('click', function() {
                 const newGoal = document.createElement('div');
                 newGoal.classList.add('row', 'mb-3', 'goal-item');
                 newGoal.innerHTML = `
@@ -262,14 +270,14 @@
                 goalIndex++;
             });
 
-            goalsContainer.addEventListener('click', function (e) {
+            goalsContainer.addEventListener('click', function(e) {
                 if (e.target.closest('.remove-goal')) {
                     e.target.closest('.goal-item').remove();
                 }
             });
 
             // AJAX form submission
-            $('#addNewPerformanceForm').on('submit', function (e) {
+            $('#addNewPerformanceForm').on('submit', function(e) {
                 e.preventDefault();
                 var btnSave = $('#btnSave');
                 btnSave.prop('disabled', true);
@@ -279,17 +287,18 @@
                     url: $(this).attr('action'),
                     type: 'POST',
                     data: $(this).serialize(),
-                    success: function (response) {
+                    success: function(response) {
                         if (response.redirect) {
                             window.location.href = response.redirect;
                         } else {
                             displaySuccessMessage(response.message);
-                            setTimeout(function () {
-                                window.location.href = "{{ route('employee_performances.index') }}";
+                            setTimeout(function() {
+                                window.location.href =
+                                    "{{ route('employee_performances.index') }}";
                             }, 1500);
                         }
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         btnSave.prop('disabled', false);
                         btnSave.html('{{ __('messages.common.submit') }}');
 

@@ -70,7 +70,12 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row justify-content-end mr-3 mt-2">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                     </div>
@@ -257,7 +262,8 @@
 
                         var selected = '';
                         if (tmpServiceId && tmpServiceId == service.id) {
-                            serviceSelect.append('<option value="' + service.id + '" selected>' + service.title +
+                            serviceSelect.append('<option value="' + service.id + '" selected>' + service
+                                .title +
                                 '</option>');
                         } else {
                             serviceSelect.append('<option value="' + service.id + '">' + service.title +
@@ -362,7 +368,7 @@
                 });
                 if (selectedCustomer) {
                     $("#customer_code").val(selectedCustomer.code);
-                    $("#vendor_code").val(selectedCustomer.vendor_code??'');
+                    $("#vendor_code").val(selectedCustomer.vendor_code ?? '');
                 }
             });
 

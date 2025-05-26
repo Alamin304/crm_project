@@ -83,7 +83,7 @@
                             {{ Form::select('account_id', $accounts->pluck('account_name', 'id'), null, [
                                 'class' => 'form-control',
                                 'id' => 'account_select',
-
+                            
                                 'placeholder' => 'Select an Account',
                             ]) }}
                         </div>
@@ -165,7 +165,12 @@
                         </div>
                     </div>
                     <div class="text-right mr-1">
-                        {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                        {{ Form::button(__('messages.common.submit'), [
+                            'type' => 'submit',
+                            'class' => 'btn btn-primary btn-sm form-btn',
+                            'id' => 'btnSave',
+                            'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                        ]) }}
 
                     </div>
                 </div>

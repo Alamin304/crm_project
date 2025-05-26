@@ -33,7 +33,8 @@
                 </div>
             </div>
             <div class="float-right">
-                <a href="{{ route('rentals.index') }}" class="btn btn-primary form-btn">{{ __('messages.rentals.list') }}</a>
+                <a href="{{ route('rentals.index') }}"
+                    class="btn btn-primary form-btn">{{ __('messages.rentals.list') }}</a>
 
             </div>
         </div>
@@ -69,7 +70,7 @@
                                 <div class="form-group col-sm-12">
                                     {{ Form::label('type', __('messages.rentals.amount') . ':') }}<span
                                         class="required">*</span>
-                                    {{ Form::number('amount', $rental->amount, ['class' => 'form-control','id'=>'amount', 'required', 'required']) }}
+                                    {{ Form::number('amount', $rental->amount, ['class' => 'form-control', 'id' => 'amount', 'required', 'required']) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
@@ -81,13 +82,13 @@
                                 <div class="form-group col-sm-12">
                                     {{ Form::label('type', __('messages.rentals.tax_amount') . ':') }}<span
                                         class="required">*</span>
-                                    {{ Form::number('tax_amount',  $rental->tax_amount, ['class' => 'form-control', 'id' => 'tax_amount', 'required', 'readonly']) }}
+                                    {{ Form::number('tax_amount', $rental->tax_amount, ['class' => 'form-control', 'id' => 'tax_amount', 'required', 'readonly']) }}
                                 </div>
 
                                 <div class="form-group col-sm-12">
                                     {{ Form::label('type', __('messages.rentals.rent_including_tax') . ':') }}<span
                                         class="required">*</span>
-                                    {{ Form::number('total_rent_amount',  $rental->total_rent_amount, ['class' => 'form-control', 'id' => 'rent_including_tax', 'required', 'readonly']) }}
+                                    {{ Form::number('total_rent_amount', $rental->total_rent_amount, ['class' => 'form-control', 'id' => 'rent_including_tax', 'required', 'readonly']) }}
                                 </div>
                                 <div class="form-group col-sm-12 mb-0">
                                     {{ Form::label('description', __('messages.rentals.description') . ':') }}
@@ -96,7 +97,12 @@
 
                             </div>
                             <div class="text-right mr-1">
-                                {{ Form::button(__('messages.common.submit'), ['type' => 'submit', 'class' => 'btn btn-primary', 'id' => 'btnSave', 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing..."]) }}
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                         {{ Form::close() }}
