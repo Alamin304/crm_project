@@ -243,11 +243,6 @@
 
             return `
         <div style="float: right;">
-            <a title="{{ __('messages.common.delete') }}" href="#"
-               class="btn btn-danger action-btn has-icon delete-btn"
-               data-id="${id}" style="float:right;margin:2px;">
-                <i class="fas fa-trash"></i>
-            </a>
             <a title="{{ __('messages.common.view') }}" href="${viewUrl}"
                class="btn btn-info action-btn has-icon view-btn"
                style="float:right;margin:2px;">
@@ -257,6 +252,11 @@
                class="btn btn-warning action-btn has-icon edit-btn"
                style="float:right;margin:2px;">
                 <i class="fas fa-edit"></i>
+            </a>
+               <a title="{{ __('messages.common.delete') }}" href="#"
+               class="btn btn-danger action-btn has-icon delete-btn"
+               data-id="${id}" style="float:right;margin:2px;">
+                <i class="fas fa-trash"></i>
             </a>
         </div>
     `;

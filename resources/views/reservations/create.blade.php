@@ -104,8 +104,17 @@
                                 {{ Form::select('status', ['pending' => 'Pending', 'confirmed' => 'Confirmed', 'canceled' => 'Canceled', 'completed' => 'Completed'], 'pending', ['class' => 'form-control select2']) }}
                             </div>
 
-                            <div class="text-right mt-4">
+                            {{-- <div class="text-right mt-4">
                                 {{ Form::submit(__('Submit'), ['class' => 'btn btn-primary', 'id' => 'btnSave']) }}
+                            </div> --}}
+
+                            <div class="text-right mt-3 mr-1">
+                                {{ Form::button(__('messages.common.submit'), [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-primary btn-sm form-btn',
+                                    'id' => 'btnSave',
+                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                                ]) }}
                             </div>
                         </div>
                     </div>

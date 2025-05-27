@@ -3254,7 +3254,7 @@ return [
         'select_position' => 'Select Position',
         'select_working_form' => 'Select Working Form',
         'select_department' => 'Select Department',
-        'select_manager' => 'Select Manager',
+        'select_managers' => 'Select Managers',
         'select_followers' => 'Select Followers',
         'select_gender' => 'Select Gender',
         'is_active' => 'Is Active',
