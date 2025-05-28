@@ -3299,11 +3299,31 @@ return [
             'completed' => 'Completed',
         ],
         'status' => 'Status',
-
-
     ],
 
-
+    'property_owners' => [
+        'property_owners' => 'Property Owners',
+        'add' => 'Add',
+        'list' => 'List',
+        'edit' => 'Edit Property Owner',
+        'view' => 'View Property Owner',
+        'name' => 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'address' => 'Address',
+        'code' => 'Code',
+        'image' => 'Image',
+        'status' => 'Status',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
+        'delete' => 'Property Owner deleted successfully.',
+        'saved' => 'Property Owner saved successfully.',
+        'updated' => 'Property Owner updated successfully.',
+        'export' => 'Export',
+        'active' => 'Active',
+        'inactive' => 'Inactive',
+        'status_updated' => 'Property Owner status updated successfully.',
+    ],
 
 
 ];

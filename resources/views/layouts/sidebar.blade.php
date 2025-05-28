@@ -1091,6 +1091,12 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('property-owners*') ? 'active' : '' }}">
+            <a href="{{ route('property_owners.index') }}">
+                <i class="fas fa-user-tie fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.property_owners.property_owners') }}</span>
+            </a>
+        </li>
 
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])

@@ -82,6 +82,7 @@ use App\Http\Controllers\OrgChartController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\PropertyOwnerController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TrainingProgramController;
@@ -1246,6 +1247,19 @@ Route::group([], function () {
     Route::get('reservations/export/{format}', [ReservationController::class, 'export'])->name('reservations.export');
     Route::get('reservations/download-sample-csv', [ReservationController::class, 'downloadSampleCsv'])->name('reservations.sample-csv');
     Route::post('reservations/import', [ReservationController::class, 'import'])->name('reservations.import');
+});
+
+Route::group([], function () {
+    Route::get('property-owners', [PropertyOwnerController::class, 'index'])->name('property_owners.index');
+    Route::get('property-owners/create', [PropertyOwnerController::class, 'create'])->name('property_owners.create');
+    Route::post('property-owners', [PropertyOwnerController::class, 'store'])->name('property_owners.store');
+    Route::get('property-owners/{propertyOwner}/view', [PropertyOwnerController::class, 'show'])->name('property_owners.view');
+    Route::get('property-owners/{propertyOwner}/edit', [PropertyOwnerController::class, 'edit'])->name('property_owners.edit');
+    Route::put('property-owners/{propertyOwner}', [PropertyOwnerController::class, 'update'])->name('property_owners.update');
+    Route::delete('property-owners/{propertyOwner}', [PropertyOwnerController::class, 'destroy'])->name('property_owners.destroy');
+    Route::get('property-owners/export/{format}', [PropertyOwnerController::class, 'export'])->name('property_owners.export');
+    Route::put('property-owners/{propertyOwner}/update-status', [PropertyOwnerController::class, 'updateStatus'])->name('property_owners.update-status');
+
 });
 Route::get('article-search', function () {
     return view('articles.search');
