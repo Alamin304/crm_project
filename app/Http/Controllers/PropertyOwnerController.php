@@ -9,11 +9,10 @@ use App\Models\PropertyOwner;
 use App\Queries\PropertyOwnerDataTable;
 use App\Repositories\PropertyOwnerRepository;
 use Illuminate\Http\Request;
-use DataTables;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class PropertyOwnerController extends AppBaseController
 {
@@ -27,7 +26,7 @@ class PropertyOwnerController extends AppBaseController
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return FacadesDataTables::of((new PropertyOwnerDataTable())->get())
+            return DataTables::of((new PropertyOwnerDataTable())->get())
                 ->addIndexColumn()
                 ->make(true);
         }

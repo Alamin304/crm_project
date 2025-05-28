@@ -1098,6 +1098,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('real-estate-agents*') ? 'active' : '' }}">
+            <a href="{{ route('real_estate_agents.index') }}">
+                <i class="fas fa-building-user fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.real_estate_agents.real_estate_agents') }}</span>
+            </a>
+        </li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

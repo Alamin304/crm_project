@@ -83,6 +83,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PropertyOwnerController;
+use App\Http\Controllers\RealEstateAgentController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TrainingProgramController;
@@ -1259,7 +1260,18 @@ Route::group([], function () {
     Route::delete('property-owners/{propertyOwner}', [PropertyOwnerController::class, 'destroy'])->name('property_owners.destroy');
     Route::get('property-owners/export/{format}', [PropertyOwnerController::class, 'export'])->name('property_owners.export');
     Route::put('property-owners/{propertyOwner}/update-status', [PropertyOwnerController::class, 'updateStatus'])->name('property_owners.update-status');
-
+});
+Route::group([], function () {
+    Route::get('real-estate-agents', [RealEstateAgentController::class, 'index'])->name('real_estate_agents.index');
+    Route::get('real-estate-agents/create', [RealEstateAgentController::class, 'create'])->name('real_estate_agents.create');
+    Route::post('real-estate-agents', [RealEstateAgentController::class, 'store'])->name('real_estate_agents.store');
+    Route::get('real-estate-agents/{realEstateAgent}/view', [RealEstateAgentController::class, 'show'])->name('real_estate_agents.view');
+    Route::get('real-estate-agents/{realEstateAgent}/edit', [RealEstateAgentController::class, 'edit'])->name('real_estate_agents.edit');
+    Route::put('real-estate-agents/{realEstateAgent}', [RealEstateAgentController::class, 'update'])->name('real_estate_agents.update');
+    Route::delete('real-estate-agents/{realEstateAgent}', [RealEstateAgentController::class, 'destroy'])->name('real_estate_agents.destroy');
+    Route::get('real-estate-agents/export/{format}', [RealEstateAgentController::class, 'export'])->name('real_estate_agents.export');
+    Route::put('real-estate-agents/{realEstateAgent}/update-status', [RealEstateAgentController::class, 'updateStatus'])->name('real_estate_agents.update-status');
+    Route::get('/{realEstateAgent}/download-attachment', [RealEstateAgentController::class, 'downloadAttachment'])->name('download_attachment');
 });
 Route::get('article-search', function () {
     return view('articles.search');
