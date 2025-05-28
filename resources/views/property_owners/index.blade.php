@@ -322,11 +322,11 @@
                     data: 'is_active',
                     name: 'is_active',
                     width: '10%',
-                    render: function(data) {
+                    render: function(data, type, row) {
                         let checked = data ? 'checked' : '';
                         return `
                             <label class="switch">
-                                <input type="checkbox" class="status-toggle" ${checked} data-id="${data.id}">
+                                <input type="checkbox" class="status-toggle" ${checked} data-id="${row.id}">
                                 <span class="slider"></span>
                             </label>
                         `;
@@ -364,7 +364,8 @@
             let isActive = $(this).is(':checked') ? 1 : 0;
 
             $.ajax({
-                url: "{{ route('property_owners.update-status', ['propertyOwner' => ':id']) }}".replace(':id', id),
+                url: "{{ route('property_owners.update-status', ['propertyOwner' => ':id']) }}".replace(
+                    ':id', id),
                 type: 'PUT',
                 data: {
                     is_active: isActive,

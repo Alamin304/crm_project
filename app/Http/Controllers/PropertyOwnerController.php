@@ -121,11 +121,10 @@ class PropertyOwnerController extends AppBaseController
         abort(404);
     }
 
-    public function updateStatus(Request $request, $propertyOwner)
+    public function updateStatus(Request $request, PropertyOwner $propertyOwner)
     {
-        $owner = PropertyOwner::findOrFail($propertyOwner);
-        $owner->is_active = $request->is_active;
-        $owner->save();
+        $propertyOwner->is_active = $request->is_active;
+        $propertyOwner->save();
 
         return response()->json([
             'success' => true,

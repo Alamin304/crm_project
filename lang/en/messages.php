@@ -3320,9 +3320,17 @@ return [
         'saved' => 'Property Owner saved successfully.',
         'updated' => 'Property Owner updated successfully.',
         'export' => 'Export',
+        'is_active' => 'Status',
         'active' => 'Active',
         'inactive' => 'Inactive',
         'status_updated' => 'Property Owner status updated successfully.',
+        'zip_code' => 'Zip Code',
+        'country' => 'Country',
+        'vat_number' => 'Vat Number',
+        'city' => 'City',
+        'state' => 'State',
+
+
     ],
 
 
