@@ -1,173 +1,282 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('messages.real_estate_agents.view') }}
+    {{ __('Rental Request Details') }}
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
-        .profile-image-view {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #eee;
+        .detail-card {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
-        .social-icon {
-            font-size: 18px;
-            margin-right: 8px;
-            color: #6c757d;
+        .detail-header {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            border-radius: 8px 8px 0 0;
         }
 
-        .social-icon:hover {
-            color: #007bff;
+        .detail-body {
+            padding: 20px;
         }
 
-        .info-label {
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .detail-label {
             font-weight: 600;
             color: #495057;
+            width: 200px;
+            flex-shrink: 0;
         }
 
-        .info-value {
+        .detail-value {
+            flex-grow: 1;
             color: #212529;
-            word-break: break-word;
+        }
+
+        .address-box {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .address-line {
+            margin-bottom: 5px;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .badge-verified {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .badge-regular {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+
+        .note-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
         }
     </style>
 @endsection
 
 @section('content')
     <section class="section">
-        <div class="section-header item-align-right">
-            <h1>{{ __('messages.property_owners.view') }}</h1>
+         <div class="section-header item-align-right">
+             <h1>{{ __('Rental Request Details') }}</h1>
             <div class="section-header-breadcrumb float-right">
                 <div class="card-header-action mr-3 select2-mobile-margin">
                 </div>
             </div>
             <div class="float-right">
-                <a href="{{ route('real_estate_agents.index') }}"
-                    class="btn btn-primary form-btn">{{ __('messages.real_estate_agents.list') }}</a>
+                <a href="{{ route('rental_requests.index') }}" class="btn btn-primary form-btn">
+                     {{ __('List') }}
+                </a>
             </div>
         </div>
         <div class="section-body">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12 text-center mb-4">
-                           @if ($realEstateAgent->profile_image)
-                                <img id="profileImagePreview" src="{{ asset('uploads/' . $realEstateAgent->profile_image) }}"
-                                    class="profile-image-preview" alt="Profile Image">
-                                <div class="current-image-text">Current Image</div>
-                            @else
-                                <img id="profileImagePreview" src="{{ asset('assets/img/default-user.png') }}"
-                                    class="profile-image-preview" alt="Default Image">
-                            @endif
-                            <h3 class="mt-2">{{ $realEstateAgent->owner_name }}</h3>
-                            <p class="text-muted">{{ $realEstateAgent->code }}</p>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.email') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->email ?? '-' }}</p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.phone') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->phone_number }}</p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.address') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->address }}</p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.city') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->city }}</p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.state') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->state ?? '-' }}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.zip_code') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->zip_code ?? '-' }}</p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.country') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->country ?? '-' }}</p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.vat_number') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->vat_number ?? '-' }}</p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.status') }}:</span>
-                                <p class="info-value">
-                                    @if ($realEstateAgent->is_active)
-                                        <span class="badge badge-success">{{ __('Active') }}</span>
-                                    @else
-                                        <span class="badge badge-danger">{{ __('Inactive') }}</span>
-                                    @endif
-                                </p>
-                            </div>
-                            <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.created_at') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->created_at->format('Y-m-d H:i:s') }}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 mt-3">
-                            <div class="form-group">
-                                <span class="info-label">{{ __('Social Links') }}:</span>
-                                <div class="d-flex mt-2">
-                                    @if ($realEstateAgent->website)
-                                        <a href="{{ $realEstateAgent->website }}" target="_blank" class="social-icon"
-                                            title="Website">
-                                            <i class="fas fa-globe"></i>
-                                        </a>
-                                    @endif
-                                    @if ($realEstateAgent->facebook_url)
-                                        <a href="{{ $realEstateAgent->facebook_url }}" target="_blank" class="social-icon"
-                                            title="Facebook">
-                                            <i class="fab fa-facebook"></i>
-                                        </a>
-                                    @endif
-                                    @if ($realEstateAgent->whatsapp_url)
-                                        <a href="{{ $realEstateAgent->whatsapp_url }}" target="_blank" class="social-icon"
-                                            title="WhatsApp">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                    @endif
-                                    @if ($realEstateAgent->instagram_url)
-                                        <a href="{{ $realEstateAgent->instagram_url }}" target="_blank" class="social-icon"
-                                            title="Instagram">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    @endif
-                                    @if (
-                                        !$realEstateAgent->website &&
-                                            !$realEstateAgent->facebook_url &&
-                                            !$realEstateAgent->whatsapp_url &&
-                                            !$realEstateAgent->instagram_url)
-                                        <p class="info-value">-</p>
-                                    @endif
-                                </div>
-                            </div>
+            <div class="card detail-card">
+                <div class="detail-header">
+                    <h5>Request Information</h5>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-row">
+                        <div class="detail-label">Request Number:</div>
+                        <div class="detail-value">{{ $rentalRequest->request_number }}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Date Created:</div>
+                        <div class="detail-value">{{ $rentalRequest->date_created->format('M d, Y H:i') }}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Status:</div>
+                        <div class="detail-value">
+                            <span
+                                class="status-badge badge-{{ $rentalRequest->verification_status === 'verified' ? 'verified' : 'regular' }}">
+                                {{ ucfirst($rentalRequest->verification_status) }}
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="card detail-card">
+                <div class="detail-header">
+                    <h5>Property Details</h5>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-row">
+                        <div class="detail-label">Property Name:</div>
+                        <div class="detail-value">{{ $rentalRequest->property_name }}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Customer:</div>
+                        <div class="detail-value">{{ $rentalRequest->customer }}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Property Price:</div>
+                        <div class="detail-value">
+                            {{ $rentalRequest->property_price ? '$' . number_format($rentalRequest->property_price, 2) : 'N/A' }}
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Contract Amount:</div>
+                        <div class="detail-value">
+                            {{ $rentalRequest->contract_amount ? '$' . number_format($rentalRequest->contract_amount, 2) : 'N/A' }}
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Term:</div>
+                        <div class="detail-value">{{ $rentalRequest->term }} months</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Date Range:</div>
+                        <div class="detail-value">
+                            {{ $rentalRequest->start_date->format('M d, Y') }} to
+                            {{ $rentalRequest->end_date->format('M d, Y') }}
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Property Inspected:</div>
+                        <div class="detail-value">
+                            {{ $rentalRequest->inspected_property ? 'Yes' : 'No' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card detail-card">
+                <div class="detail-header">
+                    <h5>Address Information</h5>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-row">
+                        <div class="detail-label">Bill To:</div>
+                        <div class="detail-value">
+                            @if ($rentalRequest->bill_to)
+                                @php $billTo = json_decode($rentalRequest->bill_to, true) @endphp
+                                <div class="address-box">
+                                    @if (!empty($billTo['street']))
+                                        <div class="address-line">{{ $billTo['street'] }}</div>
+                                    @endif
+                                    @if (!empty($billTo['city']) || !empty($billTo['state']) || !empty($billTo['zip_code']))
+                                        <div class="address-line">
+                                            @if (!empty($billTo['city']))
+                                                {{ $billTo['city'] }},
+                                            @endif
+                                            @if (!empty($billTo['state']))
+                                                {{ $billTo['state'] }}
+                                            @endif
+                                            @if (!empty($billTo['zip_code']))
+                                                {{ $billTo['zip_code'] }}
+                                            @endif
+                                        </div>
+                                    @endif
+                                    @if (!empty($billTo['country']))
+                                        <div class="address-line">{{ $billTo['country'] }}</div>
+                                    @endif
+                                </div>
+                            @else
+                                Not specified
+                            @endif
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Ship To:</div>
+                        <div class="detail-value">
+                            @if ($rentalRequest->ship_to)
+                                @php $shipTo = json_decode($rentalRequest->ship_to, true) @endphp
+                                <div class="address-box">
+                                    @if (!empty($shipTo['street']))
+                                        <div class="address-line">{{ $shipTo['street'] }}</div>
+                                    @endif
+                                    @if (!empty($shipTo['city']) || !empty($shipTo['state']) || !empty($shipTo['zip_code']))
+                                        <div class="address-line">
+                                            @if (!empty($shipTo['city']))
+                                                {{ $shipTo['city'] }},
+                                            @endif
+                                            @if (!empty($shipTo['state']))
+                                                {{ $shipTo['state'] }}
+                                            @endif
+                                            @if (!empty($shipTo['zip_code']))
+                                                {{ $shipTo['zip_code'] }}
+                                            @endif
+                                        </div>
+                                    @endif
+                                    @if (!empty($shipTo['country']))
+                                        <div class="address-line">{{ $shipTo['country'] }}</div>
+                                    @endif
+                                </div>
+                            @else
+                                Not specified
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card detail-card">
+                <div class="detail-header">
+                    <h5>Notes</h5>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-row">
+                        <div class="detail-label">Client Note:</div>
+                        <div class="detail-value">
+                            @if ($rentalRequest->client_note)
+                                <div class="note-box">{!! $rentalRequest->client_note !!}</div>
+                            @else
+                                No client note
+                            @endif
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Admin Note:</div>
+                        <div class="detail-value">
+                            @if ($rentalRequest->admin_note)
+                                <div class="note-box">{!! $rentalRequest->admin_note !!}</div>
+                            @else
+                                No admin note
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            {{-- <div class="action-buttons">
+                <a href="{{ route('rental_requests.edit', $rentalRequest->id) }}" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <a href="{{ route('rental_requests.index') }}" class="btn btn-light ml-2">
+                    <i class="fas fa-arrow-left"></i> Back to List
+                </a>
+            </div> --}}
         </div>
     </section>
-@endsection
-
-@section('page_scripts')
-    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ mix('assets/js/custom/custom-datatable.js') }}"></script>
-    <script src="{{ mix('assets/js/select2.min.js') }}"></script>
 @endsection

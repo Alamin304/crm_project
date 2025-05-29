@@ -102,11 +102,16 @@ class RentalRequestController extends AppBaseController
 
     public function updateStatus(Request $request, RentalRequest $rentalRequest)
     {
+        $request->validate([
+            'status' => 'required|in:submitted,sent,waiting for approval,approved,declined,complete,expired,cancelled'
+        ]);
+
         $rentalRequest->status = $request->status;
         $rentalRequest->save();
 
         return $this->sendSuccess('Rental Request status updated successfully.');
     }
+
 
     public function updateAddress(Request $request, RentalRequest $rentalRequest, $type)
     {

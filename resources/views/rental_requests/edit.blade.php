@@ -1,309 +1,296 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('messages.real_estate_agents.edit') }}
+    {{ __('Edit Rental Request') }}
 @endsection
 
 @section('page_css')
-    <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4@5.39.0/build/css/tempusdominus-bootstrap-4.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
     <style>
-        .form-row-line {
+        .form-row {
             display: flex;
             flex-wrap: wrap;
             margin-right: -15px;
             margin-left: -15px;
         }
 
-        .form-row-line .form-group {
+        .form-group {
             padding-right: 15px;
             padding-left: 15px;
             flex: 1 0 0%;
             max-width: 100%;
+            margin-bottom: 1rem;
         }
 
-        .profile-image-preview {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ddd;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .image-upload-wrapper {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .image-upload-label {
+        .address-btn {
             cursor: pointer;
-            display: inline-block;
-            padding: 8px 15px;
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            transition: all 0.3s;
+            color: #007bff;
         }
 
-        .image-upload-label:hover {
-            background: #e9ecef;
+        .address-btn:hover {
+            text-decoration: underline;
         }
 
-        .current-image-text {
-            font-size: 12px;
-            color: #6c757d;
-            margin-top: 5px;
+        .required:after {
+            content: " *";
+            color: red;
         }
 
-        .attachment-preview {
-            max-width: 200px;
-            max-height: 200px;
-            margin-top: 10px;
-        }
-
-        .form-check-label {
-            margin-left: 5px;
-        }
-
-        .attachment-link {
-            display: block;
-            margin-top: 5px;
+        .note-editor.note-frame {
+            margin-bottom: 0;
         }
     </style>
 @endsection
 
 @section('content')
     <section class="section">
-        <div class="section-header item-align-right">
-            <h1>{{ __('messages.real_estate_agents.edit') }}</h1>
-            <div class="section-header-breadcrumb float-right"></div>
-            <div class="float-right">
-                <a href="{{ route('real_estate_agents.index') }}" class="btn btn-primary form-btn">
-                    {{ __('messages.real_estate_agents.list') }}
-                </a>
+        <div class="section-header">
+            <h1>{{ __('Edit Rental Request') }}</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                <div class="breadcrumb-item active"><a href="{{ route('rental_requests.index') }}">Rental Requests</a></div>
+                <div class="breadcrumb-item">Edit #{{ $rentalRequest->request_number }}</div>
             </div>
         </div>
 
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    <div class="modal-content">
-                        {{ Form::open(['route' => ['real_estate_agents.update', $realEstateAgent->id], 'id' => 'editRealEstateAgentForm', 'files' => true, 'method' => 'put']) }}
-                        <div class="modal-body">
-                            <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
+                    {{ Form::model($rentalRequest, ['route' => ['rental_requests.update', $rentalRequest->id], 'method' => 'put', 'id' => 'editRentalRequestForm']) }}
+                    <div class="modal-body">
+                        <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
 
-                            <div class="image-upload-wrapper">
-                                @if ($realEstateAgent->profile_image)
-                                    <img id="profileImagePreview"
-                                        src="{{ asset('uploads/' . $realEstateAgent->profile_image) }}"
-                                        class="profile-image-preview" alt="Profile Image">
-                                    <div class="current-image-text">Current Image</div>
-                                @else
-                                    <img id="profileImagePreview" src="{{ asset('assets/img/default-user.png') }}"
-                                        class="profile-image-preview" alt="Default Image">
-                                @endif
-                                <label for="profile_image" class="image-upload-label">
-                                    <i class="fas fa-upload mr-1"></i> {{ __('Change Profile Image') }}
-                                </label>
-                                <input type="file" name="profile_image" id="profile_image" class="d-none"
-                                    accept="image/*">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ Form::label('request_number', 'Request Number:') }}
+                                {{ Form::text('request_number', null, ['class' => 'form-control', 'readonly']) }}
                             </div>
 
-                            <div class="form-row-line mb-4">
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('code', 'Agent Code:') }}
-                                    {{ Form::text('code', $realEstateAgent->code, ['class' => 'form-control', 'id' => 'agentCode', 'readonly' => 'readonly']) }}
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('owner_name', 'Agent Name:') }}<span class="required">*</span>
-                                    {{ Form::text('owner_name', $realEstateAgent->owner_name, ['class' => 'form-control', 'required', 'id' => 'agentName']) }}
-                                </div>
-                            </div>
-
-                            <div class="form-row-line mb-4">
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('email', 'Email:') }}
-                                    {{ Form::email('email', $realEstateAgent->email, ['class' => 'form-control', 'id' => 'agentEmail']) }}
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('phone_number', 'Phone Number:') }}<span class="required">*</span>
-                                    {{ Form::tel('phone_number', $realEstateAgent->phone_number, ['class' => 'form-control', 'required', 'id' => 'agentPhone']) }}
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                {{ Form::label('address', 'Address:') }}<span class="required">*</span>
-                                {{ Form::text('address', $realEstateAgent->address, ['class' => 'form-control', 'required', 'id' => 'agentAddress']) }}
-                            </div>
-
-                            <div class="form-row-line mb-4">
-                                <div class="form-group col-md-4">
-                                    {{ Form::label('city', 'City:') }}<span class="required">*</span>
-                                    {{ Form::text('city', $realEstateAgent->city, ['class' => 'form-control', 'required', 'id' => 'agentCity']) }}
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    {{ Form::label('state', 'State:') }}
-                                    {{ Form::text('state', $realEstateAgent->state, ['class' => 'form-control', 'id' => 'agentState']) }}
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    {{ Form::label('zip_code', 'Zip Code:') }}
-                                    {{ Form::text('zip_code', $realEstateAgent->zip_code, ['class' => 'form-control', 'id' => 'agentZipCode']) }}
-                                </div>
-                            </div>
-
-                            <div class="form-row-line mb-4">
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('country', 'Country:') }}
-                                    {{ Form::select(
-                                        'country',
-                                        [
-                                            'United States' => 'United States',
-                                            'Canada' => 'Canada',
-                                            'United Kingdom' => 'United Kingdom',
-                                            'Australia' => 'Australia',
-                                        ],
-                                        $realEstateAgent->country,
-                                        ['class' => 'form-control select2', 'id' => 'agentCountry', 'placeholder' => 'Select Country'],
-                                    ) }}
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('vat_number', 'VAT Number:') }}
-                                    {{ Form::text('vat_number', $realEstateAgent->vat_number, ['class' => 'form-control', 'id' => 'agentVatNumber']) }}
-                                </div>
-                            </div>
-
-                            <div class="form-row-line mb-4">
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('website', 'Website:') }}
-                                    {{ Form::url('website', $realEstateAgent->website, ['class' => 'form-control', 'id' => 'agentWebsite']) }}
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    {{ Form::label('plan', 'Plan:') }}
-                                    {{ Form::text('plan', $realEstateAgent->plan, ['class' => 'form-control', 'id' => 'agentPlan']) }}
-                                </div>
-                            </div>
-
-                            <div class="form-row-line mb-4">
-                                <div class="form-group col-md-4">
-                                    {{ Form::label('facebook_url', 'Facebook URL:') }}
-                                    {{ Form::url('facebook_url', $realEstateAgent->facebook_url, ['class' => 'form-control', 'id' => 'agentFacebookUrl']) }}
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    {{ Form::label('whatsapp_url', 'WhatsApp URL:') }}
-                                    {{ Form::url('whatsapp_url', $realEstateAgent->whatsapp_url, ['class' => 'form-control', 'id' => 'agentWhatsAppUrl']) }}
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    {{ Form::label('instagram_url', 'Instagram URL:') }}
-                                    {{ Form::url('instagram_url', $realEstateAgent->instagram_url, ['class' => 'form-control', 'id' => 'agentInstagramUrl']) }}
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                {{ Form::label('information', 'Additional Information:') }}
-                                {{ Form::textarea('information', $realEstateAgent->information, ['class' => 'form-control summernote-simple', 'id' => 'agentInformation', 'rows' => 3]) }}
-                            </div>
-
-                            <div class="form-row-line mb-4">
-                                <div class="form-group col-md-6">
-                                    <label>Verification Status:</label>
-                                    <div class="form-check">
-                                        {{ Form::radio('verification_status', 'verified', $realEstateAgent->verification_status == 'verified', ['class' => 'form-check-input', 'id' => 'verified']) }}
-                                        {{ Form::label('verified', 'Verified', ['class' => 'form-check-label']) }}
-                                    </div>
-                                    <div class="form-check">
-                                        {{ Form::radio('verification_status', 'regular', $realEstateAgent->verification_status == 'regular', ['class' => 'form-check-input', 'id' => 'regular']) }}
-                                        {{ Form::label('regular', 'Regular', ['class' => 'form-check-label']) }}
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label>Privacy:</label>
-                                    <div class="form-check">
-                                        {{ Form::radio('privacy', 'public', $realEstateAgent->privacy == 'public', ['class' => 'form-check-input', 'id' => 'public']) }}
-                                        {{ Form::label('public', 'Public', ['class' => 'form-check-label']) }}
-                                    </div>
-                                    <div class="form-check">
-                                        {{ Form::radio('privacy', 'private', $realEstateAgent->privacy == 'private', ['class' => 'form-check-input', 'id' => 'private']) }}
-                                        {{ Form::label('private', 'Private', ['class' => 'form-check-label']) }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                {{ Form::label('attachment', 'Attachment:') }}
-                                @if ($realEstateAgent->attachment)
-                                    <div>
-                                        {{-- <a href="{{ asset('storage/' . $realEstateAgent->attachment) }}" target="_blank"
-                                            class="attachment-link">
-                                            <i class="fas fa-file-download"></i> Download Current Attachment
-                                        </a> --}}
-                                        <a href="{{ route('download_attachment', $realEstateAgent->id) }}" target="_blank"
-                                            class="attachment-link">
-                                            <i class="fas fa-file-download"></i> Download Current Attachment
-                                        </a>
-
-                                    </div>
-                                @endif
-                                {{ Form::file('attachment', ['class' => 'form-control-file', 'id' => 'agentAttachment']) }}
-                                <small class="form-text text-muted">Upload PDF, DOC, or image files (max 5MB)</small>
-                            </div>
-
-                            {{-- <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    {{ Form::checkbox('is_active', 1, $realEstateAgent->is_active, ['class' => 'custom-control-input', 'id' => 'agentIsActive']) }}
-                                    {{ Form::label('agentIsActive', 'Active', ['class' => 'custom-control-label']) }}
-                                </div>
-                            </div> --}}
-
-                            <div class="text-right mt-3 mr-1">
-                                {{ Form::button(__('messages.common.submit'), [
-                                    'type' => 'submit',
-                                    'class' => 'btn btn-primary btn-sm form-btn',
-                                    'id' => 'btnSave',
-                                    'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
-                                ]) }}
+                            <div class="form-group col-md-6">
+                                {{ Form::label('date_created', 'Date Created:') }}
+                                {{ Form::text('date_created', $rentalRequest->date_created->format('Y-m-d H:i:s'), ['class' => 'form-control', 'readonly']) }}
                             </div>
                         </div>
-                        {{ Form::close() }}
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ Form::label('property_name', 'Property Name:') }}<span class="required"></span>
+                                {{ Form::text('property_name', null, ['class' => 'form-control', 'required']) }}
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {{ Form::label('customer', 'Customer:') }}<span class="required"></span>
+                                {{ Form::text('customer', null, ['class' => 'form-control', 'required']) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                {{ Form::label('property_price', 'Property Price:') }}
+                                {{ Form::text('property_price', null, ['class' => 'form-control']) }}
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                {{ Form::label('contract_amount', 'Contract Amount:') }}
+                                {{ Form::text('contract_amount', null, ['class' => 'form-control']) }}
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                {{ Form::label('term', 'Term (months):') }}<span class="required"></span>
+                                {{ Form::number('term', null, ['class' => 'form-control', 'required', 'min' => 1]) }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ Form::label('start_date', 'Start Date:') }}<span class="required"></span>
+                                {{ Form::text('start_date', $rentalRequest->start_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                {{ Form::label('end_date', 'End Date:') }}<span class="required"></span>
+                                {{ Form::text('end_date', $rentalRequest->end_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                {{ Form::checkbox('inspected_property', 1, null, ['class' => 'form-check-input', 'id' => 'inspected_property']) }}
+                                {{ Form::label('inspected_property', 'Property Inspected', ['class' => 'form-check-label']) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {{ Form::label('bill_to', 'Bill To Address:') }}
+                            <div class="d-flex align-items-center">
+                                <span id="billToDisplay">
+                                    @if($rentalRequest->bill_to)
+                                        {{ implode(', ', array_filter(json_decode($rentalRequest->bill_to, true))) }}
+                                    @else
+                                        Not specified
+                                    @endif
+                                </span>
+                                <button type="button" class="btn btn-sm btn-link ml-2" data-toggle="modal" data-target="#billToModal">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                            </div>
+                            {{ Form::hidden('bill_to', $rentalRequest->bill_to, ['id' => 'bill_to']) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ Form::label('ship_to', 'Ship To Address:') }}
+                            <div class="d-flex align-items-center">
+                                <span id="shipToDisplay">
+                                    @if($rentalRequest->ship_to)
+                                        {{ implode(', ', array_filter(json_decode($rentalRequest->ship_to, true))) }}
+                                    @else
+                                        Not specified
+                                    @endif
+                                </span>
+                                <button type="button" class="btn btn-sm btn-link ml-2" data-toggle="modal" data-target="#shipToModal">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                            </div>
+                            {{ Form::hidden('ship_to', $rentalRequest->ship_to, ['id' => 'ship_to']) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ Form::label('client_note', 'Client Note:') }}
+                            {{ Form::textarea('client_note', null, ['class' => 'form-control summernote-simple', 'rows' => 3]) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ Form::label('admin_note', 'Admin Note:') }}
+                            {{ Form::textarea('admin_note', null, ['class' => 'form-control summernote-simple', 'rows' => 3]) }}
+                        </div>
+
+                        <div class="text-right">
+                            {{ Form::button(__('Update'), [
+                                'type' => 'submit',
+                                'class' => 'btn btn-primary',
+                                'id' => 'btnUpdate',
+                                'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
+                            ]) }}
+                        </div>
                     </div>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Bill To Address Modal -->
+    <div class="modal fade" id="billToModal" tabindex="-1" role="dialog" aria-labelledby="billToModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="billToModalLabel">Bill To Address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="billToForm">
+                        <div class="form-group">
+                            {{ Form::label('street', 'Street:') }}
+                            {{ Form::text('street', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToStreet']) }}
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ Form::label('city', 'City:') }}
+                                {{ Form::text('city', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCity']) }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ Form::label('state', 'State:') }}
+                                {{ Form::text('state', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToState']) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ Form::label('zip_code', 'Zip Code:') }}
+                                {{ Form::text('zip_code', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToZipCode']) }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ Form::label('country', 'Country:') }}
+                                {{ Form::text('country', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCountry']) }}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveBillTo">Save Address</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ship To Address Modal -->
+    <div class="modal fade" id="shipToModal" tabindex="-1" role="dialog" aria-labelledby="shipToModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shipToModalLabel">Ship To Address</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="shipToForm">
+                        <div class="form-group">
+                            {{ Form::label('street', 'Street:') }}
+                            {{ Form::text('street', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToStreet']) }}
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ Form::label('city', 'City:') }}
+                                {{ Form::text('city', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCity']) }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ Form::label('state', 'State:') }}
+                                {{ Form::text('state', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToState']) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ Form::label('zip_code', 'Zip Code:') }}
+                                {{ Form::text('zip_code', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToZipCode']) }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ Form::label('country', 'Country:') }}
+                                {{ Form::text('country', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCountry']) }}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveShipTo">Save Address</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('page_scripts')
-    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ mix('assets/js/bs4-summernote/summernote-bs4.js') }}"></script>
-    <script src="{{ mix('assets/js/select2.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bs4-summernote/summernote-bs4.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 @endsection
 
 @section('scripts')
     <script>
         $(document).ready(function() {
-            // Initialize Select2
-            $('.select2').select2({
-                width: '100%',
-                placeholder: function() {
-                    return $(this).data('placeholder');
-                }
+            // Initialize datepicker
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true
             });
 
-            // Initialize Summernote
+            // Initialize summernote
             $('.summernote-simple').summernote({
                 height: 150,
                 toolbar: [
@@ -314,46 +301,91 @@
                 ]
             });
 
-            // Profile image preview
-            $('#profile_image').change(function() {
-                if (this.files && this.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#profileImagePreview').attr('src', e.target.result);
-                        $('.current-image-text').text('New Image');
-                    }
-                    reader.readAsDataURL(this.files[0]);
-                }
+            // Handle bill to address
+            $('#saveBillTo').click(function() {
+                const billToData = {
+                    street: $('#billToStreet').val(),
+                    city: $('#billToCity').val(),
+                    state: $('#billToState').val(),
+                    zip_code: $('#billToZipCode').val(),
+                    country: $('#billToCountry').val()
+                };
+
+                $('#bill_to').val(JSON.stringify(billToData));
+
+                // Display the address
+                const displayText = [];
+                if (billToData.street) displayText.push(billToData.street);
+                if (billToData.city) displayText.push(billToData.city);
+                if (billToData.state) displayText.push(billToData.state);
+                if (billToData.zip_code) displayText.push(billToData.zip_code);
+                if (billToData.country) displayText.push(billToData.country);
+
+                $('#billToDisplay').text(displayText.join(', ') || 'Not specified');
+                $('#billToModal').modal('hide');
+            });
+
+            // Handle ship to address
+            $('#saveShipTo').click(function() {
+                const shipToData = {
+                    street: $('#shipToStreet').val(),
+                    city: $('#shipToCity').val(),
+                    state: $('#shipToState').val(),
+                    zip_code: $('#shipToZipCode').val(),
+                    country: $('#shipToCountry').val()
+                };
+
+                $('#ship_to').val(JSON.stringify(shipToData));
+
+                // Display the address
+                const displayText = [];
+                if (shipToData.street) displayText.push(shipToData.street);
+                if (shipToData.city) displayText.push(shipToData.city);
+                if (shipToData.state) displayText.push(shipToData.state);
+                if (shipToData.zip_code) displayText.push(shipToData.zip_code);
+                if (shipToData.country) displayText.push(shipToData.country);
+
+                $('#shipToDisplay').text(displayText.join(', ') || 'Not specified');
+                $('#shipToModal').modal('hide');
             });
 
             // Form submission
-            $(document).on('submit', '#editRealEstateAgentForm', function(e) {
+            $(document).on('submit', '#editRentalRequestForm', function(e) {
                 e.preventDefault();
-                processingBtn('#editRealEstateAgentForm', '#btnSave', 'loading');
-
-                let formData = new FormData(this);
-                let id = {{ $realEstateAgent->id }};
+                processingBtn('#editRentalRequestForm', '#btnUpdate', 'loading');
 
                 $.ajax({
                     url: $(this).attr('action'),
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
+                    type: 'PUT',
+                    data: $(this).serialize(),
                     success: function(result) {
                         if (result.success) {
                             displaySuccessMessage(result.message);
-                            window.location.href = "{{ route('real_estate_agents.index') }}";
+                            window.location.href = "{{ route('rental_requests.index') }}";
                         }
                     },
                     error: function(result) {
                         displayErrorMessage(result.responseJSON.message);
+                        if (result.responseJSON.errors) {
+                            displayValidationErrors(result.responseJSON.errors);
+                        }
                     },
                     complete: function() {
-                        processingBtn('#editRealEstateAgentForm', '#btnSave');
+                        processingBtn('#editRentalRequestForm', '#btnUpdate');
                     }
                 });
             });
+
+            function displayValidationErrors(errors) {
+                let html = '<ul>';
+                $.each(errors, function(key, value) {
+                    html += '<li>' + value[0] + '</li>';
+                });
+                html += '</ul>';
+
+                $('#validationErrorsBox').html(html);
+                $('#validationErrorsBox').removeClass('d-none');
+            }
         });
     </script>
 @endsection

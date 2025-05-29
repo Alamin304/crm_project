@@ -33,8 +33,10 @@ class RentalRequestExport implements FromCollection, WithHeadings, WithMapping
         return [
             $rentalRequest->request_number,
             $rentalRequest->property_name,
-            $rentalRequest->customer->name,
+            $rentalRequest->customer,
             $rentalRequest->term,
+            $rentalRequest->contract_amount,
+            $rentalRequest->property_price,
             $rentalRequest->start_date->format('Y-m-d'),
             $rentalRequest->end_date->format('Y-m-d'),
             ucfirst($rentalRequest->status),

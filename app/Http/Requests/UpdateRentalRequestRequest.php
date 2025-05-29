@@ -30,7 +30,7 @@ class UpdateRentalRequestRequest extends FormRequest
             'term' => 'required|integer|min:1',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'status' => 'required|in:submitted,sent,waiting for approval,approved,declined,complete,expired,cancelled',
+            // 'status' => 'required|in:submitted,sent,waiting for approval,approved,declined,complete,expired,cancelled',
             'client_note' => 'nullable|string',
             'admin_note' => 'nullable|string'
         ];

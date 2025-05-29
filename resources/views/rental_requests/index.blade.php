@@ -109,6 +109,7 @@
             background-color: #f8d7da;
             color: #721c24;
         }
+
     </style>
 @endsection
 
@@ -203,8 +204,7 @@
                 [10, 25, 50, 100, -1],
                 [10, 25, 50, 100, "All"]
             ],
-            columns: [
-                {
+            columns: [{
                     data: 'request_number',
                     name: 'request_number',
                     width: '10%'
@@ -275,11 +275,28 @@
                 {
                     data: 'status',
                     name: 'status',
-                    width: '12%',
-                    render: function(data) {
-                        let statusClass = 'status-' + data.toLowerCase().replace(/\s+/g, '-');
-                        let formattedStatus = data.charAt(0).toUpperCase() + data.slice(1);
-                        return `<span class="status-badge ${statusClass}">${formattedStatus}</span>`;
+                    width: '20%',
+                    render: function(data, type, row) {
+                        let options = [
+                            'submitted',
+                            'sent',
+                            'waiting for approval',
+                            'approved',
+                            'declined',
+                            'complete',
+                            'expired',
+                            'cancelled'
+                        ];
+                        let html = `<select class="form-control status-select" data-id="${row.id}">`;
+
+                        options.forEach(function(option) {
+                            let selected = data.toLowerCase() === option ? 'selected' : '';
+                            html +=
+                                `<option value="${option}" ${selected}>${option.charAt(0).toUpperCase() + option.slice(1)}</option>`;
+                        });
+
+                        html += '</select>';
+                        return html;
                     }
                 },
                 {
@@ -287,12 +304,14 @@
                         return renderActionButtons(row.id);
                     },
                     name: 'id',
-                    width: '10%',
+                    responsivePriority: 1,
                     orderable: false
                 }
             ],
-            responsive: true,
-            order: [[1, 'desc']]
+            order: [
+                [1, 'desc']
+            ],
+        responsive: true,
         });
 
         $(document).on('click', '.delete-btn', function(event) {
@@ -306,7 +325,8 @@
             let status = $(this).val();
 
             $.ajax({
-                url: "{{ route('rental_requests.update-status', ['rentalRequest' => ':id']) }}".replace(':id', id),
+                url: "{{ route('rental_requests.update-status', ['rentalRequest' => ':id']) }}".replace(
+                    ':id', id),
                 type: 'PUT',
                 data: {
                     status: status,
@@ -323,6 +343,7 @@
                 }
             });
         });
+
 
         function renderActionButtons(id) {
             let deleteUrl = "{{ route('rental_requests.destroy', ':id') }}".replace(':id', id);
