@@ -68,6 +68,7 @@ use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\BookingSourceController;
 use App\Http\Controllers\BusinessBrokerController;
+use App\Http\Controllers\BuyRequestController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
@@ -1300,6 +1301,19 @@ Route::group([], function () {
     Route::get('rental-requests/export/{format}', [RentalRequestController::class, 'export'])->name('rental_requests.export');
     Route::put('rental-requests/{rentalRequest}/update-status', [RentalRequestController::class, 'updateStatus'])->name('rental_requests.update-status');
     Route::put('rental-requests/{rentalRequest}/update-address/{type}', [RentalRequestController::class, 'updateAddress'])->name('rental_requests.update-address');
+});
+
+Route::group([], function () {
+    Route::get('buy-requests', [BuyRequestController::class, 'index'])->name('buy_requests.index');
+    Route::get('buy-requests/create', [BuyRequestController::class, 'create'])->name('buy_requests.create');
+    Route::post('buy-requests', [BuyRequestController::class, 'store'])->name('buy_requests.store');
+    Route::get('buy-requests/{buyRequest}/view', [BuyRequestController::class, 'show'])->name('buy_requests.view');
+    Route::get('buy-requests/{buyRequest}/edit', [BuyRequestController::class, 'edit'])->name('buy_requests.edit');
+    Route::put('buy-requests/{buyRequest}', [BuyRequestController::class, 'update'])->name('buy_requests.update');
+    Route::delete('buy-requests/{buyRequest}', [BuyRequestController::class, 'destroy'])->name('buy_requests.destroy');
+    Route::get('buy-requests/export/{format}', [BuyRequestController::class, 'export'])->name('buy_requests.export');
+    Route::put('buy-requests/{buyRequest}/status', [BuyRequestController::class, 'updateStatus'])->name('buy_requests.update-status');
+    Route::post('buy-requests/{buyRequest}/address/{type}', [BuyRequestController::class, 'updateAddress'])->name('buy_requests.update-address');
 });
 Route::get('article-search', function () {
     return view('articles.search');

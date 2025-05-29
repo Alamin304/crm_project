@@ -3423,4 +3423,23 @@ return [
         'export' => 'Export',
     ],
 
+    'buy_requests' => [
+        'buy_requests' => 'Buy Requests',
+        'add' => 'Add Buy Request',
+        'edit' => 'Edit Buy Request',
+        'view' => 'View Buy Request',
+        'list' => 'List',
+        'request_code' => 'Request Code',
+        'property_owner' => 'Property Owner',
+        'real_estate_agent' => 'Real Estate Agent',
+        'business_broker' => 'Business Broker',
+        'status' => 'Status',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
+        'delete' => 'Buy Request deleted successfully.',
+        'saved' => 'Buy Request saved successfully.',
+        'updated' => 'Buy Request updated successfully.',
+        'export' => 'Export',
+    ],
+
 ];

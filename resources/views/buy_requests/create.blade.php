@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Edit Rental Request') }}
+    {{ __('Create Buy Request') }}
 @endsection
 
 @section('page_css')
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/bs4-summernote/summernote-bs4.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
     <style>
         .form-row {
             display: flex;
@@ -46,19 +47,17 @@
 
 @section('content')
     <section class="section">
-        <div class="section-header item-align-right">
-            <h1>{{ __('Edit Rental Request') }}</h1>
-            <div class="section-header-breadcrumb float-right"></div>
-            <div class="float-right">
-                <a href="{{ route('rental_requests.index') }}" class="btn btn-primary form-btn">
-                    {{ __('List') }}
-                </a>
+        <div class="section-header">
+            <h1>{{ __('Create Buy Request') }}</h1>
+            <div class="section-header-breadcrumb">
+                <a href="{{ route('buy_requests.index') }}" class="btn btn-primary form-btn">{{ __('List') }}</a>
             </div>
         </div>
+
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    {{ Form::model($rentalRequest, ['route' => ['rental_requests.update', $rentalRequest->id], 'method' => 'put', 'id' => 'editRentalRequestForm']) }}
+                    {{ Form::open(['route' => 'buy_requests.store', 'id' => 'createRentalRequestForm']) }}
                     <div class="modal-body">
                         <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
 
@@ -70,7 +69,7 @@
 
                             <div class="form-group col-md-6">
                                 {{ Form::label('date_created', 'Date Created:') }}
-                                {{ Form::text('date_created', $rentalRequest->date_created->format('Y-m-d H:i:s'), ['class' => 'form-control', 'readonly']) }}
+                                {{ Form::text('date_created', now()->format('Y-m-d H:i:s'), ['class' => 'form-control', 'readonly']) }}
                             </div>
                         </div>
 
@@ -106,18 +105,18 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('start_date', 'Start Date:') }}<span class="required"></span>
-                                {{ Form::text('start_date', $rentalRequest->start_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
+                                {{ Form::text('start_date', null, ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
                             </div>
 
                             <div class="form-group col-md-6">
                                 {{ Form::label('end_date', 'End Date:') }}<span class="required"></span>
-                                {{ Form::text('end_date', $rentalRequest->end_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
+                                {{ Form::text('end_date', null, ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-check">
-                                {{ Form::checkbox('inspected_property', 1, null, ['class' => 'form-check-input', 'id' => 'inspected_property']) }}
+                                {{ Form::checkbox('inspected_property', 1, false, ['class' => 'form-check-input', 'id' => 'inspected_property']) }}
                                 {{ Form::label('inspected_property', 'Property Inspected', ['class' => 'form-check-label']) }}
                             </div>
                         </div>
@@ -125,35 +124,25 @@
                         <div class="form-group">
                             {{ Form::label('bill_to', 'Bill To Address:') }}
                             <div class="d-flex align-items-center">
-                                <span id="billToDisplay">
-                                    @if($rentalRequest->bill_to)
-                                        {{ implode(', ', array_filter(json_decode($rentalRequest->bill_to, true))) }}
-                                    @else
-                                        Not specified
-                                    @endif
-                                </span>
-                                <button type="button" class="btn btn-sm btn-link ml-2" data-toggle="modal" data-target="#billToModal">
+                                <span id="billToDisplay">Not specified</span>
+                                <button type="button" class="btn btn-sm btn-link ml-2" data-toggle="modal"
+                                    data-target="#billToModal">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
                             </div>
-                            {{ Form::hidden('bill_to', $rentalRequest->bill_to, ['id' => 'bill_to']) }}
+                            {{ Form::hidden('bill_to', null, ['id' => 'bill_to']) }}
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('ship_to', 'Ship To Address:') }}
                             <div class="d-flex align-items-center">
-                                <span id="shipToDisplay">
-                                    @if($rentalRequest->ship_to)
-                                        {{ implode(', ', array_filter(json_decode($rentalRequest->ship_to, true))) }}
-                                    @else
-                                        Not specified
-                                    @endif
-                                </span>
-                                <button type="button" class="btn btn-sm btn-link ml-2" data-toggle="modal" data-target="#shipToModal">
+                                <span id="shipToDisplay">Not specified</span>
+                                <button type="button" class="btn btn-sm btn-link ml-2" data-toggle="modal"
+                                    data-target="#shipToModal">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
                             </div>
-                            {{ Form::hidden('ship_to', $rentalRequest->ship_to, ['id' => 'ship_to']) }}
+                            {{ Form::hidden('ship_to', null, ['id' => 'ship_to']) }}
                         </div>
 
                         <div class="form-group">
@@ -167,10 +156,10 @@
                         </div>
 
                         <div class="text-right">
-                            {{ Form::button(__('Update'), [
+                            {{ Form::button(__('Submit'), [
                                 'type' => 'submit',
                                 'class' => 'btn btn-primary',
-                                'id' => 'btnUpdate',
+                                'id' => 'btnSave',
                                 'data-loading-text' => "<span class='spinner-border spinner-border-sm'></span> Processing...",
                             ]) }}
                         </div>
@@ -182,7 +171,8 @@
     </section>
 
     <!-- Bill To Address Modal -->
-    <div class="modal fade" id="billToModal" tabindex="-1" role="dialog" aria-labelledby="billToModalLabel" aria-hidden="true">
+    <div class="modal fade" id="billToModal" tabindex="-1" role="dialog" aria-labelledby="billToModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -195,26 +185,26 @@
                     <form id="billToForm">
                         <div class="form-group">
                             {{ Form::label('street', 'Street:') }}
-                            {{ Form::text('street', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToStreet']) }}
+                            {{ Form::text('street', null, ['class' => 'form-control', 'id' => 'billToStreet']) }}
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('city', 'City:') }}
-                                {{ Form::text('city', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCity']) }}
+                                {{ Form::text('city', null, ['class' => 'form-control', 'id' => 'billToCity']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('state', 'State:') }}
-                                {{ Form::text('state', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToState']) }}
+                                {{ Form::text('state', null, ['class' => 'form-control', 'id' => 'billToState']) }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('zip_code', 'Zip Code:') }}
-                                {{ Form::text('zip_code', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToZipCode']) }}
+                                {{ Form::text('zip_code', null, ['class' => 'form-control', 'id' => 'billToZipCode']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('country', 'Country:') }}
-                                {{ Form::text('country', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCountry']) }}
+                                {{ Form::text('country', null, ['class' => 'form-control', 'id' => 'billToCountry']) }}
                             </div>
                         </div>
                     </form>
@@ -228,7 +218,8 @@
     </div>
 
     <!-- Ship To Address Modal -->
-    <div class="modal fade" id="shipToModal" tabindex="-1" role="dialog" aria-labelledby="shipToModalLabel" aria-hidden="true">
+    <div class="modal fade" id="shipToModal" tabindex="-1" role="dialog" aria-labelledby="shipToModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -241,26 +232,26 @@
                     <form id="shipToForm">
                         <div class="form-group">
                             {{ Form::label('street', 'Street:') }}
-                            {{ Form::text('street', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToStreet']) }}
+                            {{ Form::text('street', null, ['class' => 'form-control', 'id' => 'shipToStreet']) }}
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('city', 'City:') }}
-                                {{ Form::text('city', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCity']) }}
+                                {{ Form::text('city', null, ['class' => 'form-control', 'id' => 'shipToCity']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('state', 'State:') }}
-                                {{ Form::text('state', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToState']) }}
+                                {{ Form::text('state', null, ['class' => 'form-control', 'id' => 'shipToState']) }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('zip_code', 'Zip Code:') }}
-                                {{ Form::text('zip_code', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToZipCode']) }}
+                                {{ Form::text('zip_code', null, ['class' => 'form-control', 'id' => 'shipToZipCode']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('country', 'Country:') }}
-                                {{ Form::text('country', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCountry']) }}
+                                {{ Form::text('country', null, ['class' => 'form-control', 'id' => 'shipToCountry']) }}
                             </div>
                         </div>
                     </form>
@@ -283,6 +274,15 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+            // Generate request number
+            function generateRequestNumber() {
+                const timestamp = new Date().getTime().toString().slice(-5);
+                const randomNum = Math.floor(Math.random() * 9000) + 1000;
+                $('input[name="request_number"]').val(`REQ-${timestamp}${randomNum}`);
+            }
+
+            generateRequestNumber();
+
             // Initialize datepicker
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd',
@@ -349,19 +349,60 @@
                 $('#shipToModal').modal('hide');
             });
 
+            // Load existing addresses if editing
+            @if (isset($rentalRequest))
+                // For bill to
+                @if ($rentalRequest->bill_to)
+                    const billToData = @json(json_decode($rentalRequest->bill_to, true));
+                    $('#billToStreet').val(billToData.street || '');
+                    $('#billToCity').val(billToData.city || '');
+                    $('#billToState').val(billToData.state || '');
+                    $('#billToZipCode').val(billToData.zip_code || '');
+                    $('#billToCountry').val(billToData.country || '');
+
+                    const billToDisplay = [];
+                    if (billToData.street) billToDisplay.push(billToData.street);
+                    if (billToData.city) billToDisplay.push(billToData.city);
+                    if (billToData.state) billToDisplay.push(billToData.state);
+                    if (billToData.zip_code) billToDisplay.push(billToData.zip_code);
+                    if (billToData.country) billToDisplay.push(billToData.country);
+
+                    $('#billToDisplay').text(billToDisplay.join(', '));
+                @endif
+
+                // For ship to
+                @if ($rentalRequest->ship_to)
+                    const shipToData = @json(json_decode($rentalRequest->ship_to, true));
+                    $('#shipToStreet').val(shipToData.street || '');
+                    $('#shipToCity').val(shipToData.city || '');
+                    $('#shipToState').val(shipToData.state || '');
+                    $('#shipToZipCode').val(shipToData.zip_code || '');
+                    $('#shipToCountry').val(shipToData.country || '');
+
+                    const shipToDisplay = [];
+                    if (shipToData.street) shipToDisplay.push(shipToData.street);
+                    if (shipToData.city) shipToDisplay.push(shipToData.city);
+                    if (shipToData.state) shipToDisplay.push(shipToData.state);
+                    if (shipToData.zip_code) shipToDisplay.push(shipToData.zip_code);
+                    if (shipToData.country) shipToDisplay.push(shipToData.country);
+
+                    $('#shipToDisplay').text(shipToDisplay.join(', '));
+                @endif
+            @endif
+
             // Form submission
-            $(document).on('submit', '#editRentalRequestForm', function(e) {
+            $(document).on('submit', '#createRentalRequestForm', function(e) {
                 e.preventDefault();
-                processingBtn('#editRentalRequestForm', '#btnUpdate', 'loading');
+                processingBtn('#createRentalRequestForm', '#btnSave', 'loading');
 
                 $.ajax({
                     url: $(this).attr('action'),
-                    type: 'PUT',
+                    type: 'POST',
                     data: $(this).serialize(),
                     success: function(result) {
                         if (result.success) {
                             displaySuccessMessage(result.message);
-                            window.location.href = "{{ route('rental_requests.index') }}";
+                            window.location.href = "{{ route('buy_requests.index') }}";
                         }
                     },
                     error: function(result) {
@@ -371,7 +412,7 @@
                         }
                     },
                     complete: function() {
-                        processingBtn('#editRentalRequestForm', '#btnUpdate');
+                        processingBtn('#createRentalRequestForm', '#btnSave');
                     }
                 });
             });

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Edit Rental Request') }}
+    {{ __('Edit Buy Request') }}
 @endsection
 
 @section('page_css')
@@ -47,10 +47,10 @@
 @section('content')
     <section class="section">
         <div class="section-header item-align-right">
-            <h1>{{ __('Edit Rental Request') }}</h1>
+            <h1>{{ __('Edit Buy Request') }}</h1>
             <div class="section-header-breadcrumb float-right"></div>
             <div class="float-right">
-                <a href="{{ route('rental_requests.index') }}" class="btn btn-primary form-btn">
+                <a href="{{ route('buy_requests.index') }}" class="btn btn-primary form-btn">
                     {{ __('List') }}
                 </a>
             </div>
@@ -58,7 +58,7 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    {{ Form::model($rentalRequest, ['route' => ['rental_requests.update', $rentalRequest->id], 'method' => 'put', 'id' => 'editRentalRequestForm']) }}
+                    {{ Form::model($buyRequest, ['route' => ['rental_requests.update', $buyRequest->id], 'method' => 'put', 'id' => 'editRentalRequestForm']) }}
                     <div class="modal-body">
                         <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
 
@@ -70,7 +70,7 @@
 
                             <div class="form-group col-md-6">
                                 {{ Form::label('date_created', 'Date Created:') }}
-                                {{ Form::text('date_created', $rentalRequest->date_created->format('Y-m-d H:i:s'), ['class' => 'form-control', 'readonly']) }}
+                                {{ Form::text('date_created', $buyRequest->date_created->format('Y-m-d H:i:s'), ['class' => 'form-control', 'readonly']) }}
                             </div>
                         </div>
 
@@ -106,12 +106,12 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('start_date', 'Start Date:') }}<span class="required"></span>
-                                {{ Form::text('start_date', $rentalRequest->start_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
+                                {{ Form::text('start_date', $buyRequest->start_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
                             </div>
 
                             <div class="form-group col-md-6">
                                 {{ Form::label('end_date', 'End Date:') }}<span class="required"></span>
-                                {{ Form::text('end_date', $rentalRequest->end_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
+                                {{ Form::text('end_date', $buyRequest->end_date->format('Y-m-d'), ['class' => 'form-control datepicker', 'required', 'autocomplete' => 'off']) }}
                             </div>
                         </div>
 
@@ -126,8 +126,8 @@
                             {{ Form::label('bill_to', 'Bill To Address:') }}
                             <div class="d-flex align-items-center">
                                 <span id="billToDisplay">
-                                    @if($rentalRequest->bill_to)
-                                        {{ implode(', ', array_filter(json_decode($rentalRequest->bill_to, true))) }}
+                                    @if($buyRequest->bill_to)
+                                        {{ implode(', ', array_filter(json_decode($buyRequest->bill_to, true))) }}
                                     @else
                                         Not specified
                                     @endif
@@ -136,15 +136,15 @@
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
                             </div>
-                            {{ Form::hidden('bill_to', $rentalRequest->bill_to, ['id' => 'bill_to']) }}
+                            {{ Form::hidden('bill_to', $buyRequest->bill_to, ['id' => 'bill_to']) }}
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('ship_to', 'Ship To Address:') }}
                             <div class="d-flex align-items-center">
                                 <span id="shipToDisplay">
-                                    @if($rentalRequest->ship_to)
-                                        {{ implode(', ', array_filter(json_decode($rentalRequest->ship_to, true))) }}
+                                    @if($buyRequest->ship_to)
+                                        {{ implode(', ', array_filter(json_decode($buyRequest->ship_to, true))) }}
                                     @else
                                         Not specified
                                     @endif
@@ -153,7 +153,7 @@
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
                             </div>
-                            {{ Form::hidden('ship_to', $rentalRequest->ship_to, ['id' => 'ship_to']) }}
+                            {{ Form::hidden('ship_to', $buyRequest->ship_to, ['id' => 'ship_to']) }}
                         </div>
 
                         <div class="form-group">
@@ -195,26 +195,26 @@
                     <form id="billToForm">
                         <div class="form-group">
                             {{ Form::label('street', 'Street:') }}
-                            {{ Form::text('street', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToStreet']) }}
+                            {{ Form::text('street', $buyRequest->bill_to ? json_decode($buyRequest->bill_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToStreet']) }}
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('city', 'City:') }}
-                                {{ Form::text('city', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCity']) }}
+                                {{ Form::text('city', $buyRequest->bill_to ? json_decode($buyRequest->bill_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCity']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('state', 'State:') }}
-                                {{ Form::text('state', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToState']) }}
+                                {{ Form::text('state', $buyRequest->bill_to ? json_decode($buyRequest->bill_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToState']) }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('zip_code', 'Zip Code:') }}
-                                {{ Form::text('zip_code', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToZipCode']) }}
+                                {{ Form::text('zip_code', $buyRequest->bill_to ? json_decode($buyRequest->bill_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToZipCode']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('country', 'Country:') }}
-                                {{ Form::text('country', $rentalRequest->bill_to ? json_decode($rentalRequest->bill_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCountry']) }}
+                                {{ Form::text('country', $buyRequest->bill_to ? json_decode($buyRequest->bill_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'billToCountry']) }}
                             </div>
                         </div>
                     </form>
@@ -241,26 +241,26 @@
                     <form id="shipToForm">
                         <div class="form-group">
                             {{ Form::label('street', 'Street:') }}
-                            {{ Form::text('street', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToStreet']) }}
+                            {{ Form::text('street', $buyRequest->ship_to ? json_decode($buyRequest->ship_to, true)['street'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToStreet']) }}
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('city', 'City:') }}
-                                {{ Form::text('city', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCity']) }}
+                                {{ Form::text('city', $buyRequest->ship_to ? json_decode($buyRequest->ship_to, true)['city'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCity']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('state', 'State:') }}
-                                {{ Form::text('state', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToState']) }}
+                                {{ Form::text('state', $buyRequest->ship_to ? json_decode($buyRequest->ship_to, true)['state'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToState']) }}
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{ Form::label('zip_code', 'Zip Code:') }}
-                                {{ Form::text('zip_code', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToZipCode']) }}
+                                {{ Form::text('zip_code', $buyRequest->ship_to ? json_decode($buyRequest->ship_to, true)['zip_code'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToZipCode']) }}
                             </div>
                             <div class="form-group col-md-6">
                                 {{ Form::label('country', 'Country:') }}
-                                {{ Form::text('country', $rentalRequest->ship_to ? json_decode($rentalRequest->ship_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCountry']) }}
+                                {{ Form::text('country', $buyRequest->ship_to ? json_decode($buyRequest->ship_to, true)['country'] ?? '' : '', ['class' => 'form-control', 'id' => 'shipToCountry']) }}
                             </div>
                         </div>
                     </form>
@@ -361,7 +361,7 @@
                     success: function(result) {
                         if (result.success) {
                             displaySuccessMessage(result.message);
-                            window.location.href = "{{ route('rental_requests.index') }}";
+                            window.location.href = "{{ route('buy_requests.index') }}";
                         }
                     },
                     error: function(result) {

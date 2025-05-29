@@ -47,14 +47,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Create Rental Request') }}</h1>
+             <h1>{{ __('Create Rental Request') }}</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item active"><a href="{{ route('rental_requests.index') }}">Rental Requests</a></div>
-                <div class="breadcrumb-item">Create</div>
+                <a href="{{ route('rental_requests.index') }}" class="btn btn-primary form-btn">{{ __('List') }}</a>
             </div>
         </div>
-
         <div class="section-body">
             <div class="card">
                 <div class="card-body">

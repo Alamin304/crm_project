@@ -1119,6 +1119,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('buy-requests*') ? 'active' : '' }}">
+    <a href="{{ route('buy_requests.index') }}">
+        <i class="fas fa-lg fa-shopping-cart"></i>
+        <span class="menu-text-wrap">{{ __('messages.buy_requests.buy_requests') }}</span>
+    </a>
+</li>
+
+
 
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
