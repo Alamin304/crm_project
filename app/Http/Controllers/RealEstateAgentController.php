@@ -119,12 +119,24 @@ class RealEstateAgentController extends AppBaseController
         abort(404);
     }
 
+    // public function updateStatus(Request $request, RealEstateAgent $realEstateAgent)
+    // {
+    //     $realEstateAgent->update(['is_active' => $request->status]);
+    //     return $this->sendSuccess('Status updated successfully.');
+    // }
+
     public function updateStatus(Request $request, RealEstateAgent $realEstateAgent)
     {
-        $realEstateAgent->update(['is_active' => $request->status]);
-        return $this->sendSuccess('Status updated successfully.');
+        $realEstateAgent->is_active = $request->is_active;
+        $realEstateAgent->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Real Estate Agent status updated successfully.',
+        ]);
     }
 
+    
     public function downloadAttachment(RealEstateAgent $realEstateAgent)
     {
         $filePath = $realEstateAgent->attachment;

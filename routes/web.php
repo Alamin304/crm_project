@@ -67,6 +67,7 @@ use App\Http\Controllers\AwardListController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\BookingSourceController;
+use App\Http\Controllers\BusinessBrokerController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
@@ -1272,6 +1273,19 @@ Route::group([], function () {
     Route::get('real-estate-agents/export/{format}', [RealEstateAgentController::class, 'export'])->name('real_estate_agents.export');
     Route::put('real-estate-agents/{realEstateAgent}/update-status', [RealEstateAgentController::class, 'updateStatus'])->name('real_estate_agents.update-status');
     Route::get('/{realEstateAgent}/download-attachment', [RealEstateAgentController::class, 'downloadAttachment'])->name('download_attachment');
+});
+
+Route::group([], function () {
+    Route::get('business-brokers', [BusinessBrokerController::class, 'index'])->name('business_brokers.index');
+    Route::get('business-brokers/create', [BusinessBrokerController::class, 'create'])->name('business_brokers.create');
+    Route::post('business-brokers', [BusinessBrokerController::class, 'store'])->name('business_brokers.store');
+    Route::get('business-brokers/{businessBroker}/view', [BusinessBrokerController::class, 'show'])->name('business_brokers.view');
+    Route::get('business-brokers/{businessBroker}/edit', [BusinessBrokerController::class, 'edit'])->name('business_brokers.edit');
+    Route::put('business-brokers/{businessBroker}', [BusinessBrokerController::class, 'update'])->name('business_brokers.update');
+    Route::delete('business-brokers/{businessBroker}', [BusinessBrokerController::class, 'destroy'])->name('business_brokers.destroy');
+    Route::get('business-brokers/export/{format}', [BusinessBrokerController::class, 'export'])->name('business_brokers.export');
+    Route::put('business-brokers/{businessBroker}/update-status', [BusinessBrokerController::class, 'updateStatus'])->name('business_brokers.update-status');
+    Route::get('/{businessBroker}/download-attachment', [BusinessBrokerController::class, 'downloadAttachment'])->name('business_brokers.download_attachment');
 });
 Route::get('article-search', function () {
     return view('articles.search');

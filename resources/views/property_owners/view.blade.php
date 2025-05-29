@@ -57,12 +57,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 text-center mb-4">
-                            @if ($propertyOwner->profile_image)
-                                <img src="{{ asset('storage/' . $propertyOwner->profile_image) }}" class="profile-image-view"
-                                    alt="Profile Image">
+                           @if ($propertyOwner->profile_image)
+                                <img id="profileImagePreview" src="{{ asset('uploads/' . $propertyOwner->profile_image) }}"
+                                    class="profile-image-preview" alt="Profile Image">
+                                <div class="current-image-text">Current Image</div>
                             @else
-                                <img src="{{ asset('assets/img/default-user.png') }}" class="profile-image-view"
-                                    alt="Default Image">
+                                <img id="profileImagePreview" src="{{ asset('assets/img/default-user.png') }}"
+                                    class="profile-image-preview" alt="Default Image">
                             @endif
                             <h3 class="mt-2">{{ $propertyOwner->owner_name }}</h3>
                             <p class="text-muted">{{ $propertyOwner->code }}</p>

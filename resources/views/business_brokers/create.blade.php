@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('messages.real_estate_agents.edit') }}
+    {{ __('messages.business_brokers.add') }}
 @endsection
 
 @section('page_css')
@@ -54,25 +54,19 @@
             background: #e9ecef;
         }
 
-        .current-image-text {
-            font-size: 12px;
-            color: #6c757d;
-            margin-top: 5px;
-        }
-
         .attachment-preview {
             max-width: 200px;
             max-height: 200px;
             margin-top: 10px;
+            display: none;
         }
 
         .form-check-label {
             margin-left: 5px;
         }
 
-        .attachment-link {
-            display: block;
-            margin-top: 5px;
+        .required {
+            color: #e3342f;
         }
     </style>
 @endsection
@@ -80,11 +74,11 @@
 @section('content')
     <section class="section">
         <div class="section-header item-align-right">
-            <h1>{{ __('messages.real_estate_agents.edit') }}</h1>
+            <h1>{{ __('messages.business_brokers.add') }}</h1>
             <div class="section-header-breadcrumb float-right"></div>
             <div class="float-right">
-                <a href="{{ route('real_estate_agents.index') }}" class="btn btn-primary form-btn">
-                    {{ __('messages.real_estate_agents.list') }}
+                <a href="{{ route('business_brokers.index') }}" class="btn btn-primary form-btn">
+                    {{ __('messages.business_brokers.list') }}
                 </a>
             </div>
         </div>
@@ -93,22 +87,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="modal-content">
-                        {{ Form::open(['route' => ['real_estate_agents.update', $realEstateAgent->id], 'id' => 'editRealEstateAgentForm', 'files' => true, 'method' => 'put']) }}
+                        {{ Form::open(['route' => 'business_brokers.store', 'id' => 'addBusinessBrokerForm', 'files' => true]) }}
                         <div class="modal-body">
                             <div class="alert alert-danger d-none" id="validationErrorsBox"></div>
 
                             <div class="image-upload-wrapper">
-                                @if ($realEstateAgent->profile_image)
-                                    <img id="profileImagePreview"
-                                        src="{{ asset('uploads/' . $realEstateAgent->profile_image) }}"
-                                        class="profile-image-preview" alt="Profile Image">
-                                    <div class="current-image-text">Current Image</div>
-                                @else
-                                    <img id="profileImagePreview" src="{{ asset('assets/img/default-user.png') }}"
-                                        class="profile-image-preview" alt="Default Image">
-                                @endif
+                                <img id="profileImagePreview" src="{{ asset('assets/img/default-user.png') }}"
+                                    class="profile-image-preview" alt="Profile Image">
                                 <label for="profile_image" class="image-upload-label">
-                                    <i class="fas fa-upload mr-1"></i> {{ __('Change Profile Image') }}
+                                    <i class="fas fa-upload mr-1"></i> {{ __('Upload Profile Image') }}
                                 </label>
                                 <input type="file" name="profile_image" id="profile_image" class="d-none"
                                     accept="image/*">
@@ -116,47 +103,47 @@
 
                             <div class="form-row-line mb-4">
                                 <div class="form-group col-md-6">
-                                    {{ Form::label('code', 'Agent Code:') }}
-                                    {{ Form::text('code', $realEstateAgent->code, ['class' => 'form-control', 'id' => 'agentCode', 'readonly' => 'readonly']) }}
+                                    {{ Form::label('code', 'Broker Code:') }}
+                                    {{ Form::text('code', null, ['class' => 'form-control', 'id' => 'brokerCode', 'readonly' => 'readonly']) }}
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    {{ Form::label('owner_name', 'Agent Name:') }}<span class="required">*</span>
-                                    {{ Form::text('owner_name', $realEstateAgent->owner_name, ['class' => 'form-control', 'required', 'id' => 'agentName']) }}
+                                    {{ Form::label('owner_name', 'Broker Name:') }}<span class="required">*</span>
+                                    {{ Form::text('owner_name', null, ['class' => 'form-control', 'required', 'id' => 'brokerName']) }}
                                 </div>
                             </div>
 
                             <div class="form-row-line mb-4">
                                 <div class="form-group col-md-6">
                                     {{ Form::label('email', 'Email:') }}
-                                    {{ Form::email('email', $realEstateAgent->email, ['class' => 'form-control', 'id' => 'agentEmail']) }}
+                                    {{ Form::email('email', null, ['class' => 'form-control', 'id' => 'brokerEmail']) }}
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     {{ Form::label('phone_number', 'Phone Number:') }}<span class="required">*</span>
-                                    {{ Form::tel('phone_number', $realEstateAgent->phone_number, ['class' => 'form-control', 'required', 'id' => 'agentPhone']) }}
+                                    {{ Form::tel('phone_number', null, ['class' => 'form-control', 'required', 'id' => 'brokerPhone']) }}
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 {{ Form::label('address', 'Address:') }}<span class="required">*</span>
-                                {{ Form::text('address', $realEstateAgent->address, ['class' => 'form-control', 'required', 'id' => 'agentAddress']) }}
+                                {{ Form::text('address', null, ['class' => 'form-control', 'required', 'id' => 'brokerAddress']) }}
                             </div>
 
                             <div class="form-row-line mb-4">
                                 <div class="form-group col-md-4">
                                     {{ Form::label('city', 'City:') }}<span class="required">*</span>
-                                    {{ Form::text('city', $realEstateAgent->city, ['class' => 'form-control', 'required', 'id' => 'agentCity']) }}
+                                    {{ Form::text('city', null, ['class' => 'form-control', 'required', 'id' => 'brokerCity']) }}
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     {{ Form::label('state', 'State:') }}
-                                    {{ Form::text('state', $realEstateAgent->state, ['class' => 'form-control', 'id' => 'agentState']) }}
+                                    {{ Form::text('state', null, ['class' => 'form-control', 'id' => 'brokerState']) }}
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     {{ Form::label('zip_code', 'Zip Code:') }}
-                                    {{ Form::text('zip_code', $realEstateAgent->zip_code, ['class' => 'form-control', 'id' => 'agentZipCode']) }}
+                                    {{ Form::text('zip_code', null, ['class' => 'form-control', 'id' => 'brokerZipCode']) }}
                                 </div>
                             </div>
 
@@ -171,60 +158,60 @@
                                             'United Kingdom' => 'United Kingdom',
                                             'Australia' => 'Australia',
                                         ],
-                                        $realEstateAgent->country,
-                                        ['class' => 'form-control select2', 'id' => 'agentCountry', 'placeholder' => 'Select Country'],
+                                        null,
+                                        ['class' => 'form-control select2', 'id' => 'brokerCountry', 'placeholder' => 'Select Country'],
                                     ) }}
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     {{ Form::label('vat_number', 'VAT Number:') }}
-                                    {{ Form::text('vat_number', $realEstateAgent->vat_number, ['class' => 'form-control', 'id' => 'agentVatNumber']) }}
+                                    {{ Form::text('vat_number', null, ['class' => 'form-control', 'id' => 'brokerVatNumber']) }}
                                 </div>
                             </div>
 
                             <div class="form-row-line mb-4">
                                 <div class="form-group col-md-6">
                                     {{ Form::label('website', 'Website:') }}
-                                    {{ Form::url('website', $realEstateAgent->website, ['class' => 'form-control', 'id' => 'agentWebsite']) }}
+                                    {{ Form::url('website', null, ['class' => 'form-control', 'id' => 'brokerWebsite']) }}
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    {{ Form::label('plan', 'Plan:') }}
-                                    {{ Form::text('plan', $realEstateAgent->plan, ['class' => 'form-control', 'id' => 'agentPlan']) }}
+                                    {{ Form::label('specialization', 'Specialization:') }}
+                                    {{ Form::text('specialization', null, ['class' => 'form-control', 'id' => 'brokerSpecialization']) }}
                                 </div>
                             </div>
 
                             <div class="form-row-line mb-4">
                                 <div class="form-group col-md-4">
                                     {{ Form::label('facebook_url', 'Facebook URL:') }}
-                                    {{ Form::url('facebook_url', $realEstateAgent->facebook_url, ['class' => 'form-control', 'id' => 'agentFacebookUrl']) }}
+                                    {{ Form::url('facebook_url', null, ['class' => 'form-control', 'id' => 'brokerFacebookUrl']) }}
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     {{ Form::label('whatsapp_url', 'WhatsApp URL:') }}
-                                    {{ Form::url('whatsapp_url', $realEstateAgent->whatsapp_url, ['class' => 'form-control', 'id' => 'agentWhatsAppUrl']) }}
+                                    {{ Form::url('whatsapp_url', null, ['class' => 'form-control', 'id' => 'brokerWhatsAppUrl']) }}
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     {{ Form::label('instagram_url', 'Instagram URL:') }}
-                                    {{ Form::url('instagram_url', $realEstateAgent->instagram_url, ['class' => 'form-control', 'id' => 'agentInstagramUrl']) }}
+                                    {{ Form::url('instagram_url', null, ['class' => 'form-control', 'id' => 'brokerInstagramUrl']) }}
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 {{ Form::label('information', 'Additional Information:') }}
-                                {{ Form::textarea('information', $realEstateAgent->information, ['class' => 'form-control summernote-simple', 'id' => 'agentInformation', 'rows' => 3]) }}
+                                {{ Form::textarea('information', null, ['class' => 'form-control summernote-simple', 'id' => 'brokerInformation', 'rows' => 3]) }}
                             </div>
 
                             <div class="form-row-line mb-4">
                                 <div class="form-group col-md-6">
                                     <label>Verification Status:</label>
                                     <div class="form-check">
-                                        {{ Form::radio('verification_status', 'verified', $realEstateAgent->verification_status == 'verified', ['class' => 'form-check-input', 'id' => 'verified']) }}
+                                        {{ Form::radio('verification_status', 'verified', false, ['class' => 'form-check-input', 'id' => 'verified']) }}
                                         {{ Form::label('verified', 'Verified', ['class' => 'form-check-label']) }}
                                     </div>
                                     <div class="form-check">
-                                        {{ Form::radio('verification_status', 'regular', $realEstateAgent->verification_status == 'regular', ['class' => 'form-check-input', 'id' => 'regular']) }}
+                                        {{ Form::radio('verification_status', 'regular', true, ['class' => 'form-check-input', 'id' => 'regular']) }}
                                         {{ Form::label('regular', 'Regular', ['class' => 'form-check-label']) }}
                                     </div>
                                 </div>
@@ -232,11 +219,11 @@
                                 <div class="form-group col-md-6">
                                     <label>Privacy:</label>
                                     <div class="form-check">
-                                        {{ Form::radio('privacy', 'public', $realEstateAgent->privacy == 'public', ['class' => 'form-check-input', 'id' => 'public']) }}
+                                        {{ Form::radio('privacy', 'public', true, ['class' => 'form-check-input', 'id' => 'public']) }}
                                         {{ Form::label('public', 'Public', ['class' => 'form-check-label']) }}
                                     </div>
                                     <div class="form-check">
-                                        {{ Form::radio('privacy', 'private', $realEstateAgent->privacy == 'private', ['class' => 'form-check-input', 'id' => 'private']) }}
+                                        {{ Form::radio('privacy', 'private', false, ['class' => 'form-check-input', 'id' => 'private']) }}
                                         {{ Form::label('private', 'Private', ['class' => 'form-check-label']) }}
                                     </div>
                                 </div>
@@ -244,29 +231,10 @@
 
                             <div class="form-group">
                                 {{ Form::label('attachment', 'Attachment:') }}
-                                @if ($realEstateAgent->attachment)
-                                    <div>
-                                        {{-- <a href="{{ asset('storage/' . $realEstateAgent->attachment) }}" target="_blank"
-                                            class="attachment-link">
-                                            <i class="fas fa-file-download"></i> Download Current Attachment
-                                        </a> --}}
-                                        <a href="{{ route('download_attachment', $realEstateAgent->id) }}" target="_blank"
-                                            class="attachment-link">
-                                            <i class="fas fa-file-download"></i> Download Current Attachment
-                                        </a>
-
-                                    </div>
-                                @endif
-                                {{ Form::file('attachment', ['class' => 'form-control-file', 'id' => 'agentAttachment']) }}
+                                {{ Form::file('attachment', ['class' => 'form-control-file', 'id' => 'brokerAttachment']) }}
                                 <small class="form-text text-muted">Upload PDF, DOC, or image files (max 5MB)</small>
+                                <img id="attachmentPreview" class="attachment-preview" alt="Attachment Preview">
                             </div>
-
-                            {{-- <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    {{ Form::checkbox('is_active', 1, $realEstateAgent->is_active, ['class' => 'custom-control-input', 'id' => 'agentIsActive']) }}
-                                    {{ Form::label('agentIsActive', 'Active', ['class' => 'custom-control-label']) }}
-                                </div>
-                            </div> --}}
 
                             <div class="text-right mt-3 mr-1">
                                 {{ Form::button(__('messages.common.submit'), [
@@ -287,6 +255,7 @@
 
 @section('page_scripts')
     <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ mix('assets/js/custom/custom-datatable.js') }}"></script>
     <script src="{{ mix('assets/js/bs4-summernote/summernote-bs4.js') }}"></script>
     <script src="{{ mix('assets/js/select2.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -295,6 +264,15 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+            // Generate broker code
+            function generateBrokerCode() {
+                const timestamp = new Date().getTime().toString().slice(-5);
+                const randomNum = Math.floor(Math.random() * 9000) + 1000;
+                $('#brokerCode').val(`BB#${timestamp}${randomNum}`);
+            }
+
+            generateBrokerCode();
+
             // Initialize Select2
             $('.select2').select2({
                 width: '100%',
@@ -320,19 +298,33 @@
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         $('#profileImagePreview').attr('src', e.target.result);
-                        $('.current-image-text').text('New Image');
                     }
                     reader.readAsDataURL(this.files[0]);
                 }
             });
 
+            // Attachment preview
+            $('#brokerAttachment').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        if (file.type.match('image.*')) {
+                            $('#attachmentPreview').attr('src', e.target.result).show();
+                        } else {
+                            $('#attachmentPreview').hide();
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
             // Form submission
-            $(document).on('submit', '#editRealEstateAgentForm', function(e) {
+            $(document).on('submit', '#addBusinessBrokerForm', function(e) {
                 e.preventDefault();
-                processingBtn('#editRealEstateAgentForm', '#btnSave', 'loading');
+                processingBtn('#addBusinessBrokerForm', '#btnSave', 'loading');
 
                 let formData = new FormData(this);
-                let id = {{ $realEstateAgent->id }};
 
                 $.ajax({
                     url: $(this).attr('action'),
@@ -343,14 +335,14 @@
                     success: function(result) {
                         if (result.success) {
                             displaySuccessMessage(result.message);
-                            window.location.href = "{{ route('real_estate_agents.index') }}";
+                            window.location.href = "{{ route('business_brokers.index') }}";
                         }
                     },
                     error: function(result) {
                         displayErrorMessage(result.responseJSON.message);
                     },
                     complete: function() {
-                        processingBtn('#editRealEstateAgentForm', '#btnSave');
+                        processingBtn('#addBusinessBrokerForm', '#btnSave');
                     }
                 });
             });

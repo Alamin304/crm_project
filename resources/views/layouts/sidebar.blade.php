@@ -1105,6 +1105,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('business-brokers*') ? 'active' : '' }}">
+            <a href="{{ route('business_brokers.index') }}">
+                <i class="fas fa-lg fa-user-tie"></i>
+                <span class="menu-text-wrap">{{ __('messages.business_brokers.business_brokers') }}</span>
+            </a>
+        </li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>{{ __('Property Owners Report') }}</title>
+    <title>{{ __('Business Brokers') }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -62,7 +62,7 @@
 
 <body>
     <div class="header">
-        <h1>{{ __('Property Owners Report') }}</h1>
+        <h1>{{ __('Business Brokers') }}</h1>
         <div class="report-date">{{ __('Generated on') }}: {{ now()->format('Y-m-d H:i') }}</div>
     </div>
 
@@ -79,7 +79,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($propertyOwners as $index => $owner)
+            @foreach ($brokers as $index => $owner)
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $owner->code }}</td>
@@ -96,7 +96,7 @@
     </table>
 
     <div class="footer">
-        {{ __('Total Property Owners') }}: {{ count($propertyOwners) }}
+        {{ __('Total Business Brokers') }}: {{ count($brokers) }}
     </div>
 
     <script>

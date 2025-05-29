@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('messages.real_estate_agents.view') }}
+    {{ __('messages.business_brokers.view') }}
 @endsection
 
 @section('page_css')
@@ -42,14 +42,14 @@
 @section('content')
     <section class="section">
         <div class="section-header item-align-right">
-            <h1>{{ __('messages.property_owners.view') }}</h1>
+            <h1>{{ __('messages.business_brokers.view') }}</h1>
             <div class="section-header-breadcrumb float-right">
                 <div class="card-header-action mr-3 select2-mobile-margin">
                 </div>
             </div>
             <div class="float-right">
-                <a href="{{ route('real_estate_agents.index') }}"
-                    class="btn btn-primary form-btn">{{ __('messages.real_estate_agents.list') }}</a>
+                <a href="{{ route('business_brokers.index') }}"
+                    class="btn btn-primary form-btn">{{ __('messages.business_brokers.list') }}</a>
             </div>
         </div>
         <div class="section-body">
@@ -57,58 +57,58 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 text-center mb-4">
-                           @if ($realEstateAgent->profile_image)
-                                <img id="profileImagePreview" src="{{ asset('uploads/' . $realEstateAgent->profile_image) }}"
+                            @if ($businessBroker->profile_image)
+                                <img id="profileImagePreview" src="{{ asset('uploads/' . $businessBroker->profile_image) }}"
                                     class="profile-image-preview" alt="Profile Image">
                                 <div class="current-image-text">Current Image</div>
                             @else
                                 <img id="profileImagePreview" src="{{ asset('assets/img/default-user.png') }}"
                                     class="profile-image-preview" alt="Default Image">
                             @endif
-                            <h3 class="mt-2">{{ $realEstateAgent->owner_name }}</h3>
-                            <p class="text-muted">{{ $realEstateAgent->code }}</p>
+                            <h3 class="mt-2">{{ $businessBroker->owner_name }}</h3>
+                            <p class="text-muted">{{ $businessBroker->code }}</p>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.email') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->email ?? '-' }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.email') }}:</span>
+                                <p class="info-value">{{ $businessBroker->email ?? '-' }}</p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.phone') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->phone_number }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.phone') }}:</span>
+                                <p class="info-value">{{ $businessBroker->phone_number }}</p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.address') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->address }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.address') }}:</span>
+                                <p class="info-value">{{ $businessBroker->address }}</p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.city') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->city }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.city') }}:</span>
+                                <p class="info-value">{{ $businessBroker->city }}</p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.state') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->state ?? '-' }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.state') }}:</span>
+                                <p class="info-value">{{ $businessBroker->state ?? '-' }}</p>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.zip_code') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->zip_code ?? '-' }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.zip_code') }}:</span>
+                                <p class="info-value">{{ $businessBroker->zip_code ?? '-' }}</p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.country') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->country ?? '-' }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.country') }}:</span>
+                                <p class="info-value">{{ $businessBroker->country ?? '-' }}</p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.vat_number') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->vat_number ?? '-' }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.vat_number') }}:</span>
+                                <p class="info-value">{{ $businessBroker->vat_number ?? '-' }}</p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.status') }}:</span>
+                                <span class="info-label">{{ __('messages.business_brokers.status') }}:</span>
                                 <p class="info-value">
-                                    @if ($realEstateAgent->is_active)
+                                    @if ($businessBroker->is_active)
                                         <span class="badge badge-success">{{ __('Active') }}</span>
                                     @else
                                         <span class="badge badge-danger">{{ __('Inactive') }}</span>
@@ -116,8 +116,8 @@
                                 </p>
                             </div>
                             <div class="form-group">
-                                <span class="info-label">{{ __('messages.real_estate_agents.created_at') }}:</span>
-                                <p class="info-value">{{ $realEstateAgent->created_at->format('Y-m-d H:i:s') }}</p>
+                                <span class="info-label">{{ __('messages.business_brokers.created_at') }}:</span>
+                                <p class="info-value">{{ $businessBroker->created_at->format('Y-m-d H:i:s') }}</p>
                             </div>
                         </div>
 
@@ -125,35 +125,35 @@
                             <div class="form-group">
                                 <span class="info-label">{{ __('Social Links') }}:</span>
                                 <div class="d-flex mt-2">
-                                    @if ($realEstateAgent->website)
-                                        <a href="{{ $realEstateAgent->website }}" target="_blank" class="social-icon"
+                                    @if ($businessBroker->website)
+                                        <a href="{{ $businessBroker->website }}" target="_blank" class="social-icon"
                                             title="Website">
                                             <i class="fas fa-globe"></i>
                                         </a>
                                     @endif
-                                    @if ($realEstateAgent->facebook_url)
-                                        <a href="{{ $realEstateAgent->facebook_url }}" target="_blank" class="social-icon"
+                                    @if ($businessBroker->facebook_url)
+                                        <a href="{{ $businessBroker->facebook_url }}" target="_blank" class="social-icon"
                                             title="Facebook">
                                             <i class="fab fa-facebook"></i>
                                         </a>
                                     @endif
-                                    @if ($realEstateAgent->whatsapp_url)
-                                        <a href="{{ $realEstateAgent->whatsapp_url }}" target="_blank" class="social-icon"
+                                    @if ($businessBroker->whatsapp_url)
+                                        <a href="{{ $businessBroker->whatsapp_url }}" target="_blank" class="social-icon"
                                             title="WhatsApp">
                                             <i class="fab fa-whatsapp"></i>
                                         </a>
                                     @endif
-                                    @if ($realEstateAgent->instagram_url)
-                                        <a href="{{ $realEstateAgent->instagram_url }}" target="_blank" class="social-icon"
+                                    @if ($businessBroker->instagram_url)
+                                        <a href="{{ $businessBroker->instagram_url }}" target="_blank" class="social-icon"
                                             title="Instagram">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     @endif
                                     @if (
-                                        !$realEstateAgent->website &&
-                                            !$realEstateAgent->facebook_url &&
-                                            !$realEstateAgent->whatsapp_url &&
-                                            !$realEstateAgent->instagram_url)
+                                        !$businessBroker->website &&
+                                            !$businessBroker->facebook_url &&
+                                            !$businessBroker->whatsapp_url &&
+                                            !$businessBroker->instagram_url)
                                         <p class="info-value">-</p>
                                     @endif
                                 </div>
