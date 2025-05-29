@@ -3404,4 +3404,23 @@ return [
         'created_at' => 'Created At',
     ],
 
+    'rental_requests' => [
+        'rental_requests' => 'Rental Requests',
+        'add' => 'Add Rental Request',
+        'edit' => 'Edit Rental Request',
+        'view' => 'View Rental Request',
+        'list' => 'List',
+        'request_code' => 'Request Code',
+        'property_owner' => 'Property Owner',
+        'real_estate_agent' => 'Real Estate Agent',
+        'business_broker' => 'Business Broker',
+        'status' => 'Status',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
+        'delete' => 'Rental Request deleted successfully.',
+        'saved' => 'Rental Request saved successfully.',
+        'updated' => 'Rental Request updated successfully.',
+        'export' => 'Export',
+    ],
+
 ];

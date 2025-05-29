@@ -1112,6 +1112,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('rental-requests*') ? 'active' : '' }}">
+            <a href="{{ route('rental_requests.index') }}">
+                <i class="fas fa-lg fa-file-signature"></i>
+                <span class="menu-text-wrap">{{ __('messages.rental_requests.rental_requests') }}</span>
+            </a>
+        </li>
+
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

@@ -85,6 +85,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\PropertyOwnerController;
 use App\Http\Controllers\RealEstateAgentController;
+use App\Http\Controllers\RentalRequestController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TrainingProgramController;
@@ -1286,6 +1287,19 @@ Route::group([], function () {
     Route::get('business-brokers/export/{format}', [BusinessBrokerController::class, 'export'])->name('business_brokers.export');
     Route::put('business-brokers/{businessBroker}/update-status', [BusinessBrokerController::class, 'updateStatus'])->name('business_brokers.update-status');
     Route::get('/{businessBroker}/download-attachment', [BusinessBrokerController::class, 'downloadAttachment'])->name('business_brokers.download_attachment');
+});
+
+Route::group([], function () {
+    Route::get('rental-requests', [RentalRequestController::class, 'index'])->name('rental_requests.index');
+    Route::get('rental-requests/create', [RentalRequestController::class, 'create'])->name('rental_requests.create');
+    Route::post('rental-requests', [RentalRequestController::class, 'store'])->name('rental_requests.store');
+    Route::get('rental-requests/{rentalRequest}/view', [RentalRequestController::class, 'show'])->name('rental_requests.view');
+    Route::get('rental-requests/{rentalRequest}/edit', [RentalRequestController::class, 'edit'])->name('rental_requests.edit');
+    Route::put('rental-requests/{rentalRequest}', [RentalRequestController::class, 'update'])->name('rental_requests.update');
+    Route::delete('rental-requests/{rentalRequest}', [RentalRequestController::class, 'destroy'])->name('rental_requests.destroy');
+    Route::get('rental-requests/export/{format}', [RentalRequestController::class, 'export'])->name('rental_requests.export');
+    Route::put('rental-requests/{rentalRequest}/update-status', [RentalRequestController::class, 'updateStatus'])->name('rental_requests.update-status');
+    Route::put('rental-requests/{rentalRequest}/update-address/{type}', [RentalRequestController::class, 'updateAddress'])->name('rental_requests.update-address');
 });
 Route::get('article-search', function () {
     return view('articles.search');
