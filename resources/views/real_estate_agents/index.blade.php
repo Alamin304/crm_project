@@ -293,8 +293,8 @@
                     width: '10%',
                     render: function(data) {
                         return data ?
-                            `<img src="{{ asset('storage/${data}') }}" class="profile-image" alt="Profile Image">` :
-                            `<img src="{{ asset('assets/img/default-user.png') }}" class="profile-image" alt="Default Image">`;
+                            `<img src="/uploads/${data}" class="profile-image" alt="Profile Image" style="height: 40px; width: 40px;">` :
+                            `<img src="/assets/img/default-user.png" class="profile-image" alt="Default Image" style="height: 40px; width: 40px;">`;
                     },
                     orderable: false
                 },
