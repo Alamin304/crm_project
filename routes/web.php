@@ -80,6 +80,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
+use App\Http\Controllers\MembershipRuleController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OrgChartController;
 use App\Http\Controllers\OtpController;
@@ -954,17 +955,6 @@ Route::middleware(['auth', 'xss', 'checkUserStatus'])->group(function () {
     Route::delete('ticket-reply/{ticket}', [TicketReplyController::class, 'destroy'])->name('ticket.reply.destroy');
 });
 
-
-// Route::group(['middleware' => ['permission:view_beds|create_beds|update_beds|delete_beds']], function () {
-//     Route::get('beds', [BedController::class, 'index'])->name('beds.index');
-//     Route::get('beds/create', [BedController::class, 'create'])->middleware('permission:create_beds')->name('beds.create');
-//     Route::post('beds', [BedController::class, 'store'])->middleware('permission:create_beds')->name('beds.store');
-//     Route::get('beds/{bed}/view', [BedController::class, 'view'])->middleware('permission:view_beds')->name('beds.view');
-//     Route::get('beds/{bed}/edit', [BedController::class, 'edit'])->middleware('permission:update_beds')->name('beds.edit');
-//     Route::put('beds/{bed}', [BedController::class, 'update'])->middleware('permission:update_beds')->name('beds.update');
-//     Route::delete('beds/{bed}', [BedController::class, 'destroy'])->middleware('permission:delete_beds')->name('beds.destroy');
-// });
-
 Route::group([], function () {
     Route::get('beds', [BedController::class, 'index'])->name('beds.index');
     Route::get('beds/create', [BedController::class, 'create'])->name('beds.create');
@@ -1317,27 +1307,6 @@ Route::group([], function () {
     Route::post('buy-requests/{buyRequest}/address/{type}', [BuyRequestController::class, 'updateAddress'])->name('buy_requests.update-address');
 });
 
-// Route::group([], function () {
-//     Route::get('/file_management', [FileController::class, 'index'])->name('file_management.index');
-//     Route::post('file_management/section', [FileController::class, 'storeSection'])->name('file_management.store_section');
-//     Route::post('file_management/item', [FileController::class, 'storeItem'])->name('file_management.store_item');
-//     Route::put('file_management/item/{id}', [FileController::class, 'updateItem'])->name('file_management.update_item');
-//     Route::delete('file_management/item/{id}', [FileController::class, 'deleteItem'])->name('file_management.delete_item');
-//     Route::post('file_management/move/{id}', [FileController::class, 'moveItem'])->name('file_management.move_item');
-//     Route::get('file_management/download/{id}', [FileController::class, 'download'])->name('file_management.download');
-// });
-
-// Route::group([], function () {
-//     Route::get('/file_management', [FileController::class, 'index'])->name('file_management.index');
-//     Route::post('file_management/section', [FileController::class, 'storeSection'])->name('file_management.store_section');
-//     Route::post('file_management/item', [FileController::class, 'storeItem'])->name('file_management.store_item');
-//     Route::put('file_management/item/{id}', [FileController::class, 'updateItem'])->name('file_management.update_item');
-//     Route::delete('file_management/item/{id}', [FileController::class, 'deleteItem'])->name('file_management.delete_item');
-//     Route::post('file_management/move/{id}', [FileController::class, 'moveItem'])->name('file_management.move_item');
-//     Route::get('file_management/download/{id}', [FileController::class, 'download'])->name('file_management.download');
-//     Route::get('file_management/folder-list/{sectionId}', [FileController::class, 'folderList'])->name('file_management.folder_list');
-// });
-
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/file_management', [FileController::class, 'index'])->name('file_management.index');
     Route::post('/file_management/section', [FileController::class, 'storeSection'])->name('file_management.store_section');
@@ -1355,7 +1324,18 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-
+Route::group([], function () {
+    Route::get('membership-rules', [MembershipRuleController::class, 'index'])->name('membership-rules.index');
+    Route::get('membership-rules/create', [MembershipRuleController::class, 'create'])->name('membership-rules.create');
+    Route::post('membership-rules', [MembershipRuleController::class, 'store'])->name('membership-rules.store');
+    Route::get('membership-rules/{membership_rule}/view', [MembershipRuleController::class, 'view'])->name('membership-rules.view');
+    Route::get('membership-rules/{membership_rule}/edit', [MembershipRuleController::class, 'edit'])->name('membership-rules.edit');
+    Route::put('membership-rules/{membership_rule}', [MembershipRuleController::class, 'update'])->name('membership-rules.update');
+    Route::delete('membership-rules/{membership_rule}', [MembershipRuleController::class, 'destroy'])->name('membership-rules.destroy');
+    Route::get('membership-rules/export/{format}', [MembershipRuleController::class, 'export'])->name('membership-rules.export');
+    Route::post('membership-rules/import', [MembershipRuleController::class, 'import'])->name('membership-rules.import');
+    Route::get('membership-rules/sample-csv', [MembershipRuleController::class, 'sampleCsv'])->name('membership-rules.sample-csv');
+});
 
 
 Route::get('article-search', function () {

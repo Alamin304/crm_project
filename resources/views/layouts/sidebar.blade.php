@@ -1133,12 +1133,20 @@
             </a>
         </li> --}}
 
-<li class="side-menus {{ Request::is('file_management*') ? 'active' : '' }}">
-    <a href="{{ route('file_management.index') }}">
-        <i class="fas fa-lg fa-folder-open"></i>
-        <span class="menu-text-wrap">{{ __('messages.file_management.file_management') }}</span>
-    </a>
-</li>
+        <li class="side-menus {{ Request::is('file_management*') ? 'active' : '' }}">
+            <a href="{{ route('file_management.index') }}">
+                <i class="fas fa-lg fa-folder-open"></i>
+                <span class="menu-text-wrap">{{ __('messages.file_management.file_management') }}</span>
+            </a>
+        </li>
+
+        <li class="side-menus {{ Request::is('membership_rules*') ? 'active' : '' }}">
+            <a href="{{ route('membership-rules.index') }}">
+                <i class="fas fa-lg fa-users"></i>
+                <span class="menu-text-wrap">{{ __('messages.membership_rules.memberships') }}</span>
+            </a>
+        </li>
+
 
 
 

@@ -3446,5 +3446,24 @@ return [
         'file_management' => 'File Management',
     ],
 
+    'membership_rules' => [
+        'membership_rules' => 'Membership Rules',
+        'memberships' => 'Memberships',
+        'list' => 'List',
+        'add' => 'Add ',
+        'edit' => 'Edit Membership Rule',
+        'view' => 'View Membership Rule',
+        'name' => 'Name',
+        'customer_group' => 'Customer Group',
+        'customer' => 'Customer',
+        'card' => 'Card',
+        'point_from' => 'Point From',
+        'point_to' => 'Point To',
+        'description' => 'Description',
+        'delete' => 'Membership rule deleted successfully.',
+        'saved' => 'Membership Rule saved successfully.',
+        'updated' => 'Membership Rule updated successfully.',
+        'export' => 'Export',
+    ],
 
 ];
