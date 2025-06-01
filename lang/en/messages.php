@@ -3442,4 +3442,9 @@ return [
         'export' => 'Export',
     ],
 
+    'file_management' => [
+        'file_management' => 'File Management',
+    ],
+
+
 ];

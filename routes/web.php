@@ -76,6 +76,7 @@ use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ComplementaryController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EmployeePerformanceController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
@@ -1315,6 +1316,48 @@ Route::group([], function () {
     Route::put('buy-requests/{buyRequest}/status', [BuyRequestController::class, 'updateStatus'])->name('buy_requests.update-status');
     Route::post('buy-requests/{buyRequest}/address/{type}', [BuyRequestController::class, 'updateAddress'])->name('buy_requests.update-address');
 });
+
+// Route::group([], function () {
+//     Route::get('/file_management', [FileController::class, 'index'])->name('file_management.index');
+//     Route::post('file_management/section', [FileController::class, 'storeSection'])->name('file_management.store_section');
+//     Route::post('file_management/item', [FileController::class, 'storeItem'])->name('file_management.store_item');
+//     Route::put('file_management/item/{id}', [FileController::class, 'updateItem'])->name('file_management.update_item');
+//     Route::delete('file_management/item/{id}', [FileController::class, 'deleteItem'])->name('file_management.delete_item');
+//     Route::post('file_management/move/{id}', [FileController::class, 'moveItem'])->name('file_management.move_item');
+//     Route::get('file_management/download/{id}', [FileController::class, 'download'])->name('file_management.download');
+// });
+
+// Route::group([], function () {
+//     Route::get('/file_management', [FileController::class, 'index'])->name('file_management.index');
+//     Route::post('file_management/section', [FileController::class, 'storeSection'])->name('file_management.store_section');
+//     Route::post('file_management/item', [FileController::class, 'storeItem'])->name('file_management.store_item');
+//     Route::put('file_management/item/{id}', [FileController::class, 'updateItem'])->name('file_management.update_item');
+//     Route::delete('file_management/item/{id}', [FileController::class, 'deleteItem'])->name('file_management.delete_item');
+//     Route::post('file_management/move/{id}', [FileController::class, 'moveItem'])->name('file_management.move_item');
+//     Route::get('file_management/download/{id}', [FileController::class, 'download'])->name('file_management.download');
+//     Route::get('file_management/folder-list/{sectionId}', [FileController::class, 'folderList'])->name('file_management.folder_list');
+// });
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/file_management', [FileController::class, 'index'])->name('file_management.index');
+    Route::post('/file_management/section', [FileController::class, 'storeSection'])->name('file_management.store_section');
+    Route::post('/file_management/item', [FileController::class, 'storeItem'])->name('file_management.store_item');
+    Route::put('/file_management/item/{id}', [FileController::class, 'updateItem'])->name('file_management.update_item');
+    Route::delete('/file_management/item/{id}', [FileController::class, 'deleteItem'])->name('file_management.delete_item');
+    Route::post('/file_management/move/{id}', [FileController::class, 'moveItem'])->name('file_management.move_item');
+    Route::get('/file_management/download/{id}', [FileController::class, 'download'])->name('file_management.download');
+    Route::get('/file_management/folder-list/{sectionId}', [FileController::class, 'folderList'])->name('file_management.folder_list');
+    Route::get('/file_management/folder-options/{sectionId}', [FileController::class, 'folderOptions'])->name('file_management.folder_options');
+
+    Route::put('/file_management/section/{id}', [FileController::class, 'updateSection'])->name('file_management.update_section');
+    Route::post('/file_management/download-selected', [FileController::class, 'downloadSelected'])->name('file_management.download_selected');
+    Route::post('/file_management/delete-selected', [FileController::class, 'deleteSelected'])->name('file_management.delete_selected');
+});
+
+
+
+
+
 Route::get('article-search', function () {
     return view('articles.search');
 });

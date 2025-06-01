@@ -1120,9 +1120,23 @@
         </li>
 
         <li class="side-menus {{ Request::is('buy-requests*') ? 'active' : '' }}">
-    <a href="{{ route('buy_requests.index') }}">
-        <i class="fas fa-lg fa-shopping-cart"></i>
-        <span class="menu-text-wrap">{{ __('messages.buy_requests.buy_requests') }}</span>
+            <a href="{{ route('buy_requests.index') }}">
+                <i class="fas fa-lg fa-shopping-cart"></i>
+                <span class="menu-text-wrap">{{ __('messages.buy_requests.buy_requests') }}</span>
+            </a>
+        </li>
+
+        {{-- <li class="side-menus {{ Request::is('file-management*') ? 'active' : '' }}">
+            <a href="{{ route('file_management.index') }}">
+                <i class="fas fa-lg fa-folder-open"></i>
+                <span class="menu-text-wrap">{{ __('messages.file_management.file_management') }}</span>
+            </a>
+        </li> --}}
+
+<li class="side-menus {{ Request::is('file_management*') ? 'active' : '' }}">
+    <a href="{{ route('file_management.index') }}">
+        <i class="fas fa-lg fa-folder-open"></i>
+        <span class="menu-text-wrap">{{ __('messages.file_management.file_management') }}</span>
     </a>
 </li>
 
