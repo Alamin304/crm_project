@@ -80,6 +80,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
+use App\Http\Controllers\LoyaltyProgramController;
 use App\Http\Controllers\MembershipRuleController;
 use App\Http\Controllers\NoticeBoardController;
 use App\Http\Controllers\OrgChartController;
@@ -1335,6 +1336,19 @@ Route::group([], function () {
     Route::get('membership-rules/export/{format}', [MembershipRuleController::class, 'export'])->name('membership-rules.export');
     Route::post('membership-rules/import', [MembershipRuleController::class, 'import'])->name('membership-rules.import');
     Route::get('membership-rules/sample-csv', [MembershipRuleController::class, 'sampleCsv'])->name('membership-rules.sample-csv');
+});
+
+Route::group([], function (){
+    Route::get('loyalty-programs', [LoyaltyProgramController::class, 'index'])->name('loyalty-programs.index');
+    Route::get('loyalty-programs/create', [LoyaltyProgramController::class, 'create'])->name('loyalty-programs.create');
+    Route::post('loyalty-programs', [LoyaltyProgramController::class, 'store'])->name('loyalty-programs.store');
+    Route::get('loyalty-programs/{loyaltyProgram}/view', [LoyaltyProgramController::class, 'view'])->name('loyalty-programs.view');
+    Route::get('loyalty-programs/{loyaltyProgram}/edit', [LoyaltyProgramController::class, 'edit'])->name('loyalty-programs.edit');
+    Route::put('loyalty-programs/{loyaltyProgram}', [LoyaltyProgramController::class, 'update'])->name('loyalty-programs.update');
+    Route::delete('loyalty-programs/{loyaltyProgram}', [LoyaltyProgramController::class, 'destroy'])->name('loyalty-programs.destroy');
+    Route::get('loyalty-programs/export/{format}', [LoyaltyProgramController::class, 'export'])->name('loyalty-programs.export');
+    Route::get('loyalty-programs/sample-csv', [LoyaltyProgramController::class, 'sampleCsv'])->name('loyalty-programs.sample-csv');
+    Route::post('loyalty-programs/import', [LoyaltyProgramController::class, 'import'])->name('loyalty-programs.import');
 });
 
 

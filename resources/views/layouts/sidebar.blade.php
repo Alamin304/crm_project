@@ -1147,9 +1147,12 @@
             </a>
         </li>
 
-
-
-
+        <li class="side-menus {{ Request::is('loyalty_programs*') ? 'active' : '' }}">
+            <a href="{{ route('loyalty-programs.index') }}">
+                <i class="fas fa-lg fa-gift"></i>
+                <span class="menu-text-wrap">{{ __('messages.loyalty_programs.loyalty_programs') }}</span>
+            </a>
+        </li>
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
