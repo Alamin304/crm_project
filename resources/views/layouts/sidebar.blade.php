@@ -1173,16 +1173,26 @@
         <li class="side-menus">
             <a class="nav-link" href="{{ route('configuration.index') }}">
                 <i class="nav-icon fas fa-cog"></i>
-                <span class="menu-text-wrap"><p>Configuration</p></span>
+                <span class="menu-text-wrap">
+                    <p>Configuration</p>
+                </span>
             </a>
         </li>
 
         <li class="side-menus {{ Request::is('second_assets*') ? 'active' : '' }}">
-    <a href="{{ route('second-assets.index') }}">
-        <i class="fas fa-boxes fa-lg"></i>
-        <span class="menu-text-wrap">{{ __('messages.second_assets.second_assets') }}</span>
-    </a>
-</li>
+            <a href="{{ route('second-assets.index') }}">
+                <i class="fas fa-boxes fa-lg"></i>
+                <span class="menu-text-wrap">{{ __('messages.second_assets.second_assets') }}</span>
+            </a>
+        </li>
+
+        <li class="{{ request()->routeIs('licenses.*') ? 'active' : '' }}">
+            <a href="{{ route('licenses.index') }}">
+                <i class="fa fa-id-card"></i> {{-- Change icon as needed --}}
+                <span>{{ __('messages.licenses.licenses') }}</span>
+            </a>
+        </li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

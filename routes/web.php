@@ -81,6 +81,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
+use App\Http\Controllers\LicenseController;
 use App\Http\Controllers\LoyaltyProgramController;
 use App\Http\Controllers\MembershipRuleController;
 use App\Http\Controllers\NoticeBoardController;
@@ -1383,6 +1384,20 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::get('second-assets/export/{format}', [SecondAssetController::class, 'export'])->name('second-assets.export');
     Route::get('second-assets/sample-csv', [SecondAssetController::class, 'sampleCsv'])->name('second-assets.sample-csv');
     Route::post('second-assets/import', [SecondAssetController::class, 'import'])->name('second-assets.import');
+
+
+    Route::group([], function () {
+    Route::get('licenses', [LicenseController::class, 'index'])->name('licenses.index');
+    Route::get('licenses/create', [LicenseController::class, 'create'])->name('licenses.create');
+    Route::post('licenses', [LicenseController::class, 'store'])->name('licenses.store');
+    Route::get('licenses/{license}/view', [LicenseController::class, 'view'])->name('licenses.view');
+    Route::get('licenses/{license}/edit', [LicenseController::class, 'edit'])->name('licenses.edit');
+    Route::put('licenses/{license}', [LicenseController::class, 'update'])->name('licenses.update');
+    Route::delete('licenses/{license}', [LicenseController::class, 'destroy'])->name('licenses.destroy');
+    Route::get('licenses/export/{format}', [LicenseController::class, 'export'])->name('licenses.export');
+    Route::post('licenses/import', [LicenseController::class, 'import'])->name('licenses.import');
+    Route::get('licenses/sample-csv', [LicenseController::class, 'sampleCsv'])->name('licenses.sample-csv');
+});
 
 Route::get('article-search', function () {
     return view('articles.search');
