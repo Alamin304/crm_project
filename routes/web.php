@@ -95,6 +95,7 @@ use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
+use App\Http\Controllers\LoyaltyUserController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -1350,6 +1351,12 @@ Route::group([], function (){
     Route::get('loyalty-programs/sample-csv', [LoyaltyProgramController::class, 'sampleCsv'])->name('loyalty-programs.sample-csv');
     Route::post('loyalty-programs/import', [LoyaltyProgramController::class, 'import'])->name('loyalty-programs.import');
 });
+
+Route::group([], function (){
+    Route::get('loyalty-user-lists', [LoyaltyUserController::class, 'index'])->name('loyalty-user-lists.index');
+    Route::get('loyalty-user-list/{id}/show', [LoyaltyUserController::class, 'show'])->name('loyalty-user-lists.show');
+    Route::get('loyalty-user/export/{format}', [LoyaltyUserController::class, 'export'])->name('loyalty-users.export');
+    });
 
 
 Route::get('article-search', function () {

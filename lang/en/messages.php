@@ -3495,4 +3495,14 @@ return [
         'export' => 'Export',
     ],
 
+    'loyalty_users' => [
+        'loyalty_users' => 'Loyalty Users',
+        'add' => 'Add Loyalty User',
+        'customer' => 'Customer',
+        'email' => 'Email',
+        'membership' => 'Membership',
+        'loyalty_point' => 'Loyalty Points',
+    ],
+
+
 ];
