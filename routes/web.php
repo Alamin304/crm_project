@@ -74,6 +74,7 @@ use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ComplementaryController;
+use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EmployeePerformanceController;
 use App\Http\Controllers\FileController;
@@ -1358,6 +1359,24 @@ Route::group([], function (){
     Route::get('loyalty-user/export/{format}', [LoyaltyUserController::class, 'export'])->name('loyalty-users.export');
     });
 
+
+    Route::group(['prefix' => 'configuration', 'as' => 'configuration.'], function () {
+    Route::get('/', [ConfigurationController::class, 'index'])->name('index');
+
+    // Loyalty Settings
+    Route::post('/loyalty-settings', [ConfigurationController::class, 'updateLoyaltySettings'])->name('loyalty-settings.update');
+
+    // Membership Card Templates
+    Route::get('/membership-card-templates', [ConfigurationController::class, 'membershipCardTemplates'])->name('membership-card-templates.index');
+    Route::get('/membership-card-templates/create', [ConfigurationController::class, 'createMembershipCardTemplate'])->name('membership-card-templates.create');
+    Route::post('/membership-card-templates', [ConfigurationController::class, 'storeMembershipCardTemplate'])->name('membership-card-templates.store');
+    Route::get('/membership-card-templates/{id}/edit', [ConfigurationController::class, 'editMembershipCardTemplate'])->name('membership-card-templates.edit');
+    Route::put('/membership-card-templates/{id}', [ConfigurationController::class, 'updateMembershipCardTemplate'])->name('membership-card-templates.update');
+    Route::delete('/membership-card-templates/{id}', [ConfigurationController::class, 'destroyMembershipCardTemplate'])->name('membership-card-templates.destroy');
+
+    // Currency Rates Settings
+    Route::post('/currency-rates-settings', [ConfigurationController::class, 'updateCurrencyRatesSettings'])->name('currency-rates-settings.update');
+});
 
 Route::get('article-search', function () {
     return view('articles.search');

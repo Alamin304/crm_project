@@ -1154,13 +1154,28 @@
             </a>
         </li>
 
-         <li class="side-menus {{ Request::is('loyalty_users*') ? 'active' : '' }}">
+        <li class="side-menus {{ Request::is('loyalty_users*') ? 'active' : '' }}">
             <a href="{{ route('loyalty-user-lists.index') }}">
                 <i class="fas fa-lg fa-gift"></i>
                 <span class="menu-text-wrap">{{ __('messages.loyalty_users.loyalty_users') }}</span>
             </a>
         </li>
 
+        {{-- <li class="side-menus {{ Request::is('loyalty_users*') ? 'active' : '' }}">
+            <a href="{{ route('configuration.index') }}">
+                <i class="nav-icon fas fa-cog"></i>
+                <span class="menu-text-wrap">
+                    <p>Configuration</p>
+                </span>
+            </a>
+        </li> --}}
+
+        <li class="side-menus">
+            <a class="nav-link" href="{{ route('configuration.index') }}">
+                <i class="nav-icon fas fa-cog"></i>
+                <span class="menu-text-wrap"><p>Configuration</p></span>
+            </a>
+        </li>
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>
