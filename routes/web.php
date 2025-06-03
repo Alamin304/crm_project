@@ -97,6 +97,7 @@ use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
+use App\Http\Controllers\SecondAssetController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -1377,6 +1378,11 @@ Route::group([], function (){
     // Currency Rates Settings
     Route::post('/currency-rates-settings', [ConfigurationController::class, 'updateCurrencyRatesSettings'])->name('currency-rates-settings.update');
 });
+
+Route::resource('second-assets', SecondAssetController::class);
+    Route::get('second-assets/export/{format}', [SecondAssetController::class, 'export'])->name('second-assets.export');
+    Route::get('second-assets/sample-csv', [SecondAssetController::class, 'sampleCsv'])->name('second-assets.sample-csv');
+    Route::post('second-assets/import', [SecondAssetController::class, 'import'])->name('second-assets.import');
 
 Route::get('article-search', function () {
     return view('articles.search');

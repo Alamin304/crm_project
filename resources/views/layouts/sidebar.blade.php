@@ -1176,6 +1176,14 @@
                 <span class="menu-text-wrap"><p>Configuration</p></span>
             </a>
         </li>
+
+        <li class="side-menus {{ Request::is('second_assets*') ? 'active' : '' }}">
+    <a href="{{ route('second-assets.index') }}">
+        <i class="fas fa-boxes fa-lg"></i>
+        <span class="menu-text-wrap">{{ __('messages.second_assets.second_assets') }}</span>
+    </a>
+</li>
+
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('members.index') }}"><i class="fas fa-lg fa-user-friends"></i>
