@@ -97,6 +97,7 @@ use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
+use App\Http\Controllers\SecondAssetController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -1378,6 +1379,18 @@ Route::group([], function (){
     Route::post('/currency-rates-settings', [ConfigurationController::class, 'updateCurrencyRatesSettings'])->name('currency-rates-settings.update');
 });
 
+Route::group([], function (){
+// Route::resource('/assets', SecondAssetController::class);
+Route::get('second-assets', [SecondAssetController::class, 'index'])->name('second-assets.index');
+Route::get('assets/create', [SecondAssetController::class, 'create'])->name('second-assets.create');
+Route::post('assets', [SecondAssetController::class, 'store'])->name('second-assets.store');
+Route::get('assets/{asset}/view', [SecondAssetController::class, 'view'])->name('second-assets.view');
+Route::get('assets/{asset}/edit', [SecondAssetController::class, 'edit'])->name('second-assets.edit');
+Route::put('assets/{asset}', [SecondAssetController::class, 'update'])->name('second-assets.update');
+Route::delete('assets/{asset}', [SecondAssetController::class, 'destroy'])->name('second-assets.destroy');
+Route::get('assets/generate-serial', [SecondAssetController::class, 'generateSerialNumber'])->name('second-assets.generate-serial');
+
+});
 Route::get('article-search', function () {
     return view('articles.search');
 });
