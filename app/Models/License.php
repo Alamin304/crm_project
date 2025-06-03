@@ -33,9 +33,9 @@ class License extends Model
     ];
 
     protected $casts = [
-        'purchase_date' => 'date',
-        'expiration_date' => 'date',
-        'termination_date' => 'date',
+        // 'purchase_date' => 'date',
+        // 'expiration_date' => 'date',
+        // 'termination_date' => 'date',
         'reassignable' => 'boolean',
         'maintained' => 'boolean',
         'for_sell' => 'boolean',

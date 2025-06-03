@@ -1396,7 +1396,7 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::delete('licenses/{license}', [LicenseController::class, 'destroy'])->name('licenses.destroy');
     Route::get('licenses/export/{format}', [LicenseController::class, 'export'])->name('licenses.export');
     Route::post('licenses/import', [LicenseController::class, 'import'])->name('licenses.import');
-    Route::get('licenses/sample-csv', [LicenseController::class, 'sampleCsv'])->name('licenses.sample-csv');
+    Route::get('licenses/sample-csv', [LicenseController::class, 'downloadSampleCsv'])->name('licenses.sample-csv');
 });
 
 Route::get('article-search', function () {

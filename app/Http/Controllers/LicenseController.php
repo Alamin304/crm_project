@@ -168,7 +168,7 @@ class LicenseController extends AppBaseController
         return response()->stream($callback, 200, $headers);
     }
 
-    public function importCsv(Request $request)
+    public function import(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'file' => 'required|mimes:csv,txt,xlsx|max:2048',
