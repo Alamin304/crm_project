@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\AccessoryController;
 use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth as AuthController;
@@ -1398,6 +1399,11 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::post('licenses/import', [LicenseController::class, 'import'])->name('licenses.import');
     Route::get('licenses/sample-csv', [LicenseController::class, 'downloadSampleCsv'])->name('licenses.sample-csv');
 });
+
+    Route::resource('accessories', AccessoryController::class);
+    Route::get('accessories/export/{format}', [AccessoryController::class, 'export'])->name('accessories.export');
+    Route::get('accessories/sample-csv', [AccessoryController::class, 'sampleCsv'])->name('accessories.sample-csv');
+    Route::post('accessories/import', [AccessoryController::class, 'import'])->name('accessories.import');
 
 Route::get('article-search', function () {
     return view('articles.search');

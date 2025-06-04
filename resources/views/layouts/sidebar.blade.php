@@ -1193,6 +1193,13 @@
             </a>
         </li>
 
+        <li class="{{ request()->routeIs('accessories.*') ? 'active' : '' }}">
+    <a href="{{ route('accessories.index') }}">
+        <i class="fa fa-cogs"></i> {{-- Change icon as needed --}}
+        <span>{{ __('messages.accessory.accessories') }}</span>
+    </a>
+</li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">
