@@ -76,6 +76,7 @@ use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ComplementaryController;
 use App\Http\Controllers\ConfigurationController;
+use App\Http\Controllers\ConsumableController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EmployeePerformanceController;
 use App\Http\Controllers\FileController;
@@ -1404,6 +1405,13 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::get('accessories/export/{format}', [AccessoryController::class, 'export'])->name('accessories.export');
     Route::get('accessories/sample-csv', [AccessoryController::class, 'sampleCsv'])->name('accessories.sample-csv');
     Route::post('accessories/import', [AccessoryController::class, 'import'])->name('accessories.import');
+
+
+    Route::resource('consumables', ConsumableController::class);
+    Route::get('consumables/export/{format}', [ConsumableController::class, 'export'])->name('consumables.export');
+    Route::get('consumables/sample-csv', [ConsumableController::class, 'downloadSampleCsv'])->name('consumables.sample-csv');
+    Route::post('consumables/import', [ConsumableController::class, 'import'])->name('consumables.import');
+    Route::post('consumables/{consumable}/remove-image', [ConsumableController::class, 'removeImage'])->name('consumables.remove.image');
 
 Route::get('article-search', function () {
     return view('articles.search');

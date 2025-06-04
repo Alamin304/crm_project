@@ -1194,11 +1194,19 @@
         </li>
 
         <li class="{{ request()->routeIs('accessories.*') ? 'active' : '' }}">
-    <a href="{{ route('accessories.index') }}">
-        <i class="fa fa-cogs"></i> {{-- Change icon as needed --}}
-        <span>{{ __('messages.accessory.accessories') }}</span>
-    </a>
-</li>
+            <a href="{{ route('accessories.index') }}">
+                <i class="fa fa-cogs"></i> 
+                <span>{{ __('messages.accessory.accessories') }}</span>
+            </a>
+        </li>
+
+        <li class="{{ request()->routeIs('consumables.*') ? 'active' : '' }}">
+            <a href="{{ route('consumables.index') }}">
+                <i class="fa fa-wrench"></i> 
+                <span>{{ __('messages.consumables.consumables') }}</span>
+            </a>
+        </li>
+
 
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
