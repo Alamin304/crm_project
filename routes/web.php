@@ -100,6 +100,7 @@ use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
+use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SecondAssetController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
@@ -1413,6 +1414,8 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::post('consumables/import', [ConsumableController::class, 'import'])->name('consumables.import');
     Route::post('consumables/{consumable}/remove-image', [ConsumableController::class, 'removeImage'])->name('consumables.remove.image');
 
+    Route::resource('requests', RequestController::class);
+Route::get('requests/export/{format}', [RequestController::class, 'export'])->name('requests.export');
 Route::get('article-search', function () {
     return view('articles.search');
 });

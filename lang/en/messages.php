@@ -3613,4 +3613,20 @@ return [
         'notes' => 'Notes',
     ],
 
+    'requests' => [
+        'requests' => 'Requests',
+        'add' => 'Add',
+        'edit' => 'Edit Request',
+        'details' => 'Request Details',
+        'list' => 'List',
+        'title' => 'Title',
+        'assets' => 'Assets',
+        'checkout_for' => 'Checkout For',
+        'note' => 'Note',
+        'status' => 'Status',
+        'saved' => 'Request saved successfully',
+        'delete' => 'Request deleted successfully',
+        'created_at' => 'Created At'
+    ],
+
 ];
