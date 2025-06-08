@@ -85,6 +85,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobPostController;
 use App\Http\Controllers\LicenseController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LoyaltyProgramController;
 use App\Http\Controllers\MembershipRuleController;
 use App\Http\Controllers\NoticeBoardController;
@@ -1417,6 +1418,8 @@ Route::resource('second-assets', SecondAssetController::class);
 
     Route::resource('asset-maintenances', AssetMaintenanceController::class);
     Route::get('asset-maintenances/export/{format}', [AssetMaintenanceController::class, 'export'])->name('asset-maintenances.export');
+
+    Route::resource('locations', LocationController::class);
 Route::get('article-search', function () {
     return view('articles.search');
 });

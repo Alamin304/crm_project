@@ -3638,4 +3638,25 @@ return [
         'select_maintenance_type' => 'Select Maintenance Type',
     ],
 
+    'location' => [
+        'locations' => 'Locations',
+        'add' => 'Add',
+        'edit' => 'Edit Location',
+        'details' => 'Location Details',
+        'list' => 'List',
+        'saved' => 'Location saved successfully',
+        'updated' => 'Location updated successfully',
+        'delete' => 'Location deleted successfully',
+        'location_name' => 'Location Name',
+        'parent' => 'Parent Location',
+        'manager' => 'Manager',
+        'address' => 'Address',
+        'city' => 'City',
+        'state' => 'State',
+        'country' => 'Country',
+        'zip_code' => 'Zip Code',
+        'location_currency' => 'Currency',
+        'image' => 'Image',
+    ],
+
 ];

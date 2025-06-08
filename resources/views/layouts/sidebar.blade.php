@@ -1215,6 +1215,13 @@
         </li>
 
 
+        <li class="side-menus {{ Request::is('locations*') ? 'active' : '' }}">
+    <a href="{{ route('locations.index') }}">
+        <i class="fas fa-lg fa-map-marker-alt"></i>
+        <span class="menu-text-wrap">{{ __('messages.locations.locations') }}</span>
+    </a>
+</li>
+
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])
             <li class="side-menus {{ Request::is('admin/members*') ? 'active' : '' }}">

@@ -27,17 +27,6 @@ class AccessoryController extends AppBaseController
     {
         $this->accessoryRepository = $accessoryRepo;
     }
-
-    // public function index(Request $request)
-    // {
-    //     if ($request->ajax()) {
-    //         return DataTables::of((new AccessoryDataTable())->get())
-    //             ->addIndexColumn()
-    //             ->make(true);
-    //     }
-    //     return view('accessories.index');
-    // }
-
      public function index(Request $request)
     {
         if ($request->ajax()) {
