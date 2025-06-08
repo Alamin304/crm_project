@@ -79,6 +79,7 @@ use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ComplementaryController;
 use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\ConsumableController;
+use App\Http\Controllers\DepreciationController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EmployeePerformanceController;
 use App\Http\Controllers\FileController;
@@ -1423,6 +1424,8 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::resource('locations', LocationController::class);
 
     Route::resource('audits', AuditController::class)->except(['show', 'edit', 'update']);
+
+    Route::resource('depreciations', DepreciationController::class);
 Route::get('article-search', function () {
     return view('articles.search');
 });

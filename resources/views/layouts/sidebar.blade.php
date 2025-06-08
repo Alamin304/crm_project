@@ -1229,6 +1229,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('depreciations*') ? 'active' : '' }}">
+            <a href="{{ route('depreciations.index') }}">
+                <i class="fas fa-lg fa-percentage"></i>
+                <span class="menu-text-wrap">{{ __('messages.depreciation.depreciations') }}</span>
+            </a>
+        </li>
+
+
 
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])

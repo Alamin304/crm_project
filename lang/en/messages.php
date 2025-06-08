@@ -3671,4 +3671,26 @@ return [
         'delete' => 'Audit deleted successfully'
     ],
 
+    'depreciation' => [
+        'depreciations' => 'Depreciations',
+        'add' => 'Add',
+        'list' => 'List',
+        'saved' => 'Depreciation saved successfully.',
+        'delete' => 'Depreciation deleted successfully.',
+        'asset_name' => 'Asset Name',
+        'serial_no' => 'Serial No',
+        'depreciation_name' => 'Depreciation Name',
+        'number_of_month' => 'Number of Months',
+        'status' => 'Status',
+        'checked_out' => 'Checked Out',
+        'purchase_date' => 'Purchase Date',
+        'EOL_date' => 'EOL Date',
+        'cost' => 'Cost',
+        'maintenance' => 'Maintenance',
+        'current_value' => 'Current Value',
+        'monthly_depreciation' => 'Monthly Depreciation',
+        'remaining' => 'Remaining Value',
+        'image' => 'Image',
+    ],
+
 ];
