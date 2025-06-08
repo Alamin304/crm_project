@@ -1195,15 +1195,22 @@
 
         <li class="{{ request()->routeIs('accessories.*') ? 'active' : '' }}">
             <a href="{{ route('accessories.index') }}">
-                <i class="fa fa-cogs"></i> 
+                <i class="fa fa-cogs"></i>
                 <span>{{ __('messages.accessory.accessories') }}</span>
             </a>
         </li>
 
         <li class="{{ request()->routeIs('consumables.*') ? 'active' : '' }}">
             <a href="{{ route('consumables.index') }}">
-                <i class="fa fa-wrench"></i> 
+                <i class="fa fa-wrench"></i>
                 <span>{{ __('messages.consumables.consumables') }}</span>
+            </a>
+        </li>
+
+        <li class="side-menus {{ Request::is('asset_maintenance*') ? 'active' : '' }}">
+            <a href="{{ route('asset-maintenances.index') }}">
+                <i class="fas fa-lg fa-tools"></i>
+                <span class="menu-text-wrap">{{ __('messages.asset_maintenance.asset_maintenances') }}</span>
             </a>
         </li>
 

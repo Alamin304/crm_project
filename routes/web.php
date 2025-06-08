@@ -64,6 +64,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CustomerStatementController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AssetMaintenanceController;
 use App\Http\Controllers\AwardListController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
@@ -1413,6 +1414,9 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::post('consumables/import', [ConsumableController::class, 'import'])->name('consumables.import');
     Route::post('consumables/{consumable}/remove-image', [ConsumableController::class, 'removeImage'])->name('consumables.remove.image');
 
+
+    Route::resource('asset-maintenances', AssetMaintenanceController::class);
+    Route::get('asset-maintenances/export/{format}', [AssetMaintenanceController::class, 'export'])->name('asset-maintenances.export');
 Route::get('article-search', function () {
     return view('articles.search');
 });

@@ -3613,4 +3613,29 @@ return [
         'notes' => 'Notes',
     ],
 
+
+    'asset_maintenance' => [
+        'asset_maintenances' => 'Asset Maintenances',
+        'asset_maintenance' => 'Asset Maintenance',
+        'new_asset_maintenance' => 'New Asset Maintenance',
+        'edit_asset_maintenance' => 'Edit Asset Maintenance',
+        'asset_maintenance_details' => 'Asset Maintenance Details',
+        'add' => 'Add',
+        'list' => 'List',
+        'saved' => 'Asset maintenance saved successfully',
+        'delete' => 'Asset maintenance deleted successfully',
+        'asset' => 'Asset',
+        'supplier' => 'Supplier',
+        'maintenance_type' => 'Maintenance Type',
+        'title' => 'Title',
+        'start_date' => 'Start Date',
+        'completion_date' => 'Completion Date',
+        'warranty_improvement' => 'Warranty Improvement',
+        'cost' => 'Cost',
+        'notes' => 'Notes',
+        'select_asset' => 'Select Asset',
+        'select_supplier' => 'Select Supplier',
+        'select_maintenance_type' => 'Select Maintenance Type',
+    ],
+
 ];
