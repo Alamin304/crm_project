@@ -3659,4 +3659,16 @@ return [
         'image' => 'Image',
     ],
 
+    'audit' => [
+        'audits' => 'Audits',
+        'add' => 'Add',
+        'list' => 'List',
+        'title' => 'Title',
+        'auditor' => 'Auditor',
+        'audit_date' => 'Audit Date',
+        'status' => 'Status',
+        'saved' => 'Audit saved successfully',
+        'delete' => 'Audit deleted successfully'
+    ],
+
 ];

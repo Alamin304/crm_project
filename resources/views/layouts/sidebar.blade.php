@@ -1216,11 +1216,19 @@
 
 
         <li class="side-menus {{ Request::is('locations*') ? 'active' : '' }}">
-    <a href="{{ route('locations.index') }}">
-        <i class="fas fa-lg fa-map-marker-alt"></i>
-        <span class="menu-text-wrap">{{ __('messages.locations.locations') }}</span>
-    </a>
-</li>
+            <a href="{{ route('locations.index') }}">
+                <i class="fas fa-lg fa-map-marker-alt"></i>
+                <span class="menu-text-wrap">{{ __('messages.location.locations') }}</span>
+            </a>
+        </li>
+
+        <li class="side-menus {{ Request::is('audits*') ? 'active' : '' }}">
+            <a href="{{ route('audits.index') }}">
+                <i class="fas fa-lg fa-clipboard-check"></i>
+                <span class="menu-text-wrap">{{ __('messages.audit.audits') }}</span>
+            </a>
+        </li>
+
 
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])

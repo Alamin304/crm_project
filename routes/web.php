@@ -65,6 +65,7 @@ use App\Http\Controllers\CustomerStatementController;
 use App\Http\Controllers\BankController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AssetMaintenanceController;
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\AwardListController;
 use App\Http\Controllers\BedController;
 use App\Http\Controllers\BookingListController;
@@ -1420,6 +1421,8 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::get('asset-maintenances/export/{format}', [AssetMaintenanceController::class, 'export'])->name('asset-maintenances.export');
 
     Route::resource('locations', LocationController::class);
+
+    Route::resource('audits', AuditController::class)->except(['show', 'edit', 'update']);
 Route::get('article-search', function () {
     return view('articles.search');
 });
