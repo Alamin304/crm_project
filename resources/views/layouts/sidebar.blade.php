@@ -1236,6 +1236,12 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('orders*') ? 'active' : '' }}">
+            <a href="{{ route('orders.index') }}">
+                <i class="fas fa-lg fa-shopping-cart"></i>
+                <span class="menu-text-wrap">{{ __('messages.order.orders') }}</span>
+            </a>
+        </li>
 
 
 

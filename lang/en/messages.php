@@ -3693,4 +3693,15 @@ return [
         'image' => 'Image',
     ],
 
+    'order' => [
+        'orders' => 'Orders',
+        'order' => 'Order',
+        'new_order' => 'New Order',
+        'edit_order' => 'Edit Order',
+        'order_details' => 'Order Details',
+        'list' => 'List',
+        // Add more if needed
+    ],
+
+
 ];

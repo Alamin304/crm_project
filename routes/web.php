@@ -104,6 +104,7 @@ use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SecondAssetController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
@@ -1426,6 +1427,9 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::resource('audits', AuditController::class)->except(['show', 'edit', 'update']);
 
     Route::resource('depreciations', DepreciationController::class);
+
+    Route::resource('orders', OrderController::class)->only(['index', 'destroy']);
+    Route::get('orders/export/{format}', [OrderController::class, 'export'])->name('orders.export');
 Route::get('article-search', function () {
     return view('articles.search');
 });
