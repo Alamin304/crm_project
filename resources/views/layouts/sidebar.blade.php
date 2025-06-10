@@ -1243,6 +1243,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('unaccepted-assets*') ? 'active' : '' }}">
+            <a href="{{ route('unaccepted-assets.index') }}">
+                <i class="fas fa-lg fa-ban"></i>
+                <span class="menu-text-wrap">{{ __('messages.unaccepted_asset.unaccepted_assets') }}</span>
+            </a>
+        </li>
+
+
 
 
         @canany(['view_users', 'create_users', 'update_users', 'delete_users'])

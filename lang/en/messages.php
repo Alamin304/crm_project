@@ -3703,5 +3703,10 @@ return [
         // Add more if needed
     ],
 
+    'unaccepted_asset' => [
+        'unaccepted_assets' => 'Unaccepted Assets',
+        'deleted_successfully' => 'Unaccepted asset deleted successfully',
+        'not_found' => 'Unaccepted asset not found'
+    ],
 
 ];

@@ -106,6 +106,7 @@ use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SecondAssetController;
+use App\Http\Controllers\UnacceptedAssetController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -1349,7 +1350,7 @@ Route::group([], function () {
     Route::get('membership-rules/sample-csv', [MembershipRuleController::class, 'sampleCsv'])->name('membership-rules.sample-csv');
 });
 
-Route::group([], function (){
+Route::group([], function () {
     Route::get('loyalty-programs', [LoyaltyProgramController::class, 'index'])->name('loyalty-programs.index');
     Route::get('loyalty-programs/create', [LoyaltyProgramController::class, 'create'])->name('loyalty-programs.create');
     Route::post('loyalty-programs', [LoyaltyProgramController::class, 'store'])->name('loyalty-programs.store');
@@ -1362,14 +1363,14 @@ Route::group([], function (){
     Route::post('loyalty-programs/import', [LoyaltyProgramController::class, 'import'])->name('loyalty-programs.import');
 });
 
-Route::group([], function (){
+Route::group([], function () {
     Route::get('loyalty-user-lists', [LoyaltyUserController::class, 'index'])->name('loyalty-user-lists.index');
     Route::get('loyalty-user-list/{id}/show', [LoyaltyUserController::class, 'show'])->name('loyalty-user-lists.show');
     Route::get('loyalty-user/export/{format}', [LoyaltyUserController::class, 'export'])->name('loyalty-users.export');
-    });
+});
 
 
-    Route::group(['prefix' => 'configuration', 'as' => 'configuration.'], function () {
+Route::group(['prefix' => 'configuration', 'as' => 'configuration.'], function () {
     Route::get('/', [ConfigurationController::class, 'index'])->name('index');
 
     // Loyalty Settings
@@ -1388,12 +1389,12 @@ Route::group([], function (){
 });
 
 Route::resource('second-assets', SecondAssetController::class);
-    Route::get('second-assets/export/{format}', [SecondAssetController::class, 'export'])->name('second-assets.export');
-    Route::get('second-assets/sample-csv', [SecondAssetController::class, 'sampleCsv'])->name('second-assets.sample-csv');
-    Route::post('second-assets/import', [SecondAssetController::class, 'import'])->name('second-assets.import');
+Route::get('second-assets/export/{format}', [SecondAssetController::class, 'export'])->name('second-assets.export');
+Route::get('second-assets/sample-csv', [SecondAssetController::class, 'sampleCsv'])->name('second-assets.sample-csv');
+Route::post('second-assets/import', [SecondAssetController::class, 'import'])->name('second-assets.import');
 
 
-    Route::group([], function () {
+Route::group([], function () {
     Route::get('licenses', [LicenseController::class, 'index'])->name('licenses.index');
     Route::get('licenses/create', [LicenseController::class, 'create'])->name('licenses.create');
     Route::post('licenses', [LicenseController::class, 'store'])->name('licenses.store');
@@ -1406,30 +1407,33 @@ Route::resource('second-assets', SecondAssetController::class);
     Route::get('licenses/sample-csv', [LicenseController::class, 'downloadSampleCsv'])->name('licenses.sample-csv');
 });
 
-    Route::resource('accessories', AccessoryController::class);
-    Route::get('accessories/export/{format}', [AccessoryController::class, 'export'])->name('accessories.export');
-    Route::get('accessories/sample-csv', [AccessoryController::class, 'sampleCsv'])->name('accessories.sample-csv');
-    Route::post('accessories/import', [AccessoryController::class, 'import'])->name('accessories.import');
+Route::resource('accessories', AccessoryController::class);
+Route::get('accessories/export/{format}', [AccessoryController::class, 'export'])->name('accessories.export');
+Route::get('accessories/sample-csv', [AccessoryController::class, 'sampleCsv'])->name('accessories.sample-csv');
+Route::post('accessories/import', [AccessoryController::class, 'import'])->name('accessories.import');
 
 
-    Route::resource('consumables', ConsumableController::class);
-    Route::get('consumables/export/{format}', [ConsumableController::class, 'export'])->name('consumables.export');
-    Route::get('consumables/sample-csv', [ConsumableController::class, 'downloadSampleCsv'])->name('consumables.sample-csv');
-    Route::post('consumables/import', [ConsumableController::class, 'import'])->name('consumables.import');
-    Route::post('consumables/{consumable}/remove-image', [ConsumableController::class, 'removeImage'])->name('consumables.remove.image');
+Route::resource('consumables', ConsumableController::class);
+Route::get('consumables/export/{format}', [ConsumableController::class, 'export'])->name('consumables.export');
+Route::get('consumables/sample-csv', [ConsumableController::class, 'downloadSampleCsv'])->name('consumables.sample-csv');
+Route::post('consumables/import', [ConsumableController::class, 'import'])->name('consumables.import');
+Route::post('consumables/{consumable}/remove-image', [ConsumableController::class, 'removeImage'])->name('consumables.remove.image');
 
 
-    Route::resource('asset-maintenances', AssetMaintenanceController::class);
-    Route::get('asset-maintenances/export/{format}', [AssetMaintenanceController::class, 'export'])->name('asset-maintenances.export');
+Route::resource('asset-maintenances', AssetMaintenanceController::class);
+Route::get('asset-maintenances/export/{format}', [AssetMaintenanceController::class, 'export'])->name('asset-maintenances.export');
 
-    Route::resource('locations', LocationController::class);
+Route::resource('locations', LocationController::class);
 
-    Route::resource('audits', AuditController::class)->except(['show', 'edit', 'update']);
+Route::resource('audits', AuditController::class)->except(['show', 'edit', 'update']);
 
-    Route::resource('depreciations', DepreciationController::class);
+Route::resource('depreciations', DepreciationController::class);
 
-    Route::resource('orders', OrderController::class)->only(['index', 'destroy']);
-    Route::get('orders/export/{format}', [OrderController::class, 'export'])->name('orders.export');
+Route::resource('orders', OrderController::class)->only(['index', 'destroy']);
+Route::get('orders/export/{format}', [OrderController::class, 'export'])->name('orders.export');
+
+Route::resource('unaccepted-assets', UnacceptedAssetController::class)->only(['index', 'destroy']);
+Route::get('unaccepted-assets/export/{format}', [UnacceptedAssetController::class, 'export'])->name('unaccepted-assets.export');
 Route::get('article-search', function () {
     return view('articles.search');
 });
