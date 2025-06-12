@@ -3719,5 +3719,15 @@ return [
         // Add more keys as needed
     ],
 
+    'pre_alert' => [
+        'pre_alerts' => 'Pre Alerts List',
+        'pre_alert' => 'Pre Alert List',
+        'new_pre_alert' => 'New Pre Alert',
+        'edit_pre_alert' => 'Edit Pre Alert',
+        'pre_alert_details' => 'Pre Alert Details',
+        'list' => 'List',
+    ],
+
+
 
 ];

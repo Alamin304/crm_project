@@ -105,6 +105,7 @@ use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PreAlertController;
 use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\SecondAssetController;
 use App\Http\Controllers\UnacceptedAssetController;
@@ -1440,6 +1441,9 @@ Route::get('unaccepted-assets/export/{format}', [UnacceptedAssetController::clas
 
     Route::get('recipients', [RecipientController::class, 'index'])->name('recipients.index');
     Route::get('recipients/export/{format}', [RecipientController::class, 'export'])->name('recipients.export');
+
+    Route::resource('pre_alerts',  PreAlertController::class)->only(['index']);
+    Route::get('pre_alerts/export/{format}',  [PreAlertController::class, 'export'])->name('pre_alerts.export');
 
 Route::get('article-search', function () {
     return view('articles.search');

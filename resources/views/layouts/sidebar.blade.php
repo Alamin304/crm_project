@@ -1257,6 +1257,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('pre-alerts*') ? 'active' : '' }}">
+            <a href="{{ route('pre_alerts.index') }}">
+                <i class="fas fa-lg fa-bell"></i>
+                <span class="menu-text-wrap">{{ __('messages.pre_alert.pre_alerts') }}</span>
+            </a>
+        </li>
+
 
 
 
