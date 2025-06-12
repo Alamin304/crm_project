@@ -3752,5 +3752,20 @@ return [
         'updated_at' => 'Updated At',
     ],
 
+    'routings' => [
+        'routings' => 'Routings',
+        'add' => 'Add',
+        'edit' => 'Edit Routing',
+        'routing_code' => 'Routing Code',
+        'routing_name' => 'Routing Name',
+        'note' => 'Note',
+        'list' => 'List',
+        'delete' => 'Routing deleted successfully',
+        'saved' => 'Routing saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Routing',
+        'export' => 'Export Routings',
+    ],
+
 
 ];

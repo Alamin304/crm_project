@@ -1270,6 +1270,12 @@
                 <span class="menu-text-wrap">{{ __('messages.bills_of_materials.bills_of_materials') }}</span>
             </a>
         </li>
+        <li class="side-menus {{ Request::is('routings*') ? 'active' : '' }}">
+            <a href="{{ route('routings.index') }}">
+                <i class="fas fa-lg fa-route"></i>
+                <span class="menu-text-wrap">{{ __('messages.routings.routings') }}</span>
+            </a>
+        </li>
 
 
 

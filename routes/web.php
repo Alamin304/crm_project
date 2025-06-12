@@ -108,6 +108,7 @@ use App\Http\Controllers\LoyaltyUserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PreAlertController;
 use App\Http\Controllers\RecipientController;
+use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\SecondAssetController;
 use App\Http\Controllers\UnacceptedAssetController;
 
@@ -1440,13 +1441,13 @@ Route::get('unaccepted-assets/export/{format}', [UnacceptedAssetController::clas
 
 
 
-    Route::get('recipients', [RecipientController::class, 'index'])->name('recipients.index');
-    Route::get('recipients/export/{format}', [RecipientController::class, 'export'])->name('recipients.export');
+Route::get('recipients', [RecipientController::class, 'index'])->name('recipients.index');
+Route::get('recipients/export/{format}', [RecipientController::class, 'export'])->name('recipients.export');
 
-    Route::resource('pre_alerts',  PreAlertController::class)->only(['index']);
-    Route::get('pre_alerts/export/{format}',  [PreAlertController::class, 'export'])->name('pre_alerts.export');
+Route::resource('pre_alerts',  PreAlertController::class)->only(['index']);
+Route::get('pre_alerts/export/{format}',  [PreAlertController::class, 'export'])->name('pre_alerts.export');
 
-    Route::group([], function () {
+Route::group([], function () {
     Route::get('bills-of-materials', [BillsOfMaterialController::class, 'index'])->name('bills-of-materials.index');
     Route::get('bills-of-materials/create', [BillsOfMaterialController::class, 'create'])->name('bills-of-materials.create');
     Route::post('bills-of-materials', [BillsOfMaterialController::class, 'store'])->name('bills-of-materials.store');
@@ -1455,6 +1456,17 @@ Route::get('unaccepted-assets/export/{format}', [UnacceptedAssetController::clas
     Route::put('bills-of-materials/{billsOfMaterial}', [BillsOfMaterialController::class, 'update'])->name('bills-of-materials.update');
     Route::delete('bills-of-materials/{billsOfMaterial}', [BillsOfMaterialController::class, 'destroy'])->name('bills-of-materials.destroy');
     Route::get('bills-of-materials/export/{format}', [BillsOfMaterialController::class, 'export'])->name('bills-of-materials.export');
+});
+
+Route::group([], function () {
+    Route::get('routings', [RoutingController::class, 'index'])->name('routings.index');
+    Route::get('routings/create', [RoutingController::class, 'create'])->name('routings.create');
+    Route::post('routings', [RoutingController::class, 'store'])->name('routings.store');
+    Route::get('routings/{routing}/view', [RoutingController::class, 'view'])->name('routings.view');
+    Route::get('routings/{routing}/edit', [RoutingController::class, 'edit'])->name('routings.edit');
+    Route::put('routings/{routing}', [RoutingController::class, 'update'])->name('routings.update');
+    Route::delete('routings/{routing}', [RoutingController::class, 'destroy'])->name('routings.destroy');
+    Route::get('routings/export/{format}', [RoutingController::class, 'export'])->name('routings.export');
 });
 
 Route::get('article-search', function () {
