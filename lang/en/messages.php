@@ -3709,4 +3709,15 @@ return [
         'not_found' => 'Unaccepted asset not found'
     ],
 
+    'recipient' => [
+        'recipients' => 'Recipients',
+        'recipient' => 'Recipient',
+        'new_recipient' => 'New Recipient',
+        'edit_recipient' => 'Edit Recipient',
+        'recipient_details' => 'Recipient Details',
+        'list' => 'List',
+        // Add more keys as needed
+    ],
+
+
 ];

@@ -1250,6 +1250,14 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('recipients*') ? 'active' : '' }}">
+            <a href="{{ route('recipients.index') }}">
+                <i class="fas fa-lg fa-user-check"></i>
+                <span class="menu-text-wrap">{{ __('messages.recipient.recipients') }}</span>
+            </a>
+        </li>
+
+
 
 
 

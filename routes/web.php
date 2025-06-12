@@ -105,6 +105,7 @@ use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\SecondAssetController;
 use App\Http\Controllers\UnacceptedAssetController;
 
@@ -1434,6 +1435,12 @@ Route::get('orders/export/{format}', [OrderController::class, 'export'])->name('
 
 Route::resource('unaccepted-assets', UnacceptedAssetController::class)->only(['index', 'destroy']);
 Route::get('unaccepted-assets/export/{format}', [UnacceptedAssetController::class, 'export'])->name('unaccepted-assets.export');
+
+
+
+    Route::get('recipients', [RecipientController::class, 'index'])->name('recipients.index');
+    Route::get('recipients/export/{format}', [RecipientController::class, 'export'])->name('recipients.export');
+
 Route::get('article-search', function () {
     return view('articles.search');
 });
