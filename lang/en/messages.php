@@ -3728,6 +3728,29 @@ return [
         'list' => 'List',
     ],
 
+    'bills_of_materials' => [
+        'bills_of_materials' => 'Bills of Materials',
+        'add' => 'Add',
+        'edit' => 'Edit BOM',
+        'BOM_code' => 'BOM Code',
+        'product' => 'Product',
+        'product_variant' => 'Product Variant',
+        'quantity' => 'Quantity',
+        'unit_of_measure' => 'Unit of Measure',
+        'routing' => 'Routing',
+        'bom_type' => 'BOM Type',
+        'manufacturing_readiness' => 'Manufacturing Readiness',
+        'consumption' => 'Consumption',
+        'description' => 'Description',
+        'list' => 'List',
+        'delete' => 'BOM deleted successfully',
+        'saved' => 'BOM saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View BOM',
+        'export' => 'Export',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
+    ],
 
 
 ];

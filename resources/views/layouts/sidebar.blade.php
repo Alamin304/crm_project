@@ -1264,6 +1264,12 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('bills-of-materials*') ? 'active' : '' }}">
+            <a href="{{ route('bills-of-materials.index') }}">
+                <i class="fas fa-lg fa-boxes"></i>
+                <span class="menu-text-wrap">{{ __('messages.bills_of_materials.bills_of_materials') }}</span>
+            </a>
+        </li>
 
 
 

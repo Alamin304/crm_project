@@ -68,6 +68,7 @@ use App\Http\Controllers\AssetMaintenanceController;
 use App\Http\Controllers\AuditController;
 use App\Http\Controllers\AwardListController;
 use App\Http\Controllers\BedController;
+use App\Http\Controllers\BillsOfMaterialController;
 use App\Http\Controllers\BookingListController;
 use App\Http\Controllers\BookingSourceController;
 use App\Http\Controllers\BusinessBrokerController;
@@ -1444,6 +1445,17 @@ Route::get('unaccepted-assets/export/{format}', [UnacceptedAssetController::clas
 
     Route::resource('pre_alerts',  PreAlertController::class)->only(['index']);
     Route::get('pre_alerts/export/{format}',  [PreAlertController::class, 'export'])->name('pre_alerts.export');
+
+    Route::group([], function () {
+    Route::get('bills-of-materials', [BillsOfMaterialController::class, 'index'])->name('bills-of-materials.index');
+    Route::get('bills-of-materials/create', [BillsOfMaterialController::class, 'create'])->name('bills-of-materials.create');
+    Route::post('bills-of-materials', [BillsOfMaterialController::class, 'store'])->name('bills-of-materials.store');
+    Route::get('bills-of-materials/{billsOfMaterial}', [BillsOfMaterialController::class, 'show'])->name('bills-of-materials.show');
+    Route::get('bills-of-materials/{billsOfMaterial}/edit', [BillsOfMaterialController::class, 'edit'])->name('bills-of-materials.edit');
+    Route::put('bills-of-materials/{billsOfMaterial}', [BillsOfMaterialController::class, 'update'])->name('bills-of-materials.update');
+    Route::delete('bills-of-materials/{billsOfMaterial}', [BillsOfMaterialController::class, 'destroy'])->name('bills-of-materials.destroy');
+    Route::get('bills-of-materials/export/{format}', [BillsOfMaterialController::class, 'export'])->name('bills-of-materials.export');
+});
 
 Route::get('article-search', function () {
     return view('articles.search');
