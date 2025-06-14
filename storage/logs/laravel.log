@@ -4230,3 +4230,7 @@ Stack trace:
 #52 F:\\xampp\\htdocs\\crm_project\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('F:\\\\xampp\\\\htdocs...')
 #53 {main}
 "} 
+[2025-06-14 08:22:06] local.ERROR: Cannot redeclare getLoggedInUserId() (previously declared in C:\xampp\htdocs\project\app\helpers.php:64) {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare getLoggedInUserId() (previously declared in C:\\xampp\\htdocs\\project\\app\\helpers.php:64) at C:\\xampp\\htdocs\\project\\app\\helpers.php:64)
+[stacktrace]
+#0 {main}
+"} 

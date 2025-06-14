@@ -3767,5 +3767,26 @@ return [
         'export' => 'Export Routings',
     ],
 
+    'work_centers' => [
+        'work_centers' => 'Work Centers',
+        'add' => 'Add',
+        'edit' => 'Edit Work Center',
+        'name' => 'Name',
+        'code' => 'Code',
+        'working_hours' => 'Working Hours',
+        'time_efficiency' => 'Time Efficiency',
+        'cost_per_hour' => 'Cost Per Hour',
+        'capacity' => 'Capacity',
+        'oee_target' => 'OEE Target',
+        'time_before_prod' => 'Time Before Production',
+        'time_after_prod' => 'Time After Production',
+        'description' => 'Description',
+        'list' => 'List',
+        'delete' => 'Work Center deleted successfully',
+        'saved' => 'Work Center saved successfully',
+        'created_at' => 'Created At',
+        'view' => 'View Work Center',
+        'export' => 'Export',
+    ],
 
 ];

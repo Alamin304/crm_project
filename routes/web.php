@@ -111,6 +111,7 @@ use App\Http\Controllers\RecipientController;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\SecondAssetController;
 use App\Http\Controllers\UnacceptedAssetController;
+use App\Http\Controllers\WorkCenterController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -1467,6 +1468,17 @@ Route::group([], function () {
     Route::put('routings/{routing}', [RoutingController::class, 'update'])->name('routings.update');
     Route::delete('routings/{routing}', [RoutingController::class, 'destroy'])->name('routings.destroy');
     Route::get('routings/export/{format}', [RoutingController::class, 'export'])->name('routings.export');
+});
+
+Route::group([], function () {
+    Route::get('work-centers', [WorkCenterController::class, 'index'])->name('work-centers.index');
+    Route::get('work-centers/create', [WorkCenterController::class, 'create'])->name('work-centers.create');
+    Route::post('work-centers', [WorkCenterController::class, 'store'])->name('work-centers.store');
+    Route::get('work-centers/{work_center}', [WorkCenterController::class, 'show'])->name('work-centers.show');
+    Route::get('work-centers/{work_center}/edit', [WorkCenterController::class, 'edit'])->name('work-centers.edit');
+    Route::put('work-centers/{work_center}', [WorkCenterController::class, 'update'])->name('work-centers.update');
+    Route::delete('work-centers/{work_center}', [WorkCenterController::class, 'destroy'])->name('work-centers.destroy');
+    Route::get('work-centers/export/{format}', [WorkCenterController::class, 'export'])->name('work-centers.export');
 });
 
 Route::get('article-search', function () {

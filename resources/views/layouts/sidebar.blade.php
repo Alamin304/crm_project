@@ -1277,6 +1277,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('work-centers*') ? 'active' : '' }}">
+            <a href="{{ route('work-centers.index') }}">
+                <i class="fas fa-lg fa-industry"></i>
+                <span class="menu-text-wrap">{{ __('messages.work_centers.work_centers') }}</span>
+            </a>
+        </li>
+
 
 
 
