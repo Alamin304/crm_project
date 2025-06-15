@@ -3789,4 +3789,25 @@ return [
         'export' => 'Export',
     ],
 
+    'manufacturing_orders' => [
+        'manufacturing_orders' => 'Manufacturing Orders',
+        'add' => 'Add',
+        'edit' => 'Edit Manufacturing Order',
+        'view' => 'View Manufacturing Order',
+        'product' => 'Product',
+        'deadline' => 'Deadline',
+        'quantity' => 'Quantity',
+        'plan_from' => 'Plan From',
+        'unit_of_measure' => 'Unit of Measure',
+        'responsible' => 'Responsible',
+        'bom_code' => 'BOM Code',
+        'reference_code' => 'Reference Code',
+        'routing' => 'Routing',
+        'list' => 'List',
+        'delete' => 'Manufacturing Order deleted successfully',
+        'saved' => 'Manufacturing Order saved successfully',
+        'created_at' => 'Created At',
+        'export' => 'Export',
+    ],
+
 ];

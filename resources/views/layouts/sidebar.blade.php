@@ -1284,6 +1284,13 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('manufacturing-orders*') ? 'active' : '' }}">
+    <a href="{{ route('manufacturing-orders.index') }}">
+        <i class="fas fa-lg fa-cogs"></i>
+        <span class="menu-text-wrap">{{ __('messages.manufacturing_orders.manufacturing_orders') }}</span>
+    </a>
+</li>
+
 
 
 

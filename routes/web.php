@@ -105,6 +105,7 @@ use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
+use App\Http\Controllers\ManufacturingOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PreAlertController;
 use App\Http\Controllers\RecipientController;
@@ -1479,6 +1480,17 @@ Route::group([], function () {
     Route::put('work-centers/{work_center}', [WorkCenterController::class, 'update'])->name('work-centers.update');
     Route::delete('work-centers/{work_center}', [WorkCenterController::class, 'destroy'])->name('work-centers.destroy');
     Route::get('work-centers/export/{format}', [WorkCenterController::class, 'export'])->name('work-centers.export');
+});
+
+Route::group([], function () {
+    Route::get('manufacturing-orders', [ManufacturingOrderController::class, 'index'])->name('manufacturing-orders.index');
+    Route::get('manufacturing-orders/create', [ManufacturingOrderController::class, 'create'])->name('manufacturing-orders.create');
+    Route::post('manufacturing-orders', [ManufacturingOrderController::class, 'store'])->name('manufacturing-orders.store');
+    Route::get('manufacturing-orders/{manufacturing_order}/view', [ManufacturingOrderController::class, 'show'])->name('manufacturing-orders.show');
+    Route::get('manufacturing-orders/{manufacturing_order}/edit', [ManufacturingOrderController::class, 'edit'])->name('manufacturing-orders.edit');
+    Route::put('manufacturing-orders/{manufacturing_order}', [ManufacturingOrderController::class, 'update'])->name('manufacturing-orders.update');
+    Route::delete('manufacturing-orders/{manufacturing_order}', [ManufacturingOrderController::class, 'destroy'])->name('manufacturing-orders.destroy');
+    Route::get('manufacturing-orders/export/{format}', [ManufacturingOrderController::class, 'export'])->name('manufacturing-orders.export');
 });
 
 Route::get('article-search', function () {
