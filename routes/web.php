@@ -113,6 +113,7 @@ use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\SecondAssetController;
 use App\Http\Controllers\UnacceptedAssetController;
 use App\Http\Controllers\WorkCenterController;
+use App\Http\Controllers\WorkOrderController;
 
 Route::get('/otp-verify', [OtpController::class, 'showVerifyOtp'])->name('otp.verify');
 Route::post('/otp-verify', [OtpController::class, 'verifyOtp'])->name('otp.verify.post');
@@ -1491,6 +1492,12 @@ Route::group([], function () {
     Route::put('manufacturing-orders/{manufacturing_order}', [ManufacturingOrderController::class, 'update'])->name('manufacturing-orders.update');
     Route::delete('manufacturing-orders/{manufacturing_order}', [ManufacturingOrderController::class, 'destroy'])->name('manufacturing-orders.destroy');
     Route::get('manufacturing-orders/export/{format}', [ManufacturingOrderController::class, 'export'])->name('manufacturing-orders.export');
+});
+
+Route::group([], function () {
+    // Work Orders
+    Route::get('work-orders', [WorkOrderController::class, 'index'])->name('work_orders.index');
+    Route::get('work-orders/export/{format}', [WorkOrderController::class, 'export'])->name('work_orders.export');
 });
 
 Route::get('article-search', function () {

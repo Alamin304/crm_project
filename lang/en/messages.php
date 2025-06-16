@@ -3810,4 +3810,14 @@ return [
         'export' => 'Export',
     ],
 
+    'work_order' => [
+        'work_orders' => 'Work Orders',
+        'work_order' => 'Work Order',
+        'new_work_order' => 'New Work Order',
+        'edit_work_order' => 'Edit Work Order',
+        'work_order_details' => 'Work Order Details',
+        'list' => 'List',
+    ],
+
+
 ];

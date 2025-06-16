@@ -1285,11 +1285,19 @@
         </li>
 
         <li class="side-menus {{ Request::is('manufacturing-orders*') ? 'active' : '' }}">
-    <a href="{{ route('manufacturing-orders.index') }}">
-        <i class="fas fa-lg fa-cogs"></i>
-        <span class="menu-text-wrap">{{ __('messages.manufacturing_orders.manufacturing_orders') }}</span>
-    </a>
-</li>
+            <a href="{{ route('manufacturing-orders.index') }}">
+                <i class="fas fa-lg fa-cogs"></i>
+                <span class="menu-text-wrap">{{ __('messages.manufacturing_orders.manufacturing_orders') }}</span>
+            </a>
+        </li>
+
+        <li class="side-menus {{ Request::is('work-orders*') ? 'active' : '' }}">
+            <a href="{{ route('work_orders.index') }}">
+                <i class="fas fa-lg fa-tasks"></i>
+                <span class="menu-text-wrap">{{ __('messages.work_order.work_orders') }}</span>
+            </a>
+        </li>
+
 
 
 
