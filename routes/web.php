@@ -106,6 +106,7 @@ use App\Http\Controllers\WakeUpCallController;
 use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\LoyaltyUserController;
 use App\Http\Controllers\ManufacturingOrderController;
+use App\Http\Controllers\ManufacturingSettingController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PreAlertController;
 use App\Http\Controllers\RecipientController;
@@ -1498,6 +1499,36 @@ Route::group([], function () {
     // Work Orders
     Route::get('work-orders', [WorkOrderController::class, 'index'])->name('work_orders.index');
     Route::get('work-orders/export/{format}', [WorkOrderController::class, 'export'])->name('work_orders.export');
+});
+
+// routes/web.php
+Route::group(['prefix' => 'manufacturing_settings', 'as' => 'manufacturing_settings.'], function () {
+    Route::get('/', [ManufacturingSettingController::class, 'index'])->name('index');
+
+    // Working Hours Routes
+    Route::post('working-hours', [ManufacturingSettingController::class, 'storeWorkingHour'])->name('working-hours.store');
+    Route::get('working-hours/{working_hour}/edit', [ManufacturingSettingController::class, 'editWorkingHour'])->name('working-hours.edit');
+    Route::put('working-hours/{working_hour}', [ManufacturingSettingController::class, 'updateWorkingHour'])->name('working-hours.update');
+    Route::delete('working-hours/{working_hour}', [ManufacturingSettingController::class, 'destroyWorkingHour'])->name('working-hours.destroy');
+
+    // Unit of Measure Category Routes
+    Route::post('unit-of-measure-categories', [ManufacturingSettingController::class, 'storeUnitOfMeasureCategory'])->name('unit-of-measure-categories.store');
+    Route::get('unit-of-measure-categories/{unit_of_measure_category}/edit', [ManufacturingSettingController::class, 'editUnitOfMeasureCategory'])->name('unit-of-measure-categories.edit');
+    Route::put('unit-of-measure-categories/{unit_of_measure_category}', [ManufacturingSettingController::class, 'updateUnitOfMeasureCategory'])->name('unit-of-measure-categories.update');
+    Route::delete('unit-of-measure-categories/{unit_of_measure_category}', [ManufacturingSettingController::class, 'destroyUnitOfMeasureCategory'])->name('unit-of-measure-categories.destroy');
+
+    // Unit of Measure Routes
+    Route::post('unit-of-measures', [ManufacturingSettingController::class, 'storeUnitOfMeasure'])->name('unit-of-measures.store');
+    Route::get('unit-of-measures/{unit_of_measure}/edit', [ManufacturingSettingController::class, 'editUnitOfMeasure'])->name('unit-of-measures.edit');
+    Route::put('unit-of-measures/{unit_of_measure}', [ManufacturingSettingController::class, 'updateUnitOfMeasure'])->name('unit-of-measures.update');
+    Route::delete('unit-of-measures/{unit_of_measure}', [ManufacturingSettingController::class, 'destroyUnitOfMeasure'])->name('unit-of-measures.destroy');
+    Route::get('get-unit-of-measure-categories', [ManufacturingSettingController::class, 'getUnitOfMeasureCategories'])->name('get-unit-of-measure-categories');
+
+    // Material Code Routes
+    Route::post('material-codes', [ManufacturingSettingController::class, 'storeMaterialCode'])->name('material-codes.store');
+    Route::get('material-codes/{material_code}/edit', [ManufacturingSettingController::class, 'editMaterialCode'])->name('material-codes.edit');
+    Route::put('material-codes/{material_code}', [ManufacturingSettingController::class, 'updateMaterialCode'])->name('material-codes.update');
+    Route::delete('material-codes/{material_code}', [ManufacturingSettingController::class, 'destroyMaterialCode'])->name('material-codes.destroy');
 });
 
 Route::get('article-search', function () {

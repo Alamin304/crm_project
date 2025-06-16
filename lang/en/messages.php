@@ -3818,6 +3818,63 @@ return [
         'work_order_details' => 'Work Order Details',
         'list' => 'List',
     ],
+    'manufacturing_setting' => [
+        'manufacturing_settings' => 'Manufacturing Settings',
+        'manufacturing_setting' => 'Manufacturing Setting',
+
+        'settings' => 'Manufacturing Settings',
+
+        'working_hours' => [
+            'title' => 'Working Hours',
+            'add' => 'Add',
+            'edit' => 'Edit Working Hours',
+            'name' => 'Name',
+            'hours_per_day' => 'Hours Per Day',
+            'saved' => 'Working hours saved successfully',
+            'delete' => 'Working hours deleted successfully',
+            'delete_confirm' => 'Are you sure you want to delete these working hours?',
+        ],
+
+        'unit_of_measure_categories' => [
+            'title' => 'Unit of Measure Categories',
+            'add' => 'Add',
+            'edit' => 'Edit Unit of Measure Category',
+            'category_name' => 'Category Name',
+            'saved' => 'Unit of measure category saved successfully',
+            'delete' => 'Unit of measure category deleted successfully',
+            'delete_confirm' => 'Are you sure you want to delete this unit of measure category?',
+        ],
+
+        'unit_of_measures' => [
+            'title' => 'Unit of Measures',
+            'add' => 'Add',
+            'edit' => 'Edit Unit of Measure',
+            'name' => 'Name',
+            'type' => 'Type',
+            'category' => 'Category',
+            'rounding_precision' => 'Rounding Precision',
+            'is_active' => 'Is Active',
+            'saved' => 'Unit of measure saved successfully',
+            'delete' => 'Unit of measure deleted successfully',
+            'delete_confirm' => 'Are you sure you want to delete this unit of measure?',
+        ],
+
+        'material_codes' => [
+            'title' => 'Material Codes',
+            'add' => 'Add',
+            'edit' => 'Edit Material Code',
+            'material_code' => 'Material Code',
+            'material_number' => 'Material Number',
+            'routing_code' => 'Routing Code',
+            'routing_number' => 'Routing Number',
+            'manufacture_order_code' => 'Manufacture Order Code',
+            'manufacture_order_number' => 'Manufacture Order Number',
+            'working_hours' => 'Working Hours',
+            'saved' => 'Material code saved successfully',
+            'delete' => 'Material code deleted successfully',
+            'delete_confirm' => 'Are you sure you want to delete this material code?',
+        ],
+    ],
 
 
 ];

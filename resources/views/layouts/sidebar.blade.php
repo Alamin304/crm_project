@@ -1298,6 +1298,12 @@
             </a>
         </li>
 
+        <li class="side-menus {{ Request::is('manufacturing-settings*') ? 'active' : '' }}">
+            <a href="{{ route('manufacturing_settings.index') }}">
+                <i class="fas fa-lg fa-sliders-h"></i>
+                <span class="menu-text-wrap">{{ __('messages.manufacturing_setting.manufacturing_settings') }}</span>
+            </a>
+        </li>
 
 
 
